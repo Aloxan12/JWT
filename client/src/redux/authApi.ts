@@ -3,13 +3,13 @@ import {EndpointBuilder} from "@reduxjs/toolkit/dist/query/endpointDefinitions";
 
 export const authApi = createApi({
     reducerPath: 'authApi',
-    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:5555/'}),
+    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:5555/api'}),
     endpoints: (build)=> ({
-    registration: build.mutation({
-        query: (body)=>({
-            url:'registration',
+    registration: build.mutation<any, any>({
+        query: (params)=>({
+            url:'/registration',
             method:'POST',
-            body
+            body: params
         })
     })
     })
