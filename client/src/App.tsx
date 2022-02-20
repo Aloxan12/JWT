@@ -3,7 +3,7 @@ import './App.css';
 import {useRegistrationMutation} from "./redux/authApi";
 
 function App() {
-  const [ registration, {} ] = useRegistrationMutation()
+  const [ registration ] = useRegistrationMutation()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 

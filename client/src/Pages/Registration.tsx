@@ -5,7 +5,7 @@ import {useRegistrationMutation} from "../redux/authApi";
 
 
 export const Registration = () => {
-    const [registration, error] = useRegistrationMutation()
+    const [registration, {data, error}] = useRegistrationMutation()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -22,17 +22,24 @@ export const Registration = () => {
         } else if (password !== password2) {
             setErrorText('Разные пароли!!')
         } else {
-            await registration({email, password}).then((data) =>{
-                if('status' in error){
-                    console.log('message' in error)
+            try {
+                const result = await registration({email, password})
+
+                // @ts-ignore
+                console.log('result status', result.error.status)
+                if (data) {
+                    console.log('data', data)
                     // setErrorText(data.message)
-                }else if(data){
+                } else if (data) {
+                    console.log('error', data)
                     setSuccess("Письмо для активации отправлено на почту")
-                }}
-            ).catch((e)=>{
+                }
+                if(error){
+                    console.log('error', error)
+                }
+            }catch (e) {
                 console.log(e)
-                setErrorText('При регистрации произошла ошибка')
-            })
+            }
         }
     };
 
