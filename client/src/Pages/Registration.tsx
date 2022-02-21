@@ -3,9 +3,8 @@ import axios from "axios";
 import './Registration.css'
 import {useRegistrationMutation} from "../redux/authApi";
 
-
 export const Registration = () => {
-    const [registration, {data, error}] = useRegistrationMutation()
+    const [registration, {data , error}] = useRegistrationMutation()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -23,22 +22,14 @@ export const Registration = () => {
             setErrorText('Разные пароли!!')
         } else {
             try {
-                const result = await registration({email, password})
-
-                // @ts-ignore
-                console.log('result status', result.error.status)
-                if (data) {
-                    console.log('data', data)
-                    // setErrorText(data.message)
-                } else if (data) {
-                    console.log('error', data)
-                    setSuccess("Письмо для активации отправлено на почту")
-                }
-                if(error){
-                    console.log('error', error)
-                }
+                await registration({email, password}).then((res)=>{
+                    if(res){
+                        res.data.error.status
+                    }
+                })
             }catch (e) {
-                console.log(e)
+                console.log('data', data)
+                console.log('registrationErrorInCatch', error)
             }
         }
     };

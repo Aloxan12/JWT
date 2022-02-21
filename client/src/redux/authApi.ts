@@ -9,11 +9,21 @@ interface IRegistration {
         id: string
         isActivated: boolean
     }
+    error: {
+        status: number
+        message: string
+    }
 }
 
 interface ISendRegistration {
     email: string
     password: string
+}
+interface IError{
+    error: {
+        status: number
+        message: string
+    }
 }
 
 export const authApi = createApi({
