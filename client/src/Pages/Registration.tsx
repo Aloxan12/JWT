@@ -30,12 +30,12 @@ export const Registration = () => {
         }
     };
 
-    // useEffect(()=>{
-    //     console.log('users', users)
-    //     if(error){
-    //         console.log('data' in error)
-    //     }
-    // },[])
+    useEffect(()=>{
+        console.log('users', users)
+        if(error){
+            console.log('data' in error)
+        }
+    },[])
 
     return (
         <div className="auth_wrap">
