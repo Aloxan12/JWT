@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import './Registration.css'
-import {useRegistrationMutation} from "../redux/authApi";
+import {useGetAllUsersQuery, useRegistrationMutation} from "../redux/authApi";
 
 export const Registration = () => {
-    const [registration, {data , error}] = useRegistrationMutation()
+    const {data: users, error} = useGetAllUsersQuery({})
+    const [registration] = useRegistrationMutation()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -22,17 +23,19 @@ export const Registration = () => {
             setErrorText('Разные пароли!!')
         } else {
             try {
-                await registration({email, password}).then((res)=>{
-                    if(res){
-                        res.data.error.status
-                    }
-                })
+                await registration({email, password})
+                console.log('error', error)
             }catch (e) {
-                console.log('data', data)
-                console.log('registrationErrorInCatch', error)
             }
         }
     };
+
+    // useEffect(()=>{
+    //     console.log('users', users)
+    //     if(error){
+    //         console.log('data' in error)
+    //     }
+    // },[])
 
     return (
         <div className="auth_wrap">

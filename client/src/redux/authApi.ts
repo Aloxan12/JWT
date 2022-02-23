@@ -29,15 +29,23 @@ interface IError{
 export const authApi = createApi({
     reducerPath: 'authApi',
     baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:5555/api'}),
+    tagTypes: ['Registration', 'Users'],
     endpoints: (build) => ({
+        getAllUsers: build.query({
+            query: () => ({
+                url: '/users',
+            }),
+        }),
         registration: build.mutation<IRegistration, ISendRegistration>({
             query: (params) => ({
                 url: '/registration',
                 method: 'POST',
-                body: params
-            })
+                body: params,
+            }),
+
+            invalidatesTags: ['Registration']
         })
     })
 })
 
-export const {useRegistrationMutation} = authApi
+export const { useRegistrationMutation, useGetAllUsersQuery } = authApi
