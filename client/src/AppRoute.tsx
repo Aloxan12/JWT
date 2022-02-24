@@ -6,13 +6,13 @@ export const routes = [
     {
         id: 'Main',
         path: '/',
-        exact: true,
+        // exact: true,
         component: <App />
     },
     {
         id: 'Registration',
         path: '/registration',
-        exact: true,
+        // exact: true,
         component: <Registration />
     },
 ];
@@ -33,7 +33,7 @@ export const AppRoutes = () => {
         <BrowserRouter>
             <Routes>
                 {routes.map(route => {
-                    const {id, component, path, exact} = route;
+                    const {id, component, path} = route;
                     return (
                         <Route key={id} path={path} element={component} />
                     )
