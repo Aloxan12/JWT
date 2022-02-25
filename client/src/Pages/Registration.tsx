@@ -25,17 +25,19 @@ export const Registration = () => {
             try {
                 await registration({email, password})
                 console.log('error', error)
-            }catch (e) {
+            } catch (e) {
             }
         }
     };
 
-    useEffect(()=>{
-        console.log('users', users)
-        if(error){
-            console.log('data' in error)
+    useEffect(() => {
+        try {
+            console.log('users.error', users.error)
+        } catch (e) {
+            // console.log('error', error?.data.message)
+            console.log('user', users)
         }
-    },[])
+    }, [])
 
     return (
         <div className="auth_wrap">
