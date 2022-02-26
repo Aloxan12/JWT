@@ -1,6 +1,15 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import {EndpointBuilder} from "@reduxjs/toolkit/dist/query/endpointDefinitions";
 
+interface IUser {
+    _id: string,
+    email: string,
+    password: string,
+    isActivated: boolean,
+    activationLink: string,
+    __v: number
+}
+
 interface IRegistration {
     accessToken: string
     refreshToken: string
@@ -31,7 +40,7 @@ export const authApi = createApi({
     baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:5555/api'}),
     tagTypes: ['Registration', 'Users'],
     endpoints: (build) => ({
-        getAllUsers: build.query({
+        getAllUsers: build.query<IUser[], any>({
             query: () => ({
                 url: '/users',
             }),

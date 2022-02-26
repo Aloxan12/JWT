@@ -1,10 +1,17 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import './Registration.css'
-import {useGetAllUsersQuery, useRegistrationMutation} from "../redux/authApi";
+import {authApi, useGetAllUsersQuery, useRegistrationMutation} from "../redux/authApi";
+
+interface IError{
+    error: {
+        status: number
+        message: string
+    }
+}
 
 export const Registration = () => {
-    const {data: users, error} = useGetAllUsersQuery({})
+    const {data:users, error, isLoading} =  useGetAllUsersQuery('')
     const [registration] = useRegistrationMutation()
 
     const [email, setEmail] = useState('')
@@ -32,15 +39,20 @@ export const Registration = () => {
 
     useEffect(() => {
         try {
-            console.log('users.error', users.error)
+            console.log('users.error', users, )
+            if(error !== undefined){
+                const fakeError = {...error}
+                console.log('error error')
+            }
         } catch (e) {
-            // console.log('error', error?.data.message)
+            console.log('error', error)
             console.log('user', users)
         }
     }, [])
 
     return (
         <div className="auth_wrap">
+            {isLoading && <h1>Идет загрузка</h1>}
             <div className="registration-block">
                 <div className="header-block"><span>Регистрация</span></div>
                 <form onSubmit={handleSubmit} className="form-block">
