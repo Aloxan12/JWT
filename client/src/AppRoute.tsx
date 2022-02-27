@@ -1,6 +1,7 @@
 import App from "./App";
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import {Registration} from "./Pages/Registration";
+import {Header} from "./Pages/Header/Header";
 
 export const routes = [
     {
@@ -31,6 +32,7 @@ export const getRouteConfig = (id: string) => {
 export const AppRoutes = () => {
     return (
         <BrowserRouter>
+            <Header />
             <Routes>
                 {routes.map(route => {
                     const {id, component, path} = route;
