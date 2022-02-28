@@ -3,7 +3,7 @@ import styles from './Header.module.css'
 
 export const Header =()=>{
     return(
-        <div>
+        <div className={styles.mainHeaderWrap}>
             ujkjdf
         </div>
     )
