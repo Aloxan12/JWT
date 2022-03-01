@@ -1,5 +1,23 @@
+*{
+    text-decoration: none;
+}
+
 .mainHeaderWrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #d2face;
     box-shadow: 0 0 8px rgba(51, 212, 35, 0.42);
     padding: 20px;
+    font-size: 20px;
+}
+.mainHeaderWrap .mainHeaderTitle{
+    margin-left: 10%;
+}
+.mainHeaderWrap .mainHeaderAuth{
+    margin-right: 10%;
+}
+
+.mainHeaderWrap .mainHeaderAuth a{
+    margin-right: 15%;
 }
