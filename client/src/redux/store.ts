@@ -1,6 +1,7 @@
 import {combineReducers} from "redux";
 import {configureStore} from "@reduxjs/toolkit";
 import {authApi} from "./authApi";
+import {rtkErrorMiddleware} from "./middleware/error-middleware";
 
 
 const rootReducer = combineReducers({
@@ -11,7 +12,7 @@ export const setupStore = () => {
     return configureStore({
         reducer: rootReducer,
         middleware: (getDefaultMiddleware)=>
-            getDefaultMiddleware().concat(authApi.middleware)
+            getDefaultMiddleware({serializableCheck: false}).concat(authApi.middleware).concat(rtkErrorMiddleware)
     })
 }
 
