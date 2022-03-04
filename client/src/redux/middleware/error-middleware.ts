@@ -11,7 +11,7 @@ export const rtkErrorMiddleware: Middleware =
             ToastWrapper({
                 msg: JSON.stringify(
                     !!action.payload.data ? action.payload.data.message : action.payload,
-                ),
+                ).replace(/"/g, ''),
                 type: ToastWrapperType.error,
             })
         }

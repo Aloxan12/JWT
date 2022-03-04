@@ -1,7 +1,10 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import 'react-toastify/dist/ReactToastify.css';
 import './Registration.css'
 import {authApi, useGetAllUsersQuery, useRegistrationMutation} from "../redux/authApi";
+import { ToastWrapper, ToastWrapperType} from "../Common/Components/ToastWrapper/ToastWrapper";
+import {toast, ToastContainer} from "react-toastify";
 
 interface IError{
     error: {
@@ -11,8 +14,7 @@ interface IError{
 }
 
 export const Registration = () => {
-    const {data:users, error, isLoading} =  useGetAllUsersQuery('')
-    const [registration] = useRegistrationMutation()
+    const [registration, {isLoading}] = useRegistrationMutation()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -30,25 +32,13 @@ export const Registration = () => {
             setErrorText('Разные пароли!!')
         } else {
             try {
-                await registration({email, password})
-                console.log('error', error)
+                const data = await registration({email, password})
+                console.log('successRegistration', data)
             } catch (e) {
+                console.log('error', e)
             }
         }
     };
-
-    useEffect(() => {
-        try {
-            console.log('users.error', users, )
-            if(error !== undefined){
-                const fakeError = {...error}
-                console.log('error error')
-            }
-        } catch (e) {
-            console.log('error', error)
-            console.log('user', users)
-        }
-    }, [])
 
     return (
         <div className="auth_wrap">
@@ -57,13 +47,13 @@ export const Registration = () => {
                 <div className="header-block"><span>Регистрация</span></div>
                 <form onSubmit={handleSubmit} className="form-block">
                     <div className="form-item">
-                        <label htmlFor="name">Введите email:</label>
+                        <label htmlFor="email">Введите email:</label>
 
                         <input type="text" value={email} placeholder="Введите свой email" onChange={(e) => {
                             setErrorText('')
                             setSuccess('')
                             setEmail(e.currentTarget.value)
-                        }} name="name"/>
+                        }} name="email"/>
                     </div>
                     <div className="form-item">
                         <label htmlFor="password">Введите пароль:</label>

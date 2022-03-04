@@ -2,6 +2,8 @@ import App from "./App";
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import {Registration} from "./Pages/Registration";
 import {Header} from "./Pages/Header/Header";
+import {ToastContainer} from "react-toastify";
+import React from "react";
 
 export const routes = [
     {
@@ -33,6 +35,7 @@ export const AppRoutes = () => {
     return (
         <BrowserRouter>
             <Header />
+            <ToastContainer/>
             <Routes>
                 {routes.map(route => {
                     const {id, component, path} = route;
