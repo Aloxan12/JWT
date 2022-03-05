@@ -1,17 +1,10 @@
-import React, {useEffect, useState} from "react";
-import axios from "axios";
+import React, {useState} from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import './Registration.css'
-import {authApi, useGetAllUsersQuery, useRegistrationMutation} from "../redux/authApi";
-import { ToastWrapper, ToastWrapperType} from "../Common/Components/ToastWrapper/ToastWrapper";
-import {toast, ToastContainer} from "react-toastify";
+import {useRegistrationMutation} from "../redux/authApi";
+import {AppRedirect} from "../Common/Components/AppRedirect/AppRedirect";
+import {ToastWrapper, ToastWrapperType} from "../Common/Components/ToastWrapper/ToastWrapper";
 
-interface IError{
-    error: {
-        status: number
-        message: string
-    }
-}
 
 export const Registration = () => {
     const [registration, {isLoading}] = useRegistrationMutation()
@@ -33,6 +26,13 @@ export const Registration = () => {
         } else {
             try {
                 const data = await registration({email, password})
+                if(!!data){
+                    ToastWrapper({
+                        msg: "Писльмо для подтверждаения регестрации отправлено на почту".replace(/"/g, ''),
+                        type: ToastWrapperType.success,
+                    })
+                    return () => <AppRedirect path="/" />
+                }
                 console.log('successRegistration', data)
             } catch (e) {
                 console.log('error', e)
