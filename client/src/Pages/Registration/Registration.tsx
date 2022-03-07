@@ -1,13 +1,15 @@
 import React, {useState} from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import './Registration.css'
-import {useRegistrationMutation} from "../redux/authApi";
-import {AppRedirect} from "../Common/Components/AppRedirect/AppRedirect";
-import {ToastWrapper, ToastWrapperType} from "../Common/Components/ToastWrapper/ToastWrapper";
+import {useRegistrationMutation} from "../../redux/authApi";
+import {AppRedirect} from "../../Common/Components/AppRedirect/AppRedirect";
+import {ToastWrapper, ToastWrapperType} from "../../Common/Components/ToastWrapper/ToastWrapper";
+import { useNavigate } from "react-router-dom";
 
 
 export const Registration = () => {
-    const [registration, {isLoading}] = useRegistrationMutation()
+    const [registration, {isLoading, error}] = useRegistrationMutation()
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -26,14 +28,14 @@ export const Registration = () => {
         } else {
             try {
                 const data = await registration({email, password})
-                if(!!data){
+                if(!!data && !error){
                     ToastWrapper({
                         msg: "Писльмо для подтверждаения регестрации отправлено на почту".replace(/"/g, ''),
                         type: ToastWrapperType.success,
                     })
-                    return () => <AppRedirect path="/" />
+                    navigate('/')
+                    // return () => <AppRedirect path="/" />
                 }
-                console.log('successRegistration', data)
             } catch (e) {
                 console.log('error', e)
             }

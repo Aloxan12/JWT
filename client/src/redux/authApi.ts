@@ -1,5 +1,6 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import {EndpointBuilder} from "@reduxjs/toolkit/dist/query/endpointDefinitions";
+import { RootState } from './store';
 
 interface IUser {
     _id: string,
@@ -10,17 +11,13 @@ interface IUser {
     __v: number
 }
 
-interface IRegistration {
-    accessToken: string
-    refreshToken: string
+export interface AuthState {
+    accessToken: string | null
+    refreshToken: string | null
     user: {
         email: string
         id: string
         isActivated: boolean
-    }
-    error: {
-        status: number
-        message: string
     }
 }
 
@@ -37,24 +34,38 @@ interface IError{
 
 export const authApi = createApi({
     reducerPath: 'authApi',
-    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:5555/api'}),
-    tagTypes: ['Registration', 'Users'],
+    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:5555/api',
+        prepareHeaders: (headers, { getState }) => {
+            const token = (getState() as RootState).auth.token
+            if (token) {
+                headers.set('authorization', `Bearer ${token}`)
+            }
+            return headers
+        },}),
+    tagTypes: ['Registration', 'Users', 'Login'],
     endpoints: (build) => ({
-        getAllUsers: build.query<IUser[], any>({
+        getAllUsers: build.query<IUser[], void>({
             query: () => ({
                 url: '/users',
             }),
         }),
-        registration: build.mutation<IRegistration, ISendRegistration>({
+        login: build.mutation<AuthState, ISendRegistration>({
+            query: (params) => ({
+                url: '/login',
+                method: 'POST',
+                body: params,
+            }),
+            invalidatesTags: ['Login']
+        }),
+        registration: build.mutation<AuthState, ISendRegistration>({
             query: (params) => ({
                 url: '/registration',
                 method: 'POST',
                 body: params,
             }),
-
             invalidatesTags: ['Registration']
         })
     })
 })
 
-export const { useRegistrationMutation, useGetAllUsersQuery } = authApi
+export const { useRegistrationMutation, useGetAllUsersQuery, useLoginMutation } = authApi

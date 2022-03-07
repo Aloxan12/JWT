@@ -1,9 +1,10 @@
 import App from "./App";
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import {Registration} from "./Pages/Registration";
+import {Registration} from "./Pages/Registration/Registration";
 import {Header} from "./Pages/Header/Header";
 import {ToastContainer} from "react-toastify";
 import React from "react";
+import {Login} from "./Pages/Login/Login";
 
 export const routes = [
     {
@@ -17,6 +18,12 @@ export const routes = [
         path: '/registration',
         // exact: true,
         component: <Registration />
+    },
+    {
+        id: 'Login',
+        path: '/login',
+        // exact: true,
+        component: <Login />
     },
 ];
 
