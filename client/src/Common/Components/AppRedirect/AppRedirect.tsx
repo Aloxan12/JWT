@@ -6,5 +6,5 @@ interface IRedirect {
 
 export const AppRedirect = ({ path = '/' }: IRedirect) => {
     const navigate = useNavigate()
-    return navigate(path)
+    navigate(path)
 }

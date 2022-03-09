@@ -29,39 +29,28 @@ const authReducer = createSlice({
     name: 'auth',
     initialState: authInitialState as AuthInitialStateType,
     reducers: {
-        setAuth: (
+        setAuthData: (
             state,
-            { payload: { isAuth } }: PayloadAction<{ isAuth: boolean }>,
+            { payload:  AuthState  }: PayloadAction<AuthState>,
         ) => {
-            state.isAuth = isAuth
+            state.authData = AuthState
+                if(AuthState.accessToken !== null && AuthState.refreshToken !== null){
+                    state.token = AuthState.accessToken
+                    localStorage.setItem('token', AuthState.accessToken)
+                    localStorage.setItem('refreshToken', AuthState.refreshToken)
+                    state.isAuth = true
+                }
         },
         setToken: (
             state,
-            { payload: { token } }: PayloadAction<{ token: null }>,
+            { payload: { token } }: PayloadAction<{ token: string | null }>,
         ) => {
             state.token = token
-            if(token !== null){
-                setAuth({isAuth: true})
-            }
-        },
-        setAuthData: (
-            state,
-            { payload: { authData } },
-        ) => {
-            state.authData = authData
-            if(authData !== null){
-                setAuth({isAuth: true})
-                setToken({token: authData.accessToken})
-            }
-        },
-        setUser: (
-            state,
-            { payload: { user } }: PayloadAction<{ user: IUser }>,
-        ) => {
-            state.user = user
         },
         deleteCredentials: (state) => {
             state.isAuth = false
+            state.token = null
+            localStorage.removeItem('token')
         },
         setActiveAuthPage: (
             state,
@@ -74,7 +63,7 @@ const authReducer = createSlice({
     },
 })
 
-export const { setAuth, setUser,setToken, setAuthData, deleteCredentials, setActiveAuthPage } =
+export const { setAuthData, setToken, deleteCredentials, setActiveAuthPage } =
     authReducer.actions
 
 export default authReducer.reducer

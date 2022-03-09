@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import {EndpointBuilder} from "@reduxjs/toolkit/dist/query/endpointDefinitions";
-import { RootState } from './store';
+import {RootState} from './store';
 
 interface IUser {
     _id: string,
@@ -11,21 +11,25 @@ interface IUser {
     __v: number
 }
 
+export interface IUserAuthState {
+    email: string
+    id: string
+    isActivated: boolean
+}
+
+
 export interface AuthState {
     accessToken: string | null
     refreshToken: string | null
-    user: {
-        email: string
-        id: string
-        isActivated: boolean
-    }
+    user: IUserAuthState
 }
 
 interface ISendRegistration {
     email: string
     password: string
 }
-interface IError{
+
+interface IError {
     error: {
         status: number
         message: string
@@ -34,14 +38,19 @@ interface IError{
 
 export const authApi = createApi({
     reducerPath: 'authApi',
-    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:5555/api',
-        prepareHeaders: (headers, { getState }) => {
-            const token = (getState() as RootState).auth.token
+    baseQuery: fetchBaseQuery({
+        baseUrl: 'http://localhost:5555/api',
+        prepareHeaders: (headers, {getState}) => {
+            // const token = (getState() as RootState).auth.token
+            const token = localStorage.getItem('token')
+            const refreshToken = localStorage.getItem('refreshToken')
             if (token) {
                 headers.set('authorization', `Bearer ${token}`)
+                headers.set('refreshToken', `${refreshToken}`)
             }
             return headers
-        },}),
+        },
+    }),
     tagTypes: ['Registration', 'Users', 'Login'],
     endpoints: (build) => ({
         getAllUsers: build.query<IUser[], void>({
@@ -49,11 +58,18 @@ export const authApi = createApi({
                 url: '/users',
             }),
         }),
+        checkAuth: build.query<AuthState, void>({
+            query: () => ({
+                url: '/refresh',
+                params: {withCredentials: true},
+            }),
+        }),
         login: build.mutation<AuthState, ISendRegistration>({
             query: (params) => ({
                 url: '/login',
                 method: 'POST',
                 body: params,
+                params: {withCredentials: true}
             }),
             invalidatesTags: ['Login']
         }),
@@ -62,10 +78,11 @@ export const authApi = createApi({
                 url: '/registration',
                 method: 'POST',
                 body: params,
+                params: {withCredentials: true}
             }),
             invalidatesTags: ['Registration']
         })
     })
 })
 
-export const { useRegistrationMutation, useGetAllUsersQuery, useLoginMutation } = authApi
+export const {useRegistrationMutation, useGetAllUsersQuery, useLoginMutation, useCheckAuthQuery} = authApi

@@ -1,19 +1,27 @@
 import React, {useState} from "react";
 import 'react-toastify/dist/ReactToastify.css';
-import { useLoginMutation } from "../../redux/authApi";
+import {AuthState, useLoginMutation} from "../../redux/authApi";
 import './Login.css'
-import {AppDispatch, useAppDispatch} from "../../redux/store";
+import {RootState, useAppDispatch} from "../../redux/store";
 import {setAuthData} from "../../redux/Reducers/authReducer/authReducer";
+import {useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {ToastWrapper, ToastWrapperType} from "../../Common/Components/ToastWrapper/ToastWrapper";
 
 
 export const Login = () => {
     const [login, {isError}] = useLoginMutation()
 
+    const authData = useSelector<RootState, AuthState | null>(state => state.auth.authData)
+    const token = useSelector<RootState, string | null>(state => state.auth.token)
+
     const dispatch = useAppDispatch()
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
+
 
     const loginHandler = async (email: string, password: string) => {
         try {
@@ -22,33 +30,29 @@ export const Login = () => {
             }else if(password === ''){
                 setError('Поле "пароль" не заполнено!!')
             }else {
-                await login({email, password}).then(data => {
-                    if (!isError) {
-                        dispatch(setAuthData(data))
+                await login({email, password}).unwrap().then(res => {
+                    if (res !== null && !isError) {
+                        dispatch(setAuthData(res))
+                        ToastWrapper({
+                            msg: "Успешно вошли в систему".replace(/"/g, ''),
+                            type: ToastWrapperType.success,
+                        })
+                        navigate('/')
                     }
+
                 })
             }
         }catch (e) {console.log(e)}
     }
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if(email === ''){
-            setError('Поле "имя" не заполнено!!')
-        }else {
-            // await axios.post('http://localhost:9000/api/login',{
-            //     username: name,
-            //     password: password
-            // })
-        }
-    };
+    console.log('token', token)
 
     return(
         <div>
             <div className="auth_wrap">
                 <div className="registration-block">
                     <div className="header-block"><span>Добро пожаловать</span></div>
-                    <form className="form-block">
+                    <div className="form-block">
                         <div className="form-item">
                             <label htmlFor="email">Введите email:</label>
 
@@ -68,7 +72,7 @@ export const Login = () => {
                             <button className="btn" onClick={()=>loginHandler(email, password)}>Войти</button>
                             {error && <div className="error-text">{error}</div>}
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
