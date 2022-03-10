@@ -21,7 +21,7 @@ export interface IUserAuthState {
 export interface AuthState {
     accessToken: string | null
     refreshToken: string | null
-    user: IUserAuthState
+    user: IUserAuthState | null
 }
 
 interface ISendRegistration {
@@ -73,6 +73,7 @@ export const authApi = createApi({
             }),
             invalidatesTags: ['Login']
         }),
+
         registration: build.mutation<AuthState, ISendRegistration>({
             query: (params) => ({
                 url: '/registration',

@@ -31,14 +31,19 @@ const authReducer = createSlice({
     reducers: {
         setAuthData: (
             state,
-            { payload:  AuthState  }: PayloadAction<AuthState>,
+            { payload:  AuthState  }: PayloadAction<AuthState | null>,
         ) => {
             state.authData = AuthState
-                if(AuthState.accessToken !== null && AuthState.refreshToken !== null){
-                    state.token = AuthState.accessToken
-                    localStorage.setItem('token', AuthState.accessToken)
-                    localStorage.setItem('refreshToken', AuthState.refreshToken)
-                    state.isAuth = true
+                if(AuthState !== null){
+                    if(AuthState.accessToken !== null && AuthState.refreshToken !== null){
+                        state.token = AuthState.accessToken
+                        localStorage.setItem('token', AuthState.accessToken)
+                        localStorage.setItem('refreshToken', AuthState.refreshToken)
+                        state.isAuth = true
+                    }
+                }else {
+                    state.authData = null
+                    state.isAuth = false
                 }
         },
         setToken: (
@@ -47,23 +52,16 @@ const authReducer = createSlice({
         ) => {
             state.token = token
         },
-        deleteCredentials: (state) => {
+        logout: (state) => {
             state.isAuth = false
             state.token = null
             localStorage.removeItem('token')
-        },
-        setActiveAuthPage: (
-            state,
-            {
-                payload: { activePage },
-            }: PayloadAction<{ activePage: boolean }>,
-        ) => {
-            state.user.isActivated = activePage
+            localStorage.removeItem('refreshToken')
         },
     },
 })
 
-export const { setAuthData, setToken, deleteCredentials, setActiveAuthPage } =
+export const { setAuthData, setToken, logout } =
     authReducer.actions
 
 export default authReducer.reducer

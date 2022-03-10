@@ -9,6 +9,10 @@ import axios from 'axios';
 
 
 function App() {
+
+    useEffect(()=>{
+        console.log('nen')
+    },[])
     return (
         <div className="App">
             <div>

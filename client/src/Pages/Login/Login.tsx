@@ -45,8 +45,6 @@ export const Login = () => {
         }catch (e) {console.log(e)}
     }
 
-    console.log('token', token)
-
     return(
         <div>
             <div className="auth_wrap">

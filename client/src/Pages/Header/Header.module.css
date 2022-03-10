@@ -10,6 +10,7 @@
     box-shadow: 0 0 8px rgba(51, 212, 35, 0.42);
     padding: 20px;
     font-size: 20px;
+    max-height: 65px;
 }
 .mainHeaderWrap .mainHeaderTitle{
     margin-left: 10%;
@@ -20,4 +21,25 @@
 
 .mainHeaderWrap .mainHeaderAuth a{
     margin-right: 15%;
+}
+.mainHeaderIsAuth{
+    display: flex;
+    align-items: center;
+}
+
+.mainHeaderIsLogout{
+    display: flex;
+    align-items: center;
+}
+
+.mainHeaderIsAuth span{
+    padding-right: 20px;
+}
+.loginLink{
+    color: #6b6969;
+    cursor: pointer;
+}
+.loginLink:hover{
+    color: black;
+    border-bottom: 2px solid black;
 }
