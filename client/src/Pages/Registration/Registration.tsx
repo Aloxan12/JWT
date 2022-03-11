@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import './Registration.css'
 import {useRegistrationMutation} from "../../redux/authApi";
-import {AppRedirect} from "../../Common/Components/AppRedirect/AppRedirect";
 import {ToastWrapper, ToastWrapperType} from "../../Common/Components/ToastWrapper/ToastWrapper";
 import { useNavigate } from "react-router-dom";
 
@@ -33,7 +32,7 @@ export const Registration = () => {
                         msg: "Писльмо для подтверждаения регестрации отправлено на почту".replace(/"/g, ''),
                         type: ToastWrapperType.success,
                     })
-                    navigate('/')
+                    navigate('/login')
                     // return () => <AppRedirect path="/" />
                 }
             } catch (e) {

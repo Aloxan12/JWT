@@ -13,7 +13,6 @@ export const Header = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        console.log('data', data)
         try {
             if (localStorage.getItem('token')) {
                 const token = localStorage.getItem('token')
@@ -27,10 +26,7 @@ export const Header = () => {
         } catch (e) {
             console.log(e)
         }
-    }, [data, isAuth])
-
-    console.log('user', user)
-    console.log('isAuth', isAuth)
+    }, [data, isAuth, user])
 
     const logoutHandler = () => {
         dispatch(logout())

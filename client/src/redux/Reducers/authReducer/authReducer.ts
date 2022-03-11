@@ -8,7 +8,7 @@ interface IUser{
 }
 
 type AuthInitialStateType = {
-    user: IUser,
+    user: IUser | null,
     authData: AuthState | null
     isAuth: boolean
     token: string | null
@@ -35,11 +35,12 @@ const authReducer = createSlice({
         ) => {
             state.authData = AuthState
                 if(AuthState !== null){
-                    if(AuthState.accessToken !== null && AuthState.refreshToken !== null){
+                    if(AuthState.accessToken !== null && AuthState.refreshToken !== null && AuthState.user){
                         state.token = AuthState.accessToken
                         localStorage.setItem('token', AuthState.accessToken)
                         localStorage.setItem('refreshToken', AuthState.refreshToken)
                         state.isAuth = true
+                        state.user = AuthState.user
                     }
                 }else {
                     state.authData = null
@@ -55,6 +56,7 @@ const authReducer = createSlice({
         logout: (state) => {
             state.isAuth = false
             state.token = null
+            state.user = null
             localStorage.removeItem('token')
             localStorage.removeItem('refreshToken')
         },

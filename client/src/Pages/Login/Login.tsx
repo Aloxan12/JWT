@@ -1,19 +1,15 @@
 import React, {useState} from "react";
 import 'react-toastify/dist/ReactToastify.css';
-import {AuthState, useLoginMutation} from "../../redux/authApi";
+import {useLoginMutation} from "../../redux/authApi";
 import './Login.css'
-import {RootState, useAppDispatch} from "../../redux/store";
+import {useAppDispatch} from "../../redux/store";
 import {setAuthData} from "../../redux/Reducers/authReducer/authReducer";
 import {useNavigate} from "react-router-dom";
-import {useSelector} from "react-redux";
 import {ToastWrapper, ToastWrapperType} from "../../Common/Components/ToastWrapper/ToastWrapper";
 
 
 export const Login = () => {
     const [login, {isError}] = useLoginMutation()
-
-    const authData = useSelector<RootState, AuthState | null>(state => state.auth.authData)
-    const token = useSelector<RootState, string | null>(state => state.auth.token)
 
     const dispatch = useAppDispatch()
     const navigate = useNavigate();
