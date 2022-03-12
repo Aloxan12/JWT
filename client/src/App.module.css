@@ -5,7 +5,8 @@
 }
 
 nav{
-    height: 50px;
+    position: fixed;
+    top: 23px;
     display: flex;
     align-items: center;
 }
