@@ -58,3 +58,12 @@ ul li a{
     color: white;
     text-decoration: none;
 }
+
+@media screen and (max-width: 768px){
+    .menuContent{
+        width: 100%;
+    }
+    .blur{
+        backdrop-filter: none;
+    }
+}

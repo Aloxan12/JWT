@@ -16,9 +16,13 @@ interface IBurgerMenu {
 
 export const BurgerMenu = ({items, header, active, setActive }: IBurgerMenu) => {
     return (
-        <div className={active ? `${styles.menu} ${styles.active}` : styles.menu}>
+        <div className={active ? `${styles.menu} ${styles.active}` : styles.menu}
+            onClick={()=> setActive(false)}
+        >
             <div className={styles.blur}/>
-            <div className={styles.menuContent}>
+            <div className={styles.menuContent}
+                 onClick={(e)=> e.stopPropagation()}
+            >
                 <div className={styles.menuHeader}>{header}</div>
                 <ul>
                     {items.map((item: any) =>
