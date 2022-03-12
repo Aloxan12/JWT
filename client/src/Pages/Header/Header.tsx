@@ -3,13 +3,14 @@ import styles from './Header.module.css'
 import {NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {RootState, useAppDispatch} from "../../redux/store";
-import {IUserAuthState, useCheckAuthQuery} from "../../redux/authApi";
+import {IUserAuthState, useCheckAuthQuery, useLogoutMutation} from "../../redux/authApi";
 import {logout, setAuthData, setToken} from "../../redux/Reducers/authReducer/authReducer";
 
 export const Header = () => {
     const user = useSelector<RootState, IUserAuthState | null>(state => state.auth.authData && state.auth.authData.user)
     const isAuth = useSelector<RootState, boolean>(state => state.auth.isAuth)
     const {data, isLoading, error} = useCheckAuthQuery()
+    const [logoutApi] = useLogoutMutation()
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -28,7 +29,8 @@ export const Header = () => {
         }
     }, [data, isAuth, user])
 
-    const logoutHandler = () => {
+    const logoutHandler = async () => {
+        await logoutApi()
         dispatch(logout())
     }
 

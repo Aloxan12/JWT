@@ -73,6 +73,15 @@ export const authApi = createApi({
             }),
             invalidatesTags: ['Login']
         }),
+        logout: build.mutation<void, void>({
+            query: (params) => ({
+                url: '/logout',
+                method: 'POST',
+                body: params,
+                params: {withCredentials: true}
+            }),
+            invalidatesTags: ['Login']
+        }),
 
         registration: build.mutation<AuthState, ISendRegistration>({
             query: (params) => ({
@@ -86,4 +95,4 @@ export const authApi = createApi({
     })
 })
 
-export const {useRegistrationMutation, useGetAllUsersQuery, useLoginMutation, useCheckAuthQuery} = authApi
+export const {useRegistrationMutation, useGetAllUsersQuery, useLoginMutation, useCheckAuthQuery, useLogoutMutation} = authApi

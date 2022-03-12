@@ -1,15 +1,20 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import './App.css';
+import styles from './App.module.css';
 
 
 function App() {
 
     return (
-        <div className="App">
+        <div className={styles.appWrap}>
             <div>
-                <NavLink to={"/registration"}>Регистрация</NavLink>
+                <nav>
+                    <div className={styles.burgerBtn}>
+                        <span />
+                    </div>
+                </nav>
             </div>
+            <NavLink to={"/registration"}>Регистрация</NavLink>
         </div>
     );
 }
