@@ -1,17 +1,25 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import styles from './Header.module.css'
 import {NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {RootState, useAppDispatch} from "../../redux/store";
 import {IUserAuthState, useCheckAuthQuery, useLogoutMutation} from "../../redux/authApi";
 import {logout, setAuthData, setToken} from "../../redux/Reducers/authReducer/authReducer";
+import {BurgerMenu, IItemsRoute} from "../../Common/Components/BurgerMenu/BurgerMenu";
 
-export const Header = () => {
+interface IHeader{
+    itemsRoute: IItemsRoute[]
+}
+
+export const Header = ({itemsRoute}: IHeader) => {
     const user = useSelector<RootState, IUserAuthState | null>(state => state.auth.authData && state.auth.authData.user)
     const isAuth = useSelector<RootState, boolean>(state => state.auth.isAuth)
     const {data, isLoading, error} = useCheckAuthQuery()
     const [logoutApi] = useLogoutMutation()
     const dispatch = useAppDispatch()
+
+    const [menuActive, setMenuActive] = useState(false)
+    // const itemsRoute: IItemsRoute[] = [{value: 'название ссылки', href:'путь', icon:'icon'}, {value: 'название ссылки', href:'путь', icon:'icon'}]
 
     useEffect(() => {
         try {
@@ -49,6 +57,12 @@ export const Header = () => {
                         <NavLink className={styles.loginLink} to={'/registration'}>Регитсрация</NavLink>
                     </div>}
             </div>
+            <nav>
+                <div className={styles.burgerBtn} onClick={() => setMenuActive(prevState => !prevState)}>
+                    <span/>
+                </div>
+            </nav>
+            <BurgerMenu active={menuActive} setActive={setMenuActive} header="Меню" items={itemsRoute}/>
         </div>
     )
 }

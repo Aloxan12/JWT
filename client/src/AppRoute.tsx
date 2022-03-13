@@ -11,7 +11,8 @@ export const routes = [
         id: 'Main',
         path: '/',
         // exact: true,
-        component: <App />
+        component: <App />,
+        title: 'Главная'
     },
     {
         id: 'Registration',
@@ -24,6 +25,27 @@ export const routes = [
         path: '/login',
         // exact: true,
         component: <Login />
+    },
+];
+
+export const routesForMenu = [
+    {
+        id: 'Main',
+        path: '/',
+        // exact: true,
+        title: 'Главная'
+    },
+    {
+        id: 'Registration',
+        path: '/registration',
+        // exact: true,
+        title: 'Регистрация'
+    },
+    {
+        id: 'Login',
+        path: '/login',
+        // exact: true,
+        title: 'Войти'
     },
 ];
 
@@ -41,7 +63,7 @@ export const getRouteConfig = (id: string) => {
 export const AppRoutes = () => {
     return (
         <BrowserRouter>
-            <Header />
+            <Header itemsRoute={routesForMenu} />
             <ToastContainer/>
             <Routes>
                 {routes.map(route => {

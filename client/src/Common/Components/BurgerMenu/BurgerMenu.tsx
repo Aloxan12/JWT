@@ -1,10 +1,12 @@
 import React from 'react';
 import styles from './BurgerMenu.module.css'
+import {NavLink} from "react-router-dom";
 
 export interface IItemsRoute {
-    href: string,
-    value: string,
-    icon: string
+    path: string
+    id: string
+    title: string
+    icon?: string
 }
 
 interface IBurgerMenu {
@@ -25,9 +27,9 @@ export const BurgerMenu = ({items, header, active, setActive }: IBurgerMenu) => 
             >
                 <div className={styles.menuHeader}>{header}</div>
                 <ul>
-                    {items.map((item: any) =>
+                    {items.map((item: IItemsRoute) =>
                         <li>
-                            <a href={item.href}>{item.value}</a>
+                            <NavLink to={item.path} onClick={()=> setActive(false)}>{item.title}</NavLink>
                             <span>{item.icon}</span>
                         </li>
                     )}
