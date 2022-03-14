@@ -27,8 +27,8 @@ export const BurgerMenu = ({items, header, active, setActive }: IBurgerMenu) => 
             >
                 <div className={styles.menuHeader}>{header}</div>
                 <ul>
-                    {items.map((item: IItemsRoute) =>
-                        <li>
+                    {items.map((item: IItemsRoute, i: number) =>
+                        <li key={`BurgerMenuKey - ${i}`}>
                             <NavLink to={item.path} onClick={()=> setActive(false)}>{item.title}</NavLink>
                             <span>{item.icon}</span>
                         </li>

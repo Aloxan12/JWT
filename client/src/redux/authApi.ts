@@ -51,11 +51,16 @@ export const authApi = createApi({
             return headers
         },
     }),
-    tagTypes: ['Registration', 'Users', 'Login'],
+    tagTypes: ['Registration', 'Users', 'Login', 'Posts'],
     endpoints: (build) => ({
         getAllUsers: build.query<IUser[], void>({
             query: () => ({
                 url: '/users',
+            }),
+        }),
+        getAllPosts: build.query<any[], void>({
+            query: () => ({
+                url: '/posts',
             }),
         }),
         checkAuth: build.query<AuthState, void>({
@@ -95,4 +100,4 @@ export const authApi = createApi({
     })
 })
 
-export const {useRegistrationMutation, useGetAllUsersQuery, useLoginMutation, useCheckAuthQuery, useLogoutMutation} = authApi
+export const {useRegistrationMutation, useGetAllUsersQuery, useLoginMutation, useCheckAuthQuery, useLogoutMutation, useGetAllPostsQuery} = authApi

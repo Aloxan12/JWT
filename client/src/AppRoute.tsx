@@ -5,6 +5,7 @@ import {Header} from "./Pages/Header/Header";
 import {ToastContainer} from "react-toastify";
 import React from "react";
 import {Login} from "./Pages/Login/Login";
+import {ComponentsShow} from "./Pages/ComponentsShow/ComponentsShow";
 
 export const routes = [
     {
@@ -25,6 +26,12 @@ export const routes = [
         path: '/login',
         // exact: true,
         component: <Login />
+    },
+    {
+        id: 'ComponentsShow',
+        path: '/componentsShow',
+        // exact: true,
+        component: <ComponentsShow />
     },
 ];
 
@@ -47,6 +54,12 @@ export const routesForMenu = [
         // exact: true,
         title: 'Войти'
     },
+    {
+        id: 'ComponentsShow',
+        path: '/componentsShow',
+        // exact: true,
+        title: 'Компаненты'
+    }
 ];
 
 export const getRouteConfig = (id: string) => {
