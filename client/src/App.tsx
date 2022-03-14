@@ -12,16 +12,18 @@ function App() {
 
     return (
         <div className={styles.appWrap}>
-            <h2>Посты</h2>
-            <ul>
-                {posts && posts.map(post => {
-                    return (
-                        <li>
-                            {post.message}
-                        </li>
-                    )
-                })}
-            </ul>
+            <div className={styles.postBlock}>
+                <div className={styles.postHeader}>Посты</div>
+                <ul className={styles.postsItems}>
+                    {posts && posts.map(post => {
+                        return (
+                            <li>
+                                {post.message}
+                            </li>
+                        )
+                    })}
+                </ul>
+            </div>
         </div>
     );
 }

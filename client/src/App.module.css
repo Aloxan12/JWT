@@ -4,3 +4,18 @@
     box-sizing: border-box;
 }
 
+.postBlock{
+    margin: 40px auto;
+    padding: 30px;
+    width: 50%;
+    display: flex;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.postBlock .postHeader{
+    margin: auto;
+    font-size: 28px;
+    text-align: center;
+}
