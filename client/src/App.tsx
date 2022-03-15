@@ -14,12 +14,14 @@ function App() {
         <div className={styles.appWrap}>
             <div className={styles.postBlock}>
                 <div className={styles.postHeader}>Посты</div>
+                <div className={styles.postCreate}>
+                    <textarea></textarea>
+                    <button>Опубликовать</button>
+                </div>
                 <ul className={styles.postsItems}>
-                    {posts && posts.map(post => {
+                    {posts && posts.map((post, index) => {
                         return (
-                            <li>
-                                {post.message}
-                            </li>
+                            <Post post={post} key={`post-key - ${index}`}/>
                         )
                     })}
                 </ul>
@@ -29,3 +31,12 @@ function App() {
 }
 
 export default App;
+
+
+const Post = ({post}: any) => {
+    return (
+        <li>
+            {post.message}
+        </li>
+    )
+}

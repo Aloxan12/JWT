@@ -19,3 +19,29 @@
     font-size: 28px;
     text-align: center;
 }
+.postCreate{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+.postCreate textarea{
+    width: 70%;
+    min-height: 80px;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+}
+
+.postCreate button{}
+
+.postsItems{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid black;
+    max-height: 500px;
+}
