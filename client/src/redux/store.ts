@@ -4,10 +4,12 @@ import {authApi} from "./authApi";
 import {rtkErrorMiddleware} from "./middleware/error-middleware";
 import authReducer from "./Reducers/authReducer/authReducer";
 import { useDispatch } from "react-redux";
+import {postApi} from "./postApi";
 
 
 const rootReducer = combineReducers({
     [authApi.reducerPath]: authApi.reducer,
+    [postApi.reducerPath]: postApi.reducer,
     auth: authReducer,
 })
 
@@ -15,7 +17,7 @@ export const setupStore = () => {
     return configureStore({
         reducer: rootReducer,
         middleware: (getDefaultMiddleware)=>
-            getDefaultMiddleware({serializableCheck: false}).concat(authApi.middleware).concat(rtkErrorMiddleware)
+            getDefaultMiddleware({serializableCheck: false}).concat(authApi.middleware, postApi.middleware).concat(rtkErrorMiddleware)
     })
 }
 

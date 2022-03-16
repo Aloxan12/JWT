@@ -1,6 +1,7 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import {EndpointBuilder} from "@reduxjs/toolkit/dist/query/endpointDefinitions";
 import {RootState} from './store';
+import {IPost} from "../Type/PostType";
 
 interface IUser {
     _id: string,
@@ -58,7 +59,7 @@ export const authApi = createApi({
                 url: '/users',
             }),
         }),
-        getAllPosts: build.query<any[], void>({
+        getAllPosts: build.query<IPost[], void>({
             query: () => ({
                 url: '/posts',
             }),

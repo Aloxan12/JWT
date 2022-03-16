@@ -7,7 +7,7 @@
 .postBlock{
     margin: 40px auto;
     padding: 30px;
-    width: 50%;
+    width: 60%;
     display: flex;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     flex-direction: column;
@@ -20,6 +20,7 @@
     text-align: center;
 }
 .postCreate{
+    margin-top: 15px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -28,11 +29,23 @@
 .postCreate textarea{
     width: 70%;
     min-height: 80px;
+    padding: 7px;
     border: 1px solid #ccc;
     border-radius: 16px;
 }
 
-.postCreate button{}
+.postCreate button{
+    cursor: pointer;
+    padding: 12px 20px;
+    margin-left: 5%;
+    border: none;
+    background-color: #d2face;
+    border-radius: 14px;
+    transition: .3s;
+}
+.postCreate button:hover{
+    box-shadow: 0 0 10px rgba(133, 196, 127, 0.78);
+}
 
 .postsItems{
     display: flex;
@@ -40,8 +53,34 @@
     justify-content: flex-start;
     align-items: flex-start;
     margin-top: 15px;
-    padding: 10px;
+    padding: 10px 15px;
     width: 100%;
-    border: 1px solid black;
+    border-bottom: 1px solid #7a7777;
     max-height: 500px;
+}
+.postsItem{
+    padding: 5px;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.postsItemTitle{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 15px;
+}
+.postsItemAuthor{
+    font-weight: 600;
+    color: #7171f1;
+}
+
+.postsItemContent{
+    margin-top: 15px;
+    font-size: 16px;
 }
