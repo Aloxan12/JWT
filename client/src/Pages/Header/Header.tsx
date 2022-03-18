@@ -1,36 +1,35 @@
 import React, {useEffect, useState} from "react";
 import styles from './Header.module.css'
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {RootState, useAppDispatch} from "../../redux/store";
 import {IUserAuthState, useCheckAuthQuery, useLogoutMutation} from "../../redux/authApi";
-import {logout, setAuthData, setToken} from "../../redux/Reducers/authReducer/authReducer";
+import {logout, setAuthData} from "../../redux/Reducers/authReducer/authReducer";
 import {BurgerMenu, IItemsRoute} from "../../Common/Components/BurgerMenu/BurgerMenu";
 
-interface IHeader{
+interface IHeader {
     itemsRoute: IItemsRoute[]
 }
 
 export const Header = ({itemsRoute}: IHeader) => {
-    const user = useSelector<RootState, IUserAuthState | null>(state => state.auth.authData && state.auth.authData.user)
+    const user = useSelector<RootState, IUserAuthState | null>(state => state.auth.authData.user)
     const isAuth = useSelector<RootState, boolean>(state => state.auth.isAuth)
     const {data, isLoading, error} = useCheckAuthQuery()
     const [logoutApi] = useLogoutMutation()
     const dispatch = useAppDispatch()
+    const navigate = useNavigate();
 
     const [menuActive, setMenuActive] = useState(false)
     // const itemsRoute: IItemsRoute[] = [{value: 'название ссылки', href:'путь', icon:'icon'}, {value: 'название ссылки', href:'путь', icon:'icon'}]
 
     useEffect(() => {
         try {
-            if (localStorage.getItem('token')) {
-                const token = localStorage.getItem('token')
-                dispatch(setToken({token}))
+            if (localStorage.getItem('token') || isAuth) {
                 if (!error && data) {
                     dispatch(setAuthData(data))
                 }
             } else {
-                dispatch(setAuthData(null))
+                dispatch(setAuthData({user: null, accessToken: null, refreshToken: null}))
             }
         } catch (e) {
             console.log(e)
@@ -40,7 +39,10 @@ export const Header = ({itemsRoute}: IHeader) => {
     const logoutHandler = async () => {
         await logoutApi()
         dispatch(logout())
+        navigate('/login')
     }
+
+    console.log('token', localStorage.getItem('token'))
 
     return (
         <div className={styles.mainHeaderWrap}>

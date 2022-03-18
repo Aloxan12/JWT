@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {AuthState} from "../../authApi";
+import {AuthState, IUserAuthState} from "../../authApi";
 
-interface IUser{
+interface IUser {
     email: string,
     id: string,
     isActivated: boolean
@@ -9,9 +9,8 @@ interface IUser{
 
 type AuthInitialStateType = {
     user: IUser | null,
-    authData: AuthState | null
+    authData: AuthState
     isAuth: boolean
-    token: string | null
 }
 
 const authInitialState: AuthInitialStateType = {
@@ -20,9 +19,12 @@ const authInitialState: AuthInitialStateType = {
         id: '',
         isActivated: false
     },
-    authData: null,
+    authData: {
+        accessToken: null,
+        refreshToken: null,
+        user: null
+    },
     isAuth: false,
-    token: null
 }
 
 const authReducer = createSlice({
@@ -31,31 +33,18 @@ const authReducer = createSlice({
     reducers: {
         setAuthData: (
             state,
-            { payload:  AuthState  }: PayloadAction<AuthState | null>,
+            {payload: AuthState}: PayloadAction<AuthState>,
         ) => {
             state.authData = AuthState
-                if(AuthState !== null){
-                    if(AuthState.accessToken !== null && AuthState.refreshToken !== null && AuthState.user){
-                        state.token = AuthState.accessToken
-                        localStorage.setItem('token', AuthState.accessToken)
-                        localStorage.setItem('refreshToken', AuthState.refreshToken)
-                        state.isAuth = true
-                        state.user = AuthState.user
-                    }
-                }else {
-                    state.authData = null
-                    state.isAuth = false
-                }
-        },
-        setToken: (
-            state,
-            { payload: { token } }: PayloadAction<{ token: string | null }>,
-        ) => {
-            state.token = token
+            if (AuthState.accessToken !== null && AuthState.refreshToken !== null && AuthState.user) {
+                localStorage.setItem('token', AuthState.accessToken)
+                localStorage.setItem('refreshToken', AuthState.refreshToken)
+                state.isAuth = true
+                state.user = AuthState.user
+            }
         },
         logout: (state) => {
             state.isAuth = false
-            state.token = null
             state.user = null
             localStorage.removeItem('token')
             localStorage.removeItem('refreshToken')
@@ -63,7 +52,7 @@ const authReducer = createSlice({
     },
 })
 
-export const { setAuthData, setToken, logout } =
+export const {setAuthData, logout} =
     authReducer.actions
 
 export default authReducer.reducer

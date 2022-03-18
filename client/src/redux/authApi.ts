@@ -42,11 +42,12 @@ export const authApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:5555/api',
         prepareHeaders: (headers, {getState}) => {
-            // const token = (getState() as RootState).auth.token
-            const token = localStorage.getItem('token')
-            const refreshToken = localStorage.getItem('refreshToken')
-            if (token) {
-                headers.set('authorization', `Bearer ${token}`)
+            const accessToken = (getState() as RootState).auth.authData.accessToken
+            const refreshToken = (getState() as RootState).auth.authData.refreshToken
+            // const token = localStorage.getItem('token')
+            // const refreshToken = localStorage.getItem('refreshToken')
+            if (accessToken || refreshToken) {
+                headers.set('authorization', `Bearer ${accessToken}`)
                 headers.set('refreshToken', `${refreshToken}`)
             }
             return headers
@@ -57,11 +58,6 @@ export const authApi = createApi({
         getAllUsers: build.query<IUser[], void>({
             query: () => ({
                 url: '/users',
-            }),
-        }),
-        getAllPosts: build.query<IPost[], void>({
-            query: () => ({
-                url: '/posts',
             }),
         }),
         checkAuth: build.query<AuthState, void>({
@@ -101,4 +97,4 @@ export const authApi = createApi({
     })
 })
 
-export const {useRegistrationMutation, useGetAllUsersQuery, useLoginMutation, useCheckAuthQuery, useLogoutMutation, useGetAllPostsQuery} = authApi
+export const {useRegistrationMutation, useLoginMutation, useCheckAuthQuery, useLogoutMutation} = authApi
