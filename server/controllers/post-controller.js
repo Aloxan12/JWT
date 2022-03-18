@@ -12,9 +12,9 @@ class PostController{
     }
     async createPosts(req, res, next){
         try {
-            const {message, author, publicDate} = req.body
+            const {postText, author, publicDate} = req.body
 
-            const post = await postService.createPosts(message, author, publicDate)
+            const post = await postService.createPosts(postText, author, publicDate)
 
 
             return res.json(post)

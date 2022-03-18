@@ -1,11 +1,11 @@
 module.exports = class PostDto {
-    message;
+    postText;
     author;
     publicDate;
     id;
 
     constructor(model) {
-        this.message = model.message
+        this.postText = model.postText
         this.id = model._id
         this.author = model.author
         this.publicDate = model.publicDate
