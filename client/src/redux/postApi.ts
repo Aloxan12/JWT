@@ -22,6 +22,7 @@ export const postApi = createApi({
             query: () => ({
                 url: '/posts',
             }),
+            providesTags:['Posts']
         }),
         createPosts: build.mutation<IPost, ICreatePost>({
             query: (params) => ({
@@ -29,6 +30,7 @@ export const postApi = createApi({
                 method: 'POST',
                 body: params,
             }),
+            invalidatesTags: ['Posts']
         }),
     })
 })

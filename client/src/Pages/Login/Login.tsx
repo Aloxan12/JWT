@@ -50,7 +50,7 @@ export const Login = () => {
                         <div className="form-item">
                             <label htmlFor="email">Введите email:</label>
 
-                            <input type="email" value={email} placeholder="Введите свой email" onChange={(e) => {
+                            <input type="text" value={email} placeholder="Введите свой email" onChange={(e) => {
                                 setError('')
                                 setEmail(e.currentTarget.value)
                             }} name="email"/>

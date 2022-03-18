@@ -43,6 +43,10 @@ const authReducer = createSlice({
                 state.user = AuthState.user
             }
         },
+        setIsAuth: (state,
+                   {payload: isAuth}: PayloadAction<boolean>,) => {
+          state.isAuth= isAuth
+        },
         logout: (state) => {
             state.isAuth = false
             state.user = null
@@ -52,7 +56,7 @@ const authReducer = createSlice({
     },
 })
 
-export const {setAuthData, logout} =
+export const {setAuthData, logout, setIsAuth} =
     authReducer.actions
 
 export default authReducer.reducer

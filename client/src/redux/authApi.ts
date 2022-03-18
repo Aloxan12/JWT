@@ -1,15 +1,6 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import {RootState} from './store';
 
-interface IUser {
-    _id: string,
-    email: string,
-    password: string,
-    isActivated: boolean,
-    activationLink: string,
-    __v: number
-}
-
 export interface IUserAuthState {
     email: string
     id: string
@@ -40,10 +31,10 @@ export const authApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:5555/api',
         prepareHeaders: (headers, {getState}) => {
-            const accessToken = (getState() as RootState).auth.authData.accessToken
-            const refreshToken = (getState() as RootState).auth.authData.refreshToken
-            // const token = localStorage.getItem('token')
-            // const refreshToken = localStorage.getItem('refreshToken')
+            // const accessToken = (getState() as RootState).auth.authData.accessToken
+            // const refreshToken = (getState() as RootState).auth.authData.refreshToken
+            const accessToken = localStorage.getItem('token')
+            const refreshToken = localStorage.getItem('refreshToken')
             if (accessToken || refreshToken) {
                 headers.set('authorization', `Bearer ${accessToken}`)
                 headers.set('refreshToken', `${refreshToken}`)
@@ -53,23 +44,11 @@ export const authApi = createApi({
     }),
     tagTypes: ['Registration', 'Users', 'Login', 'Posts'],
     endpoints: (build) => ({
-        getAllUsers: build.query<IUser[], void>({
-            query: () => ({
-                url: '/users',
-            }),
-        }),
-        checkAuth: build.query<AuthState, void>({
-            query: () => ({
-                url: '/refresh',
-                params: {withCredentials: true},
-            }),
-        }),
         login: build.mutation<AuthState, ISendRegistration>({
             query: (params) => ({
                 url: '/login',
                 method: 'POST',
                 body: params,
-                params: {withCredentials: true}
             }),
             invalidatesTags: ['Login']
         }),
@@ -78,7 +57,6 @@ export const authApi = createApi({
                 url: '/logout',
                 method: 'POST',
                 body: params,
-                params: {withCredentials: true}
             }),
             invalidatesTags: ['Login']
         }),
@@ -88,11 +66,10 @@ export const authApi = createApi({
                 url: '/registration',
                 method: 'POST',
                 body: params,
-                params: {withCredentials: true}
             }),
             invalidatesTags: ['Registration']
         })
     })
 })
 
-export const {useRegistrationMutation, useLoginMutation, useCheckAuthQuery, useLogoutMutation} = authApi
+export const {useRegistrationMutation, useLoginMutation, useLogoutMutation} = authApi

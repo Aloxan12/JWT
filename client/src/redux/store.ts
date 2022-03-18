@@ -5,10 +5,12 @@ import {rtkErrorMiddleware} from "./middleware/error-middleware";
 import authReducer from "./Reducers/authReducer/authReducer";
 import { useDispatch } from "react-redux";
 import {postApi} from "./postApi";
+import {usersApi} from "./usersApi";
 
 
 const rootReducer = combineReducers({
     [authApi.reducerPath]: authApi.reducer,
+    [usersApi.reducerPath]: usersApi.reducer,
     [postApi.reducerPath]: postApi.reducer,
     auth: authReducer,
 })
