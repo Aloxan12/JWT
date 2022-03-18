@@ -1,7 +1,5 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import {EndpointBuilder} from "@reduxjs/toolkit/dist/query/endpointDefinitions";
 import {RootState} from './store';
-import {IPost} from "../Type/PostType";
 
 interface IUser {
     _id: string,

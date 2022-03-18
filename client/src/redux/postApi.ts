@@ -1,5 +1,5 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import {IPost} from "../Type/PostType";
+import {ICreatePost, IPost} from "../Type/PostType";
 
 
 export const postApi = createApi({
@@ -23,7 +23,14 @@ export const postApi = createApi({
                 url: '/posts',
             }),
         }),
+        createPosts: build.mutation<IPost, ICreatePost>({
+            query: (params) => ({
+                url: '/posts',
+                method: 'POST',
+                body: params,
+            }),
+        }),
     })
 })
 
-export const { useGetAllPostsQuery } = postApi
+export const { useGetAllPostsQuery, useCreatePostsMutation } = postApi
