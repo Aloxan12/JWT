@@ -1,4 +1,5 @@
 const UserModel = require('../models/user-model')
+const RoleModel = require('../models/role-model')
 const bcrypt = require('bcrypt')
 require('dotenv').config()
 const uuid = require('uuid')
@@ -8,7 +9,7 @@ const UserDto = require('../dtos/user-dto')
 const ApiError = require('../exeptions/api-error')
 
 class UserService{
-    async registration (email, password){
+    async registration (email, password, roles){
         const candidate = await UserModel.findOne({email})
         if(candidate){
             throw ApiError.BadRequest(`Пользователь с таким почтовым адресом - ${email}  уже существует`)
@@ -16,7 +17,8 @@ class UserService{
         const hashPassword = await bcrypt.hash(password, 3)
         const activationLink = uuid.v4()
 
-        const user = await UserModel.create({email, password: hashPassword, activationLink, roles: "USER"})
+        // const userRole = await RoleModel.findOne({value: "USER"})
+        const user = await UserModel.create({email, password: hashPassword, activationLink, roles})
         await mailService.sendActivationMail(email, `${process.env.API_URL}/api/activate/${activationLink}`)
 
         const userDto = new UserDto(user) //id, email, isActivated
