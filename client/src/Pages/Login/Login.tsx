@@ -6,6 +6,7 @@ import {useAppDispatch} from "../../redux/store";
 import {setAuthData} from "../../redux/Reducers/authReducer/authReducer";
 import {useNavigate} from "react-router-dom";
 import {ToastWrapper, ToastWrapperType} from "../../Common/Components/ToastWrapper/ToastWrapper";
+import {AppButton} from "../../Common/Components/AppButton/AppButton";
 
 
 export const Login = () => {
@@ -63,7 +64,8 @@ export const Login = () => {
                             }} name="password"/>
                         </div>
                         <div className="form-item btn-block">
-                            <button className="btn" onClick={()=>loginHandler(email, password)}>Войти</button>
+                            <AppButton onClick={()=>loginHandler(email, password)} text="Войти"/>
+                            {/*<button className="btn" onClick={()=>loginHandler(email, password)}>Войти</button>*/}
                             {error && <div className="error-text">{error}</div>}
                         </div>
                     </div>

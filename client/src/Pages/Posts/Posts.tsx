@@ -9,6 +9,7 @@ import {IUserAuthState} from "../../redux/authApi";
 import moment from "moment";
 import {ToastWrapper, ToastWrapperType} from "../../Common/Components/ToastWrapper/ToastWrapper";
 import {useGetAllUsersQuery} from "../../redux/usersApi";
+import {AppButton} from "../../Common/Components/AppButton/AppButton";
 
 export const Posts = () => {
     const user = useSelector<RootState, IUserAuthState | null>(state => state.auth.authData.user)
@@ -41,7 +42,7 @@ export const Posts = () => {
             <div className={styles.postHeader}>Посты</div>
             <div className={styles.postCreate}>
                 <textarea value={postText} onChange={(e) => setPostText(e.currentTarget.value)}></textarea>
-                <button onClick={createPostHandler}>Опубликовать</button>
+                <AppButton text="Опубликовать" onClick={createPostHandler} />
             </div>
             <ul className={styles.postsItems}>
                 {posts && posts.map((post: IPost, index) => {
