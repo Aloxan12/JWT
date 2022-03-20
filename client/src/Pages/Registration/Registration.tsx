@@ -26,7 +26,7 @@ export const Registration = () => {
             setErrorText('Разные пароли!!')
         } else {
             try {
-                const data = await registration({email, password})
+                const data = await registration({email, password, role: 'USER'})
                 if(!!data && !error){
                     ToastWrapper({
                         msg: "Писльмо для подтверждаения регестрации отправлено на почту".replace(/"/g, ''),

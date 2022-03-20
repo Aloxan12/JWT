@@ -5,6 +5,7 @@ export interface IUserAuthState {
     email: string
     id: string
     isActivated: boolean
+    role: RoleType
 }
 
 
@@ -14,7 +15,14 @@ export interface AuthState {
     user: IUserAuthState | null
 }
 
+export type RoleType = 'USER' | 'ADMIN'
+
 interface ISendRegistration {
+    email: string
+    password: string
+    role: RoleType
+}
+interface ISendLogin {
     email: string
     password: string
 }
@@ -44,7 +52,7 @@ export const authApi = createApi({
     }),
     tagTypes: ['Registration', 'Users', 'Login', 'Posts'],
     endpoints: (build) => ({
-        login: build.mutation<AuthState, ISendRegistration>({
+        login: build.mutation<AuthState, ISendLogin>({
             query: (params) => ({
                 url: '/login',
                 method: 'POST',
