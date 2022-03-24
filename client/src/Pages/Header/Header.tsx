@@ -20,7 +20,12 @@ export const Header = ({itemsRoute}: IHeader) => {
     const navigate = useNavigate();
 
     const [menuActive, setMenuActive] = useState(false)
-    // const itemsRoute: IItemsRoute[] = [{value: 'название ссылки', href:'путь', icon:'icon'}, {value: 'название ссылки', href:'путь', icon:'icon'}]
+
+    useEffect(()=>{
+        if(!isAuth){
+            navigate('/login')
+        }
+    },[isAuth])
 
     useEffect(() => {
         try {
@@ -39,8 +44,6 @@ export const Header = ({itemsRoute}: IHeader) => {
             console.log(e)
         }
     }, [isAuth])
-
-    console.log('data', isAuth)
 
     const logoutHandler = async () => {
         await logoutApi()

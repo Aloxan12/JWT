@@ -3,13 +3,41 @@ import {BrowserRouter, Navigate, Route, Routes, useLocation, useMatch, useNaviga
 import {Registration} from "./Pages/Registration/Registration";
 import {Header} from "./Pages/Header/Header";
 import {ToastContainer} from "react-toastify";
-import React from "react";
+import React, {useEffect, useMemo} from "react";
 import {Login} from "./Pages/Login/Login";
 import {ComponentsShow} from "./Pages/ComponentsShow/ComponentsShow";
 import {useSelector} from "react-redux";
 import {RootState} from "./redux/store";
 
 export const routes = [
+    {
+        id: 'Main',
+        path: '/',
+        // exact: true,
+        component: <App/>,
+        title: 'Главная'
+    },
+    {
+        id: 'Registration',
+        path: '/registration',
+        // exact: true,
+        component: <Registration/>
+    },
+    {
+        id: 'Login',
+        path: '/login',
+        // exact: true,
+        component: <Login/>
+    },
+    {
+        id: 'ComponentsShow',
+        path: '/componentsShow',
+        // exact: true,
+        component: <ComponentsShow/>
+    },
+];
+
+export const routesNotIsAuth = [
     {
         id: 'Main',
         path: '/',
@@ -60,8 +88,8 @@ export const routesForMenu = [
         id: 'ComponentsShow',
         path: '/componentsShow',
         // exact: true,
-        title: 'Компаненты'
-    }
+        title: 'Компоненты'
+    },
 ];
 
 export const AppRedirect = ({path = '/'}: {
@@ -82,37 +110,37 @@ export const getRouteConfig = (id: string) => {
     }
 }
 
-// const IsAuthWrap = ({children}: { children: JSX.Element }) => {
-//     const isAuth = useSelector<RootState, boolean>(
-//         (state) => state.auth.isAuth,
-//     )
-//     const navigate = useNavigate();
-//
-//     const isSameUrl = !!useMatch('registration')
-//
-//     if (!isAuth) {
-//         return isSameUrl ? <AppRedirect path={'/registration'} /> : <AppRedirect path={'/login'} />
-//     }
-//
-//     return children
-// }
+export const IsAuthWrap = ({children, routesWithAuth}:{children: JSX.Element, routesWithAuth:JSX.Element}) => {
+    const isAuth = useSelector<RootState, boolean>(
+        (state) => state.auth.isAuth,
+    )
+    const isLoginUrl = !!useMatch('login')
+    const isRegistrationUrl = !!useMatch('registration')
+
+    if (!isAuth) {
+        return isLoginUrl || isRegistrationUrl ? children : <AppRedirect path={'/'}/>
+    }
+    return children
+}
 
 
 export const AppRoutes = () => {
     return (
         <BrowserRouter>
-            <React.Fragment>
-                <Header itemsRoute={routesForMenu}/>
-                <ToastContainer/>
-                <Routes>
-                    {routes.map(route => {
-                        const {id, component, path} = route;
-                        return (
-                            <Route key={id} path={path} element={component}/>
-                        )
-                    })}
-                </Routes>
-            </React.Fragment>
+            <IsAuthWrap routesWithAuth={<div>nenm</div>}>
+                <>
+                    <Header itemsRoute={routesForMenu}/>
+                    <ToastContainer/>
+                    <Routes>
+                        {routes.map(route => {
+                            const {id, component, path} = route;
+                            return (
+                                <Route key={id} path={path} element={component}/>
+                            )
+                        })}
+                    </Routes>
+                </>
+            </IsAuthWrap>
         </BrowserRouter>
     )
 }
