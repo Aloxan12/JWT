@@ -21,17 +21,17 @@ export const Header = ({itemsRoute}: IHeader) => {
 
     const [menuActive, setMenuActive] = useState(false)
 
-    useEffect(()=>{
-        if(!isAuth){
+    useEffect(() => {
+        if (!isAuth) {
             navigate('/login')
         }
-    },[isAuth])
+    }, [isAuth])
 
     useEffect(() => {
         try {
             if (localStorage.getItem('token')) {
                 checkAuthApi().then(data => {
-                    if(data){
+                    if (data) {
                         localStorage.setItem('token', data.accessToken)
                         dispatch(setIsAuth(true))
                         dispatch(setAuthData(data))
@@ -66,11 +66,13 @@ export const Header = ({itemsRoute}: IHeader) => {
                         <NavLink className={styles.loginLink} to={'/registration'}>Регитсрация</NavLink>
                     </div>}
             </div>
-            <nav>
-                <div className={styles.burgerBtn} onClick={() => setMenuActive(prevState => !prevState)}>
-                    <span/>
-                </div>
-            </nav>
+            {isAuth &&
+                <nav>
+                    <div className={styles.burgerBtn} onClick={() => setMenuActive(prevState => !prevState)}>
+                        <span/>
+                    </div>
+                </nav>
+            }
             <BurgerMenu active={menuActive} setActive={setMenuActive} header="Меню" items={itemsRoute}/>
         </div>
     )

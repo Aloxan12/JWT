@@ -110,37 +110,20 @@ export const getRouteConfig = (id: string) => {
     }
 }
 
-export const IsAuthWrap = ({children, routesWithAuth}:{children: JSX.Element, routesWithAuth:JSX.Element}) => {
-    const isAuth = useSelector<RootState, boolean>(
-        (state) => state.auth.isAuth,
-    )
-    const isLoginUrl = !!useMatch('login')
-    const isRegistrationUrl = !!useMatch('registration')
-
-    if (!isAuth) {
-        return isLoginUrl || isRegistrationUrl ? children : <AppRedirect path={'/'}/>
-    }
-    return children
-}
-
 
 export const AppRoutes = () => {
     return (
         <BrowserRouter>
-            <IsAuthWrap routesWithAuth={<div>nenm</div>}>
-                <>
-                    <Header itemsRoute={routesForMenu}/>
-                    <ToastContainer/>
-                    <Routes>
-                        {routes.map(route => {
-                            const {id, component, path} = route;
-                            return (
-                                <Route key={id} path={path} element={component}/>
-                            )
-                        })}
-                    </Routes>
-                </>
-            </IsAuthWrap>
+            <Header itemsRoute={routesForMenu}/>
+            <ToastContainer/>
+            <Routes>
+                {routes.map(route => {
+                    const {id, component, path} = route;
+                    return (
+                        <Route key={id} path={path} element={component}/>
+                    )
+                })}
+            </Routes>
         </BrowserRouter>
     )
 }
