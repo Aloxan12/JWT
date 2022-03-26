@@ -18,18 +18,6 @@ export const routes = [
         title: 'Главная'
     },
     {
-        id: 'Registration',
-        path: '/registration',
-        // exact: true,
-        component: <Registration/>
-    },
-    {
-        id: 'Login',
-        path: '/login',
-        // exact: true,
-        component: <Login/>
-    },
-    {
         id: 'ComponentsShow',
         path: '/componentsShow',
         // exact: true,
@@ -37,14 +25,7 @@ export const routes = [
     },
 ];
 
-export const routesNotIsAuth = [
-    {
-        id: 'Main',
-        path: '/',
-        // exact: true,
-        component: <App/>,
-        title: 'Главная'
-    },
+export const routesIsNotAuth = [
     {
         id: 'Registration',
         path: '/registration',
@@ -56,12 +37,6 @@ export const routesNotIsAuth = [
         path: '/login',
         // exact: true,
         component: <Login/>
-    },
-    {
-        id: 'ComponentsShow',
-        path: '/componentsShow',
-        // exact: true,
-        component: <ComponentsShow/>
     },
 ];
 
@@ -71,18 +46,6 @@ export const routesForMenu = [
         path: '/',
         // exact: true,
         title: 'Главная'
-    },
-    {
-        id: 'Registration',
-        path: '/registration',
-        // exact: true,
-        title: 'Регистрация'
-    },
-    {
-        id: 'Login',
-        path: '/login',
-        // exact: true,
-        title: 'Войти'
     },
     {
         id: 'ComponentsShow',
@@ -112,17 +75,24 @@ export const getRouteConfig = (id: string) => {
 
 
 export const AppRoutes = () => {
+    const isAuth = useSelector<RootState, boolean>(state => state.auth.isAuth)
     return (
         <BrowserRouter>
             <Header itemsRoute={routesForMenu}/>
             <ToastContainer/>
             <Routes>
-                {routes.map(route => {
+                {isAuth ? routes.map(route => {
                     const {id, component, path} = route;
                     return (
                         <Route key={id} path={path} element={component}/>
                     )
-                })}
+                }) :
+                    routesIsNotAuth.map(route => {
+                        const {id, component, path} = route;
+                        return (
+                            <Route key={id} path={path} element={component}/>
+                        )
+                    })}
             </Routes>
         </BrowserRouter>
     )

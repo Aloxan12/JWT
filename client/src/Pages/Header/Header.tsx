@@ -22,7 +22,7 @@ export const Header = ({itemsRoute}: IHeader) => {
     const [menuActive, setMenuActive] = useState(false)
 
     useEffect(() => {
-        if (!isAuth) {
+        if (!localStorage.getItem('token')) {
             navigate('/login')
         }
     }, [isAuth])
