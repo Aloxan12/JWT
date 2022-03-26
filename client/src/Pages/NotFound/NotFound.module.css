@@ -20,7 +20,7 @@
     z-index: 100;
 }
 
-.NotFoundWrap div{
+.NotFoundWrap .NotFoundText{
     color: rgba(70, 129, 185, 0.64);
     position: absolute;
     font-family: ‘Comic Sans MS’, cursive;
@@ -32,13 +32,41 @@
 }
 
 .onGoMainBtn{
-    position: fixed;
-    top: 20%;
-    left: 20%;
+    width: 150px;
+    position: absolute;
+    top: 40%;
+    left: 13%;
+    z-index: 101;
 }
 
 .onClosesBtn{
-    position: fixed;
-    top: 20%;
-    right: 20%;
+    width: 300px;
+    position: absolute;
+    top: 40%;
+    right: 0;
+    z-index: 101;
+}
+
+.redTablet{
+    height: 150px;
+    width: 60px;
+    border-radius: 30px;
+    background: rgb(255,93,93);
+    background: radial-gradient(circle, rgba(255,93,93,0.9727241238292192) 0%, rgba(254,68,68,1) 5%, rgba(203,20,20,1) 41%, rgba(209,47,47,1) 81%, rgba(213,33,33,0.9951330874146533) 88%, rgba(200,0,0,0.9951330874146533) 100%);
+}
+
+.redTablet:hover{
+    box-shadow: 5px 2px 2px rgba(166, 13, 13, 0.58);
+}
+
+.blueTablet{
+    height: 150px;
+    width: 60px;
+    border-radius: 30px;
+    background: rgb(115,106,255);
+    background: radial-gradient(circle, rgba(115,106,255,0.9727241238292192) 0%, rgba(106,95,255,1) 6%, rgba(81,12,242,1) 41%, rgba(85,24,228,1) 71%, rgba(58,21,212,0.9951330874146533) 88%, rgba(89,0,255,0.9951330874146533) 100%);
+}
+
+.blueTablet:hover{
+    box-shadow: 5px 2px 2px rgba(55, 100, 206, 0.58);
 }
