@@ -1,0 +1,44 @@
+.NotFoundWrap{
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+}
+.NotFoundWrap img{
+    position: absolute;
+    top: calc(50% - 319px);
+    left: calc(50% - 313px);
+    max-width: 600px;
+    transform: rotate(90deg);
+    margin: auto;
+    z-index: 100;
+}
+
+.NotFoundWrap div{
+    color: rgba(70, 129, 185, 0.64);
+    position: absolute;
+    font-family: ‘Comic Sans MS’, cursive;
+    top: 50%;
+    left: 46%;
+    transform: translate(-46%, -50%);
+    font-size: 230px;
+    z-index: 90;
+}
+
+.onGoMainBtn{
+    position: fixed;
+    top: 20%;
+    left: 20%;
+}
+
+.onClosesBtn{
+    position: fixed;
+    top: 20%;
+    right: 20%;
+}

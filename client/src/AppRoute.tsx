@@ -8,6 +8,7 @@ import {Login} from "./Pages/Login/Login";
 import {ComponentsShow} from "./Pages/ComponentsShow/ComponentsShow";
 import {useSelector} from "react-redux";
 import {RootState} from "./redux/store";
+import {NotFound} from "./Pages/NotFound/NotFound";
 
 export const routes = [
     {
@@ -23,6 +24,12 @@ export const routes = [
         // exact: true,
         component: <ComponentsShow/>
     },
+    {
+        id: 'NotFound',
+        path: '*',
+        // exact: true,
+        component: <NotFound />
+    },
 ];
 
 export const routesIsNotAuth = [
@@ -37,6 +44,12 @@ export const routesIsNotAuth = [
         path: '/login',
         // exact: true,
         component: <Login/>
+    },
+    {
+        id: 'NotFound',
+        path: '*',
+        // exact: true,
+        component: <NotFound />
     },
 ];
 
