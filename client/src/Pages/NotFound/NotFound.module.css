@@ -31,6 +31,30 @@
     z-index: 90;
 }
 
+.runningStringBlock{
+    margin: 30px auto;
+    border: 1px solid #000;
+    max-width: 60%;
+    width: 30%;
+    overflow: hidden;
+}
+
+.runningStringBlock div {
+    width: 100%;
+    word-break: break-all;
+    word-wrap: normal;
+    animation: runningStringBlock 3s linear infinite;
+}
+
+@keyframes runningStringBlock {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
 .onGoMainBtn{
     width: 150px;
     position: absolute;
@@ -56,7 +80,7 @@
 }
 
 .redTablet:hover{
-    box-shadow: 5px 2px 2px rgba(166, 13, 13, 0.58);
+    box-shadow: 1px 1px 25px 41px rgb(218, 121, 121);
 }
 
 .blueTablet{
@@ -68,5 +92,5 @@
 }
 
 .blueTablet:hover{
-    box-shadow: 5px 2px 2px rgba(55, 100, 206, 0.58);
+    box-shadow: 1px 1px 25px 41px rgba(111, 154, 190, 0.64);
 }
