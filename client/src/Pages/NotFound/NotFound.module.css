@@ -30,25 +30,38 @@
     font-size: 230px;
     z-index: 90;
 }
+.NotFoundWrap .runningStringBlock{
+    position: absolute;
+    font-family: ‘Comic Sans MS’, cursive;
+    top: 50%;
+    left: 46%;
+    transform: translate(-46%, -50%);
+    z-index: 150;
+}
 
 .runningStringBlock{
-    margin: 30px auto;
-    border: 1px solid #000;
-    max-width: 60%;
-    width: 30%;
+    display: inline-block;
+    width: 550px;
+    height: 400px;
+    background: rgb(0, 0, 0);
     overflow: hidden;
+    padding: 20px;
+    color: #0fbe0f;
 }
 
 .runningStringBlock div {
-    width: 100%;
-    word-break: break-all;
-    word-wrap: normal;
-    animation: runningStringBlock 3s linear infinite;
+    display: inline-block;
+    white-space: nowrap;
+    animation: runningStringBlock 20s linear infinite 1s both;
+}
+
+.runningStringBlock:hover>div {
+    animation-play-state: paused;
 }
 
 @keyframes runningStringBlock {
     0% {
-        transform: translateX(100%);
+        transform: translateX(0);
     }
     100% {
         transform: translateX(-100%);
