@@ -35,7 +35,7 @@ export const Tooltip = (props: TooltipType)=>{
             {/* Wrapping */}
             {props.children}
             {active && (
-                <div className={`${styles.TooltipTip} ` + `${props.direction ? styles[props.direction] : styles["top"]} ` + `${props.textColor}`}>
+                <div className={`${styles.TooltipTip} ` + `${props.direction ? styles[props.direction] : styles["top"]} ` + `${props.textColor && styles[props.textColor]}`}>
                     {/* Content */}
                     {props.content}
                 </div>
