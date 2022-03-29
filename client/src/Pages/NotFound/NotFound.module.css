@@ -21,14 +21,14 @@
 }
 
 .NotFoundWrap .NotFoundText{
-    color: rgba(70, 129, 185, 0.64);
+    color: rgba(93, 194, 84, 0.28);
     position: absolute;
     font-family: ‘Comic Sans MS’, cursive;
     top: 50%;
     left: 46%;
     transform: translate(-46%, -50%);
     font-size: 230px;
-    z-index: 90;
+    z-index: 91;
 }
 .NotFoundWrap .runningStringBlock{
     position: absolute;
@@ -36,7 +36,7 @@
     top: 50%;
     left: 46%;
     transform: translate(-46%, -50%);
-    z-index: 150;
+    z-index: 90;
 }
 
 .runningStringBlock{
@@ -45,18 +45,18 @@
     height: 400px;
     background: rgb(0, 0, 0);
     overflow: hidden;
-    padding: 20px;
+    padding: 30px 20px 20px 20px;
     color: #0fbe0f;
 }
 
 .runningStringBlock div {
     display: inline-block;
     white-space: nowrap;
-    animation: runningStringBlock 20s linear infinite 1s both;
+    animation: runningStringBlock 50s linear infinite 1s both;
 }
 
 .runningStringBlock:hover>div {
-    animation-play-state: paused;
+    animation-play-state: running;
 }
 
 @keyframes runningStringBlock {
@@ -85,6 +85,7 @@
 }
 
 .redTablet{
+    cursor: pointer;
     height: 150px;
     width: 60px;
     border-radius: 30px;
@@ -97,6 +98,7 @@
 }
 
 .blueTablet{
+    cursor: pointer;
     height: 150px;
     width: 60px;
     border-radius: 30px;
