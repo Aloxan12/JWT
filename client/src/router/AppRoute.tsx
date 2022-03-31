@@ -11,28 +11,6 @@ import {RootState} from "../redux/store";
 import {NotFound} from "../Pages/NotFound/NotFound";
 import {IUserAuthState} from "../redux/authApi";
 
-export const routes = [
-    {
-        id: 'Main',
-        path: '/',
-        // exact: true,
-        component: <App/>,
-        title: 'Главная'
-    },
-    {
-        id: 'ComponentsShow',
-        path: '/componentsShow',
-        // exact: true,
-        component: <ComponentsShow/>
-    },
-    {
-        id: 'NotFound',
-        path: '*',
-        // exact: true,
-        component: <NotFound />
-    },
-];
-
 export const routesIsNotAuth = [
     {
         id: 'Registration',
@@ -71,7 +49,7 @@ export interface IRouteObj {
     component: JSX.Element
 }
 
-export const routesForMenu: RoutesForMenuType = {
+export const routesByRole: RoutesForMenuType = {
     [RoleTypes.ADMIN]: [
         {
             id: 'Main',
@@ -127,10 +105,10 @@ export const AppRoutes = () => {
     const user = useSelector<RootState, IUserAuthState | null>(state => state.auth.authData.user)
     return (
         <BrowserRouter>
-            <Header itemsRoute={user ? routesForMenu[user.role] : []}/>
+            <Header itemsRoute={user ? routesByRole[user.role] : []}/>
             <ToastContainer/>
             <Routes>
-                {isAuth ? user ? routesForMenu[user.role].map(route => {
+                {isAuth ? user ? routesByRole[user.role].map(route => {
                     const {id, component, path} = route;
                     return (
                         <Route key={id} path={path} element={component}/>

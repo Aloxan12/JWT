@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './BurgerMenu.module.css'
 import {NavLink} from "react-router-dom";
+import {IRouteObj} from "../../../router/AppRoute";
 
-export interface IItemsRoute {
+interface IItemsRoute {
     path: string
     id: string
     title: string
@@ -13,7 +14,7 @@ interface IBurgerMenu {
     active: boolean
     setActive:(value: boolean) => void
     header: string
-    items: IItemsRoute[]
+    items: IRouteObj[]
 }
 
 export const BurgerMenu = ({items, header, active, setActive }: IBurgerMenu) => {

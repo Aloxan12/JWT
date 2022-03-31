@@ -1,15 +1,16 @@
 import React, {useEffect, useState} from "react";
 import styles from './Header.module.css'
-import {NavLink, useNavigate} from "react-router-dom";
+import {NavLink, useMatch, useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {RootState, useAppDispatch} from "../../redux/store";
 import {IUserAuthState, useLogoutMutation} from "../../redux/authApi";
 import {logout, setAuthData, setIsAuth} from "../../redux/Reducers/authReducer/authReducer";
-import {BurgerMenu, IItemsRoute} from "../../Common/Components/BurgerMenu/BurgerMenu";
+import {BurgerMenu} from "../../Common/Components/BurgerMenu/BurgerMenu";
 import {checkAuthApi} from "../../redux/checkAuthApi";
+import {IRouteObj} from "../../router/AppRoute";
 
 interface IHeader {
-    itemsRoute: IItemsRoute[]
+    itemsRoute: IRouteObj[]
 }
 
 export const Header = ({itemsRoute}: IHeader) => {
@@ -20,10 +21,15 @@ export const Header = ({itemsRoute}: IHeader) => {
     const navigate = useNavigate();
 
     const [menuActive, setMenuActive] = useState(false)
+    const isSameUrl = !!useMatch('login')
 
     useEffect(() => {
         if (!localStorage.getItem('token')) {
             navigate('/login')
+        }else {
+            if(isSameUrl){
+                navigate('/')
+            }
         }
     }, [isAuth])
 
@@ -73,7 +79,7 @@ export const Header = ({itemsRoute}: IHeader) => {
                     </div>
                 </nav>
             }
-            <BurgerMenu active={menuActive} setActive={setMenuActive} header="Меню" items={itemsRoute}/>
+            <BurgerMenu active={menuActive} setActive={setMenuActive} header="Меню" items={itemsRoute.filter(item => !!item.showInMenu)}/>
         </div>
     )
 }
