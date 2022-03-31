@@ -9,7 +9,6 @@ import {ComponentsShow} from "../Pages/ComponentsShow/ComponentsShow";
 import {useSelector} from "react-redux";
 import {RootState} from "../redux/store";
 import {NotFound} from "../Pages/NotFound/NotFound";
-import {RoleTypes} from "./Roles";
 import {IUserAuthState} from "../redux/authApi";
 
 export const routes = [
@@ -57,6 +56,11 @@ export const routesIsNotAuth = [
 
 type RoutesForMenuType = {
     [key in RoleTypes]: IRouteObj[]
+}
+
+export enum RoleTypes {
+    ADMIN = 'ADMIN',
+    USER = 'USER',
 }
 
 export interface IRouteObj {
