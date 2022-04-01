@@ -3,18 +3,27 @@ import {IPost} from "../../Type/PostType";
 import styles from "./Posts.module.css";
 import moment from "moment";
 import {IUserApiData, IUserAuthState} from "../../redux/usersApi";
+import {useDeletePostMutation} from "../../redux/postApi";
 
 interface IPostProps{
     post: IPost
     users?: IUserApiData[]
 }
 
-export const Post = ({post, users}: IPostProps) => {
+export const Post = ({post, users }: IPostProps) => {
+    const [deletePost] = useDeletePostMutation()
+
+    const deletePostHandler =()=>{
+        deletePost({id: post.id})
+    }
     return (
         <li className={styles.postsItem}>
             <div className={styles.postsItemTitle}>
                 <span className={styles.postsItemAuthor}>{users && users.find(item => item._id === post.author)?.email}</span>
-                <span>Опубликовано: {moment(post.publicDate).format('DD-MM-YYYY') || 'Дата не зафикирована'}</span>
+                <div>
+                    <span>Опубликовано: {moment(post.publicDate).format('DD-MM-YYYY') || 'Дата не зафикирована'}</span>
+                    <p onClick={deletePostHandler}>удалить</p>
+                </div>
             </div>
             <div className={styles.postsItemContent}>
                 {post.postText}

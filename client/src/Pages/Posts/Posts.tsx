@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styles from "./Posts.module.css";
 import {IPost} from "../../Type/PostType";
-import {useCreatePostsMutation, useGetAllPostsQuery} from "../../redux/postApi";
+import {useCreatePostsMutation, useDeletePostMutation, useGetAllPostsQuery} from "../../redux/postApi";
 import {Post} from "./Post";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";

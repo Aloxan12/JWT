@@ -46,7 +46,7 @@
 }
 
 nav{
-    position: fixed;
+    position: absolute;
     top: 23px;
     display: flex;
     align-items: center;
