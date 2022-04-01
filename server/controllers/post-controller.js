@@ -22,6 +22,17 @@ class PostController{
             next(e)
         }
     }
+    async deletePost(req, res, next){
+        try {
+            const {id} = req.body
+
+            const post = await postService.deletePost(id)
+
+            return res.json(post)
+        }catch (e){
+            next(e)
+        }
+    }
 }
 
 module.exports = new PostController()

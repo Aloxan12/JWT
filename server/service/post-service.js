@@ -19,6 +19,11 @@ class PostService{
             post: postDto
         }
     }
+    async deletePost(id){
+        const post = await PostModel.deleteOne({id})
+
+        return post
+    }
 }
 
 module.exports = new PostService();
