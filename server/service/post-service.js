@@ -20,7 +20,8 @@ class PostService{
         }
     }
     async deletePost(id){
-        const post = await PostModel.deleteOne({id})
+        console.log('id ntut', id)
+        const post = await PostModel.deleteOne({id: id})
 
         return post
     }

@@ -16,7 +16,6 @@ class PostController{
 
             const post = await postService.createPosts(postText, author, publicDate)
 
-
             return res.json(post)
         }catch (e){
             next(e)
