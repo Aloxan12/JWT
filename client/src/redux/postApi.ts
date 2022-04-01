@@ -33,10 +33,10 @@ export const postApi = createApi({
             invalidatesTags: ['Posts']
         }),
         deletePost: build.mutation<IPost, {id: string}>({
-            query: (params) => ({
-                url: '/posts',
+            query: ({id}) => ({
+                url: `/posts/${id}`,
                 method: 'DELETE',
-                body: params,
+                // body: {id},
             }),
             invalidatesTags: ['Posts']
         }),

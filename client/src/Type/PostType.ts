@@ -2,7 +2,7 @@ export interface IPost{
     author: string
     postText: string
     publicDate: string
-    id: string
+    _id: string
 }
 
 export interface ICreatePost{

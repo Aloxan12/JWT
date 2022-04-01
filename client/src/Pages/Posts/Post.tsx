@@ -14,7 +14,8 @@ export const Post = ({post, users }: IPostProps) => {
     const [deletePost] = useDeletePostMutation()
 
     const deletePostHandler =()=>{
-        deletePost({id: post.id})
+        console.log('id: post.id', post._id)
+        deletePost({id: post._id})
     }
     return (
         <li className={styles.postsItem}>
