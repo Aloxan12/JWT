@@ -1,6 +1,7 @@
 const PostModel = require('../models/post-model')
 const ApiError = require("../exeptions/api-error");
 const PostDto = require("../dtos/post-dto");
+const mongodb = require("mongodb");
 require('dotenv').config()
 
 
@@ -21,7 +22,7 @@ class PostService{
     }
     async deletePost(id){
         console.log('id ntut', id)
-        const post = await PostModel.deleteOne({id: id})
+        const post = await PostModel.deleteOne({_id: new mongodb.ObjectId(id)})
 
         return post
     }
