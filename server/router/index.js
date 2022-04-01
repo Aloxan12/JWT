@@ -18,6 +18,6 @@ router.get('/users',authMiddleware, userController.getUsers);
 
 router.get('/posts', authMiddleware, postController.getPosts);
 router.post('/posts', postController.createPosts);
-router.delete('/posts', postController.deletePost);
+router.delete('/posts/:id', postController.deletePost);
 
 module.exports = router
