@@ -5,6 +5,7 @@ import moment from "moment";
 import {IUserApiData, IUserAuthState} from "../../redux/usersApi";
 import {useDeletePostMutation} from "../../redux/postApi";
 import {contentToHtml} from "../../utils/helpers";
+import {AppTrash} from "../../Common/Components/AppTrash/AppTrash";
 
 interface IPostProps{
     post: IPost
@@ -22,9 +23,14 @@ export const Post = ({post, users }: IPostProps) => {
         <li className={styles.postsItem}>
             <div className={styles.postsItemTitle}>
                 <span className={styles.postsItemAuthor}>{users && users.find(item => item._id === post.author)?.email}</span>
-                <div>
+                <div className={styles.postEditBlock}>
                     <span>Опубликовано: {moment(post.publicDate).format('DD-MM-YYYY') || 'Дата не зафикирована'}</span>
-                    <p onClick={deletePostHandler}>удалить</p>
+                    <div className={styles.postTrashBlock}>
+                        <AppTrash
+                            deleteHandler={deletePostHandler}
+                            size={'medium'}
+                            text="Вы действительно хотите удалить данный пост?" />
+                    </div>
                 </div>
             </div>
             <div className={styles.postsItemContent}>

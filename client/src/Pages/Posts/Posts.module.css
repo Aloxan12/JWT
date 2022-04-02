@@ -71,9 +71,20 @@
     align-items: flex-start;
     font-size: 15px;
 }
+
 .postsItemAuthor{
     font-weight: 600;
     color: #7171f1;
+}
+
+.postEditBlock{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.postTrashBlock{
+    margin-left: 15px;
 }
 
 .postsItemContent{

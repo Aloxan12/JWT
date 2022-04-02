@@ -6,7 +6,7 @@ export const ComponentsShow = () => {
     return (
         <div>
             <AppButton onClick={(e)=> console.log(e.currentTarget)} />
-            <AppTrash />
+            <AppTrash deleteHandler={()=>console.log('что-то удалил')} />
         </div>
     );
 };
