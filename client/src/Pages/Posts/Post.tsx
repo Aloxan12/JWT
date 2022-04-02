@@ -4,6 +4,7 @@ import styles from "./Posts.module.css";
 import moment from "moment";
 import {IUserApiData, IUserAuthState} from "../../redux/usersApi";
 import {useDeletePostMutation} from "../../redux/postApi";
+import {contentToHtml} from "../../utils/helpers";
 
 interface IPostProps{
     post: IPost
@@ -27,7 +28,7 @@ export const Post = ({post, users }: IPostProps) => {
                 </div>
             </div>
             <div className={styles.postsItemContent}>
-                {post.postText}
+                {contentToHtml(post.postText)}
             </div>
         </li>
     )

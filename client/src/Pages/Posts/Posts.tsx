@@ -10,6 +10,7 @@ import moment from "moment";
 import {ToastWrapper, ToastWrapperType} from "../../Common/Components/ToastWrapper/ToastWrapper";
 import {useGetAllUsersQuery} from "../../redux/usersApi";
 import {AppButton} from "../../Common/Components/AppButton/AppButton";
+import {contentToHtml} from "../../utils/helpers";
 
 export const Posts = () => {
     const user = useSelector<RootState, IUserAuthState | null>(state => state.auth.authData.user)

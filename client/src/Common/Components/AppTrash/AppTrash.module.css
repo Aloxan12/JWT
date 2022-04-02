@@ -1,0 +1,20 @@
+.trash{
+    cursor: pointer;
+    padding: 5px;
+}
+
+.trash:hover{
+    border: 1px solid rgba(108, 103, 103, 0.76);
+}
+
+.small{
+    width: 20px;
+}
+
+.medium{
+    width: 30px;
+}
+
+.big{
+    width: 50px;
+}
