@@ -27,6 +27,23 @@
     transform: scale(0.5);
     transition: 0.4s all;
     z-index: 1100 !important;
+    position: relative;
+}
+
+.headerBlock{
+    width: 100%;
+    border-radius: 12px 12px 0 0;
+    position: absolute;
+    background-color: #d2face;
+    padding: 10px;
+    top: 0;
+    left: 0;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 1.2px;
+}
+.contentBlock{
+    margin-top: 40px;
 }
 .modalContent.active{
     transform: scale(1);
