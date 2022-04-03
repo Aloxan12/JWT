@@ -21,7 +21,6 @@ class PostService{
         }
     }
     async deletePost(id){
-        console.log('id ntut', id)
         const post = await PostModel.deleteOne({_id: new mongodb.ObjectId(id)})
 
         return {status: 204, message:'Пост успешно удален', post}

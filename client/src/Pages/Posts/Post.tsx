@@ -6,6 +6,7 @@ import {IUserApiData, IUserAuthState} from "../../redux/usersApi";
 import {useDeletePostMutation} from "../../redux/postApi";
 import {contentToHtml} from "../../utils/helpers";
 import {AppTrash} from "../../Common/Components/AppTrash/AppTrash";
+import {ToastWrapper, ToastWrapperType} from "../../Common/Components/ToastWrapper/ToastWrapper";
 
 interface IPostProps{
     post: IPost
@@ -16,8 +17,15 @@ export const Post = ({post, users }: IPostProps) => {
     const [deletePost] = useDeletePostMutation()
 
     const deletePostHandler =()=>{
-        console.log('id: post.id', post._id)
-        deletePost({id: post._id})
+        deletePost({id: post._id}).then(res =>{
+            const { data } = res as {data: {status: number, message: string, post: IPost}}
+            if(data.status === 204){
+                ToastWrapper({
+                    msg: data.message.replace(/"/g, ''),
+                    type: ToastWrapperType.info,
+                })
+            }
+        })
     }
     return (
         <li className={styles.postsItem}>
