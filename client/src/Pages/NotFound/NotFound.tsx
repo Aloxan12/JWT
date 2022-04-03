@@ -33,8 +33,8 @@ export const NotFound = () => {
             <img src={paper} alt={'not found'}/>
             <div className={styles.NotFoundText}>404</div>
             <div className={styles.runningStringBlock}>
-                {arrNotFoundText.map((item, i) => <div>
-                    <span className={styles.runningStringText} key={`not found key ${i}`}>{item}</span>
+                {arrNotFoundText.map((item, i) => <div key={`not found key ${i}`}>
+                    <span className={styles.runningStringText}>{item}</span>
                 </div>)}
                 <div>
                     <span>not found 404</span>

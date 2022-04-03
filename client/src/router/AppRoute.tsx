@@ -103,6 +103,7 @@ export const routesByRole: RoutesForMenuType = {
 export const AppRoutes = () => {
     const isAuth = useSelector<RootState, boolean>(state => state.auth.isAuth)
     const user = useSelector<RootState, IUserAuthState | null>(state => state.auth.authData.user)
+
     return (
         <BrowserRouter>
             <Header itemsRoute={user ? routesByRole[user.role] : []}/>
