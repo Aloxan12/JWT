@@ -27,7 +27,7 @@ class PostController{
 
             const post = await postService.deletePost(id)
 
-            return res.json({status: 204, message:'ост успешно удален',post})
+            return res.json(post)
         }catch (e){
             next(e)
         }
