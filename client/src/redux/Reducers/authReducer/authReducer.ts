@@ -1,10 +1,12 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {AuthState, IUserAuthState} from "../../authApi";
+import {AuthState, RoleType} from "../../authApi";
+import {RoleTypes} from "../../../router/AppRoute";
 
 interface IUser {
     email: string,
     id: string,
     isActivated: boolean
+    role: RoleType
 }
 
 type AuthInitialStateType = {
@@ -17,7 +19,8 @@ const authInitialState: AuthInitialStateType = {
     user: {
         email: '',
         id: '',
-        isActivated: false
+        isActivated: false,
+        role: RoleTypes.USER
     },
     authData: {
         accessToken: null,
