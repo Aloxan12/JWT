@@ -1,0 +1,6 @@
+.ComponentsShowWrapper{
+    width: 100%;
+    display: flex;
+    padding: 30px;
+    gap: 20px;
+}

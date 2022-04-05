@@ -9,6 +9,7 @@ import {AppTrash} from "../../Common/Components/AppTrash/AppTrash";
 import {ToastWrapper, ToastWrapperType} from "../../Common/Components/ToastWrapper/ToastWrapper";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
+import {RoleTypes} from "../../router/AppRoute";
 
 interface IPostProps{
     post: IPost
@@ -37,7 +38,7 @@ export const Post = ({post, users }: IPostProps) => {
                 <span className={styles.postsItemAuthor}>{users && users.find(item => item._id === post.author)?.email}</span>
                 <div className={styles.postEditBlock}>
                     <span>Опубликовано: {moment(post.publicDate).format('DD-MM-YYYY') || 'Дата не зафикирована'}</span>
-                    {user && user.role && <div className={styles.postTrashBlock}>
+                    {user && user.role === RoleTypes.ADMIN && <div className={styles.postTrashBlock}>
                         <AppTrash
                         deleteHandler={deletePostHandler}
                         size={'medium'}
