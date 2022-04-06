@@ -1,0 +1,4 @@
+.appInputWrap{
+    display: flex;
+    flex-direction: column;
+}
