@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import './Registration.css'
-import {useRegistrationMutation} from "../../redux/authApi";
+import {RoleType, useRegistrationMutation} from "../../redux/authApi";
 import {ToastWrapper, ToastWrapperType} from "../../Common/Components/ToastWrapper/ToastWrapper";
 import { useNavigate } from "react-router-dom";
 
@@ -13,6 +13,7 @@ export const Registration = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [password2, setPassword2] = useState('')
+    const [role, setRole] = useState<RoleType | null>(null)
     const [errorText, setErrorText] = useState('')
     const [success, setSuccess] = useState('')
 
@@ -24,9 +25,11 @@ export const Registration = () => {
             setErrorText('Поле пароль должно быть заполнено и быть длинее 4 символов!!')
         } else if (password !== password2) {
             setErrorText('Разные пароли!!')
+        } else if (role === null) {
+            setErrorText('Не выбрана роль')
         } else {
             try {
-                const data = await registration({email, password, role: 'USER'})
+                const data = await registration({email, password, role})
                 if(!!data && !error){
                     ToastWrapper({
                         msg: "Писльмо для подтверждаения регестрации отправлено на почту".replace(/"/g, ''),
@@ -72,6 +75,24 @@ export const Registration = () => {
                                    setSuccess('')
                                    setPassword2(e.currentTarget.value)
                                }}/>
+                    </div>
+                    <div className="form-item">
+                        <label htmlFor="password2">Выберете роль:</label>
+                        <span>
+                            <input
+                                type="radio"
+                                name="role"
+                                value='USER'
+                                onChange={(e)=> setRole(e.target.value as RoleType)}
+                            />USER</span>
+                        <span>
+                            <input
+                                type="radio"
+                                name="role"
+                                value="ADMIN"
+                                onChange={(e)=> setRole(e.target.value as RoleType)}
+                            />ADMIN
+                        </span>
                     </div>
                     <div className="form-item btn-block">
                         <input type="submit" className="btn" value="Зарегестрироваться"/>
