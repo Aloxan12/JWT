@@ -13,10 +13,10 @@ export const AppInput = ({label, type = 'text', value, onChange, error}: IAppInp
     return (
         <div className={styles.appInputWrap}>
             {label && <label>{label}</label>}
-            <div>
+            <div className={`${styles.appInput} ${error && styles.borderError}`}>
                 <input value={value} type={type} onChange={onChange}/>
             </div>
-            {error && <div>{error}</div>}
+            {error && <div className={styles.appInputError}>{error}</div>}
         </div>
     );
 }
