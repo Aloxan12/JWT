@@ -13,7 +13,7 @@ export const ComponentsShow = () => {
                 value={''}
                 onChange={(e)=>console.log(e)}
                 label={'label'}
-                error={'error'} />
+                error={'error error errorerror error errorerror  error errorerror '} />
         </div>
     );
 };
