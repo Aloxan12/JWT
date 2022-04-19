@@ -10,6 +10,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../redux/store";
 import {NotFound} from "../Pages/NotFound/NotFound";
 import {IUserAuthState} from "../redux/authApi";
+import {Users} from "../Pages/Users/Users";
 
 export const routesIsNotAuth = [
     {
@@ -66,6 +67,13 @@ export const routesByRole: RoutesForMenuType = {
             component: <ComponentsShow/>
         },
         {
+            id: 'Users',
+            path: '/users',
+            title: 'Пользователи',
+            showInMenu: true,
+            component: <Users/>
+        },
+        {
             id: 'NotFound',
             path: '*',
             // exact: true,
@@ -88,6 +96,13 @@ export const routesByRole: RoutesForMenuType = {
             title: 'Компоненты',
             showInMenu: true,
             component: <ComponentsShow/>
+        },
+        {
+            id: 'Users',
+            path: '/users',
+            title: 'Пользователи',
+            showInMenu: true,
+            component: <Users/>
         },
         {
             id: 'NotFound',
