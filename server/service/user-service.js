@@ -83,7 +83,12 @@ class UserService{
 
     async getAllUsers(){
         const users = await UserModel.find()
-        return users
+
+        return users.map((i)=> ({
+            email: i.email,
+            role: i.role,
+            isActivated: i.isActivated
+        }))
     }
 }
 
