@@ -85,6 +85,7 @@ class UserService{
         const users = await UserModel.find()
 
         return users.map((i)=> ({
+            id: i._id,
             email: i.email,
             role: i.role,
             isActivated: i.isActivated
