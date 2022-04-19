@@ -2,7 +2,7 @@ import React from 'react';
 import {IPost} from "../../Type/PostType";
 import styles from "./Posts.module.css";
 import moment from "moment";
-import {IUserApiData, IUserAuthState} from "../../redux/usersApi";
+import {IUserApiData, IUserDataDto} from "../../redux/usersApi";
 import {useDeletePostMutation} from "../../redux/postApi";
 import {contentToHtml} from "../../utils/helpers";
 import {AppTrash} from "../../Common/Components/AppTrash/AppTrash";
@@ -13,13 +13,13 @@ import {RoleTypes} from "../../router/AppRoute";
 
 interface IPostProps{
     post: IPost
-    users?: IUserApiData[]
+    users?: IUserDataDto[]
 }
 
 export const Post = ({post, users }: IPostProps) => {
     const [deletePost] = useDeletePostMutation()
 
-    const user = useSelector<RootState, IUserAuthState | null>(state => state.auth.authData.user)
+    const user = useSelector<RootState, IUserDataDto | null>(state => state.auth.authData.user)
 
     const deletePostHandler =()=>{
         deletePost({id: post._id}).then(res =>{
@@ -35,7 +35,7 @@ export const Post = ({post, users }: IPostProps) => {
     return (
         <li className={styles.postsItem}>
             <div className={styles.postsItemTitle}>
-                <span className={styles.postsItemAuthor}>{users && users.find(item => item._id === post.author)?.email}</span>
+                <span className={styles.postsItemAuthor}>{users && users.find(item => item.id === post.author)?.email}</span>
                 <div className={styles.postEditBlock}>
                     <span>Опубликовано: {moment(post.publicDate).format('DD-MM-YYYY') || 'Дата не зафикирована'}</span>
                     {user && user.role === RoleTypes.ADMIN && <div className={styles.postTrashBlock}>

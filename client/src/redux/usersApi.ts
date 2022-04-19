@@ -4,7 +4,7 @@ import {RoleTypes} from "../router/AppRoute";
 import {RoleType} from "./authApi";
 
 
-export interface IUserAuthState {
+export interface IUserDataDto {
     email: string
     id: string
     isActivated: boolean
@@ -12,7 +12,7 @@ export interface IUserAuthState {
 }
 
 export interface IUserApiData {
-    _id: string,
+    id: string,
     email: string,
     password: string,
     isActivated: boolean,
@@ -37,7 +37,7 @@ export const usersApi = createApi({
     }),
     tagTypes: ['Users'],
     endpoints: (build) => ({
-        getAllUsers: build.query<IUserApiData[], void>({
+        getAllUsers: build.query<IUserDataDto[], void>({
             query: () => ({
                 url: '/users',
             }),
