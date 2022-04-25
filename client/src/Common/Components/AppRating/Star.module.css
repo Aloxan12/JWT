@@ -1,31 +1,38 @@
 .wrap{
-    border: 1px solid;
-    padding: 10px;
+    display: inline-block;
+
+}
+
+.wrapStar{
+    padding: 3px;
 }
 
 .star {
     width: 0;
     height: 0;
-    color: #fc2e5a;
+    color: #ccc;
+    background-color: rgba(255, 255, 255, 0);
     position: relative;
     display: block;
     border-right: 12px solid transparent;
-    border-bottom: 9px solid #fc2e5a;
+    border-bottom: 9px solid #ccc;
     border-left: 12px solid transparent;
     -moz-transform: rotate(108deg);
     -webkit-transform: rotate(108deg);
     -ms-transform: rotate(108deg);
     -o-transform: rotate(108deg);
+    cursor: pointer;
 }
 
 .star:before {
+    background-color: rgba(255, 255, 255, 0);
     height: 0;
     width: 0;
     position: absolute;
     display: block;
     top: 0;
     left: -13px;
-    border-bottom: 9px solid #fc2e5a;
+    border-bottom: 9px solid #ccc;
     border-left: 12px solid transparent;
     border-right: 12px solid transparent;
     content: '';
@@ -36,6 +43,7 @@
 }
 
 .star:after {
+    background-color: rgba(255, 255, 255, 0);
     content: '';
     width: 0;
     height: 0;
@@ -43,16 +51,15 @@
     display: block;
     top: 0;
     left: -12px;
-    color: #fc2e5a;
+    color: #ccc;
     border-right: 12px solid transparent;
-    border-bottom: 9px solid #fc2e5a;
+    border-bottom: 9px solid #ccc;
     border-left: 12px solid transparent;
     -webkit-transform: rotate(70deg);
     -moz-transform: rotate(70deg);
     -ms-transform: rotate(70deg);
     -o-transform: rotate(70deg);
 }
-
 
 .active{
     border-right: 12px solid transparent;

@@ -7,9 +7,11 @@ interface IStar{
 
 export const Star = ({active}: IStar) => {
     return (
-        <div className={styles.wrap}>
-            <span className={`${styles.star} ${active ? styles.active : ''}`}>
-        </span>
-        </div>
+            <div className={styles.wrap}>
+                <div className={styles.wrapStar}>
+                <span className={`${styles.star} ${active ? styles.active : ''}`}>
+                </span>
+                </div>
+            </div>
     );
 };
