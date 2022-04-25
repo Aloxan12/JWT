@@ -1,0 +1,73 @@
+.wrap{
+    border: 1px solid;
+    padding: 10px;
+}
+
+.star {
+    width: 0;
+    height: 0;
+    color: #fc2e5a;
+    position: relative;
+    display: block;
+    border-right: 12px solid transparent;
+    border-bottom: 9px solid #fc2e5a;
+    border-left: 12px solid transparent;
+    -moz-transform: rotate(108deg);
+    -webkit-transform: rotate(108deg);
+    -ms-transform: rotate(108deg);
+    -o-transform: rotate(108deg);
+}
+
+.star:before {
+    height: 0;
+    width: 0;
+    position: absolute;
+    display: block;
+    top: 0;
+    left: -13px;
+    border-bottom: 9px solid #fc2e5a;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    content: '';
+    -webkit-transform: rotate(-73deg);
+    -moz-transform: rotate(-73deg);
+    -ms-transform: rotate(-73deg);
+    -o-transform: rotate(-73deg);
+}
+
+.star:after {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    display: block;
+    top: 0;
+    left: -12px;
+    color: #fc2e5a;
+    border-right: 12px solid transparent;
+    border-bottom: 9px solid #fc2e5a;
+    border-left: 12px solid transparent;
+    -webkit-transform: rotate(70deg);
+    -moz-transform: rotate(70deg);
+    -ms-transform: rotate(70deg);
+    -o-transform: rotate(70deg);
+}
+
+
+.active{
+    border-right: 12px solid transparent;
+    border-bottom: 9px solid yellow;
+    border-left: 12px solid transparent;
+}
+
+.active:before{
+    border-right: 12px solid transparent;
+    border-bottom: 9px solid yellow;
+    border-left: 12px solid transparent;
+}
+
+.active:after{
+    border-right: 12px solid transparent;
+    border-bottom: 9px solid yellow;
+    border-left: 12px solid transparent;
+}
