@@ -3,7 +3,7 @@ import {Star} from "./Star";
 
 interface IAppRating {
     value: number | null
-    onChange: (value: number) => void
+    onChange?: (value: number) => void
 }
 
 export const AppRating = ({value, onChange}: IAppRating) => {
