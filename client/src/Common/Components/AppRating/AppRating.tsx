@@ -9,11 +9,7 @@ interface IAppRating {
 export const AppRating = ({value, onChange}: IAppRating) => {
     return (
         <div>
-            <Star active={true}/>
-            <Star active={true}/>
-            <Star active={true}/>
-            <Star active={false}/>
-            <Star active={false}/>
+            {[...Array(5)].map((item, index)=> <Star active={true}/>)}
         </div>
     );
 };
