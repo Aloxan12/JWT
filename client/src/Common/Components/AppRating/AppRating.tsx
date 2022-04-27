@@ -1,5 +1,6 @@
 import React from 'react';
 import {Star} from "./Star";
+import styles from './Star.module.css'
 
 interface IAppRating {
     value: number
@@ -11,7 +12,7 @@ export const AppRating = ({value, onChange}: IAppRating) => {
     return (
         <div>
             {[...Array(5)]
-                .map((item, index)=>
+                .map((item, index) =>
                     <Star
                         value={index + 1}
                         active={value > index}
@@ -19,6 +20,7 @@ export const AppRating = ({value, onChange}: IAppRating) => {
                         key={`AppRating ${item} ${index}`}
                     />
                 )}
+            <p className={styles.helperText} style={{fontSize: '12px', textAlign: 'center'}}>текст</p>
         </div>
     );
 };

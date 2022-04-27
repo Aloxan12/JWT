@@ -1,6 +1,5 @@
 .wrap{
     display: inline-block;
-
 }
 
 .wrapStar{
@@ -77,4 +76,8 @@
     border-right: 12px solid transparent;
     border-bottom: 9px solid yellow;
     border-left: 12px solid transparent;
+}
+
+.helperText{
+    padding: 10px;
 }
