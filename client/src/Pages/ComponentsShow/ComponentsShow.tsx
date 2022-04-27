@@ -16,7 +16,7 @@ export const ComponentsShow = () => {
                 onChange={(e)=>console.log(e)}
                 label={'label'}
                 error={'error error errorerror error errorerror  error errorerror '} />
-            <AppRating value={0}  onChange={(value)=>console.log('value2', value)}/>
+            <AppRating value={rating}  onChange={(value)=>setRating(value)}/>
         </div>
     );
 };

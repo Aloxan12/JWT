@@ -1,23 +1,22 @@
 import React from 'react';
 import styles from './Star.module.css'
 
-interface IStar{
+interface IStar {
     active: boolean
     value: number
-    onChange:(value: number) => void
+    onChange: (value: number) => void
 }
 
 export const Star = ({active, onChange, value}: IStar) => {
-    console.log('value', value)
     return (
-            <div className={styles.wrap}>
-                <div className={styles.wrapStar}>
+        <div className={styles.wrap}>
+            <div className={styles.wrapStar}>
                 <span
                     className={`${styles.star} ${active ? styles.active : ''}`}
-                    onClick={()=>onChange(value)}
+                    onClick={() => onChange(value)}
                 >
                 </span>
-                </div>
             </div>
+        </div>
     );
 };

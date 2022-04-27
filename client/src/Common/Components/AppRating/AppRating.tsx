@@ -7,6 +7,7 @@ interface IAppRating {
 }
 
 export const AppRating = ({value, onChange}: IAppRating) => {
+    console.log('value', value)
     return (
         <div>
             {[...Array(5)]
@@ -15,6 +16,7 @@ export const AppRating = ({value, onChange}: IAppRating) => {
                         value={index + 1}
                         active={value > index}
                         onChange={onChange}
+                        key={`AppRating ${item} ${index}`}
                     />
                 )}
         </div>
