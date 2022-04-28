@@ -14,6 +14,8 @@ export const Star = ({active, onChange, value}: IStar) => {
                 <span
                     className={`${styles.star} ${active ? styles.active : ''}`}
                     onClick={() => onChange(value)}
+                    onMouseEnter={()=> console.log('ne')}
+                    onMouseLeave={()=> console.log('live')}
                 >
                 </span>
             </div>
