@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Star} from "./Star";
 import styles from './Star.module.css'
 
@@ -8,9 +8,10 @@ interface IAppRating {
 }
 
 export const AppRating = ({value, onChange}: IAppRating) => {
-    console.log('value', value)
+    const [helpText, setHelpText] = useState<number | null>(null)
+
     return (
-        <div>
+        <div className={styles.AppRatingWrap}>
             {[...Array(5)]
                 .map((item, index) =>
                     <Star
@@ -18,9 +19,12 @@ export const AppRating = ({value, onChange}: IAppRating) => {
                         active={value > index}
                         onChange={onChange}
                         key={`AppRating ${item} ${index}`}
+                        setHelpText={setHelpText}
                     />
                 )}
-            <p className={styles.helperText} style={{fontSize: '12px', textAlign: 'center'}}>текст</p>
+             <p className={styles.helperText} style={{fontSize: '12px', textAlign: 'center'}}
+            >{!!helpText && 'текст'}
+            </p>
         </div>
     );
 };

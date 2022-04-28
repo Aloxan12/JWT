@@ -5,17 +5,18 @@ interface IStar {
     active: boolean
     value: number
     onChange: (value: number) => void
+    setHelpText: (value: number | null) => void
 }
 
-export const Star = ({active, onChange, value}: IStar) => {
+export const Star = ({active, onChange,setHelpText, value}: IStar) => {
     return (
         <div className={styles.wrap}>
             <div className={styles.wrapStar}>
                 <span
                     className={`${styles.star} ${active ? styles.active : ''}`}
                     onClick={() => onChange(value)}
-                    onMouseEnter={()=> console.log('ne')}
-                    onMouseLeave={()=> console.log('live')}
+                    onMouseEnter={()=> setHelpText(value)}
+                    onMouseLeave={()=> setHelpText(null)}
                 >
                 </span>
             </div>
