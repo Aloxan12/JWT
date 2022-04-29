@@ -6,6 +6,16 @@ const mongoose = require('mongoose')
 // const router = require('router/index.js')
 const router = require('./router/index')
 const errorMiddleware = require('./middlewares/error-middleware')
+const multer = require('multer')
+
+const ImageModel = require('./models/image-model')
+
+const Storage = multer.diskStorage({
+    destination: 'uploads',
+    filename: (req, file, cb)=>{
+        cb(null, file.originalname)
+        }
+})
 
 const PORT = process.env.PORT || 5000
 const app = express()
