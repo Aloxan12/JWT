@@ -17,6 +17,10 @@ const Storage = multer.diskStorage({
         }
 })
 
+const upload = multer({
+    storage: Storage
+}).single('testStorage')
+
 const PORT = process.env.PORT || 5000
 const app = express()
 
@@ -25,6 +29,24 @@ app.use(cookieParser())
 app.use(cors({credential: true, origin: process.env.CLIENT_URL}));
 app.use('/api', router)
 app.use(errorMiddleware)
+
+
+app.post('/upload', (req, res)=>{
+    upload(req, res, (err)=>{
+        if(err){
+            console.log(err)
+        }else{
+            const newImage = new ImageModel({
+                name: req.body.name,
+                image:{
+                    data: req.file.filename,
+                    contentType: 'image/png'
+                }
+            })
+            newImage.save().then(()=> res.send('файл успешно загружен')).catch(err => console.log(err))
+        }
+    })
+})
 
 const startApp = async ()=>{
     try{
