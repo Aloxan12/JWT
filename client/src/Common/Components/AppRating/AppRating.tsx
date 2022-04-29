@@ -7,6 +7,18 @@ interface IAppRating {
     onChange: (value: number) => void
 }
 
+type RatingHelperTextType = {
+    [key in number]: string
+}
+
+const ratingHelperText: RatingHelperTextType = {
+    1: 'плохо',
+    2: 'не очень',
+    3: 'норм',
+    4: 'хорошо',
+    5: 'класс',
+}
+
 export const AppRating = ({value, onChange}: IAppRating) => {
     const [helpText, setHelpText] = useState<number | null>(null)
 
@@ -23,7 +35,7 @@ export const AppRating = ({value, onChange}: IAppRating) => {
                     />
                 )}
              <p className={styles.helperText} style={{fontSize: '12px', textAlign: 'center'}}
-            >{!!helpText && 'текст'}
+            >{!!helpText && ratingHelperText[helpText]}
             </p>
         </div>
     );
