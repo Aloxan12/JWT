@@ -1,6 +1,23 @@
 const userService = require('../service/user-service')
 const {validationResult} = require('express-validator')
 const ApiError = require('../exeptions/api-error')
+const {uuid} = require("uuid");
+const path = require("path");
+const multer = require("multer");
+const ImageModel = require("../models/image-model");
+
+
+const Storage = multer.diskStorage({
+    destination: 'uploads',
+    filename: (req, file, cb) => {
+        cb(null, file.originalname)
+    }
+})
+
+const uploadAvatar = multer({
+    storage: Storage
+}).single('avatar')
+
 
 class UserController{
     async registration(req, res, next){
@@ -70,6 +87,22 @@ class UserController{
         try {
             const users = await userService.getAllUsers()
             return res.json(users)
+        }catch (e){
+            next(e)
+        }
+    }
+
+    async uploadUserAvatar(req, res, next){
+        try {
+            uploadAvatar(req, res, async (err) => {
+                const {id} = req.params
+                console.log('req.files',req.file)
+                const {originalname} = req.file
+                let avatarName = Date.now() + '.jpg'
+                avatar.mv(path.resolve(__dirname, '..', 'uploads', avatarName))
+                const user = await userService.uploadUserAvatar(id, avatarName)
+                return res.json(user)
+            })
         }catch (e){
             next(e)
         }

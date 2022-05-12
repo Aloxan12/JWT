@@ -88,8 +88,25 @@ class UserService{
             id: i._id,
             email: i.email,
             role: i.role,
-            isActivated: i.isActivated
+            isActivated: i.isActivated,
+            avatar: i.avatar
         }))
+    }
+
+    async uploadUserAvatar(id, avatar){
+        try {
+            const user = await UserModel.findOne({id})
+
+            return ({
+                id: user._id,
+                email: user.email,
+                role: user.role,
+                isActivated: user.isActivated,
+                avatar: avatar
+            })
+        }catch (e) {
+            console.log(e)
+        }
     }
 }
 
