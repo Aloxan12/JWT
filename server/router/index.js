@@ -3,6 +3,7 @@ const userController = require('../controllers/user-controller')
 const postController = require('../controllers/post-controller')
 const {body} = require('express-validator')
 const authMiddleware = require('../middlewares/auth-middleware')
+const ImageModel = require("../models/image-model");
 
 const router = new Router()
 
@@ -19,5 +20,12 @@ router.get('/users',authMiddleware, userController.getUsers);
 router.get('/posts', authMiddleware, postController.getPosts);
 router.post('/posts', postController.createPosts);
 router.delete('/posts/:id', postController.deletePost);
+
+router.post('/upload', )
+
+
+app.post('/upload', (req, res) => {
+
+})
 
 module.exports = router
