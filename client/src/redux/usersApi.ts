@@ -42,6 +42,12 @@ export const usersApi = createApi({
                 url: '/users',
             }),
         }),
+        uploadUserAvatar: build.query<IUserDataDto, {id: string, avatar: File}>({
+            query: ({id, avatar}) => ({
+                url: `/user/${id}/uploadAvatar`,
+                body: {avatar: avatar}
+            }),
+        }),
     })
 })
 
