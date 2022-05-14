@@ -7,6 +7,7 @@ interface IUser {
     id: string,
     isActivated: boolean
     role: RoleType
+    avatar: string
 }
 
 type AuthInitialStateType = {
@@ -20,7 +21,8 @@ const authInitialState: AuthInitialStateType = {
         email: '',
         id: '',
         isActivated: false,
-        role: RoleTypes.USER
+        role: RoleTypes.USER,
+        avatar: ''
     },
     authData: {
         accessToken: null,

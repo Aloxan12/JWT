@@ -1,0 +1,13 @@
+.PersonalAccountWrap{
+    margin: 3% auto;
+    padding: 20px;
+    border: 1px solid;
+    border-radius: 8px;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+img{
+    max-width: 300px;
+}

@@ -6,6 +6,7 @@ export interface IUserAuthState {
     id: string
     isActivated: boolean
     role: RoleType
+    avatar: string
 }
 
 
