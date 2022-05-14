@@ -7,6 +7,7 @@ const mailService = require('./mail-service')
 const tokenService = require('./token-service')
 const UserDto = require('../dtos/user-dto')
 const ApiError = require('../exeptions/api-error')
+const mongodb = require("mongodb");
 
 class UserService{
     async registration (email, password, role){
@@ -95,7 +96,7 @@ class UserService{
 
     async uploadUserAvatar(id, avatar){
         try {
-            const user = await UserModel.findOne({id})
+            const user = await UserModel.findOne({_id: new mongodb.ObjectId(id)})
 
             return ({
                 id: user._id,
