@@ -97,6 +97,13 @@ class UserService{
     async uploadUserAvatar(id, avatar){
         try {
             const user = await UserModel.findOne({_id: new mongodb.ObjectId(id)})
+            await user.update({
+                id: user._id,
+                email: user.email,
+                role: user.role,
+                isActivated: user.isActivated,
+                avatar: avatar
+            })
 
             return ({
                 id: user._id,
