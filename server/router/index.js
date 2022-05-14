@@ -4,7 +4,6 @@ const postController = require('../controllers/post-controller')
 const fileController = require('../controllers/file-controller')
 const {body} = require('express-validator')
 const authMiddleware = require('../middlewares/auth-middleware')
-const ImageModel = require("../models/image-model");
 
 const router = new Router()
 
