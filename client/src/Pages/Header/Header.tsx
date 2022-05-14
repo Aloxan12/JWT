@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import styles from './Header.module.css'
-import {NavLink, useMatch, useNavigate} from "react-router-dom";
+import {NavLink, Link, useMatch, useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {RootState, useAppDispatch} from "../../redux/store";
 import {IUserAuthState, useLogoutMutation} from "../../redux/authApi";
@@ -64,6 +64,7 @@ export const Header = ({itemsRoute}: IHeader) => {
                 {user ?
                     <div className={styles.mainHeaderIsAuth}>
                         <span>Добро пожаловать, {user.email}</span>
+                        <span><Link to={`currentUser/${user.id}`}>В личный кабинет</Link></span>
                         <span><a className={styles.loginLink} onClick={logoutHandler}>Выйти</a></span>
                     </div>
                     :

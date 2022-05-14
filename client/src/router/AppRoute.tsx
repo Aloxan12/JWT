@@ -11,6 +11,7 @@ import {RootState} from "../redux/store";
 import {NotFound} from "../Pages/NotFound/NotFound";
 import {IUserAuthState} from "../redux/authApi";
 import {Users} from "../Pages/Users/Users";
+import {PersonalAccount} from "../Pages/PersonalAccount/PersonalAccount";
 
 export const routesIsNotAuth = [
     {
@@ -60,6 +61,13 @@ export const routesByRole: RoutesForMenuType = {
             component: <App/>,
         },
         {
+            id: 'PersonalAccount',
+            path: '/currentUser/:id',
+            title: 'Личный кабинет',
+            showInMenu: false,
+            component: <PersonalAccount />,
+        },
+        {
             id: 'ComponentsShow',
             path: '/componentsShow',
             title: 'Компоненты',
@@ -89,6 +97,13 @@ export const routesByRole: RoutesForMenuType = {
             title: 'Главная',
             showInMenu: true,
             component: <App/>,
+        },
+        {
+            id: 'PersonalAccount',
+            path: '/currentUser/:id',
+            title: 'Личный кабинет',
+            showInMenu: false,
+            component: <PersonalAccount />,
         },
         {
             id: 'ComponentsShow',
