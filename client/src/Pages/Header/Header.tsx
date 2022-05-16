@@ -26,8 +26,8 @@ export const Header = ({itemsRoute}: IHeader) => {
     useEffect(() => {
         if (!localStorage.getItem('token')) {
             navigate('/login')
-        }else {
-            if(isSameUrl){
+        } else {
+            if (isSameUrl) {
                 navigate('/')
             }
         }
@@ -63,8 +63,11 @@ export const Header = ({itemsRoute}: IHeader) => {
             <div className={styles.mainHeaderAuth}>
                 {user ?
                     <div className={styles.mainHeaderIsAuth}>
-                        <span>Добро пожаловать, {user.email}</span>
-                        <span><Link to={`currentUser/${user.id}`}>В личный кабинет</Link></span>
+                        <span className={styles.welcomeWrap}>{user.email}
+                            <Link to={`currentUser/${user.id}`} className={styles.linkAva}>
+                                <img src={`http://localhost:5555/` + user!.avatar}/>
+                            </Link>
+                        </span>
                         <span><a className={styles.loginLink} onClick={logoutHandler}>Выйти</a></span>
                     </div>
                     :
@@ -80,7 +83,8 @@ export const Header = ({itemsRoute}: IHeader) => {
                     </div>
                 </nav>
             }
-            <BurgerMenu active={menuActive} setActive={setMenuActive} header="Меню" items={itemsRoute.filter(item => !!item.showInMenu)}/>
+            <BurgerMenu active={menuActive} setActive={setMenuActive} header="Меню"
+                        items={itemsRoute.filter(item => !!item.showInMenu)}/>
         </div>
     )
 }
