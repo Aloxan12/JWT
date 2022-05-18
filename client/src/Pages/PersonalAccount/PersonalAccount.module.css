@@ -1,11 +1,23 @@
 .PersonalAccountWrap{
     margin: 3% auto;
     padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.PersonalAccountMainBlock{
+    display: inline-flex;
     border: 1px solid;
     border-radius: 8px;
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
+    padding: 30px;
+}
+
+.PersonalAccountInfoBlock{
+    margin-left: 40px;
+}
+.PersonalAccountInfoBlock h3{
+    text-align: center;
+    margin-bottom: 15px;
 }
 
 img{
