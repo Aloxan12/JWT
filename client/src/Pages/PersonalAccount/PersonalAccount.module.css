@@ -14,10 +14,13 @@
 
 .PersonalAccountInfoBlock{
     margin-left: 40px;
+    letter-spacing: 1.2px;
 }
-.PersonalAccountInfoBlock h3{
+.PersonalAccountInfoTitle{
     text-align: center;
     margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid darkgray;
 }
 
 img{

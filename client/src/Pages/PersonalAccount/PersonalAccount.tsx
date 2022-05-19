@@ -13,14 +13,14 @@ export const PersonalAccount = () => {
             <div className={styles.PersonalAccountMainBlock}>
                 <div><img src={user!.avatar ? `http://localhost:5555/` + user!.avatar : 'фейк'}/></div>
                 <div className={styles.PersonalAccountInfoBlock}>
-                    <h3>Личная информация</h3>
-                    <div>
+                    <h3 className={styles.PersonalAccountInfoTitle}>Личная информация</h3>
+                    <div className={styles.PersonalAccountInfoItem}>
                         <span>Email: <b>{user?.email}</b></span>
                     </div>
-                    <div>
+                    <div className={styles.PersonalAccountInfoItem}>
                         <span>Роль: <b>{user?.role === RoleTypes.ADMIN ? 'Администратор' : 'Пользователь'}</b></span>
                     </div>
-                    <div>
+                    <div className={styles.PersonalAccountInfoItem}>
                         <span>Активирован: <b>{user?.isActivated ? 'Да' : 'Нет'}</b></span>
                     </div>
                 </div>
