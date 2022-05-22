@@ -7,9 +7,19 @@
 
 .PersonalAccountMainBlock{
     display: inline-flex;
-    border: 1px solid;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     border-radius: 8px;
     padding: 30px;
+}
+
+.PersonalAccountPhoto{
+    border: 1px solid;
+    border-radius: 8px;
+}
+
+.ChangePhotoBtn{
+    margin-top: 15px;
+    text-align: center;
 }
 
 .PersonalAccountInfoBlock{
