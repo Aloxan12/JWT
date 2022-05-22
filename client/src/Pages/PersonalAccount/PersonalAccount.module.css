@@ -22,6 +22,84 @@
     text-align: center;
 }
 
+.SelectFileBlock{
+    min-height: 300px;
+}
+
+.DropBlock{
+    font-size: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 300px;
+}
+
+.DropItem{
+    width: 300px;
+    height: 300px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #9f9d9d;
+    color: #1D2732;
+}
+
+.DropItem span {
+    width: 90%;
+}
+
+.DropItem span p {
+    text-align: center;
+}
+
+.DropArea{
+    border: 2px solid black;
+}
+
+.BtnChooseFile{
+    margin-top: 30px;
+}
+
+.BtnChooseFile .InputFile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.InputFile + label {
+    padding: 8px 20px;
+    cursor: pointer;
+    border-radius: 18px;
+    font-weight: 500;
+    background-color: #d2face;
+    display: inline-block;
+    height: 36px;
+    -webkit-box-shadow: 0 0 8px rgba(25, 101, 174, 0.3);
+    box-shadow: 0 0 8px rgba(25, 101, 174, 0.3);
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.InputFile:focus + label,
+.InputFile + label:hover {
+    transition: .3s;
+    background-color: #189BE4;
+}
+
 .PersonalAccountInfoBlock{
     margin-left: 40px;
     letter-spacing: 1.2px;
