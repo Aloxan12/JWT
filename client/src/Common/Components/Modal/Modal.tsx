@@ -11,7 +11,9 @@ export const Modal: React.FC<ModalType> = ({active, setActive, children, title})
     return (
         <div className={active ? `${style.modal} + '' + ${style.active}` : style.modal}
              onClick={() => setActive(false)}>
-            <div className={active ? `${style.modalContent} + '' + ${style.active}` : style.modalContent}>
+            <div className={active ? `${style.modalContent} + '' + ${style.active}` : style.modalContent}
+                 onClick={(e)=> e.stopPropagation()}
+            >
                 {title ?
                     <React.Fragment>
                         <div className={style.headerBlock}>{title}</div>

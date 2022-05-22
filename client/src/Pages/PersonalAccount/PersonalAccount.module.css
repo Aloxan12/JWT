@@ -63,7 +63,7 @@
     margin-top: 30px;
 }
 
-.BtnChooseFile .InputFile {
+.InputFile {
     width: 0.1px;
     height: 0.1px;
     opacity: 0;
@@ -80,10 +80,6 @@
     background-color: #d2face;
     display: inline-block;
     height: 36px;
-    -webkit-box-shadow: 0 0 8px rgba(25, 101, 174, 0.3);
-    box-shadow: 0 0 8px rgba(25, 101, 174, 0.3);
-    display: -ms-inline-flexbox;
-    display: inline-flex;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
@@ -96,8 +92,7 @@
 
 .InputFile:focus + label,
 .InputFile + label:hover {
-    transition: .3s;
-    background-color: #189BE4;
+    box-shadow: 0 0 10px rgba(133, 196, 127, 0.78);
 }
 
 .PersonalAccountInfoBlock{
