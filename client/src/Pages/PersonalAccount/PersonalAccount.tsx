@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import styles from './PersonalAccount.module.css'
 import {useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
@@ -37,6 +37,12 @@ export const PersonalAccount = () => {
         setFile(file)
     }
 
+    useEffect(()=>{
+        if(!changePhoto){
+            setInputFile('')
+            setFile(null)
+        }
+    },[changePhoto])
     const fileType = `${file?.name}`
         .split('')
         .reverse()
@@ -102,10 +108,15 @@ export const PersonalAccount = () => {
                                             </div>
                                         )}
                                     </div>
-                                    {file && <div className={styles.FileBlock}>
-                                        <span>{file.name}</span>
-                                        <AppButton onClick={()=>{}} text={'Сохранить новое фото'} />
-                                    </div>}
+                                    {!!file && (fileType.toLowerCase() === 'jpg' || fileType.toLowerCase() === 'png')
+                                        ? <div className={styles.FileBlock}>
+                                                <span>{file.name}</span>
+                                                <AppButton onClick={()=>{}} text={'Сохранить новое фото'} />
+                                            </div>
+                                        :
+                                        <div className={styles.FileErrorBlock}>
+                                            <span>Вы выбрали не верный формат файла</span>
+                                        </div>}
                                 </div>
                             </Modal>
                         )}
