@@ -14,7 +14,7 @@ export const PersonalAccount = () => {
     const [changePhoto, setChangePhoto] = useState(false)
     const [drag, setDrag] = useState(false)
     const [file, setFile] = useState<null | File>(null)
-    const [inputFile, setInputFile] = useState<undefined | string>(undefined)
+    const [inputFile, setInputFile] = useState<string>('')
 
 
     const dragStartHandler = (e: React.DragEvent<HTMLDivElement>) => {
@@ -36,6 +36,17 @@ export const PersonalAccount = () => {
         const file = event.target.files && event.target.files[0]
         setFile(file)
     }
+
+    const fileType = `${file?.name}`
+        .split('')
+        .reverse()
+        .join('')
+        .split('.')[0]
+        .split('')
+        .reverse()
+        .join('')
+
+    console.log('file',file)
 
     return (
         <div className={styles.PersonalAccountWrap}>
@@ -80,17 +91,21 @@ export const PersonalAccount = () => {
                                                             handleChangeFile(e)
                                                         }}
                                                     />
-                                                    <label htmlFor="file">Выберите файл</label>
+                                                    <label htmlFor="file">Выберите фото</label>
                                                 </div>
                                                 <span>
                       <p>Или перенесите его сюда.</p>
                     </span>
-                                                <p className="bottom-text">
-                                                    Файл должен быть <span className="txt">txt</span> формата!
+                                                <p className={styles.BottomText}>
+                                                    Файл должен быть <span className={styles.FileForamt}>JPG, PNG, </span> формата!
                                                 </p>
                                             </div>
                                         )}
                                     </div>
+                                    {file && <div className={styles.FileBlock}>
+                                        <span>{file.name}</span>
+                                        <AppButton onClick={()=>{}} text={'Сохранить новое фото'} />
+                                    </div>}
                                 </div>
                             </Modal>
                         )}

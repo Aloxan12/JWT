@@ -24,6 +24,7 @@
 
 .SelectFileBlock{
     min-height: 300px;
+    position: relative;
 }
 
 .DropBlock{
@@ -93,6 +94,36 @@
 .InputFile:focus + label,
 .InputFile + label:hover {
     box-shadow: 0 0 10px rgba(133, 196, 127, 0.78);
+}
+
+.SelectFileBlock p{
+    margin-top: 10px;
+}
+
+.BottomText{
+    position: absolute;
+    bottom: 10px;
+    right: 50%;
+    transform: translate(50%);
+}
+
+.FileForamt{
+    color: green;
+    font-weight: 500;
+}
+
+.FileBlock{
+    display: flex;
+    max-width: 300px;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px 10px 0;
+}
+
+.FileBlock span{
+    margin-bottom: 10px;
 }
 
 .PersonalAccountInfoBlock{
