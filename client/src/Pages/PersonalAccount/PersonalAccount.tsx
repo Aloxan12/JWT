@@ -108,15 +108,20 @@ export const PersonalAccount = () => {
                                             </div>
                                         )}
                                     </div>
-                                    {!!file && (fileType.toLowerCase() === 'jpg' || fileType.toLowerCase() === 'png')
-                                        ? <div className={styles.FileBlock}>
+                                    {!!file &&
+                                    <React.Fragment>
+                                        {(fileType.toLowerCase() === 'jpg' || fileType.toLowerCase() === 'png')
+                                            ? <div className={styles.FileBlock}>
                                                 <span>{file.name}</span>
-                                                <AppButton onClick={()=>{}} text={'Сохранить новое фото'} />
+                                                <AppButton onClick={() => {
+                                                }} text={'Сохранить новое фото'}/>
                                             </div>
-                                        :
-                                        <div className={styles.FileErrorBlock}>
-                                            <span>Вы выбрали не верный формат файла</span>
-                                        </div>}
+                                            :
+                                            <div className={styles.FileErrorBlock}>
+                                                <span>Вы выбрали не верный формат файла</span>
+                                            </div>}
+                                    </React.Fragment>
+                                    }
                                 </div>
                             </Modal>
                         )}
