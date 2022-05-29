@@ -57,7 +57,9 @@ export const PersonalAccount = () => {
 
     const uploadUserAvatarHandler = async ()=>{
         if(!!file && !!id){
-            const res = await uploadUserAvatar({id,avatar: file })
+            const formData = new FormData()
+            formData.append('avatar', file)
+            const res = await uploadUserAvatar({id, avatar: file })
             console.log('res',res)
         }
     }

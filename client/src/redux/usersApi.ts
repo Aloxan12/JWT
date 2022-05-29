@@ -39,13 +39,18 @@ export const usersApi = createApi({
     endpoints: (build) => ({
         getAllUsers: build.query<IUserDataDto[], void>({
             query: () => ({
-                url: '/users',
+                url: '/users/',
             }),
         }),
         uploadUserAvatar: build.mutation<IUserDataDto, {id: string, avatar: File}>({
             query: ({id, avatar}) => ({
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'multipart/form-data',
+                },
                 method:'POST',
-                url: `/user/${id}/uploadAvatar`,
+                url: `/user/${id}/uploadAvatar/`,
+                data: {avatar: avatar},
                 body: {avatar: avatar}
             }),
         }),
