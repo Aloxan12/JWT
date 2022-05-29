@@ -113,8 +113,9 @@ export const PersonalAccount = () => {
                                         {(fileType.toLowerCase() === 'jpg' || fileType.toLowerCase() === 'png')
                                             ? <div className={styles.FileBlock}>
                                                 <span>{file.name}</span>
-                                                <AppButton onClick={() => {
-                                                }} text={'Сохранить новое фото'}/>
+                                                <AppButton onClick={() => {}}
+                                                           text={'Сохранить новое фото'}
+                                                />
                                             </div>
                                             :
                                             <div className={styles.FileErrorBlock}>

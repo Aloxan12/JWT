@@ -42,8 +42,9 @@ export const usersApi = createApi({
                 url: '/users',
             }),
         }),
-        uploadUserAvatar: build.query<IUserDataDto, {id: string, avatar: File}>({
+        uploadUserAvatar: build.mutation<IUserDataDto, {id: string, avatar: File}>({
             query: ({id, avatar}) => ({
+                method:'POST',
                 url: `/user/${id}/uploadAvatar`,
                 body: {avatar: avatar}
             }),
@@ -51,4 +52,4 @@ export const usersApi = createApi({
     })
 })
 
-export const {useGetAllUsersQuery} = usersApi
+export const {useGetAllUsersQuery, useUploadUserAvatarMutation} = usersApi
