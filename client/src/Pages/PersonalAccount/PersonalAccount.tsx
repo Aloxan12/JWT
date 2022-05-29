@@ -6,10 +6,13 @@ import {RootState} from "../../redux/store";
 import {RoleTypes} from "../../router/AppRoute";
 import {AppButton} from "../../Common/Components/AppButton/AppButton";
 import {Modal} from "../../Common/Components/Modal/Modal";
+import {useUploadUserAvatarMutation} from "../../redux/usersApi";
 
 export const PersonalAccount = () => {
     const {id} = useParams()
     const user = useSelector((state: RootState) => state.auth.authData.user)
+
+    const [uploadUserAvatar] = useUploadUserAvatarMutation()
 
     const [changePhoto, setChangePhoto] = useState(false)
     const [drag, setDrag] = useState(false)
@@ -52,7 +55,13 @@ export const PersonalAccount = () => {
         .reverse()
         .join('')
 
-    console.log('file',file)
+    const uploadUserAvatarHandler = async ()=>{
+        if(!!file && !!id){
+            const res = await uploadUserAvatar({id,avatar: file })
+            console.log('res',res)
+        }
+    }
+
 
     return (
         <div className={styles.PersonalAccountWrap}>
@@ -113,7 +122,7 @@ export const PersonalAccount = () => {
                                         {(fileType.toLowerCase() === 'jpg' || fileType.toLowerCase() === 'png')
                                             ? <div className={styles.FileBlock}>
                                                 <span>{file.name}</span>
-                                                <AppButton onClick={() => {}}
+                                                <AppButton onClick={uploadUserAvatarHandler}
                                                            text={'Сохранить новое фото'}
                                                 />
                                             </div>
