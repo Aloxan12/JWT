@@ -87,6 +87,7 @@ class UserController {
         try {
             const {id} = req.params
             console.log('req.files', req.files)
+            console.log('req', req)
             const {avatar} = req.files
             let avatarName = Date.now() + '.jpg'
             avatar.mv(path.resolve(__dirname, '..', 'uploads', avatarName))
