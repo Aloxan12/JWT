@@ -88,9 +88,9 @@ class UserController {
             const {id} = req.params
             console.log('req.files', req.files)
             console.log('req', req)
-            const {avatar} = req.files
+            const {img} = req.files
             let avatarName = Date.now() + '.jpg'
-            avatar.mv(path.resolve(__dirname, '..', 'uploads', avatarName))
+            img.mv(path.resolve(__dirname, '..', 'uploads', avatarName))
             const user = await userService.uploadUserAvatar(id, avatarName)
             return res.json(user)
         } catch (e) {
