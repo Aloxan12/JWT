@@ -86,9 +86,7 @@ class UserController {
     async uploadUserAvatar(req, res, next) {
         try {
             const {id} = req.params
-            console.log('req.files', req.files)
-            console.log('req', req)
-            const {img} = req.files
+            const img = req.files.file
             let avatarName = Date.now() + '.jpg'
             img.mv(path.resolve(__dirname, '..', 'uploads', avatarName))
             const user = await userService.uploadUserAvatar(id, avatarName)
