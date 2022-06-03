@@ -58,9 +58,9 @@ export const PersonalAccount = () => {
     const uploadUserAvatarHandler = async ()=>{
         if(!!file && !!id){
             const formData = new FormData()
-            formData.append('avatar', file)
-            const res = await uploadUserAvatar({id, avatar: file })
-            console.log('res',res)
+            formData.append('img', file)
+            const res = await uploadUserAvatar({id, img: file })
+            console.log('file',formData)
         }
     }
 
@@ -101,6 +101,7 @@ export const PersonalAccount = () => {
                                                         type="file"
                                                         name="file"
                                                         id="file"
+                                                        accept={'image/*'}
                                                         value={inputFile}
                                                         className={styles.InputFile}
                                                         onChange={(e) => {

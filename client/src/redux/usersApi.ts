@@ -42,19 +42,31 @@ export const usersApi = createApi({
                 url: '/users/',
             }),
         }),
-        uploadUserAvatar: build.mutation<IUserDataDto, {id: string, avatar: File}>({
-            query: ({id, avatar}) => ({
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'multipart/form-data',
-                },
-                method:'POST',
-                url: `/user/${id}/uploadAvatar/`,
-                data: {avatar: avatar},
-                body: {avatar: avatar}
-            }),
+        uploadUserAvatar: build.mutation<any,  {id: string, img: File}>({
+            async queryFn(file, _queryApi, _extraOptions, fetchWithBQ) {
+                const formData = new FormData();
+                formData.append('file', file.img);
+                const response = await fetchWithBQ({
+                    url: `/user/${file.id}/uploadAvatar`,
+                    method: 'POST',
+                    body: formData,
+                });
+                if (response.error) throw response.error;
+                return response.data ? { data: response.data } : { error: response.error };
+                //     headers: {
+                //         Accept: 'application/json',
+                //         'Content-Type': 'multipart/form-data',
+                //     },
+                //     method: 'POST',
+                //     url: `/user/${id}/uploadAvatar`,
+                //     body: img,
+                //     params: img
+                // },
+            }
         }),
     })
 })
+
+
 
 export const {useGetAllUsersQuery, useUploadUserAvatarMutation} = usersApi
