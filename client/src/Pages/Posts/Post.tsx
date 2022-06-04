@@ -2,7 +2,7 @@ import React from 'react';
 import {IPost} from "../../Type/PostType";
 import styles from "./Posts.module.css";
 import moment from "moment";
-import {IUserApiData, IUserDataDto} from "../../redux/usersApi";
+import {IUserApiData} from "../../redux/usersApi";
 import {useDeletePostMutation} from "../../redux/postApi";
 import {contentToHtml} from "../../utils/helpers";
 import {AppTrash} from "../../Common/Components/AppTrash/AppTrash";
@@ -10,16 +10,17 @@ import {ToastWrapper, ToastWrapperType} from "../../Common/Components/ToastWrapp
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {RoleTypes} from "../../router/AppRoute";
+import {IUser} from "../../redux/Reducers/authReducer/authReducer";
 
 interface IPostProps{
     post: IPost
-    users?: IUserDataDto[]
+    users?: IUser[]
 }
 
 export const Post = ({post, users }: IPostProps) => {
     const [deletePost] = useDeletePostMutation()
 
-    const user = useSelector<RootState, IUserDataDto | null>(state => state.auth.authData.user)
+    const user = useSelector<RootState, IUser | null>(state => state.auth.authData.user)
 
     const deletePostHandler =()=>{
         deletePost({id: post._id}).then(res =>{

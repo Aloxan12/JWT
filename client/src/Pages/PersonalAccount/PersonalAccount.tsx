@@ -1,13 +1,14 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import styles from './PersonalAccount.module.css'
 import {useParams} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {RoleTypes} from "../../router/AppRoute";
 import {AppButton} from "../../Common/Components/AppButton/AppButton";
 import {Modal} from "../../Common/Components/Modal/Modal";
 import {useGetUserDetailQuery, useUploadUserAvatarMutation} from "../../redux/usersApi";
 import {checkAuthApi} from "../../redux/checkAuthApi";
+import {setUser} from "../../redux/Reducers/authReducer/authReducer";
 
 export const PersonalAccount = () => {
     const {id} = useParams()
@@ -15,6 +16,7 @@ export const PersonalAccount = () => {
     // const user = useSelector((state: RootState) => state.auth.authData.user)
 
     const [uploadUserAvatar] = useUploadUserAvatarMutation()
+    const dispatch = useDispatch()
 
     const [changePhoto, setChangePhoto] = useState(false)
     const [drag, setDrag] = useState(false)
@@ -64,6 +66,7 @@ export const PersonalAccount = () => {
             const res = await uploadUserAvatar({id, img: file })
             if(!!res){
                 await checkAuthApi()
+                !!user && dispatch(setUser(user))
                 setChangePhoto(false)
             }
             console.log('res',res)

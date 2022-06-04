@@ -2,7 +2,7 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AuthState, RoleType} from "../../authApi";
 import {RoleTypes} from "../../../router/AppRoute";
 
-interface IUser {
+export interface IUser {
     email: string,
     id: string,
     isActivated: boolean
@@ -52,6 +52,10 @@ const authReducer = createSlice({
                    {payload: isAuth}: PayloadAction<boolean>,) => {
           state.isAuth= isAuth
         },
+        setUser: (state,
+                    {payload: user}: PayloadAction<IUser>,) => {
+            state.user= user
+        },
         logout: (state) => {
             state.isAuth = false
             state.user = null
@@ -61,7 +65,7 @@ const authReducer = createSlice({
     },
 })
 
-export const {setAuthData, logout, setIsAuth} =
+export const {setAuthData, logout, setIsAuth, setUser} =
     authReducer.actions
 
 export default authReducer.reducer

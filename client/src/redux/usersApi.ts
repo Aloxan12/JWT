@@ -2,15 +2,7 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import {RootState} from './store';
 import {RoleTypes} from "../router/AppRoute";
 import {authApi, RoleType} from "./authApi";
-
-
-export interface IUserDataDto {
-    email: string
-    id: string
-    isActivated: boolean
-    role: RoleType
-    avatar: string
-}
+import {IUser} from "./Reducers/authReducer/authReducer";
 
 export interface IUserApiData {
     id: string,
@@ -24,13 +16,13 @@ export interface IUserApiData {
 
 export const usersApi = authApi.injectEndpoints({
     endpoints: (build) => ({
-        getAllUsers: build.query<IUserDataDto[], void>({
+        getAllUsers: build.query<IUser[], void>({
             query: () => ({
                 url: '/users/',
             }),
             providesTags:['Users']
         }),
-        getUserDetail: build.query<IUserDataDto, {id: string}>({
+        getUserDetail: build.query<IUser, {id: string}>({
             query: ({id}) => ({
                 url: `/user/${id}`,
             }),
