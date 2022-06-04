@@ -70,7 +70,6 @@ export const PersonalAccount = () => {
                 dispatch(setUser(res.data ? res.data as IUser : null))
                 setChangePhoto(false)
             }
-            console.log('user',user)
         }
     }
     if(!user){
