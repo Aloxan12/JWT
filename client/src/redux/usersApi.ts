@@ -28,7 +28,7 @@ export const usersApi = authApi.injectEndpoints({
             }),
             providesTags:['Users']
         }),
-        uploadUserAvatar: build.mutation<any,  {id: string, img: File}>({
+        uploadUserAvatar: build.mutation< IUser | unknown | void ,  {id: string, img: File}>({
             async queryFn(file, _queryApi, _extraOptions, fetchWithBQ) {
                 const formData = new FormData();
                 formData.append('file', file.img);
