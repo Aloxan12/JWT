@@ -9,6 +9,7 @@ export interface IUserDataDto {
     id: string
     isActivated: boolean
     role: RoleType
+    avatar: string
 }
 
 export interface IUserApiData {
@@ -26,6 +27,12 @@ export const usersApi = authApi.injectEndpoints({
         getAllUsers: build.query<IUserDataDto[], void>({
             query: () => ({
                 url: '/users/',
+            }),
+            providesTags:['Users']
+        }),
+        getUserDetail: build.query<IUserDataDto, {id: string}>({
+            query: ({id}) => ({
+                url: `/user/${id}`,
             }),
             providesTags:['Users']
         }),
@@ -48,4 +55,4 @@ export const usersApi = authApi.injectEndpoints({
 
 
 
-export const {useGetAllUsersQuery, useUploadUserAvatarMutation} = usersApi
+export const {useGetAllUsersQuery, useUploadUserAvatarMutation, useGetUserDetailQuery} = usersApi

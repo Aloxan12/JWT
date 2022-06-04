@@ -6,12 +6,13 @@ import {RootState} from "../../redux/store";
 import {RoleTypes} from "../../router/AppRoute";
 import {AppButton} from "../../Common/Components/AppButton/AppButton";
 import {Modal} from "../../Common/Components/Modal/Modal";
-import {useUploadUserAvatarMutation} from "../../redux/usersApi";
+import {useGetUserDetailQuery, useUploadUserAvatarMutation} from "../../redux/usersApi";
 import {checkAuthApi} from "../../redux/checkAuthApi";
 
 export const PersonalAccount = () => {
     const {id} = useParams()
-    const user = useSelector((state: RootState) => state.auth.authData.user)
+    const {data: user} = useGetUserDetailQuery({id: id!}, {skip:!id})
+    // const user = useSelector((state: RootState) => state.auth.authData.user)
 
     const [uploadUserAvatar] = useUploadUserAvatarMutation()
 
@@ -68,7 +69,9 @@ export const PersonalAccount = () => {
             console.log('res',res)
         }
     }
-
+    if(!user){
+        return null
+    }
 
     return (
         <div className={styles.PersonalAccountWrap}>
