@@ -1,7 +1,7 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import {RootState} from './store';
 import {RoleTypes} from "../router/AppRoute";
-import {RoleType} from "./authApi";
+import {authApi, RoleType} from "./authApi";
 
 
 export interface IUserDataDto {
@@ -21,26 +21,13 @@ export interface IUserApiData {
 }
 
 
-export const usersApi = createApi({
-    reducerPath: 'usersApi',
-    baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5555/api',
-        prepareHeaders: (headers, {getState}) => {
-            const accessToken = localStorage.getItem('token')
-            const refreshToken = localStorage.getItem('refreshToken')
-            if (accessToken || refreshToken) {
-                headers.set('authorization', `Bearer ${accessToken}`)
-                headers.set('refreshToken', `${refreshToken}`)
-            }
-            return headers
-        },
-    }),
-    tagTypes: ['Users'],
+export const usersApi = authApi.injectEndpoints({
     endpoints: (build) => ({
         getAllUsers: build.query<IUserDataDto[], void>({
             query: () => ({
                 url: '/users/',
             }),
+            providesTags:['Users']
         }),
         uploadUserAvatar: build.mutation<any,  {id: string, img: File}>({
             async queryFn(file, _queryApi, _extraOptions, fetchWithBQ) {
@@ -62,7 +49,8 @@ export const usersApi = createApi({
                 //     body: img,
                 //     params: img
                 // },
-            }
+            },
+            invalidatesTags:['Users']
         }),
     })
 })

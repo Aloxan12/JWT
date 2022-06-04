@@ -28,13 +28,6 @@ interface ISendLogin {
     password: string
 }
 
-interface IError {
-    error: {
-        status: number
-        message: string
-    }
-}
-
 export const authApi = createApi({
     reducerPath: 'authApi',
     baseQuery: fetchBaseQuery({
@@ -51,7 +44,7 @@ export const authApi = createApi({
             return headers
         },
     }),
-    tagTypes: ['Registration', 'Users', 'Login', 'Posts'],
+    tagTypes: ['Users', 'Posts'],
     endpoints: (build) => ({
         login: build.mutation<AuthState, ISendLogin>({
             query: (params) => ({
@@ -59,7 +52,7 @@ export const authApi = createApi({
                 method: 'POST',
                 body: params,
             }),
-            invalidatesTags: ['Login']
+            invalidatesTags: ['Users']
         }),
         logout: build.mutation<void, void>({
             query: (params) => ({
@@ -67,7 +60,7 @@ export const authApi = createApi({
                 method: 'POST',
                 body: params,
             }),
-            invalidatesTags: ['Login']
+            invalidatesTags: ['Users']
         }),
 
         registration: build.mutation<AuthState, ISendRegistration>({
@@ -76,7 +69,7 @@ export const authApi = createApi({
                 method: 'POST',
                 body: params,
             }),
-            invalidatesTags: ['Registration']
+            invalidatesTags: ['Users']
         })
     })
 })
