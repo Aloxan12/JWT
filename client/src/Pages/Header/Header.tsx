@@ -3,7 +3,7 @@ import styles from './Header.module.css'
 import {NavLink, Link, useMatch, useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {RootState, useAppDispatch} from "../../redux/store";
-import {IUserAuthState, useLogoutMutation} from "../../redux/authApi";
+import { useLogoutMutation} from "../../redux/authApi";
 import {IUser, logout, setAuthData, setIsAuth, setUser} from "../../redux/Reducers/authReducer/authReducer";
 import {BurgerMenu} from "../../Common/Components/BurgerMenu/BurgerMenu";
 import {checkAuthApi} from "../../redux/checkAuthApi";
@@ -19,7 +19,6 @@ export const Header = ({itemsRoute}: IHeader) => {
     const [logoutApi] = useLogoutMutation()
     const dispatch = useAppDispatch()
     const navigate = useNavigate();
-    console.log('user', user)
     const [menuActive, setMenuActive] = useState(false)
     const isSameUrl = !!useMatch('login')
 
