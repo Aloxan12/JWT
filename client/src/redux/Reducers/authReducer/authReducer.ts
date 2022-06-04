@@ -53,7 +53,7 @@ const authReducer = createSlice({
           state.isAuth= isAuth
         },
         setUser: (state,
-                    {payload: user}: PayloadAction<IUser>,) => {
+                    {payload: user}: PayloadAction<IUser | null>,) => {
             state.user= user
         },
         logout: (state) => {

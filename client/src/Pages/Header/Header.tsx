@@ -4,7 +4,7 @@ import {NavLink, Link, useMatch, useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {RootState, useAppDispatch} from "../../redux/store";
 import {IUserAuthState, useLogoutMutation} from "../../redux/authApi";
-import {logout, setAuthData, setIsAuth} from "../../redux/Reducers/authReducer/authReducer";
+import {IUser, logout, setAuthData, setIsAuth, setUser} from "../../redux/Reducers/authReducer/authReducer";
 import {BurgerMenu} from "../../Common/Components/BurgerMenu/BurgerMenu";
 import {checkAuthApi} from "../../redux/checkAuthApi";
 import {IRouteObj} from "../../router/AppRoute";
@@ -14,12 +14,12 @@ interface IHeader {
 }
 
 export const Header = ({itemsRoute}: IHeader) => {
-    const user = useSelector<RootState, IUserAuthState | null>(state => state.auth.authData.user)
+    const user = useSelector<RootState, IUser | null>(state => state.auth.user)
     const isAuth = useSelector<RootState, boolean>(state => state.auth.isAuth)
     const [logoutApi] = useLogoutMutation()
     const dispatch = useAppDispatch()
     const navigate = useNavigate();
-
+    console.log('user', user)
     const [menuActive, setMenuActive] = useState(false)
     const isSameUrl = !!useMatch('login')
 
@@ -41,10 +41,12 @@ export const Header = ({itemsRoute}: IHeader) => {
                         localStorage.setItem('token', data.accessToken)
                         dispatch(setIsAuth(true))
                         dispatch(setAuthData(data))
+                        dispatch(setUser(data.user))
                     }
                 })
             } else {
                 dispatch(setAuthData({user: null, accessToken: null, refreshToken: null}))
+                dispatch(setUser(null))
             }
         } catch (e) {
             console.log(e)

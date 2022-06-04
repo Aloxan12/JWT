@@ -8,7 +8,7 @@ import {AppButton} from "../../Common/Components/AppButton/AppButton";
 import {Modal} from "../../Common/Components/Modal/Modal";
 import {useGetUserDetailQuery, useUploadUserAvatarMutation} from "../../redux/usersApi";
 import {checkAuthApi} from "../../redux/checkAuthApi";
-import {setUser} from "../../redux/Reducers/authReducer/authReducer";
+import {IUser, setUser} from "../../redux/Reducers/authReducer/authReducer";
 
 export const PersonalAccount = () => {
     const {id} = useParams()
@@ -66,10 +66,11 @@ export const PersonalAccount = () => {
             const res = await uploadUserAvatar({id, img: file })
             if(!!res){
                 await checkAuthApi()
-                !!user && dispatch(setUser(user))
+                // @ts-ignore
+                dispatch(setUser(res.data ? res.data as IUser : null))
                 setChangePhoto(false)
             }
-            console.log('res',res)
+            console.log('user',user)
         }
     }
     if(!user){
