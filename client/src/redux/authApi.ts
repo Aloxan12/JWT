@@ -62,7 +62,6 @@ export const authApi = createApi({
             }),
             invalidatesTags: ['Users']
         }),
-
         registration: build.mutation<AuthState, ISendRegistration>({
             query: (params) => ({
                 url: '/registration',

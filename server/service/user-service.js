@@ -94,6 +94,21 @@ class UserService{
         }))
     }
 
+    async getUserDetail(id){
+        const user = await UserModel.findOne({_id: new mongodb.ObjectId(id)})
+        if(!!user){
+            return {
+                id: user._id,
+                email: user.email,
+                role: user.role,
+                isActivated: user.isActivated,
+                avatar: user.avatar
+            }
+        }else{
+            throw ApiError.BadRequest('Пользователь не найден')
+        }
+    }
+
     async uploadUserAvatar(id, avatar){
         try {
             const user = await UserModel.findOne({_id: new mongodb.ObjectId(id)})

@@ -83,6 +83,17 @@ class UserController {
         }
     }
 
+    async getUserDetail(req, res, next) {
+        try {
+            const {id} = req.params
+
+            const users = await userService.getUserDetail(id)
+            return res.json(users)
+        } catch (e) {
+            next(e)
+        }
+    }
+
     async uploadUserAvatar(req, res, next) {
         try {
             const {id} = req.params
