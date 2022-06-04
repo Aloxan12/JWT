@@ -40,15 +40,6 @@ export const usersApi = authApi.injectEndpoints({
                 });
                 if (response.error) throw response.error;
                 return response.data ? { data: response.data } : { error: response.error };
-                //     headers: {
-                //         Accept: 'application/json',
-                //         'Content-Type': 'multipart/form-data',
-                //     },
-                //     method: 'POST',
-                //     url: `/user/${id}/uploadAvatar`,
-                //     body: img,
-                //     params: img
-                // },
             },
             invalidatesTags:['Users']
         }),

@@ -7,6 +7,7 @@ import {RoleTypes} from "../../router/AppRoute";
 import {AppButton} from "../../Common/Components/AppButton/AppButton";
 import {Modal} from "../../Common/Components/Modal/Modal";
 import {useUploadUserAvatarMutation} from "../../redux/usersApi";
+import {checkAuthApi} from "../../redux/checkAuthApi";
 
 export const PersonalAccount = () => {
     const {id} = useParams()
@@ -60,7 +61,11 @@ export const PersonalAccount = () => {
             const formData = new FormData()
             formData.append('img', file)
             const res = await uploadUserAvatar({id, img: file })
-            console.log('file',formData)
+            if(!!res){
+                await checkAuthApi()
+                setChangePhoto(false)
+            }
+            console.log('res',res)
         }
     }
 
