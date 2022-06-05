@@ -1,7 +1,4 @@
-import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import {RootState} from './store';
-import {RoleTypes} from "../router/AppRoute";
-import {authApi, RoleType} from "./authApi";
+import {authApi} from "./authApi";
 import {IUser} from "./Reducers/authReducer/authReducer";
 
 export interface IUserApiData {

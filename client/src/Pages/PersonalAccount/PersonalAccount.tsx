@@ -1,8 +1,7 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import styles from './PersonalAccount.module.css'
 import {useParams} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../redux/store";
+import {useDispatch} from "react-redux";
 import {RoleTypes} from "../../router/AppRoute";
 import {AppButton} from "../../Common/Components/AppButton/AppButton";
 import {Modal} from "../../Common/Components/Modal/Modal";
@@ -13,7 +12,6 @@ import {IUser, setUser} from "../../redux/Reducers/authReducer/authReducer";
 export const PersonalAccount = () => {
     const {id} = useParams()
     const {data: user} = useGetUserDetailQuery({id: id!}, {skip:!id})
-    // const user = useSelector((state: RootState) => state.auth.authData.user)
 
     const [uploadUserAvatar] = useUploadUserAvatarMutation()
     const dispatch = useDispatch()
