@@ -8,10 +8,12 @@ import {Modal} from "../../Common/Components/Modal/Modal";
 import {useGetUserDetailQuery, useUploadUserAvatarMutation} from "../../redux/usersApi";
 import {checkAuthApi} from "../../redux/checkAuthApi";
 import {IUser, setUser} from "../../redux/Reducers/authReducer/authReducer";
+import {getFileType} from "../../utils/helpers";
+import {ChangeAvatarContainer} from "./components/ChangeAvatar";
 
 export const PersonalAccount = () => {
     const {id} = useParams()
-    const {data: user} = useGetUserDetailQuery({id: id!}, {skip:!id})
+    const {data: user} = useGetUserDetailQuery({id: id!}, {skip: !id})
 
     const [uploadUserAvatar] = useUploadUserAvatarMutation()
     const dispatch = useDispatch()
@@ -42,27 +44,21 @@ export const PersonalAccount = () => {
         setFile(file)
     }
 
-    useEffect(()=>{
-        if(!changePhoto){
+    useEffect(() => {
+        if (!changePhoto) {
             setInputFile('')
             setFile(null)
         }
-    },[changePhoto])
-    const fileType = `${file?.name}`
-        .split('')
-        .reverse()
-        .join('')
-        .split('.')[0]
-        .split('')
-        .reverse()
-        .join('')
+    }, [changePhoto])
 
-    const uploadUserAvatarHandler = async ()=>{
-        if(!!file && !!id){
+    const fileType = getFileType(file?.name)
+
+    const uploadUserAvatarHandler = async () => {
+        if (!!file && !!id) {
             const formData = new FormData()
             formData.append('img', file)
-            const res = await uploadUserAvatar({id, img: file })
-            if(!!res){
+            const res = await uploadUserAvatar({id, img: file})
+            if (!!res) {
                 await checkAuthApi()
                 // @ts-ignore
                 dispatch(setUser(res.data ? res.data as IUser : null))
@@ -70,7 +66,7 @@ export const PersonalAccount = () => {
             }
         }
     }
-    if(!user){
+    if (!user) {
         return null
     }
 
@@ -85,67 +81,71 @@ export const PersonalAccount = () => {
                         <AppButton
                             onClick={() => setChangePhoto(true)} text={'Сменить фото'}/>
                         {changePhoto && (
-                            <Modal active={changePhoto} setActive={setChangePhoto}>
-                                <div className={styles.SelectFileBlock}>
-                                    <div className={styles.DropBlock}>
-                                        {drag ? (
-                                            <div
-                                                className={styles.DropItem + ' ' + styles.DropArea}
-                                                onDragStart={(e) => dragStartHandler(e)}
-                                                onDragLeave={(e) => dragLeaveHandler(e)}
-                                                onDragOver={(e) => dragStartHandler(e)}
-                                                onDrop={(e) => onDropHandler(e)}
-                                            >
-                                                <span>Отпустите файл, чтобы загрузить его</span>
-                                            </div>
-                                        ) : (
-                                            <div
-                                                className={styles.DropItem}
-                                                onDragStart={(e) => dragStartHandler(e)}
-                                                onDragLeave={(e) => dragLeaveHandler(e)}
-                                                onDragOver={(e) => dragStartHandler(e)}
-                                            >
-                                                <div className={styles.BtnChooseFile}>
-                                                    <input
-                                                        type="file"
-                                                        name="file"
-                                                        id="file"
-                                                        accept={'image/*'}
-                                                        value={inputFile}
-                                                        className={styles.InputFile}
-                                                        onChange={(e) => {
-                                                            setInputFile(e.target.value)
-                                                            handleChangeFile(e)
-                                                        }}
-                                                    />
-                                                    <label htmlFor="file">Выберите фото</label>
-                                                </div>
-                                                <span>
-                      <p>Или перенесите его сюда.</p>
-                    </span>
-                                                <p className={styles.BottomText}>
-                                                    Файл должен быть <span className={styles.FileForamt}>JPG, PNG, </span> формата!
-                                                </p>
-                                            </div>
-                                        )}
-                                    </div>
-                                    {!!file &&
-                                    <React.Fragment>
-                                        {(fileType.toLowerCase() === 'jpg' || fileType.toLowerCase() === 'png')
-                                            ? <div className={styles.FileBlock}>
-                                                <span>{file.name}</span>
-                                                <AppButton onClick={uploadUserAvatarHandler}
-                                                           text={'Сохранить новое фото'}
-                                                />
-                                            </div>
-                                            :
-                                            <div className={styles.FileErrorBlock}>
-                                                <span>Вы выбрали не верный формат файла</span>
-                                            </div>}
-                                    </React.Fragment>
-                                    }
-                                </div>
-                            </Modal>
+                            <ChangeAvatarContainer file={file} setFile={setFile} inputFile={inputFile}
+                                                   setInputFile={setInputFile} changePhoto={changePhoto}
+                                                   setChangePhoto={setChangePhoto} handleChangeFile={handleChangeFile}
+                                                   uploadUserAvatarHandler={uploadUserAvatarHandler}/>
+                            //         <Modal active={changePhoto} setActive={setChangePhoto}>
+                            //             <div className={styles.SelectFileBlock}>
+                            //                 <div className={styles.DropBlock}>
+                            //                     {drag ? (
+                            //                         <div
+                            //                             className={styles.DropItem + ' ' + styles.DropArea}
+                            //                             onDragStart={(e) => dragStartHandler(e)}
+                            //                             onDragLeave={(e) => dragLeaveHandler(e)}
+                            //                             onDragOver={(e) => dragStartHandler(e)}
+                            //                             onDrop={(e) => onDropHandler(e)}
+                            //                         >
+                            //                             <span>Отпустите файл, чтобы загрузить его</span>
+                            //                         </div>
+                            //                     ) : (
+                            //                         <div
+                            //                             className={styles.DropItem}
+                            //                             onDragStart={(e) => dragStartHandler(e)}
+                            //                             onDragLeave={(e) => dragLeaveHandler(e)}
+                            //                             onDragOver={(e) => dragStartHandler(e)}
+                            //                         >
+                            //                             <div className={styles.BtnChooseFile}>
+                            //                                 <input
+                            //                                     type="file"
+                            //                                     name="file"
+                            //                                     id="file"
+                            //                                     accept={'image/*'}
+                            //                                     value={inputFile}
+                            //                                     className={styles.InputFile}
+                            //                                     onChange={(e) => {
+                            //                                         setInputFile(e.target.value)
+                            //                                         handleChangeFile(e)
+                            //                                     }}
+                            //                                 />
+                            //                                 <label htmlFor="file">Выберите фото</label>
+                            //                             </div>
+                            //                             <span>
+                            //   <p>Или перенесите его сюда.</p>
+                            // </span>
+                            //                             <p className={styles.BottomText}>
+                            //                                 Файл должен быть <span className={styles.FileForamt}>JPG, PNG, </span> формата!
+                            //                             </p>
+                            //                         </div>
+                            //                     )}
+                            //                 </div>
+                            //                 {!!file &&
+                            //                 <React.Fragment>
+                            //                     {(fileType.toLowerCase() === 'jpg' || fileType.toLowerCase() === 'png')
+                            //                         ? <div className={styles.FileBlock}>
+                            //                             <span>{file.name}</span>
+                            //                             <AppButton onClick={uploadUserAvatarHandler}
+                            //                                        text={'Сохранить новое фото'}
+                            //                             />
+                            //                         </div>
+                            //                         :
+                            //                         <div className={styles.FileErrorBlock}>
+                            //                             <span>Вы выбрали не верный формат файла</span>
+                            //                         </div>}
+                            //                 </React.Fragment>
+                            //                 }
+                            //             </div>
+                            //         </Modal>
                         )}
                     </div>
                 </div>
