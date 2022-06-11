@@ -2,12 +2,12 @@ import React, {ChangeEvent, useEffect, useState} from 'react';
 import styles from './PersonalAccount.module.css'
 import {useParams} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {RoleTypes} from "../../router/AppRoute";
 import {AppButton} from "../../Common/Components/AppButton/AppButton";
 import {useGetUserDetailQuery, useUploadUserAvatarMutation} from "../../redux/usersApi";
 import {checkAuthApi} from "../../redux/checkAuthApi";
 import {IUser, setUser} from "../../redux/Reducers/authReducer/authReducer";
-import {ChangeAvatarContainer} from "./components/ChangeAvatar";
+import {ChangeAvatarContainer} from "./components/ChangeAvatarContainer";
+import {ProfileInfoContainer} from "./components/ProfileInfoContainer";
 
 export const PersonalAccount = () => {
     const {id} = useParams()
@@ -67,18 +67,11 @@ export const PersonalAccount = () => {
                         )}
                     </div>
                 </div>
-                <div className={styles.PersonalAccountInfoBlock}>
-                    <h3 className={styles.PersonalAccountInfoTitle}>Личная информация</h3>
-                    <div className={styles.PersonalAccountInfoItem}>
-                        <span>Email: <b>{user?.email}</b></span>
-                    </div>
-                    <div className={styles.PersonalAccountInfoItem}>
-                        <span>Роль: <b>{user?.role === RoleTypes.ADMIN ? 'Администратор' : 'Пользователь'}</b></span>
-                    </div>
-                    <div className={styles.PersonalAccountInfoItem}>
-                        <span>Активирован: <b>{user?.isActivated ? 'Да' : 'Нет'}</b></span>
-                    </div>
-                </div>
+                <ProfileInfoContainer
+                    isActivated={user.isActivated}
+                    email={user.email}
+                    role={user.role}
+                />
             </div>
         </div>
     );

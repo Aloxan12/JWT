@@ -1,12 +1,12 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {AuthState, RoleType} from "../../authApi";
+import {AuthState} from "../../authApi";
 import {RoleTypes} from "../../../router/AppRoute";
 
 export interface IUser {
     email: string,
     id: string,
     isActivated: boolean
-    role: RoleType
+    role: RoleTypes
     avatar: string
 }
 

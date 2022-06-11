@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import './Registration.css'
-import {RoleType, useRegistrationMutation} from "../../redux/authApi";
+import { useRegistrationMutation} from "../../redux/authApi";
 import {ToastWrapper, ToastWrapperType} from "../../Common/Components/ToastWrapper/ToastWrapper";
 import { useNavigate } from "react-router-dom";
+import {RoleTypes} from "../../router/AppRoute";
 
 
 export const Registration = () => {
@@ -13,7 +14,7 @@ export const Registration = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [password2, setPassword2] = useState('')
-    const [role, setRole] = useState<RoleType | null>(null)
+    const [role, setRole] = useState<RoleTypes | null>(null)
     const [errorText, setErrorText] = useState('')
     const [success, setSuccess] = useState('')
 
@@ -83,14 +84,14 @@ export const Registration = () => {
                                 type="radio"
                                 name="role"
                                 value='USER'
-                                onChange={(e)=> setRole(e.target.value as RoleType)}
+                                onChange={(e)=> setRole(e.target.value as RoleTypes)}
                             />USER</span>
                         <span>
                             <input
                                 type="radio"
                                 name="role"
                                 value="ADMIN"
-                                onChange={(e)=> setRole(e.target.value as RoleType)}
+                                onChange={(e)=> setRole(e.target.value as RoleTypes)}
                             />ADMIN
                         </span>
                     </div>
