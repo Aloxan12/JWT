@@ -109,3 +109,16 @@
 .blueTablet:hover{
     box-shadow: 1px 1px 25px 41px rgba(111, 154, 190, 0.64);
 }
+
+@media screen and (max-width: 1200px){
+    .NotFoundWrap img{
+        max-width: 400px;
+        top: calc(50% - 209px);
+        left: calc(50% - 224px);
+    }
+
+    .runningStringBlock{
+        width: 400px;
+        height: 370px;
+    }
+}
