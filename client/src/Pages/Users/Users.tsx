@@ -7,9 +7,11 @@ export const Users = () => {
     const {data: users} = useGetAllUsersQuery()
     return (
         <div>
-            {users && users.map(user =>{
-                return <User user={user} />
-            })}
+            <div className={styles.UsersBlock}>
+                {users && users.map(user =>{
+                    return <User user={user} />
+                })}
+            </div>
         </div>
     );
 };
