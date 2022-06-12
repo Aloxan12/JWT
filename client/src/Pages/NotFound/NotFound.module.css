@@ -120,5 +120,34 @@
     .runningStringBlock{
         width: 400px;
         height: 370px;
+        font-size: 14px;
+    }
+    .NotFoundWrap .NotFoundText{
+        font-size: 125px;
+    }
+
+    .onGoMainBtn, .onClosesBtn{
+        top: 45%;
+    }
+    .redTablet, .blueTablet{
+        height: 125px;
+        width: 50px
+    }
+}
+
+
+@media screen and (max-width: 930px){
+    .NotFoundWrap img{
+        max-width: 200px;
+        top: calc(50% - 100px);
+        left: calc(50% - 120px);
+    }
+
+    .runningStringBlock{
+        width: 400px;
+        height: 370px;
+    }
+    .NotFoundWrap .NotFoundText{
+        font-size: 125px;
     }
 }

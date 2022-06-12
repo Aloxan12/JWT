@@ -36,9 +36,6 @@ export const NotFound = () => {
                 {arrNotFoundText.map((item, i) => <div key={`not found key ${i}`}>
                     <span className={styles.runningStringText}>{item}</span>
                 </div>)}
-                <div>
-                    <span>not found 404</span>
-                </div>
             </div>
             <div className={styles.onGoMainBtn}>
                 <Tooltip content="Вернуться на главную" textColor='green'>
