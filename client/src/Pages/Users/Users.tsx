@@ -1,15 +1,14 @@
 import React from 'react';
 import {useGetAllUsersQuery} from "../../redux/usersApi";
+import {User} from "./User";
+import styles from './Users.module.css'
 
 export const Users = () => {
     const {data: users} = useGetAllUsersQuery()
     return (
         <div>
             {users && users.map(user =>{
-                return <div key={user.id}>
-                    <div>{user.email}</div>
-                    <div>{user.role}</div>
-                </div>
+                return <User user={user} />
             })}
         </div>
     );
