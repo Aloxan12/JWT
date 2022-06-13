@@ -84,8 +84,10 @@ class UserService{
 
     async getAllUsers(search){
         const users = await UserModel.find()
-        const filterUser = await users.filter(user => {
-            return user.name.toLowerCase().includes(search.toLowerCase())
+        console.log('users', users)
+        const filterUser = users.filter(user => {
+            console.log('user', user)
+            return !!search ? user.email.toLowerCase().includes(search.toLowerCase()) : user
         })
 
 
