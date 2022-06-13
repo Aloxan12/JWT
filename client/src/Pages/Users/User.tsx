@@ -12,7 +12,7 @@ export const User = ({user}: IUserProps) => {
     return (
         <div key={user.id} className={styles.UserItem}>
             <div className={styles.UserPhotoBlock}>
-                <img src={!!user.avatar ? `http://localhost:5555/` + user.avatar : fakeAvatar}/>
+                <img src={!!user.avatar ? `http://localhost:5555/` + user.avatar : fakeAvatar} alt={'avatar'}/>
             </div>
             <div>{user.email}</div>
             <div>{user.role}</div>

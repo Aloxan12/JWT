@@ -67,7 +67,7 @@ export const Header = ({itemsRoute}: IHeader) => {
                     <div className={styles.mainHeaderIsAuth}>
                         <span className={styles.welcomeWrap}>{user.email}
                             <Link to={`currentUser/${user.id}`} className={styles.linkAva}>
-                                <img src={!!user!.avatar ? `http://localhost:5555/` + user!.avatar : fakeAvatar}/>
+                                <img src={!!user!.avatar ? `http://localhost:5555/` + user!.avatar : fakeAvatar} alt={'avatar'}/>
                             </Link>
                         </span>
                         <span><a className={styles.loginLink} onClick={logoutHandler}>Выйти</a></span>
