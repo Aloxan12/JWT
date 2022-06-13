@@ -1,6 +1,7 @@
 import React from 'react';
 import {IUser} from "../../redux/Reducers/authReducer/authReducer";
 import styles from './Users.module.css'
+import fakeAvatar from '../../utils/images/fake_avatar.png'
 
 
 interface IUserProps {
@@ -10,6 +11,9 @@ interface IUserProps {
 export const User = ({user}: IUserProps) => {
     return (
         <div key={user.id} className={styles.UserItem}>
+            <div>
+                <img src={!!user.avatar ? `http://localhost:5555/` + user.avatar : fakeAvatar}/>
+            </div>
             <div>{user.email}</div>
             <div>{user.role}</div>
         </div>
