@@ -8,6 +8,7 @@ import {checkAuthApi} from "../../redux/checkAuthApi";
 import {IUser, setUser} from "../../redux/Reducers/authReducer/authReducer";
 import {ChangeAvatarContainer} from "./components/ChangeAvatarContainer";
 import {ProfileInfoContainer} from "./components/ProfileInfoContainer";
+import fakeAvatar from '../../utils/images/fake_avatar.png'
 
 export const PersonalAccount = () => {
     const {id} = useParams()
@@ -55,7 +56,7 @@ export const PersonalAccount = () => {
                 <div className={styles.PersonalAccountPhotoBlock}>
                     <img
                         className={styles.PersonalAccountPhoto}
-                        src={user!.avatar ? `http://localhost:5555/` + user!.avatar : 'фейк'}/>
+                        src={user!.avatar ? `http://localhost:5555/` + user!.avatar : fakeAvatar}/>
                     <div className={styles.ChangePhotoBtn}>
                         <AppButton
                             onClick={() => setChangePhoto(true)} text={'Сменить фото'}/>
