@@ -8,6 +8,7 @@ import {IUser, logout, setAuthData, setIsAuth, setUser} from "../../redux/Reduce
 import {BurgerMenu} from "../../Common/Components/BurgerMenu/BurgerMenu";
 import {checkAuthApi} from "../../redux/checkAuthApi";
 import {IRouteObj} from "../../router/AppRoute";
+import fakeAvatar from '../../utils/images/fake_avatar.png'
 
 interface IHeader {
     itemsRoute: IRouteObj[]
@@ -66,7 +67,7 @@ export const Header = ({itemsRoute}: IHeader) => {
                     <div className={styles.mainHeaderIsAuth}>
                         <span className={styles.welcomeWrap}>{user.email}
                             <Link to={`currentUser/${user.id}`} className={styles.linkAva}>
-                                <img src={`http://localhost:5555/` + user!.avatar}/>
+                                <img src={!!user!.avatar ? `http://localhost:5555/` + user!.avatar : fakeAvatar}/>
                             </Link>
                         </span>
                         <span><a className={styles.loginLink} onClick={logoutHandler}>Выйти</a></span>
