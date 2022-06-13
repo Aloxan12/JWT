@@ -7,3 +7,9 @@
     flex-wrap: wrap;
     gap: 100px;
 }
+
+.UserItem{
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 20px;
+}
