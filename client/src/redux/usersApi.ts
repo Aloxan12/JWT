@@ -1,21 +1,14 @@
 import {authApi} from "./authApi";
 import {IUser} from "./Reducers/authReducer/authReducer";
 
-export interface IUserApiData {
-    id: string,
-    email: string,
-    password: string,
-    isActivated: boolean,
-    activationLink: string,
-    __v: number
-}
 
 
 export const usersApi = authApi.injectEndpoints({
     endpoints: (build) => ({
-        getAllUsers: build.query<IUser[], void>({
-            query: () => ({
+        getAllUsers: build.query<IUser[], { search?: string } | void | null>({
+            query: (params) => ({
                 url: '/users/',
+                params: !!params ? params : {}
             }),
             providesTags:['Users']
         }),

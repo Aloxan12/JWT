@@ -2,7 +2,6 @@ import React from 'react';
 import {IPost} from "../../Type/PostType";
 import styles from "./Posts.module.css";
 import moment from "moment";
-import {IUserApiData} from "../../redux/usersApi";
 import {useDeletePostMutation} from "../../redux/postApi";
 import {contentToHtml} from "../../utils/helpers";
 import {AppTrash} from "../../Common/Components/AppTrash/AppTrash";

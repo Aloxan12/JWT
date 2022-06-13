@@ -4,7 +4,7 @@ import {User} from "./User";
 import styles from './Users.module.css'
 
 export const Users = () => {
-    const {data: users} = useGetAllUsersQuery()
+    const {data: users} = useGetAllUsersQuery({search: 'kva'})
     return (
         <div>
             <div className={styles.UsersBlock}>
