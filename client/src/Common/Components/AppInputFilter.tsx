@@ -4,9 +4,10 @@ import {useSearchParams} from "react-router-dom";
 
 interface IAppInputFilter{
     searchParam: string
+    label?: string
 }
 
-export const AppInputFilter = ({searchParam}:IAppInputFilter) => {
+export const AppInputFilter = ({searchParam, label}:IAppInputFilter) => {
     const [searchParams, setSearchParams] = useSearchParams()
     const [state, setState] = useState(searchParams.get(searchParam))
 
@@ -37,6 +38,6 @@ export const AppInputFilter = ({searchParam}:IAppInputFilter) => {
     }
 
     return (
-        <AppInput value={state} onChange={changeHandler}/>
+        <AppInput value={state} onChange={changeHandler} label={label}/>
     );
 };
