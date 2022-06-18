@@ -11,7 +11,9 @@ export const ComponentsShow = () => {
     return (
         <div className={styles.ComponentsShowWrapper}>
             <AppButton onClick={(e)=> console.log(e.currentTarget)} />
-            <AppTrash deleteHandler={()=>console.log('что-то удалил')} />
+            <AppTrash size={'small'} deleteHandler={()=>console.log('что-то удалил')} />
+            <AppTrash size={'medium'} deleteHandler={()=>console.log('что-то удалил')} />
+            <AppTrash size={'big'} deleteHandler={()=>console.log('что-то удалил')} />
             <AppInput
                 value={''}
                 onChange={(e)=>console.log(e)}
