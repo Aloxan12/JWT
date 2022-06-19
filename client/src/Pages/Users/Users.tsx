@@ -3,9 +3,11 @@ import {useGetAllUsersQuery} from "../../redux/usersApi";
 import {User} from "./User";
 import styles from './Users.module.css'
 import {AppInputFilter} from "../../Common/Components/AppInputFilter";
+import {useSearchParams} from "react-router-dom";
 
 export const Users = () => {
-    const {data: users} = useGetAllUsersQuery()
+    const [searchParams, setSearchParams] = useSearchParams()
+    const {data: users} = useGetAllUsersQuery({search: !!searchParams.get('search') ? searchParams.get('search') : null})
     return (
         <div>
             <div>
