@@ -5,7 +5,7 @@ import {IUser} from "./Reducers/authReducer/authReducer";
 
 export const usersApi = authApi.injectEndpoints({
     endpoints: (build) => ({
-        getAllUsers: build.query<IUser[], { search?: string } | void | null>({
+        getAllUsers: build.query<IUser[], { search?: string | null} | void | null>({
             query: (params) => ({
                 url: '/users/',
                 params: !!params ? params : {}
