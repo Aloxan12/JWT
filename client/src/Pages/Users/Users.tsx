@@ -13,7 +13,7 @@ export const Users = () => {
     return (
         <div>
             <div className={commonStyles.FilterBlock}>
-                <AppInputFilter searchParam='search' placeholder={'Введите email'} label={'Поиск'}/>
+                <AppInputFilter searchParam='search' placeholder={'Введите email'} label={'Поиск по email'}/>
             </div>
             <div className={styles.UsersBlock}>
                 {users && users.map(user =>{
