@@ -4,6 +4,7 @@ import {User} from "./User";
 import styles from './Users.module.css'
 import {AppInputFilter} from "../../Common/Components/AppInputFilter";
 import {useSearchParams} from "react-router-dom";
+import commonStyles from '../../App.module.css'
 
 export const Users = () => {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -11,7 +12,7 @@ export const Users = () => {
 
     return (
         <div>
-            <div>
+            <div className={commonStyles.FilterBlock}>
                 <AppInputFilter searchParam='search' />
             </div>
             <div className={styles.UsersBlock}>
