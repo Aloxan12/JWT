@@ -8,6 +8,7 @@ import {useSearchParams} from "react-router-dom";
 export const Users = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const {data: users} = useGetAllUsersQuery(searchParams.get('search') ? {search: searchParams.get('search')} : null)
+
     return (
         <div>
             <div>
