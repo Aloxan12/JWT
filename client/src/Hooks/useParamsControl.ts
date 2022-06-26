@@ -4,7 +4,7 @@ type UseParamsControlType<T, TKey extends keyof T> = {
     withPagination: boolean
 }
 
-export const useParamsControl = () => {
+export const useParamsControl = <T, TKey extends keyof T>({paramsList, withPagination}: UseParamsControlType<T, TKey>) => {
     return
 };
 
