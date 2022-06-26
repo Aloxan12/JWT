@@ -5,6 +5,6 @@ type UseParamsControlType<T, TKey extends keyof T> = {
 }
 
 export const useParamsControl = <T, TKey extends keyof T>({paramsList, withPagination}: UseParamsControlType<T, TKey>) => {
-    return
+    return {} as T
 };
 
