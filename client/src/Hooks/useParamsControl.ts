@@ -47,9 +47,9 @@ export const useParamsControl = <T, TKey extends keyof T>({
                                                           }: UseParamsControlType<T, TKey>) => {
     const [searchParams, setSearchParams] = useSearchParams()
     const search = searchParams.toString()
-    const [state, setState] = useState({})
+    const [params, setParams] = useState({})
 
-    const fullParamsList = withPagination ? ['limit', 'offset', ...paramsList] : paramsList
+    const fullParamsList = withPagination ? ['limit' as TKey, 'offset' as TKey, ...paramsList] : paramsList
 
     const searchParamsWithoutPagination = search.replace(isPaginationResetReg, '')
 
@@ -59,8 +59,26 @@ export const useParamsControl = <T, TKey extends keyof T>({
         }
     }, [searchParamsWithoutPagination])
 
-    useEffect(()=>{},[])
+    useEffect(() => {
+        const newParams = {} as {
+            [key in TKey]?: string | number | boolean
+        }
+        fullParamsList.forEach((param) => {
+            if (param) {
+                newParams[param] = !!searchParams.get(param as string)
+                    ? (searchParams.get(param as string) as string)
+                    : undefined
+            }
+        })
 
-    return {} as T
+        const newState = Object.entries(newParams).reduce(
+            (newPrams, [param, value]) =>
+                value !== undefined ? { ...newPrams, [param]: value } : newPrams,
+            {},
+        ) as T
+        setParams(newState)
+    }, [search])
+
+    return params as T
 };
 
