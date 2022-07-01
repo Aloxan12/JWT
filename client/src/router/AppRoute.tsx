@@ -9,7 +9,7 @@ import {ComponentsShow} from "../Pages/ComponentsShow/ComponentsShow";
 import {useSelector} from "react-redux";
 import {RootState} from "../redux/store";
 import {NotFound} from "../Pages/NotFound/NotFound";
-import {IUserAuthState} from "../redux/authApi";
+import {IUserAuthState} from "../redux/api/authApi";
 import {Users} from "../Pages/Users/Users";
 import {PersonalAccount} from "../Pages/PersonalAccount/PersonalAccount";
 

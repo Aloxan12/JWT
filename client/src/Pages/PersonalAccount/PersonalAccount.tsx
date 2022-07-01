@@ -3,8 +3,8 @@ import styles from './PersonalAccount.module.css'
 import {useParams} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {AppButton} from "../../Common/Components/AppButton/AppButton";
-import {useGetUserDetailQuery, useUploadUserAvatarMutation} from "../../redux/usersApi";
-import {checkAuthApi} from "../../redux/checkAuthApi";
+import {useGetUserDetailQuery, useUploadUserAvatarMutation} from "../../redux/api/usersApi";
+import {checkAuthApi} from "../../redux/api/checkAuthApi";
 import {IUser, setUser} from "../../redux/Reducers/authReducer/authReducer";
 import {ChangeAvatarContainer} from "./components/ChangeAvatarContainer";
 import {ProfileInfoContainer} from "./components/ProfileInfoContainer";

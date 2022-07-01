@@ -1,11 +1,11 @@
 import {authApi} from "./authApi";
-import {IUser} from "./Reducers/authReducer/authReducer";
+import {IUser, IUsersRequestDto} from "./dto/UserDto";
 
 
 
 export const usersApi = authApi.injectEndpoints({
     endpoints: (build) => ({
-        getAllUsers: build.query<IUser[], { search?: string | null} | void | null>({
+        getAllUsers: build.query<IUser[], IUsersRequestDto | void | null>({
             query: (params) => ({
                 url: '/users/',
                 params: !!params ? params : {}

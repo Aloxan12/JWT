@@ -2,14 +2,14 @@ import React from 'react';
 import {IPost} from "../../Type/PostType";
 import styles from "./Posts.module.css";
 import moment from "moment";
-import {useDeletePostMutation} from "../../redux/postApi";
+import {useDeletePostMutation} from "../../redux/api/postApi";
 import {contentToHtml} from "../../utils/helpers";
 import {AppTrash} from "../../Common/Components/AppTrash/AppTrash";
 import {ToastWrapper, ToastWrapperType} from "../../Common/Components/ToastWrapper/ToastWrapper";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {RoleTypes} from "../../router/AppRoute";
-import {IUser} from "../../redux/Reducers/authReducer/authReducer";
+import {IUser} from "../../redux/api/dto/UserDto";
 
 interface IPostProps{
     post: IPost

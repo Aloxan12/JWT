@@ -4,7 +4,7 @@ import {useSearchParams} from "react-router-dom";
 export const isPaginationResetReg = /(limit=\d+&offset=\d+)|[&]/g
 
 interface UseParamsControlTypeBase<T, TKey extends keyof T> {
-    paramsList: TKey[]
+    paramsList: (TKey | undefined)[]
 }
 
 interface UseParamsControlTypeWithoutPagination<T, TKey extends keyof T> extends UseParamsControlTypeBase<T, TKey> {
@@ -30,7 +30,7 @@ export const useParamsControl = <T, TKey extends keyof T>({
     const search = searchParams.toString()
     const [params, setParams] = useState({})
 
-    const fullParamsList = withPagination ? ['limit' as TKey, 'offset' as TKey, ...paramsList] : paramsList
+    const fullParamsList: (TKey | undefined)[] = withPagination ? ['limit' as TKey, 'offset' as TKey, ...paramsList] : paramsList
 
     const searchParamsWithoutPagination = search.replace(isPaginationResetReg, '')
 

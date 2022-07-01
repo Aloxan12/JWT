@@ -1,14 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {AuthState} from "../../authApi";
+import {AuthState} from "../../api/authApi";
 import {RoleTypes} from "../../../router/AppRoute";
-
-export interface IUser {
-    email: string,
-    id: string,
-    isActivated: boolean
-    role: RoleTypes
-    avatar: string
-}
+import {IUser} from "../../api/dto/UserDto";
 
 type AuthInitialStateType = {
     user: IUser | null,

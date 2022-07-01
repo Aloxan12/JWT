@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import './Registration.css'
-import { useRegistrationMutation} from "../../redux/authApi";
+import { useRegistrationMutation} from "../../redux/api/authApi";
 import {ToastWrapper, ToastWrapperType} from "../../Common/Components/ToastWrapper/ToastWrapper";
 import { useNavigate } from "react-router-dom";
 import {RoleTypes} from "../../router/AppRoute";

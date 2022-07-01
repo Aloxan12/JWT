@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import 'react-toastify/dist/ReactToastify.css';
-import {useLoginMutation} from "../../redux/authApi";
+import {useLoginMutation} from "../../redux/api/authApi";
 import './Login.css'
 import {useAppDispatch} from "../../redux/store";
 import {setAuthData} from "../../redux/Reducers/authReducer/authReducer";

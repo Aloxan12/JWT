@@ -1,11 +1,11 @@
 import {combineReducers} from "redux";
 import {configureStore} from "@reduxjs/toolkit";
-import {authApi} from "./authApi";
+import {authApi} from "./api/authApi";
 import {rtkErrorMiddleware} from "./middleware/error-middleware";
 import authReducer from "./Reducers/authReducer/authReducer";
 import { useDispatch } from "react-redux";
-import {postApi} from "./postApi";
-import {usersApi} from "./usersApi";
+import {postApi} from "./api/postApi";
+import {usersApi} from "./api/usersApi";
 
 
 const rootReducer = combineReducers({

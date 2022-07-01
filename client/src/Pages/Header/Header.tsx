@@ -3,12 +3,13 @@ import styles from './Header.module.css'
 import {NavLink, Link, useMatch, useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {RootState, useAppDispatch} from "../../redux/store";
-import { useLogoutMutation} from "../../redux/authApi";
-import {IUser, logout, setAuthData, setIsAuth, setUser} from "../../redux/Reducers/authReducer/authReducer";
+import { useLogoutMutation} from "../../redux/api/authApi";
+import { logout, setAuthData, setIsAuth, setUser} from "../../redux/Reducers/authReducer/authReducer";
 import {BurgerMenu} from "../../Common/Components/BurgerMenu/BurgerMenu";
-import {checkAuthApi} from "../../redux/checkAuthApi";
+import {checkAuthApi} from "../../redux/api/checkAuthApi";
 import {IRouteObj} from "../../router/AppRoute";
 import fakeAvatar from '../../utils/images/fake_avatar.png'
+import {IUser} from "../../redux/api/dto/UserDto";
 
 interface IHeader {
     itemsRoute: IRouteObj[]

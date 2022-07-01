@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 import styles from "./Posts.module.css";
 import {IPost} from "../../Type/PostType";
-import {useCreatePostsMutation, useDeletePostMutation, useGetAllPostsQuery} from "../../redux/postApi";
+import {useCreatePostsMutation, useDeletePostMutation, useGetAllPostsQuery} from "../../redux/api/postApi";
 import {Post} from "./Post";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
-import {IUserAuthState} from "../../redux/authApi";
+import {IUserAuthState} from "../../redux/api/authApi";
 import moment from "moment";
 import {ToastWrapper, ToastWrapperType} from "../../Common/Components/ToastWrapper/ToastWrapper";
-import {useGetAllUsersQuery} from "../../redux/usersApi";
+import {useGetAllUsersQuery} from "../../redux/api/usersApi";
 import {AppButton} from "../../Common/Components/AppButton/AppButton";
 import {contentToHtml} from "../../utils/helpers";
 
