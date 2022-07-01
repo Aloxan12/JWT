@@ -5,10 +5,11 @@ import {useDispatch} from "react-redux";
 import {AppButton} from "../../Common/Components/AppButton/AppButton";
 import {useGetUserDetailQuery, useUploadUserAvatarMutation} from "../../redux/api/usersApi";
 import {checkAuthApi} from "../../redux/api/checkAuthApi";
-import {IUser, setUser} from "../../redux/Reducers/authReducer/authReducer";
+import {setUser} from "../../redux/Reducers/authReducer/authReducer";
 import {ChangeAvatarContainer} from "./components/ChangeAvatarContainer";
 import {ProfileInfoContainer} from "./components/ProfileInfoContainer";
 import fakeAvatar from '../../utils/images/fake_avatar.png'
+import {IUser} from '../../redux/api/dto/UserDto'
 
 export const PersonalAccount = () => {
     const {id} = useParams()

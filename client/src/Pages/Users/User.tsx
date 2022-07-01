@@ -1,7 +1,7 @@
 import React from 'react';
-import {IUser} from "../../redux/Reducers/authReducer/authReducer";
 import styles from './Users.module.css'
 import fakeAvatar from '../../utils/images/fake_avatar.png'
+import { IUser } from '../../redux/api/dto/UserDto';
 
 
 interface IUserProps {
