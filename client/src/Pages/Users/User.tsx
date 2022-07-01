@@ -3,7 +3,6 @@ import styles from './Users.module.css'
 import fakeAvatar from '../../utils/images/fake_avatar.png'
 import { IUser } from '../../redux/api/dto/UserDto';
 
-
 interface IUserProps {
     user: IUser
 }
@@ -15,7 +14,7 @@ export const User = ({user}: IUserProps) => {
                 <img src={!!user.avatar ? `http://localhost:5555/` + user.avatar : fakeAvatar} alt={'avatar'}/>
             </div>
             <div>{user.email}</div>
-            <div>{user.role}</div>
+            <div>Роль: {!!user.role ? user.role : 'Без роли'}</div>
         </div>
     )
 };

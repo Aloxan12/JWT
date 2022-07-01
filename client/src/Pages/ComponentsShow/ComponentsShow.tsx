@@ -5,6 +5,7 @@ import styles from './ComponentsShow.module.css'
 import {AppInput} from "../../Common/Components/AppInput/AppInput";
 import {AppRating} from "../../Common/Components/AppRating/AppRating";
 import {AppInputFilter} from "../../Common/Components/AppInputFilter";
+import {AppDropdown} from "../../Common/Components/AppDropdown/AppDropdown";
 
 export const ComponentsShow = () => {
     const [rating, setRating] = useState(0)
@@ -21,6 +22,7 @@ export const ComponentsShow = () => {
                 error={'error error errorerror error errorerror  error errorerror '} />
             <AppInputFilter searchParam={'search'} />
             <AppRating value={rating}  onChange={(value)=>setRating(value)}/>
+            <AppDropdown />
         </div>
     );
 };
