@@ -1,26 +1,7 @@
 import {useEffect, useState} from "react";
-import {useSearchParams, URLSearchParamsInit} from "react-router-dom";
-
-interface IResetPaginationByParamsChangedProps {
-    searchParams: URLSearchParams
-    setSearchParams: (
-        nextInit: URLSearchParamsInit,
-        navigateOptions?:
-            | { replace?: boolean | undefined; state?: any }
-            | undefined,
-    ) => void
-}
+import {useSearchParams} from "react-router-dom";
 
 export const isPaginationResetReg = /(limit=\d+&offset=\d+)|[&]/g
-
-export const resetPaginationByParamsChanged = ({
-                                                   searchParams,
-                                                   setSearchParams,
-                                               }: IResetPaginationByParamsChangedProps) => {
-    searchParams.delete('limit')
-    searchParams.delete('offset')
-    setSearchParams(searchParams.toString())
-}
 
 interface UseParamsControlTypeBase<T, TKey extends keyof T> {
     paramsList: TKey[]
@@ -55,7 +36,9 @@ export const useParamsControl = <T, TKey extends keyof T>({
 
     useEffect(() => {
         if (!!resetPagination) {
-            resetPaginationByParamsChanged({ searchParams, setSearchParams })
+            searchParams.delete('limit')
+            searchParams.delete('offset')
+            setSearchParams(searchParams.toString())
         }
     }, [searchParamsWithoutPagination])
 
