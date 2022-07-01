@@ -3,13 +3,11 @@ import {useGetAllUsersQuery} from "../../redux/api/usersApi";
 import {User} from "./User";
 import styles from './Users.module.css'
 import {AppInputFilter} from "../../Common/Components/AppInputFilter";
-import {useSearchParams} from "react-router-dom";
 import commonStyles from '../../App.module.css'
 import {useParamsControl} from "../../Hooks/useParamsControl";
 import {IUsersRequestDto} from "../../redux/api/dto/UserDto";
 
 export const Users = () => {
-    const [searchParams, setSearchParams] = useSearchParams()
     const params = useParamsControl<IUsersRequestDto, keyof IUsersRequestDto>(
         {
             paramsList: ['search'], withPagination: false
