@@ -23,7 +23,12 @@ export const ComponentsShow = () => {
                 error={'error error errorerror error errorerror  error errorerror '} />
             <AppInputFilter searchParam={'search'} />
             <AppRating value={rating}  onChange={(value)=>setRating(value)}/>
-            <AppDropdown value={dropdownData} data={[`string`]} onChange={(value)=> setDropdownData(value)}/>
+            <AppDropdown
+                value={dropdownData}
+                data={[`string`]}
+                onChange={(value)=> setDropdownData(value)}
+                resetValueHandler={()=>setDropdownData(null)}
+            />
         </div>
     );
 };

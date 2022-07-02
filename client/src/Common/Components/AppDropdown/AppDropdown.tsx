@@ -94,7 +94,7 @@ export const AppDropdown = <T, TKey extends keyof T>({
             />
             {active && !!currentData && (
                 <div className={styles.DropdownValuesBlock}>
-                    {!resetValueHandler && (
+                    {!!resetValueHandler && (
                         <div
                             className={`${styles.ValueItem} ${styles.ResetFilter}`}
                             onClick={() => onChangeHandler(null)}
