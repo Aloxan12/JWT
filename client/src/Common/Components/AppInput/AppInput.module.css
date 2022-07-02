@@ -11,6 +11,10 @@
     padding-left: 7px;
 }
 
+.appInput{
+    position: relative;
+}
+
 .appInput input{
     padding: 5px 7px;
     border-radius: 8px;
@@ -27,4 +31,9 @@
     font-size: 14px;
     padding-left: 7px;
     padding-right: 7px;
+}
+
+.IcoRight{
+    color: #ccc;
+    width: 23px;
 }

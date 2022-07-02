@@ -1,4 +1,7 @@
 .AppDropdown{
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
     margin: 0;
     padding: 0;
     font-size: 14px;

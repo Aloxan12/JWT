@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styles from './AppDropdown.module.css'
-import {AppInput} from "../AppInput/AppInput";
+import {AppInput, IcoType} from "../AppInput/AppInput";
 
 interface IAppDropdownBase{
     disabled?:boolean
@@ -23,6 +23,7 @@ export const AppDropdown = ({
                 onChange={()=>(disabled ? false : setActive((prev) => !prev))}
                 error={error}
                 placeholder={placeholder}
+                icoRight={IcoType.ico_right}
             />
         </div>
     );
