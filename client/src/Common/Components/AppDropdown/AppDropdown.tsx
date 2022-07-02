@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import styles from './AppDropdown.module.css'
-import {AppInput, IcoType} from "../AppInput/AppInput";
+import {AppInput} from "../AppInput/AppInput";
 
 interface IAppDropdownBase<T, TKey extends keyof T> {
     disabled?: boolean
@@ -56,7 +56,6 @@ export const AppDropdown = <T, TKey extends keyof T>({
         }
     }, [active])
     const onChangeHandler = (item: T | null) => {
-        console.log('nen')
         if (item) {
             onChange(item)
         } else if (resetValueHandler) {
@@ -86,7 +85,7 @@ export const AppDropdown = <T, TKey extends keyof T>({
                     }
                 }
                 }
-                value={`${inputValue}`}
+                value={inputValue}
                 dropdownInput
                 error={error}
                 placeholder={placeholder}
