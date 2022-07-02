@@ -7,6 +7,6 @@
     font-size: 14px;
 }
 
-.Active{
-    color: #e03333;
+.Active>.IcoRight {
+    transform: rotate(180deg);
 }

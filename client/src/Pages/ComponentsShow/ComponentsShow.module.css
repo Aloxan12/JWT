@@ -1,6 +1,7 @@
 .ComponentsShowWrapper{
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     padding: 30px;
     gap: 20px;

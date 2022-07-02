@@ -18,16 +18,37 @@ interface IAppInputBase{
 interface IAppInputTextarea extends IAppInputBase{
     icoRight?:never
     rows: number
+    onClick?: never
+    dropdownInput?: never
 }
 
 interface IAppInputIcoRight extends IAppInputBase{
     icoRight?:IcoType
     rows?: never
+    onClick?: never
+    dropdownInput?: never
 }
 
-type AppInputType = IAppInputTextarea | IAppInputIcoRight
+interface IAppInputDropdown extends IAppInputBase{
+    icoRight?:never
+    rows?: never
+    onClick: () => void
+    dropdownInput: boolean
+}
 
-export const AppInput = ({label, type = 'text', value, onChange, error, placeholder, icoRight}: AppInputType) => {
+type AppInputType = IAppInputTextarea | IAppInputIcoRight | IAppInputDropdown
+
+export const AppInput = ({
+                             label,
+                             type = 'text',
+                             value,
+                             onChange,
+                             onClick,
+                             dropdownInput,
+                             error,
+                             placeholder,
+                             icoRight}: AppInputType) => {
+    const wrapperProps = onClick ? { onClick } : {}
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) =>{
         const result = e.currentTarget.value
@@ -35,10 +56,10 @@ export const AppInput = ({label, type = 'text', value, onChange, error, placehol
     }
 
     return (
-        <div className={styles.appInputWrap}>
+        <div className={styles.appInputWrap} {...wrapperProps}>
             {label && <label>{label}</label>}
-            <div className={`${styles.appInput} ${error && styles.borderError}`}>
-                {!!icoRight && icoRight === IcoType.ico_right &&
+            <div className={`${styles.appInput} ${error ? styles.borderError : ''}`}>
+                {!!icoRight && icoRight === IcoType.ico_right || !!dropdownInput &&
                     <img src={icoRightPhoto} alt="arrow-down"  className={styles.IcoRight}/>
                 }
                 <input value={!!value ? value : ''} placeholder={placeholder} type={type} onChange={onChangeHandler}/>

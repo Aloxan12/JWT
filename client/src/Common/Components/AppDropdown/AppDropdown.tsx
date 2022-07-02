@@ -11,19 +11,20 @@ interface IAppDropdownBase{
 type AppDropdownType = IAppDropdownBase
 
 export const AppDropdown = ({
-                                disabled,
+                                disabled=false,
                                 error,
                                 placeholder
 }: AppDropdownType) => {
-    const [active, setActive] = useState<boolean>(false)
-
+    const [active, setActive] = useState<boolean>(true)
+    console.log('active', active)
     return (
         <div className={`${styles.AppDropdown} ${active ? styles.Active : ''}`}>
             <AppInput
-                onChange={()=>(disabled ? false : setActive((prev) => !prev))}
+                onClick={()=>(disabled ? false : setActive((prev) => !prev))}
+                onChange={(value)=>{}}
+                dropdownInput
                 error={error}
                 placeholder={placeholder}
-                icoRight={IcoType.ico_right}
             />
         </div>
     );
