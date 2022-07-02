@@ -62,7 +62,7 @@ export const AppInput = ({
     return (
         <div className={styles.appInputWrap} {...wrapperProps}>
             {label && <label>{label}</label>}
-            <div className={`${styles.appInput} ${error ? styles.borderError : ''}`}>
+            <div className={`${styles.appInput} ${error ? styles.borderError : ''} ${dropdownActive ? styles.Active : ''}`}>
                 {!!icoRight && icoRight === IcoType.ico_right || !!dropdownInput &&
                     <img src={icoRightPhoto} alt="arrow-down"  className={`${styles.IcoRight} ${dropdownActive ? styles.Active : ''}`}/>
                 }

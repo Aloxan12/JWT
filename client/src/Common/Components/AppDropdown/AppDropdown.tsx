@@ -2,21 +2,26 @@ import React, {useState} from 'react';
 import styles from './AppDropdown.module.css'
 import {AppInput, IcoType} from "../AppInput/AppInput";
 
-interface IAppDropdownBase{
+interface IAppDropdownBase<T, TKey extends keyof T>{
     disabled?:boolean
     error?:string
     placeholder?:string
+    data: T[]
+    value: TKey
+    resetValueHandler?: ()=> void
 }
 
-type AppDropdownType = IAppDropdownBase
+type AppDropdownType<T, TKey extends keyof T> = IAppDropdownBase<T, TKey>
 
-export const AppDropdown = ({
+export const AppDropdown = <T, TKey extends keyof T>({
                                 disabled=false,
+                                resetValueHandler,
                                 error,
                                 placeholder
-}: AppDropdownType) => {
+}: AppDropdownType<T, TKey>) => {
     const [active, setActive] = useState<boolean>(false)
-    console.log('active', active)
+    const [currentData, setCurrentData] = useState<T[]| []>([])
+
     return (
         <div className={`${styles.AppDropdown} ${active ? styles.Active : ''}`}>
             <AppInput
@@ -27,6 +32,29 @@ export const AppDropdown = ({
                 placeholder={placeholder}
                 dropdownActive={active}
             />
+            {active && !!currentData && (
+                <div className={styles.DropdownValuesBlock}>
+                    {!resetValueHandler && (
+                        <div
+                            className={`${styles.ValueItem} ${styles.ResetFilter}`}
+                            // onClick={() => onChangeHandler(null)}
+                        >
+                            Очистить фильтр
+                        </div>
+                    )}
+                    <div className={`${styles.ValueItem}`}>1</div>
+                    <div className={`${styles.ValueItem}`}>2</div>
+                    <div className={`${styles.ValueItem}`}>3</div>
+                    <div className={`${styles.ValueItem}`}>4</div>
+                    <div className={`${styles.ValueItem}`}>4</div>
+                    <div className={`${styles.ValueItem}`}>4</div>
+                    <div className={`${styles.ValueItem}`}>4</div>
+                    <div className={`${styles.ValueItem}`}>4</div>
+                    <div className={`${styles.ValueItem}`}>4</div>
+                    <div className={`${styles.ValueItem}`}>4</div>
+                    <div className={`${styles.ValueItem}`}>4</div>
+                </div>
+            )}
         </div>
     );
 };
