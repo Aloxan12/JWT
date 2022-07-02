@@ -43,7 +43,6 @@
     top: calc(50% - 10px);
     color: #ccc;
     width: 20px;
-    transition: .5s;
 }
 
 .IcoRight.Active{
