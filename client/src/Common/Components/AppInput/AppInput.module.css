@@ -39,8 +39,10 @@
     top: calc(50% - 11px);
     color: #ccc;
     width: 23px;
+    transition: .5s;
 }
 
-.IcoRight .Active{
-
+.IcoRight.Active{
+    transition: .5s;
+    transform: rotate(180deg);
 }

@@ -15,7 +15,7 @@ export const AppDropdown = ({
                                 error,
                                 placeholder
 }: AppDropdownType) => {
-    const [active, setActive] = useState<boolean>(true)
+    const [active, setActive] = useState<boolean>(false)
     console.log('active', active)
     return (
         <div className={`${styles.AppDropdown} ${active ? styles.Active : ''}`}>
@@ -25,6 +25,7 @@ export const AppDropdown = ({
                 dropdownInput
                 error={error}
                 placeholder={placeholder}
+                dropdownActive={active}
             />
         </div>
     );

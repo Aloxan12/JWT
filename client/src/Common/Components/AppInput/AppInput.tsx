@@ -20,6 +20,7 @@ interface IAppInputTextarea extends IAppInputBase{
     rows: number
     onClick?: never
     dropdownInput?: never
+    dropdownActive?: never
 }
 
 interface IAppInputIcoRight extends IAppInputBase{
@@ -27,6 +28,7 @@ interface IAppInputIcoRight extends IAppInputBase{
     rows?: never
     onClick?: never
     dropdownInput?: never
+    dropdownActive?: never
 }
 
 interface IAppInputDropdown extends IAppInputBase{
@@ -34,6 +36,7 @@ interface IAppInputDropdown extends IAppInputBase{
     rows?: never
     onClick: () => void
     dropdownInput: boolean
+    dropdownActive: boolean
 }
 
 type AppInputType = IAppInputTextarea | IAppInputIcoRight | IAppInputDropdown
@@ -45,6 +48,7 @@ export const AppInput = ({
                              onChange,
                              onClick,
                              dropdownInput,
+                             dropdownActive,
                              error,
                              placeholder,
                              icoRight}: AppInputType) => {
@@ -60,7 +64,7 @@ export const AppInput = ({
             {label && <label>{label}</label>}
             <div className={`${styles.appInput} ${error ? styles.borderError : ''}`}>
                 {!!icoRight && icoRight === IcoType.ico_right || !!dropdownInput &&
-                    <img src={icoRightPhoto} alt="arrow-down"  className={styles.IcoRight}/>
+                    <img src={icoRightPhoto} alt="arrow-down"  className={`${styles.IcoRight} ${dropdownActive ? styles.Active : ''}`}/>
                 }
                 <input value={!!value ? value : ''} placeholder={placeholder} type={type} onChange={onChangeHandler}/>
             </div>
