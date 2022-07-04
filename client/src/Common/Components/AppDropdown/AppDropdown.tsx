@@ -115,17 +115,6 @@ export const AppDropdown = <T, TKey extends keyof T>({
                             </div>
                         )
                     })}
-                    <div className={`${styles.ValueItem}`}>1</div>
-                    <div className={`${styles.ValueItem}`}>2</div>
-                    <div className={`${styles.ValueItem}`}>3</div>
-                    <div className={`${styles.ValueItem}`}>4</div>
-                    <div className={`${styles.ValueItem}`}>444444444444444444444444444444444</div>
-                    <div className={`${styles.ValueItem}`}>4</div>
-                    <div className={`${styles.ValueItem}`}>4</div>
-                    <div className={`${styles.ValueItem}`}>4</div>
-                    <div className={`${styles.ValueItem}`}>4</div>
-                    <div className={`${styles.ValueItem}`}>4</div>
-                    <div className={`${styles.ValueItem}`}>4</div>
                 </div>
             )}
         </div>
