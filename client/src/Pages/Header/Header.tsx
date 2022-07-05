@@ -50,7 +50,6 @@ export const Header = ({itemsRoute}: IHeader) => {
                 dispatch(setUser(null))
             }
         } catch (e) {
-            console.log(e)
         }
     }, [isAuth])
 
