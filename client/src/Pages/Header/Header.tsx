@@ -3,8 +3,8 @@ import styles from './Header.module.css'
 import {NavLink, Link, useMatch, useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {RootState, useAppDispatch} from "../../redux/store";
-import { useLogoutMutation} from "../../redux/api/authApi";
-import { logout, setAuthData, setIsAuth, setUser} from "../../redux/Reducers/authReducer/authReducer";
+import {useLogoutMutation} from "../../redux/api/authApi";
+import {logout, setAuthData, setIsAuth, setUser} from "../../redux/Reducers/authReducer/authReducer";
 import {BurgerMenu} from "../../Common/Components/BurgerMenu/BurgerMenu";
 import {checkAuthApi} from "../../redux/api/checkAuthApi";
 import {IRouteObj} from "../../router/AppRoute";
@@ -67,7 +67,8 @@ export const Header = ({itemsRoute}: IHeader) => {
                     <div className={styles.mainHeaderIsAuth}>
                         <span className={styles.welcomeWrap}>{user.email}
                             <Link to={`currentUser/${user.id}`} className={styles.linkAva}>
-                                <img src={!!user!.avatar ? `http://localhost:5555/` + user!.avatar : fakeAvatar} alt={'avatar'}/>
+                                <img src={!!user!.avatar ? `http://localhost:5555/` + user!.avatar : fakeAvatar}
+                                     alt={'avatar'}/>
                             </Link>
                         </span>
                         <span><a className={styles.loginLink} onClick={logoutHandler}>Выйти</a></span>
