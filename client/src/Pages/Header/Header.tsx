@@ -86,7 +86,7 @@ export const Header = ({itemsRoute}: IHeader) => {
                 </nav>
             }
             <BurgerMenu active={menuActive} setActive={setMenuActive} header="Меню"
-                        items={itemsRoute.filter(item => !!item.showInMenu)}/>
+                        items={itemsRoute.filter(item => item.showInMenu)}/>
         </div>
     )
 }
