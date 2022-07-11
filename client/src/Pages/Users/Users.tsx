@@ -6,12 +6,19 @@ import {AppInputFilter} from "../../Common/Components/AppInputFilter";
 import commonStyles from '../../App.module.css'
 import {useParamsControl} from "../../Hooks/useParamsControl";
 import {IUsersRequestDto} from "../../redux/api/dto/UserDto";
+import {useSelector} from "react-redux";
+import {RootState} from "../../redux/store";
+import {useIsAdmin} from "../../utils/helpers";
+import {NavLink} from "react-router-dom";
 
 export const Users = () => {
     const params = useParamsControl<IUsersRequestDto, keyof IUsersRequestDto>(
         {
             paramsList: ['search'], withPagination: false
         })
+
+    const currentUser = useSelector((state: RootState) => state.auth.user)
+    const isAdmin = useIsAdmin(!!currentUser ? currentUser.role : undefined)
     const {data: users} = useGetAllUsersQuery(params)
 
     return (
@@ -21,7 +28,15 @@ export const Users = () => {
             </div>
             <div className={styles.UsersBlock}>
                 {users && users.map(user => {
-                    return <User user={user}/>
+                    if (isAdmin) {
+                        return (
+                            <NavLink to={`/user/${user.id}/`} className={styles.UserLink}>
+                                <User user={user}/>
+                            </NavLink>
+                        )
+                    } else {
+                        return <User user={user}/>
+                    }
                 })}
             </div>
         </div>

@@ -8,6 +8,11 @@
     gap: 100px;
 }
 
+.UserLink{
+    border: 1px solid;
+    display: inline-flex;
+}
+
 .UserItem{
     border: 1px solid;
     border-radius: 4px;

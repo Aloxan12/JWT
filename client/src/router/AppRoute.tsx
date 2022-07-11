@@ -12,6 +12,7 @@ import {NotFound} from "../Pages/NotFound/NotFound";
 import {IUserAuthState} from "../redux/api/authApi";
 import {Users} from "../Pages/Users/Users";
 import {PersonalAccount} from "../Pages/PersonalAccount/PersonalAccount";
+import {UserProfile} from "../Pages/Users/UserProfile";
 
 export const routesIsNotAuth = [
     {
@@ -80,6 +81,13 @@ export const routesByRole: RoutesForMenuType = {
             title: 'Пользователи',
             showInMenu: true,
             component: <Users/>
+        },
+        {
+            id: 'UserProfile',
+            path: '/users/:id',
+            title: 'Пользователь',
+            showInMenu: false,
+            component: <UserProfile />
         },
         {
             id: 'NotFound',
