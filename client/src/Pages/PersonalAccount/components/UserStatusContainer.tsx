@@ -29,7 +29,7 @@ export const UserStatusContainer = ({user}: IUserStatusContainer) => {
                     onChange={(value)=> setStatus(value)}
                 />
                 :(
-                    <Tooltip content={`Чтобы ${!!user.status ? 'изменить' : 'ввети'} статус кликните дважы`}>
+                    <Tooltip content={`Чтобы ${!!user.status ? 'изменить' : 'ввести'} статус кликните дважы`}>
                         <b
                             onDoubleClick={()=> setEditStatus(prevState => !prevState)}
                         >{!!user.status ? user.status : 'Статуса нет'}</b>
