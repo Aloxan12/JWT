@@ -30,7 +30,7 @@ export const Users = () => {
                 {users && users.map(user => {
                     if (isAdmin) {
                         return (
-                            <NavLink to={`/user/${user.id}/`} className={styles.UserLink}>
+                            <NavLink to={`/users/${user.id}/`} className={styles.UserLink}>
                                 <User user={user}/>
                             </NavLink>
                         )
