@@ -112,6 +112,22 @@ class UserService{
         }
     }
 
+    async updateUserDetail(id, user){
+        const currentUser = await UserModel.findOne({_id: new mongodb.ObjectId(id)})
+        if(!!currentUser){
+            return {
+                id: currentUser._id,
+                email: currentUser.email,
+                role: currentUser.role,
+                isActivated: currentUser.isActivated,
+                avatar: currentUser.avatar,
+                status: !!user.status ? user.status : currentUser.status
+            }
+        }else{
+            throw ApiError.BadRequest('Пользователь не найден')
+        }
+    }
+
     async uploadUserAvatar(id, avatar){
         try {
             const user = await UserModel.findOne({_id: new mongodb.ObjectId(id)})
@@ -120,7 +136,8 @@ class UserService{
                 email: user.email,
                 role: user.role,
                 isActivated: user.isActivated,
-                avatar: avatar
+                avatar: avatar,
+                status: user.status
             })
 
             return ({
@@ -128,7 +145,8 @@ class UserService{
                 email: user.email,
                 role: user.role,
                 isActivated: user.isActivated,
-                avatar: avatar
+                avatar: avatar,
+                status: user.avatar
             })
         }catch (e) {
             console.log(e)

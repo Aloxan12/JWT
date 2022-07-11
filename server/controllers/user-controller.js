@@ -95,6 +95,18 @@ class UserController {
         }
     }
 
+    async updateUserDetail(req, res, next) {
+        try {
+            const {id} = req.params
+            const user = req.body
+
+            const users = await userService.updateUserDetail(id, user)
+            return res.json(users)
+        } catch (e) {
+            next(e)
+        }
+    }
+
     async uploadUserAvatar(req, res, next) {
         try {
             const {id} = req.params
