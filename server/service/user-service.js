@@ -105,7 +105,8 @@ class UserService{
                 email: user.email,
                 role: user.role,
                 isActivated: user.isActivated,
-                avatar: user.avatar
+                avatar: user.avatar,
+                status: user.status
             }
         }else{
             throw ApiError.BadRequest('Пользователь не найден')
@@ -114,6 +115,14 @@ class UserService{
 
     async updateUserDetail(id, user){
         const currentUser = await UserModel.findOne({_id: new mongodb.ObjectId(id)})
+        await currentUser.update({
+            id: currentUser._id,
+            email: currentUser.email,
+            role: currentUser.role,
+            isActivated: currentUser.isActivated,
+            avatar: currentUser.avatar,
+            status: !!user.status ? user.status : currentUser.status
+        })
         if(!!currentUser){
             return {
                 id: currentUser._id,

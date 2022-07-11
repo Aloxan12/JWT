@@ -15,10 +15,15 @@ export const UserStatusContainer = ({user}: IUserStatusContainer) => {
 
     const [editStatus, setEditStatus] = useState(false)
     const [status, setStatus] = useState('')
+
+    const changeStatusHandler = () =>{
+        updateUserStatus({id: user.id, data: {...user, status: status}})
+        setEditStatus(false)
+    }
     return (
         <div className={styles.PersonalAccountInfoItem}>
             <span className={styles.StatusBlock}>
-                <span className={editStatus ? styles.LH_4 :''}>Статус:</span> {editStatus
+                <span className={editStatus ? styles.LH_4 : '' }>Статус: </span> {editStatus
                 ? <AppInput
                     value={status}
                     onChange={(value)=> setStatus(value)}
@@ -32,7 +37,8 @@ export const UserStatusContainer = ({user}: IUserStatusContainer) => {
                 )
             }</span>
             {editStatus && <div className={styles.StatusBlockBtnWrap}>
-                <AppButton onClick={()=>{}} text={'Сохранить'}/>
+                <AppButton onClick={()=>setEditStatus(false)} text={'Отмена'}/>
+                <AppButton onClick={changeStatusHandler} text={'Сохранить'}/>
             </div>}
         </div>
     );
