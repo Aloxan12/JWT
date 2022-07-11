@@ -4,6 +4,7 @@ import {useUpdateUserDetailMutation} from "../../../redux/api/usersApi";
 import styles from "../PersonalAccount.module.css";
 import {AppInput} from "../../../Common/Components/AppInput/AppInput";
 import {Tooltip} from "../../../Common/Components/Tooltip/Tooltip";
+import {AppButton} from "../../../Common/Components/AppButton/AppButton";
 
 interface IUserStatusContainer{
     user: IUser
@@ -30,6 +31,9 @@ export const UserStatusContainer = ({user}: IUserStatusContainer) => {
                     </Tooltip>
                 )
             }</span>
+            {editStatus && <div className={styles.StatusBlockBtnWrap}>
+                <AppButton onClick={()=>{}} text={'Сохранить'}/>
+            </div>}
         </div>
     );
 };
