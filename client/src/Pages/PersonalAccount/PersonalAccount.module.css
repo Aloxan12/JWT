@@ -150,3 +150,9 @@
 img{
     max-width: 300px;
 }
+.StatusBlock{
+    display: flex;
+}
+.LH_4{
+    line-height: 4;
+}
