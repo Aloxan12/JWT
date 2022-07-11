@@ -1,14 +1,15 @@
 import React from 'react';
 import styles from "../PersonalAccount.module.css";
 import {RoleTypes} from "../../../router/AppRoute";
+import {UserStatusContainer} from "./UserStatusContainer";
+import {IUser} from "../../../redux/api/dto/UserDto";
 
 interface IProfileInfoContainerProps{
-    email:  string
-    role:  RoleTypes
-    isActivated:  boolean
+    user: IUser
 }
 
-export const ProfileInfoContainer = ({email, isActivated, role}:IProfileInfoContainerProps) => {
+export const ProfileInfoContainer = ({user}:IProfileInfoContainerProps) => {
+    const {email, isActivated, role} = user
     return (
         <div className={styles.PersonalAccountInfoBlock}>
             <h3 className={styles.PersonalAccountInfoTitle}>Личная информация</h3>
@@ -21,6 +22,7 @@ export const ProfileInfoContainer = ({email, isActivated, role}:IProfileInfoCont
             <div className={styles.PersonalAccountInfoItem}>
                 <span>Активирован: <b>{isActivated ? 'Да' : 'Нет'}</b></span>
             </div>
+            <UserStatusContainer user={user} />
         </div>
     );
 };

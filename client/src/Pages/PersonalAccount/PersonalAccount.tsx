@@ -3,7 +3,11 @@ import styles from './PersonalAccount.module.css'
 import {useParams} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {AppButton} from "../../Common/Components/AppButton/AppButton";
-import {useGetUserDetailQuery, useUploadUserAvatarMutation} from "../../redux/api/usersApi";
+import {
+    useGetUserDetailQuery,
+    useUpdateUserDetailMutation,
+    useUploadUserAvatarMutation
+} from "../../redux/api/usersApi";
 import {checkAuthApi} from "../../redux/api/checkAuthApi";
 import {setUser} from "../../redux/Reducers/authReducer/authReducer";
 import {ChangeAvatarContainer} from "./components/ChangeAvatarContainer";
@@ -70,9 +74,7 @@ export const PersonalAccount = () => {
                     </div>
                 </div>
                 <ProfileInfoContainer
-                    isActivated={user.isActivated}
-                    email={user.email}
-                    role={user.role}
+                    user={user}
                 />
             </div>
         </div>

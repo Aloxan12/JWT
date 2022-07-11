@@ -18,6 +18,14 @@ export const usersApi = authApi.injectEndpoints({
             }),
             providesTags:['Users']
         }),
+        updateUserDetail: build.mutation<IUser, {id: string, data: IUser}>({
+            query: ({id, data}) => ({
+                method: 'PATCH',
+                url: `/user/${id}`,
+                body: data
+            }),
+            invalidatesTags:['Users']
+        }),
         uploadUserAvatar: build.mutation< IUser | unknown | void ,  {id: string, img: File}>({
             async queryFn(file, _queryApi, _extraOptions, fetchWithBQ) {
                 const formData = new FormData();
@@ -37,4 +45,4 @@ export const usersApi = authApi.injectEndpoints({
 
 
 
-export const {useGetAllUsersQuery, useUploadUserAvatarMutation, useGetUserDetailQuery} = usersApi
+export const {useGetAllUsersQuery, useUploadUserAvatarMutation, useGetUserDetailQuery, useUpdateUserDetailMutation} = usersApi
