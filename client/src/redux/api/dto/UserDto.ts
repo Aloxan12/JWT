@@ -5,6 +5,7 @@ export interface IUserBase {
     isActivated: boolean
     role: RoleTypes
     avatar: string
+    status: string | null
 }
 
 export interface IUser extends IUserBase{

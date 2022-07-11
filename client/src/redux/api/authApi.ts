@@ -1,19 +1,11 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import {RoleTypes} from "../../router/AppRoute";
-
-export interface IUserAuthState {
-    email: string
-    id: string
-    isActivated: boolean
-    role: RoleTypes
-    avatar: string
-}
-
+import {IUser} from "./dto/UserDto";
 
 export interface AuthState {
     accessToken: string | null
     refreshToken: string | null
-    user: IUserAuthState | null
+    user: IUser | null
 }
 
 interface ISendRegistration {

@@ -15,7 +15,8 @@ const authInitialState: AuthInitialStateType = {
         id: '',
         isActivated: false,
         role: RoleTypes.USER,
-        avatar: ''
+        avatar: '',
+        status: ''
     },
     authData: {
         accessToken: null,

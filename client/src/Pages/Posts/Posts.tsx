@@ -5,15 +5,14 @@ import {useCreatePostsMutation, useDeletePostMutation, useGetAllPostsQuery} from
 import {Post} from "./Post";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
-import {IUserAuthState} from "../../redux/api/authApi";
 import moment from "moment";
 import {ToastWrapper, ToastWrapperType} from "../../Common/Components/ToastWrapper/ToastWrapper";
 import {useGetAllUsersQuery} from "../../redux/api/usersApi";
 import {AppButton} from "../../Common/Components/AppButton/AppButton";
-import {contentToHtml} from "../../utils/helpers";
+import {IUser} from "../../redux/api/dto/UserDto";
 
 export const Posts = () => {
-    const user = useSelector<RootState, IUserAuthState | null>(state => state.auth.authData.user)
+    const user = useSelector<RootState, IUser | null>(state => state.auth.authData.user)
 
     const {data: posts} = useGetAllPostsQuery()
     const {data: users} = useGetAllUsersQuery()

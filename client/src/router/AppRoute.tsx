@@ -9,10 +9,10 @@ import {ComponentsShow} from "../Pages/ComponentsShow/ComponentsShow";
 import {useSelector} from "react-redux";
 import {RootState} from "../redux/store";
 import {NotFound} from "../Pages/NotFound/NotFound";
-import {IUserAuthState} from "../redux/api/authApi";
 import {Users} from "../Pages/Users/Users";
 import {PersonalAccount} from "../Pages/PersonalAccount/PersonalAccount";
 import {UserProfile} from "../Pages/Users/UserProfile";
+import {IUser} from "../redux/api/dto/UserDto";
 
 export const routesIsNotAuth = [
     {
@@ -140,7 +140,7 @@ export const routesByRole: RoutesForMenuType = {
 
 export const AppRoutes = () => {
     const isAuth = useSelector<RootState, boolean>(state => state.auth.isAuth)
-    const user = useSelector<RootState, IUserAuthState | null>(state => state.auth.authData.user)
+    const user = useSelector<RootState, IUser | null>(state => state.auth.authData.user)
 
     return (
         <BrowserRouter>

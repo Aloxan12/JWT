@@ -1,12 +1,13 @@
 import axios from "axios"
-import {AuthState, IUserAuthState} from "./authApi";
+import {AuthState} from "./authApi";
+import {IUser} from "./dto/UserDto";
 
 export const checkAuthApi = async () => {
     try {
         return await axios.get<{
             accessToken: string
             refreshToken: string
-            user: IUserAuthState
+            user: IUser
         }>('http://localhost:5555/api/refresh', {headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json; charset=utf-8',
