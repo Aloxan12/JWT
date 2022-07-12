@@ -5,7 +5,6 @@ import {useDispatch} from "react-redux";
 import {AppButton} from "../../Common/Components/AppButton/AppButton";
 import {
     useGetUserDetailQuery,
-    useUpdateUserDetailMutation,
     useUploadUserAvatarMutation
 } from "../../redux/api/usersApi";
 import {checkAuthApi} from "../../redux/api/checkAuthApi";
