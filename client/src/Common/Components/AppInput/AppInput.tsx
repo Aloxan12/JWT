@@ -6,6 +6,11 @@ export enum IcoType{
     ico_right = 'ico-right'
 }
 
+export enum InputMaskType {
+    float,
+    integer
+}
+
 interface IAppInputBase{
     label?: string
     placeholder?: string
@@ -13,6 +18,7 @@ interface IAppInputBase{
     value?: string | null
     onChange: (value: string) => void
     error?: string | null
+    inputMask?: InputMaskType
 }
 
 interface IAppInputTextarea extends IAppInputBase{
@@ -51,11 +57,20 @@ export const AppInput = ({
                              dropdownActive,
                              error,
                              placeholder,
-                             icoRight}: AppInputType) => {
+                             icoRight,
+                             inputMask}: AppInputType) => {
     const wrapperProps = onClick ? { onClick } : {}
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) =>{
-        const result = e.currentTarget.value
+        let result = '' // e.currentTarget.value
+        switch (inputMask){
+            case InputMaskType.integer:
+                const integerVal = e.currentTarget.value
+                    .replace(/\D/g, '')
+                    .replace(/^(0)([0-9])+/g, '$2')
+                result = integerVal
+                break
+        }
         return  onChange(result)
     }
 
