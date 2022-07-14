@@ -62,7 +62,7 @@ export const AppInput = ({
     const wrapperProps = onClick ? { onClick } : {}
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) =>{
-        let result = '' // e.currentTarget.value
+        let result = ''
         switch (inputMask){
             case InputMaskType.integer:
                 const integerVal = e.currentTarget.value
@@ -70,6 +70,8 @@ export const AppInput = ({
                     .replace(/^(0)([0-9])+/g, '$2')
                 result = integerVal
                 break
+            default:
+                result = e.currentTarget.value
         }
         return  onChange(result)
     }
