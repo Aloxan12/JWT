@@ -44,3 +44,11 @@
     border-radius: 8px;
     border: 1px solid;
 }
+.UserProfilePhoto{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.UserProfilePhoto img{
+    max-width: 300px;
+}

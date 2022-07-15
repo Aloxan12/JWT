@@ -11,8 +11,8 @@ export const UserProfile = () => {
     return (
         <div className={styles.UserProfileWrap}>
             <div className={styles.UserProfileInfo}>
-                <div >
-                    <img src={user!.avatar ? `http://localhost:5555/` + user!.avatar : fakeAvatar} alt={'avatar'}/>
+                <div className={styles.UserProfilePhoto}>
+                    <img src={user && user.avatar ? `http://localhost:5555/` + user!.avatar : fakeAvatar} alt={'avatar'}/>
                 </div>
                 <div>информация</div>
                 <div>посты</div>

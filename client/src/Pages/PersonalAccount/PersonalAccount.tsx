@@ -60,7 +60,7 @@ export const PersonalAccount = () => {
                 <div className={styles.PersonalAccountPhotoBlock}>
                     <img
                         className={styles.PersonalAccountPhoto}
-                        src={user!.avatar ? `http://localhost:5555/` + user!.avatar : fakeAvatar} alt={'avatar'}/>
+                        src={user && user.avatar ? `http://localhost:5555/` + user!.avatar : fakeAvatar} alt={'avatar'}/>
                     <div className={styles.ChangePhotoBtn}>
                         <AppButton
                             onClick={() => setChangePhoto(true)} text={'Сменить фото'}/>
