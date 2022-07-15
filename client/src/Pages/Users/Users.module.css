@@ -27,3 +27,15 @@
 .UserPhotoBlock img{
     max-width: 150px;
 }
+
+
+ /*=============UserProfile*/
+.UserProfileWrap{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.UserProfileInfo{
+    display: inline-flex;
+}
