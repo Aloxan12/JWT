@@ -9,7 +9,11 @@ export const UserProfile = () => {
 
     return (
         <div className={styles.UserProfileWrap}>
-            <div className={styles.UserProfileInfo}></div>
+            <div className={styles.UserProfileInfo}>
+                <div>фото</div>
+                <div>информация</div>
+                <div>посты</div>
+            </div>
         </div>
     );
 };
