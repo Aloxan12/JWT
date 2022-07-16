@@ -76,8 +76,8 @@ class UserController {
 
     async getUsers(req, res, next) {
         try {
-            const { search } = req.query
-            const users = await userService.getAllUsers(search)
+            const { search, limit, page } = req.query
+            const users = await userService.getAllUsers(search, limit, page)
             return res.json(users)
         } catch (e) {
             next(e)
