@@ -42,7 +42,7 @@ export const Users = () => {
                     }
                 })}
             </div>
-            {/*<AppPagination limit={10} totalCount={!!users ? users.results.length : 0} />*/}
+            <AppPagination limit={10} totalCount={!!users ? users.results.length : 0} />
         </div>
     );
 };
