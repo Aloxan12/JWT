@@ -47,7 +47,7 @@ export const Posts = () => {
             <ul className={styles.postsItems}>
                 {posts && posts.map((post: IPost, index) => {
                     return (
-                        <Post post={post} users={users?.results} key={`post-key - ${index}`}/>
+                        <Post post={post} users={!!users ? users?.results : []} key={`post-key - ${index}`}/>
                     )
                 }).reverse()}
             </ul>
