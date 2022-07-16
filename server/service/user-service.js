@@ -91,13 +91,16 @@ class UserService{
             return !!search ? user.email.toLowerCase().includes(search.toLowerCase()) : true
         })
 
-        return filterUser.map((i)=> ({
-            id: i._id,
-            email: i.email,
-            role: i.role,
-            isActivated: i.isActivated,
-            avatar: i.avatar
-        })).slice(offset,offset + limit)
+        return {
+            count: users.length,
+            results: filterUser.map((i)=> ({
+                id: i._id,
+                email: i.email,
+                role: i.role,
+                isActivated: i.isActivated,
+                avatar: i.avatar
+            })).slice(offset,offset + limit)
+        }
     }
 
     async getUserDetail(id){

@@ -33,16 +33,16 @@ export const Users = () => {
                 {users && users.results.map(user => {
                     if (isAdmin) {
                         return (
-                            <NavLink to={`/users/${user.id}/`} className={styles.UserLink}>
+                            <NavLink to={`/users/${user.id}/`} className={styles.UserLink} key={user.id}>
                                 <User user={user}/>
                             </NavLink>
                         )
                     } else {
-                        return <User user={user}/>
+                        return <User user={user} key={user.id}/>
                     }
                 })}
             </div>
-            <AppPagination limit={10} totalCount={!!users ? users.results.length : 0} />
+            {/*<AppPagination limit={10} totalCount={!!users ? users.results.length : 0} />*/}
         </div>
     );
 };
