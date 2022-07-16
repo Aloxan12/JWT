@@ -14,12 +14,14 @@ import {NavLink} from "react-router-dom";
 export const Users = () => {
     const params = useParamsControl<IUsersRequestDto, keyof IUsersRequestDto>(
         {
-            paramsList: ['search'], withPagination: false
+            paramsList: ['search'], withPagination: true, resetPagination: true
         })
 
     const currentUser = useSelector((state: RootState) => state.auth.user)
     const isAdmin = useIsAdmin(!!currentUser ? currentUser.role : undefined)
     const {data: users} = useGetAllUsersQuery(params)
+
+
 
     return (
         <div>
