@@ -59,6 +59,9 @@ export const AppPagination = ({totalCount, setLimit, limit}:IAppPagination) => {
 
     createPages(pages, pageCount, currentPage)
 
+    console.log('pages',pages)
+    console.log('pages',totalCount)
+
     useEffect(() => {
         if (currentPage === 1) {
             searchParams.set('limit', `${limit}`)
