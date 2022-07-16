@@ -84,9 +84,9 @@ class UserService{
 
     async getAllUsers(search, limit, page){
         page = page || 1
-        limit = limit || 9
+        limit = limit || 10
         let offset = page * limit - limit
-        const users = await UserModel.find({limit, offset})
+        const users = await UserModel.find()
         const filterUser = users.filter(user => {
             return !!search ? user.email.toLowerCase().includes(search.toLowerCase()) : true
         })
@@ -97,7 +97,7 @@ class UserService{
             role: i.role,
             isActivated: i.isActivated,
             avatar: i.avatar
-        }))
+        })).slice(offset,offset + limit)
     }
 
     async getUserDetail(id){
