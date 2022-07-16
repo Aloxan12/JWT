@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
+import {useSearchParams} from "react-router-dom";
 
 const AppPagination = () => {
-    const [currentPage, setCurrentPage] = useState(1)
+    const [searchParams, setSearchParams] = useSearchParams()
+    const page = searchParams.get('page')
+    const [currentPage, setCurrentPage] = useState<number>(!!page ? Number(page) : 1)
     const pages:number[] = []
     return (
         <div>
