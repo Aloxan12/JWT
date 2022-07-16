@@ -1,4 +1,5 @@
 import {RoleTypes} from "../../../router/AppRoute";
+import {BaseQueryDto} from "./BaseDto";
 
 export interface IUserBase {
     email: string,
@@ -12,7 +13,7 @@ export interface IUser extends IUserBase{
     id: string,
 }
 
-export interface IUsersResponseDto{
+export interface IUsersResponseDto extends BaseQueryDto{
     results: IUser[]
 }
 export interface IUsersRequestDto{
