@@ -10,6 +10,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {useIsAdmin} from "../../utils/helpers";
 import {NavLink} from "react-router-dom";
+import {AppPagination} from "../../Common/Components/AppPagination/AppPagination";
 
 export const Users = () => {
     const params = useParamsControl<IUsersRequestDto, keyof IUsersRequestDto>(
@@ -41,6 +42,7 @@ export const Users = () => {
                     }
                 })}
             </div>
+            <AppPagination limit={10} totalCount={!!users ? users.length : 0} />
         </div>
     );
 };

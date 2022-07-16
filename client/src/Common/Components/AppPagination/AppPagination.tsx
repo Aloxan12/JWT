@@ -41,7 +41,7 @@ interface IAppPagination {
     setLimit?: (limit: number) => void
 }
 
-const AppPagination = ({totalCount, setLimit, limit}:IAppPagination) => {
+export const AppPagination = ({totalCount, setLimit, limit}:IAppPagination) => {
     const [searchParams, setSearchParams] = useSearchParams()
     const page = searchParams.get('page')
     const [currentPage, setCurrentPage] = useState<number>(!!page ? Number(page) : 1)
@@ -59,6 +59,17 @@ const AppPagination = ({totalCount, setLimit, limit}:IAppPagination) => {
 
     createPages(pages, pageCount, currentPage)
 
+    useEffect(() => {
+        if (currentPage === 1) {
+            searchParams.set('limit', `${limit}`)
+            searchParams.set('page', '1')
+            setSearchParams(searchParams.toString())
+        } else {
+            searchParams.set('limit', `${limit}`)
+            searchParams.set('page', `${currentPage}`)
+            setSearchParams(searchParams.toString())
+        }
+    }, [currentPage, limit])
 
     return (
         <div>
@@ -70,5 +81,3 @@ const AppPagination = ({totalCount, setLimit, limit}:IAppPagination) => {
         </div>
     );
 };
-
-export default AppPagination;
