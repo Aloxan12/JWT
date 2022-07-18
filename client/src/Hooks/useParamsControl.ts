@@ -34,13 +34,13 @@ export const useParamsControl = <T, TKey extends keyof T>({
 
     const searchParamsWithoutPagination = search.replace(isPaginationResetReg, '')
 
-    // useEffect(() => {
-    //     if (!!resetPagination) {
-    //         searchParams.delete('limit')
-    //         searchParams.delete('page')
-    //         setSearchParams(searchParams.toString())
-    //     }
-    // }, [searchParamsWithoutPagination])
+    useEffect(() => {
+        if (!!resetPagination) {
+            searchParams.delete('limit')
+            searchParams.delete('page')
+            setSearchParams(searchParams.toString())
+        }
+    }, [searchParamsWithoutPagination])
 
     useEffect(() => {
         const newParams = {} as {
