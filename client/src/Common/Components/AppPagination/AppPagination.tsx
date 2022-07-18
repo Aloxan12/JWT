@@ -78,6 +78,7 @@ export const AppPagination = ({totalCount, setLimit, limit, sticky}:IAppPaginati
             <div className={`${styles.AppPaginationWrap} ${sticky ? commonStyles.StickyBottom : ''}`}>
                 {pages.map((page, index) =>{
                     return <div key={`pagination-page-${index}`}
+                                className={`${styles.PaginationPage} ${currentPage === page ? styles.CurrentPage : ''}`}
                                 onClick={typeof page === 'number' ? ()=> setCurrentPage(page) : undefined}
                     >
                         {page}

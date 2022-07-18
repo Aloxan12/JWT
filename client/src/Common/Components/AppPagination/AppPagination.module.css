@@ -9,3 +9,12 @@
     background-color: white;
     z-index: 5;
 }
+
+.PaginationPage{
+
+}
+
+.CurrentPage{
+    font-weight: bold;
+    color: #209620;
+}
