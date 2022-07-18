@@ -40,9 +40,10 @@ interface IAppPagination {
     totalCount: number
     limit: number
     setLimit?: (limit: number) => void
+    sticky?: boolean
 }
 
-export const AppPagination = ({totalCount, setLimit, limit}:IAppPagination) => {
+export const AppPagination = ({totalCount, setLimit, limit, sticky}:IAppPagination) => {
     const [searchParams, setSearchParams] = useSearchParams()
     const page = searchParams.get('page')
     const [currentPage, setCurrentPage] = useState<number>(!!page ? Number(page) : 1)
@@ -73,14 +74,16 @@ export const AppPagination = ({totalCount, setLimit, limit}:IAppPagination) => {
     }, [currentPage, limit])
 
     return (
-        <div className={`${styles.AppPaginationWrap} ${commonStyles.StickyBottom}`}>
-            {pages.map((page, index) =>{
-                return <div key={`pagination-page-${index}`}
-                        onClick={typeof page === 'number' ? ()=> setCurrentPage(page) : undefined}
-                >
-                    {page}
-                </div>
-            })}
+        <div className={commonStyles.WidthCenter}>
+            <div className={`${styles.AppPaginationWrap} ${sticky ? commonStyles.StickyBottom : ''}`}>
+                {pages.map((page, index) =>{
+                    return <div key={`pagination-page-${index}`}
+                                onClick={typeof page === 'number' ? ()=> setCurrentPage(page) : undefined}
+                    >
+                        {page}
+                    </div>
+                })}
+            </div>
         </div>
     );
 };
