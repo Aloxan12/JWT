@@ -85,8 +85,13 @@ export const AppPagination = ({totalCount, setLimit, limit, sticky}:IAppPaginati
                         {page}
                     </div>
                 })}
+                {setLimit && <AppDropdown
+                    data={[10, 20, 30]}
+                    value={limit}
+                    onChange={(value) => setLimit(value)}
+                    paginationMode
+                />}
             </div>
-            {setLimit && <AppDropdown data={[10, 20, 30]} value={limit} onChange={(value) => setLimit(value)}/>}
         </div>
     );
 };

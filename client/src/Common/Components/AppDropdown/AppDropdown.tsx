@@ -12,6 +12,7 @@ interface IAppDropdownBase<T, TKey extends keyof T> {
     propToShowInList?: TKey // если data массив строк, то не передаем propToShowInList и propToShowInInput
     propToShowInInput?: TKey
     resetValueHandler?: () => void
+    paginationMode?: boolean
 }
 
 type AppDropdownType<T, TKey extends keyof T> = IAppDropdownBase<T, TKey>
@@ -25,7 +26,8 @@ export const AppDropdown = <T, TKey extends keyof T>({
                                                          propToShowInList,
                                                          propToShowInInput,
                                                          onChange,
-                                                         value
+                                                         value,
+                                                         paginationMode = false
                                                      }: AppDropdownType<T, TKey>) => {
     const [active, setActive] = useState<boolean>(false)
     const [currentData, setCurrentData] = useState<T[] | []>([])
