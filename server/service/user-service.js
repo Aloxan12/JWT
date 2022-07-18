@@ -92,7 +92,7 @@ class UserService{
         })
 
         return {
-            count: users.length,
+            count: filterUser.length,
             results: filterUser.map((i)=> ({
                 id: i._id,
                 email: i.email,
