@@ -3,6 +3,7 @@ import {useSearchParams} from "react-router-dom";
 import {isPaginationResetReg} from "../../../Hooks/useParamsControl";
 import styles from './AppPagination.module.css'
 import commonStyles from '../../../App.module.css'
+import {AppDropdown} from "../AppDropdown/AppDropdown";
 
 function createPages(
     pages: (number | string)[],
@@ -85,6 +86,7 @@ export const AppPagination = ({totalCount, setLimit, limit, sticky}:IAppPaginati
                     </div>
                 })}
             </div>
+            {setLimit && <AppDropdown data={[10, 20, 30]} value={limit} onChange={(value) => setLimit(value)}/>}
         </div>
     );
 };
