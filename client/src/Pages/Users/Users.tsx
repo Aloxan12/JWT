@@ -16,7 +16,7 @@ export const Users = () => {
     const [limit, setLimit] = useState(10)
     const params = useParamsControl<IUsersRequestDto, keyof IUsersRequestDto>(
         {
-            paramsList: ['search'], withPagination: true, resetPagination: true
+            paramsList: ['search'], withPagination: true, resetPagination: true, limit
         })
 
     const currentUser = useSelector((state: RootState) => state.auth.user)
@@ -42,11 +42,13 @@ export const Users = () => {
                     }
                 })}
             </div>
-            <AppPagination
-                limit={limit}
-                totalCount={!!users ? users.count : 0}
-                setLimit={setLimit}
-            />
+            {users && users.results.length > 0 &&
+                <AppPagination
+                    limit={limit}
+                    totalCount={!!users ? users.count : 0}
+                    setLimit={setLimit}
+                />
+            }
         </div>
     );
 };
