@@ -10,11 +10,13 @@ interface UseParamsControlTypeBase<T, TKey extends keyof T> {
 interface UseParamsControlTypeWithoutPagination<T, TKey extends keyof T> extends UseParamsControlTypeBase<T, TKey> {
     withPagination: false
     resetPagination?: never
+    limit?: never
 }
 
 interface UseParamsControlTypeWithPagination<T, TKey extends keyof T> extends UseParamsControlTypeBase<T, TKey> {
     withPagination: true
     resetPagination?: boolean
+    limit?:number
 }
 
 type UseParamsControlType<T, TKey extends keyof T> =
@@ -24,7 +26,8 @@ type UseParamsControlType<T, TKey extends keyof T> =
 export const useParamsControl = <T, TKey extends keyof T>({
                                                               paramsList,
                                                               withPagination,
-                                                              resetPagination
+                                                              resetPagination,
+                                                              limit
                                                           }: UseParamsControlType<T, TKey>) => {
     const [searchParams, setSearchParams] = useSearchParams()
     const search = searchParams.toString()
@@ -36,8 +39,8 @@ export const useParamsControl = <T, TKey extends keyof T>({
 
     useEffect(() => {
         if (!!resetPagination) {
-            searchParams.delete('limit')
-            searchParams.delete('page')
+            searchParams.set('limit', `${!!limit ? limit : '10'}`)
+            searchParams.set('page', '1')
             setSearchParams(searchParams.toString())
         }
     }, [searchParamsWithoutPagination])
