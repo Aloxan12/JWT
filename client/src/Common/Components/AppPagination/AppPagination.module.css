@@ -1,6 +1,7 @@
 .AppPaginationWrap{
     display: inline-flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: 30px;
     padding: 15px 20px;
     border: 1px solid;
@@ -9,10 +10,6 @@
     background-color: white;
     z-index: 5;
     box-sizing: border-box;
-}
-
-.AppPaginationWrap>.AppDropdown{
-    width: 20px;
 }
 
 .PaginationPage{

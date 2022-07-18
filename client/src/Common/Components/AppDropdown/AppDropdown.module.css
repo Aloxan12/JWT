@@ -7,6 +7,16 @@
     font-size: 14px;
 }
 
+.PaginationMode input{
+    max-width: 50px;
+    width: 50px;
+    border-radius: 0 0 8px 8px;
+}
+
+.PaginationMode div{
+    margin-top: 0;
+}
+
 .DropdownValuesBlock{
     background-color: rgba(249, 250, 252, 0.7);
     box-shadow: 0 5px 12px rgba(0, 118, 182, 0.1);
@@ -27,6 +37,12 @@
 }
 .DropdownValuesBlock::-webkit-scrollbar {
     width: 2px;
+}
+.PaginationMode .DropdownValuesBlock{
+    border-radius: 8px 8px 0 0;
+    bottom: auto;
+    top: 0;
+    transform: translateY(-100%);
 }
 
 .ValueItem{
