@@ -1,0 +1,11 @@
+.AppPaginationWrap{
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 15px 20px;
+    border: 1px solid;
+    border-radius: 8px;
+    margin: 15px auto;
+    background-color: white;
+    z-index: 5;
+}

@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {useSearchParams} from "react-router-dom";
 import {isPaginationResetReg} from "../../../Hooks/useParamsControl";
+import styles from './AppPagination.module.css'
+import commonStyles from '../../../App.module.css'
 
 function createPages(
     pages: (number | string)[],
@@ -58,9 +60,6 @@ export const AppPagination = ({totalCount, setLimit, limit}:IAppPagination) => {
 
     createPages(pages, pageCount, currentPage)
 
-    console.log('pages',pages)
-    console.log('pages',totalCount)
-
     useEffect(() => {
         if (currentPage === 1) {
             searchParams.set('limit', `${limit}`)
@@ -74,7 +73,7 @@ export const AppPagination = ({totalCount, setLimit, limit}:IAppPagination) => {
     }, [currentPage, limit])
 
     return (
-        <div>
+        <div className={`${styles.AppPaginationWrap} ${commonStyles.StickyBottom}`}>
             {pages.map((page, index) =>{
                 return <div key={`pagination-page-${index}`}
                         onClick={typeof page === 'number' ? ()=> setCurrentPage(page) : undefined}
