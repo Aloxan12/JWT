@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {useSearchParams} from "react-router-dom";
 
-export const isPaginationResetReg = /(limit=\d+&offset=\d+)|[&]/g
+export const isPaginationResetReg = /(limit=\d+&page=\d+)|[&]/g
 
 interface UseParamsControlTypeBase<T, TKey extends keyof T> {
     paramsList: (TKey | undefined)[]
@@ -30,17 +30,17 @@ export const useParamsControl = <T, TKey extends keyof T>({
     const search = searchParams.toString()
     const [params, setParams] = useState({})
 
-    const fullParamsList: (TKey | undefined)[] = withPagination ? ['limit' as TKey, 'offset' as TKey, ...paramsList] : paramsList
+    const fullParamsList: (TKey | undefined)[] = withPagination ? ['limit' as TKey, 'page' as TKey, ...paramsList] : paramsList
 
     const searchParamsWithoutPagination = search.replace(isPaginationResetReg, '')
 
-    useEffect(() => {
-        if (!!resetPagination) {
-            searchParams.delete('limit')
-            searchParams.delete('offset')
-            setSearchParams(searchParams.toString())
-        }
-    }, [searchParamsWithoutPagination])
+    // useEffect(() => {
+    //     if (!!resetPagination) {
+    //         searchParams.delete('limit')
+    //         searchParams.delete('page')
+    //         setSearchParams(searchParams.toString())
+    //     }
+    // }, [searchParamsWithoutPagination])
 
     useEffect(() => {
         const newParams = {} as {

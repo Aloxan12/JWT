@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useSearchParams} from "react-router-dom";
+import {isPaginationResetReg} from "../../../Hooks/useParamsControl";
 
 function createPages(
     pages: (number | string)[],
@@ -32,8 +33,6 @@ function createPages(
         }
     }
 }
-
-const isPaginationResetReg = /(limit=\d+&offset=\d+)/g
 
 interface IAppPagination {
     totalCount: number
@@ -77,7 +76,9 @@ export const AppPagination = ({totalCount, setLimit, limit}:IAppPagination) => {
     return (
         <div>
             {pages.map((page, index) =>{
-                return <div key={`pagination-page-${index}`}>
+                return <div key={`pagination-page-${index}`}
+                        onClick={typeof page === 'number' ? ()=> setCurrentPage(page) : undefined}
+                >
                     {page}
                 </div>
             })}
