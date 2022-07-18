@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useGetAllUsersQuery} from "../../redux/api/usersApi";
 import {User} from "./User";
 import styles from './Users.module.css'
@@ -13,6 +13,7 @@ import {NavLink} from "react-router-dom";
 import {AppPagination} from "../../Common/Components/AppPagination/AppPagination";
 
 export const Users = () => {
+    const [limit, setLimit] = useState(10)
     const params = useParamsControl<IUsersRequestDto, keyof IUsersRequestDto>(
         {
             paramsList: ['search'], withPagination: true, resetPagination: true
@@ -42,7 +43,7 @@ export const Users = () => {
                     }
                 })}
             </div>
-            <AppPagination limit={10} totalCount={!!users ? users.count : 0} />
+            <AppPagination limit={limit} totalCount={!!users ? users.count : 0} setLimit={setLimit} />
         </div>
     );
 };
