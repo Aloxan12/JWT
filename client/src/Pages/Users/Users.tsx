@@ -24,7 +24,6 @@ export const Users = () => {
     const {data: users} = useGetAllUsersQuery(params)
 
 
-
     return (
         <div>
             <div className={commonStyles.FilterBlock}>
@@ -43,7 +42,11 @@ export const Users = () => {
                     }
                 })}
             </div>
-            <AppPagination limit={limit} totalCount={!!users ? users.count : 0} setLimit={setLimit} />
+            <AppPagination
+                limit={limit}
+                totalCount={!!users ? users.count : 0}
+                setLimit={setLimit}
+            />
         </div>
     );
 };
