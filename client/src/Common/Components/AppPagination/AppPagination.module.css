@@ -8,10 +8,19 @@
     margin: 15px auto;
     background-color: white;
     z-index: 5;
+    box-sizing: border-box;
 }
 
 .PaginationPage{
+    padding: 6px 14px;
+    border-radius: 4px;
+    border: 1px solid;
+}
 
+.PaginationPage:not(.CurrentPage):hover{
+    cursor: pointer;
+    font-weight: bold;
+    color: #58d058;
 }
 
 .CurrentPage{
