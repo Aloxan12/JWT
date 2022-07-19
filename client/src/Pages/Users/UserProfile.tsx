@@ -20,9 +20,10 @@ export const UserProfile = () => {
                         Email: {user.email}
                     </div>
                     <div>
-                        Email: {user.role === RoleTypes.ADMIN ? 'Администратор' : "Пользователь"}
+                        Роль: {user.role === RoleTypes.ADMIN ? 'Администратор' : "Пользователь"}
                     </div>
-                </div>}
+                </div>
+                }
                 <div>посты</div>
             </div>
         </div>
