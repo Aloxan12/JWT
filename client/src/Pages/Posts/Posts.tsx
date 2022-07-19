@@ -15,7 +15,7 @@ export const Posts = () => {
     const user = useSelector<RootState, IUser | null>(state => state.auth.authData.user)
 
     const {data: posts} = useGetAllPostsQuery()
-    const {data: users} = useGetAllUsersQuery()
+    const {data: users} = useGetAllUsersQuery({limit: 1000})
     const [createPost] = useCreatePostsMutation()
 
     const [postText, setPostText] = useState('')
