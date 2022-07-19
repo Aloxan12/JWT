@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom";
 import {useGetUserDetailQuery} from "../../redux/api/usersApi";
 import styles from './Users.module.css'
 import fakeAvatar from "../../utils/images/fake_avatar.png";
+import {RoleTypes} from "../../router/AppRoute";
 
 export const UserProfile = () => {
     const {id} = useParams()
@@ -17,6 +18,9 @@ export const UserProfile = () => {
                 {!!user && <div className={styles.UserProfileInfo}>
                     <div>
                         Email: {user.email}
+                    </div>
+                    <div>
+                        Email: {user.role === RoleTypes.ADMIN ? 'Администратор' : "Пользователь"}
                     </div>
                 </div>}
                 <div>посты</div>
