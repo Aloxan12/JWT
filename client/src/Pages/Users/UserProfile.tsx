@@ -10,11 +10,15 @@ export const UserProfile = () => {
 
     return (
         <div className={styles.UserProfileWrap}>
-            <div className={styles.UserProfileInfo}>
+            <div className={styles.UserProfileInfoWrap}>
                 <div className={styles.UserProfilePhoto}>
                     <img src={user && user.avatar ? `http://localhost:5555/` + user!.avatar : fakeAvatar} alt={'avatar'}/>
                 </div>
-                <div>информация</div>
+                {!!user && <div className={styles.UserProfileInfo}>
+                    <div>
+                        Email: {user.email}
+                    </div>
+                </div>}
                 <div>посты</div>
             </div>
         </div>

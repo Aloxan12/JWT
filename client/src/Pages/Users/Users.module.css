@@ -36,7 +36,7 @@
     justify-content: center;
     align-items: center;
 }
-.UserProfileInfo{
+.UserProfileInfoWrap{
     margin-top: 50px;
     display: inline-flex;
     flex-direction: column;
@@ -51,4 +51,10 @@
 }
 .UserProfilePhoto img{
     max-width: 300px;
+}
+
+.UserProfileInfo{
+    display: inline-flex;
+    flex-direction: column;
+    gap: 15px;
 }
