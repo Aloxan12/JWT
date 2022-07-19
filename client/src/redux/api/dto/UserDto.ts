@@ -1,5 +1,5 @@
 import {RoleTypes} from "../../../router/AppRoute";
-import {BaseQueryDto} from "./BaseDto";
+import {BaseQueryDto, IWithPagination} from "./BaseDto";
 
 export interface IUserBase {
     email: string,
@@ -16,6 +16,6 @@ export interface IUser extends IUserBase{
 export interface IUsersResponseDto extends BaseQueryDto{
     results: IUser[]
 }
-export interface IUsersRequestDto{
+export interface IUsersRequestDto extends IWithPagination{
     search?: string | null
 }
