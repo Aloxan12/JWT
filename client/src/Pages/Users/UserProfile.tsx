@@ -17,10 +17,13 @@ export const UserProfile = () => {
                 </div>
                 {!!user && <div className={styles.UserProfileInfo}>
                     <div>
-                        Email: {user.email}
+                        Email: <b>{user.email}</b>
                     </div>
                     <div>
-                        Роль: {user.role === RoleTypes.ADMIN ? 'Администратор' : "Пользователь"}
+                        Роль: <b>{user.role === RoleTypes.ADMIN ? 'Администратор' : "Пользователь"}</b>
+                    </div>
+                    <div>
+                        Статус: <b>{!!user.status ? user.status : 'Статус не установлен'}</b>
                     </div>
                 </div>
                 }
