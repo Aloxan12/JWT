@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import styles from "./Posts.module.css";
-import {IPost} from "../../Type/PostType";
 import {useCreatePostsMutation, useDeletePostMutation, useGetAllPostsQuery} from "../../redux/api/postApi";
 import {Post} from "./Post";
 import {useSelector} from "react-redux";
@@ -10,6 +9,7 @@ import {ToastWrapper, ToastWrapperType} from "../../Common/Components/ToastWrapp
 import {useGetAllUsersQuery} from "../../redux/api/usersApi";
 import {AppButton} from "../../Common/Components/AppButton/AppButton";
 import {IUser} from "../../redux/api/dto/UserDto";
+import {IPost} from "../../redux/api/dto/PostDto";
 
 export const Posts = () => {
     const user = useSelector<RootState, IUser | null>(state => state.auth.authData.user)

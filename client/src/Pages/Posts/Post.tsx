@@ -1,5 +1,4 @@
 import React from 'react';
-import {IPost} from "../../Type/PostType";
 import styles from "./Posts.module.css";
 import moment from "moment";
 import {useDeletePostMutation} from "../../redux/api/postApi";
@@ -10,6 +9,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
 import {RoleTypes} from "../../router/AppRoute";
 import {IUser} from "../../redux/api/dto/UserDto";
+import {IPost} from "../../redux/api/dto/PostDto";
 
 interface IPostProps{
     post: IPost
