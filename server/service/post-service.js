@@ -14,7 +14,17 @@ class PostService{
         const filterPosts = posts.filter(post => {
             return !!search ? post.postText.toLowerCase().includes(search.toLowerCase()) : true
         })
-        return posts
+
+        return {
+            count: filterPosts.length,
+            results: filterPosts.map((post)=> ({
+                id: post._id,
+                postText: post.postText,
+                publicDate: post.publicDate,
+                author: post.author,
+            })).slice(offset,offset + limit)
+        }
+        // return posts
     }
     async createPosts(postText, author, publicDate){
         if(postText.length > 5000){
