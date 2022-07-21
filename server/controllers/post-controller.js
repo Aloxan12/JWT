@@ -4,7 +4,8 @@ const PostDto = require('../dtos/post-dto')
 class PostController{
     async getPosts(req, res, next){
         try {
-            const posts = await postService.getAllPosts()
+            const { search, limit, page } = req.query
+            const posts = await postService.getAllPosts(search, limit, page)
             return res.json(posts)
         }catch (e){
             next(e)

@@ -6,8 +6,14 @@ require('dotenv').config()
 
 
 class PostService{
-    async getAllPosts(){
+    async getAllPosts(search, limit, page){
+        page = page || 1
+        limit = limit || 10
+        let offset = page * limit - limit
         const posts = await PostModel.find()
+        const filterPosts = posts.filter(post => {
+            return !!search ? post.postText.toLowerCase().includes(search.toLowerCase()) : true
+        })
         return posts
     }
     async createPosts(postText, author, publicDate){

@@ -93,13 +93,7 @@ class UserService{
 
         return {
             count: filterUser.length,
-            results: filterUser.map((i)=> ({
-                id: i._id,
-                email: i.email,
-                role: i.role,
-                isActivated: i.isActivated,
-                avatar: i.avatar
-            })).slice(offset,offset + limit)
+            results: filterUser.slice(offset,offset + limit)
         }
     }
 
