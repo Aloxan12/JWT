@@ -22,7 +22,7 @@ export const Post = ({post, users }: IPostProps) => {
     const user = useSelector<RootState, IUser | null>(state => state.auth.authData.user)
 
     const deletePostHandler =()=>{
-        deletePost({id: post._id}).then(res =>{
+        deletePost({id: post.id}).then(res =>{
             const { data } = res as {data: {status: number, message: string, post: IPost}}
             if(data.status === 204){
                 ToastWrapper({
