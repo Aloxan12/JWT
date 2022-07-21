@@ -8,7 +8,7 @@ require('dotenv').config()
 class PostService{
     async getAllPosts(search, limit, page){
         page = page || 1
-        limit = limit || 10
+        limit = limit || 5
         let offset = page * limit - limit
         const posts = await PostModel.find()
         const filterPosts = posts.filter(post => {
