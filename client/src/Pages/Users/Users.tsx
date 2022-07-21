@@ -30,10 +30,10 @@ export const Users = () => {
                 <AppInputFilter searchParam='search' placeholder={'Введите email'} label={'Поиск по email'}/>
             </div>
             <div className={styles.UsersBlock}>
-                {users && users.results.map(user => {
+                {users && currentUser && users.results.map(user => {
                     if (isAdmin) {
                         return (
-                            <NavLink to={`/users/${user.id}/`} className={styles.UserLink} key={user.id}>
+                            <NavLink to={user.id === currentUser.id ? `/currentUser/${user.id}/` : `/users/${user.id}/`} className={styles.UserLink} key={user.id}>
                                 <User user={user}/>
                             </NavLink>
                         )
