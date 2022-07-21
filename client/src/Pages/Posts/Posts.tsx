@@ -49,7 +49,7 @@ export const Posts = () => {
                     return (
                         <Post post={post} users={!!users ? users?.results : []} key={`post-key - ${index}`}/>
                     )
-                }).reverse()}
+                })}
             </ul>
         </div>
     );
