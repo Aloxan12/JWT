@@ -13,7 +13,7 @@ class PostService{
         const posts = await PostModel.find()
         const filterPosts = posts.filter(post => {
             return !!search ? post.postText.toLowerCase().includes(search.toLowerCase()) : true
-        })
+        }).reverse()
 
         return {
             count: filterPosts.length,

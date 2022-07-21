@@ -89,7 +89,7 @@ class UserService{
         const users = await UserModel.find()
         const filterUser = users.filter(user => {
             return !!search ? user.email.toLowerCase().includes(search.toLowerCase()) : true
-        }).reverse()
+        })
 
         return {
             count: filterUser.length,
