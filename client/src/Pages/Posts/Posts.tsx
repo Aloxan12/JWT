@@ -40,7 +40,7 @@ export const Posts = () => {
 
     useEffect(()=>{
         if(fetching && postsData!.count > (limit * currentPage)){
-            setCurrentPage(prevState => prevState + 1)
+            setCurrentPage(prev => prev + 1)
         }
     },[fetching])
 
