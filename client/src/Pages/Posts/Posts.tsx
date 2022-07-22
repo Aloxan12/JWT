@@ -18,7 +18,7 @@ export const Posts = () => {
     const [currentPage, setCurrentPage] = useState<number>(1)
     const [fetching, setFetching] = useState<boolean>(false)
 
-    const {data: postsData} = useGetAllPostsQuery({limit, page: currentPage},{skip:fetching})
+    const {data: postsData} = useGetAllPostsQuery({limit, page: currentPage})
     const {data: users} = useGetAllUsersQuery({limit: 1000})
     const [createPost] = useCreatePostsMutation()
 
@@ -26,8 +26,11 @@ export const Posts = () => {
     const publicDate = moment(new Date()).toISOString()
 
     useEffect(() => {
+        console.log('postsData', postsData)
         if (!!postsData) {
-            setPosts(postsData.results)
+            setPosts(prevState => {
+                return [...prevState, ...postsData.results]
+            } )
         }
 
         setFetching(false)
@@ -35,8 +38,7 @@ export const Posts = () => {
 
     const scrollHandler = (e: any)=>{
         if((e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight)) < 50){
-            setCurrentPage(prevState => prevState + 1)
-            console.log('currentPage', currentPage)
+            setCurrentPage(2)
             setFetching(true)
         }
     }
