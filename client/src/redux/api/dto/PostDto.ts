@@ -1,4 +1,4 @@
-import {BaseQueryDto} from "./BaseDto";
+import {BaseQueryDto, IWithPagination} from "./BaseDto";
 
 export interface IPost{
     author: string
@@ -15,4 +15,8 @@ export interface ICreatePost{
 
 export interface IPostsResponseDto extends BaseQueryDto{
     results: IPost[]
+}
+
+export interface IPostRequestDto extends IWithPagination{
+    search?: string | null
 }

@@ -14,9 +14,11 @@ import {IPost} from "../../redux/api/dto/PostDto";
 export const Posts = () => {
     const user = useSelector<RootState, IUser | null>(state => state.auth.authData.user)
     const [posts, setPosts] = useState<IPost[]>([])
+    const limit = 5
+    const [currentPage, setCurrentPage] = useState<number>(1)
     const [fetching, setFetching] = useState<boolean>(false)
 
-    const {data: postsData} = useGetAllPostsQuery(null,{skip:fetching})
+    const {data: postsData} = useGetAllPostsQuery({limit, page: currentPage},{skip:fetching})
     const {data: users} = useGetAllUsersQuery({limit: 1000})
     const [createPost] = useCreatePostsMutation()
 
@@ -27,6 +29,8 @@ export const Posts = () => {
         if (!!postsData) {
             setPosts(postsData.results)
         }
+
+        setFetching(false)
     }, [postsData])
 
     const scrollHandler = (e: any)=>{

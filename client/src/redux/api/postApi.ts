@@ -1,5 +1,5 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import {ICreatePost, IPost, IPostsResponseDto} from "./dto/PostDto";
+import {ICreatePost, IPost, IPostRequestDto, IPostsResponseDto} from "./dto/PostDto";
 
 
 export const postApi = createApi({
@@ -18,7 +18,7 @@ export const postApi = createApi({
     }),
     tagTypes: ['Posts'],
     endpoints: (build) => ({
-        getAllPosts: build.query<IPostsResponseDto, void | null>({
+        getAllPosts: build.query<IPostsResponseDto, IPostRequestDto | void | null>({
             query: () => ({
                 url: '/posts',
             }),
