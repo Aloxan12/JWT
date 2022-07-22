@@ -34,6 +34,7 @@ export const Posts = () => {
 
     useEffect(()=>{
         document.addEventListener('scroll', scrollHandler)
+        return ()=> document.removeEventListener('scroll', scrollHandler)
     },[])
 
     const createPostHandler = async () => {
