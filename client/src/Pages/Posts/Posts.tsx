@@ -10,6 +10,7 @@ import {useGetAllUsersQuery} from "../../redux/api/usersApi";
 import {AppButton} from "../../Common/Components/AppButton/AppButton";
 import {IUser} from "../../redux/api/dto/UserDto";
 import {IPost} from "../../redux/api/dto/PostDto";
+import {throttle} from "../../Hooks/helpers/useDebounce";
 
 export const Posts = () => {
     const user = useSelector<RootState, IUser | null>(state => state.auth.authData.user)
@@ -42,9 +43,11 @@ export const Posts = () => {
         }
     }
 
+    const throttleScrollHandler = throttle(scrollHandler, 300)
+
     useEffect(()=>{
-        document.addEventListener('scroll', scrollHandler)
-        return ()=> document.removeEventListener('scroll', scrollHandler)
+        document.addEventListener('scroll', throttleScrollHandler)
+        return ()=> document.removeEventListener('scroll', throttleScrollHandler)
     },[])
 
     const createPostHandler = async () => {
