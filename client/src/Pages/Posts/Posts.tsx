@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from "./Posts.module.css";
 import {useCreatePostsMutation, useDeletePostMutation, useGetAllPostsQuery} from "../../redux/api/postApi";
 import {Post} from "./Post";
@@ -13,13 +13,18 @@ import {IPost} from "../../redux/api/dto/PostDto";
 
 export const Posts = () => {
     const user = useSelector<RootState, IUser | null>(state => state.auth.authData.user)
+    const [posts ,setPosts] = useState([])
 
-    const {data: posts} = useGetAllPostsQuery()
+    const {data: postsData} = useGetAllPostsQuery()
     const {data: users} = useGetAllUsersQuery({limit: 1000})
     const [createPost] = useCreatePostsMutation()
 
     const [postText, setPostText] = useState('')
     const publicDate = moment(new Date()).toISOString()
+
+    useEffect(()=>{
+        setPosts(postsData.results)
+    },[postsData])
 
     const createPostHandler = async () => {
         if (user && postText !== '') {
