@@ -27,7 +27,7 @@ export const Posts = () => {
     const [postText, setPostText] = useState('')
     const publicDate = moment(new Date()).toISOString()
 
-    useEffect(() => {
+    useEffect(() => { // Продумать пополение данных
         if (!!postsData) {
             count = postsData.count
             setPosts(prevState => {
