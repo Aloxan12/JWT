@@ -26,7 +26,6 @@ export const Posts = () => {
     const publicDate = moment(new Date()).toISOString()
 
     useEffect(() => {
-        console.log('postsData', postsData)
         if (!!postsData) {
             setPosts(prevState => {
                 return [...prevState, ...postsData.results]
