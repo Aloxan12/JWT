@@ -52,7 +52,7 @@ export const Posts = () => {
                 <AppButton text="Опубликовать" onClick={createPostHandler}/>
             </div>
             <ul className={styles.postsItems}>
-                {posts && posts.results.map((post: IPost, index) => {
+                {posts.map((post: IPost, index) => {
                     return (
                         <Post post={post} users={!!users ? users?.results : []} key={`post-key - ${index}`}/>
                     )
