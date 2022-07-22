@@ -19,8 +19,9 @@ export const postApi = createApi({
     tagTypes: ['Posts'],
     endpoints: (build) => ({
         getAllPosts: build.query<IPostsResponseDto, IPostRequestDto | void | null>({
-            query: () => ({
+            query: (params) => ({
                 url: '/posts',
+                params: !!params ? params : {},
             }),
             providesTags:['Posts']
         }),

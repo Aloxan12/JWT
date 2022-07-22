@@ -35,6 +35,8 @@ export const Posts = () => {
 
     const scrollHandler = (e: any)=>{
         if((e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight)) < 50){
+            setCurrentPage(prevState => prevState + 1)
+            console.log('currentPage', currentPage)
             setFetching(true)
         }
     }
