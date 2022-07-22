@@ -28,6 +28,14 @@ export const Posts = () => {
         }
     }, [postsData])
 
+    const scrollHandler = ()=>{
+
+    }
+
+    useEffect(()=>{
+        document.addEventListener('scroll', scrollHandler)
+    },[])
+
     const createPostHandler = async () => {
         if (user && postText !== '') {
             await createPost({author: user.id, postText, publicDate})
