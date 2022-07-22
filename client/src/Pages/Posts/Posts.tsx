@@ -20,6 +20,7 @@ export const Posts = () => {
     const [fetching, setFetching] = useState<boolean>(false)
 
     const {data: postsData} = useGetAllPostsQuery({limit, page: currentPage})
+    let count: number = 0
     const {data: users} = useGetAllUsersQuery({limit: 1000})
     const [createPost] = useCreatePostsMutation()
 
@@ -28,6 +29,7 @@ export const Posts = () => {
 
     useEffect(() => {
         if (!!postsData) {
+            count = postsData.count
             setPosts(prevState => {
                 return [...prevState, ...postsData.results]
             } )
@@ -36,9 +38,15 @@ export const Posts = () => {
         setFetching(false)
     }, [postsData])
 
+    useEffect(()=>{
+        if(fetching && postsData!.count > (limit * currentPage)){
+            setCurrentPage(prevState => prevState + 1)
+        }
+    },[fetching])
+
+
     const scrollHandler = (e: any)=>{
         if((e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight)) < 50){
-            setCurrentPage(2)
             setFetching(true)
         }
     }
