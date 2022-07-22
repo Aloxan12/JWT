@@ -13,7 +13,7 @@ import {IPost} from "../../redux/api/dto/PostDto";
 
 export const Posts = () => {
     const user = useSelector<RootState, IUser | null>(state => state.auth.authData.user)
-    const [posts ,setPosts] = useState([])
+    const [posts, setPosts] = useState<IPost[]>([])
 
     const {data: postsData} = useGetAllPostsQuery()
     const {data: users} = useGetAllUsersQuery({limit: 1000})
@@ -22,9 +22,11 @@ export const Posts = () => {
     const [postText, setPostText] = useState('')
     const publicDate = moment(new Date()).toISOString()
 
-    useEffect(()=>{
-        setPosts(postsData.results)
-    },[postsData])
+    useEffect(() => {
+        if (!!postsData) {
+            setPosts(postsData.results)
+        }
+    }, [postsData])
 
     const createPostHandler = async () => {
         if (user && postText !== '') {
@@ -34,7 +36,7 @@ export const Posts = () => {
                 msg: "Пост опубликован".replace(/"/g, ''),
                 type: ToastWrapperType.success,
             })
-        }else {
+        } else {
             ToastWrapper({
                 msg: "Поле не может быть пустым".replace(/"/g, ''),
                 type: ToastWrapperType.error,
@@ -47,7 +49,7 @@ export const Posts = () => {
             <div className={styles.postHeader}>Посты</div>
             <div className={styles.postCreate}>
                 <textarea value={postText} onChange={(e) => setPostText(e.currentTarget.value)}></textarea>
-                <AppButton text="Опубликовать" onClick={createPostHandler} />
+                <AppButton text="Опубликовать" onClick={createPostHandler}/>
             </div>
             <ul className={styles.postsItems}>
                 {posts && posts.results.map((post: IPost, index) => {
