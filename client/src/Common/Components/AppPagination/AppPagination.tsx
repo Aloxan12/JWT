@@ -74,6 +74,14 @@ export const AppPagination = ({totalCount, setLimit, limit, sticky}:IAppPaginati
         }
     }, [currentPage, limit])
 
+    useEffect(()=>{
+        if(!!page && Number(page) !== currentPage){
+            setCurrentPage(Number(page))
+        }
+    },[page])
+
+    console.log('currentPage', currentPage)
+
     return (
         <div className={commonStyles.WidthCenter}>
             <div className={`${styles.AppPaginationWrap} ${sticky ? commonStyles.StickyBottom : ''}`}>
