@@ -80,8 +80,6 @@ export const AppPagination = ({totalCount, setLimit, limit, sticky}:IAppPaginati
         }
     },[page])
 
-    console.log('currentPage', currentPage)
-
     return (
         <div className={commonStyles.WidthCenter}>
             <div className={`${styles.AppPaginationWrap} ${sticky ? commonStyles.StickyBottom : ''}`}>
