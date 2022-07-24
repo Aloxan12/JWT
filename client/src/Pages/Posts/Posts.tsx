@@ -62,9 +62,6 @@ export const Posts = () => {
         if (user && postText !== '') {
             await createPost({author: user.id, postText, publicDate})
             setPostText('')
-            if(postsData){
-                setPosts(postsData?.results)
-            }
             ToastWrapper({
                 msg: "Пост опубликован".replace(/"/g, ''),
                 type: ToastWrapperType.success,
