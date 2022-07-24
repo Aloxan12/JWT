@@ -19,7 +19,7 @@ export const Posts = () => {
     const [currentPage, setCurrentPage] = useState<number>(1)
     const [fetching, setFetching] = useState<boolean>(false)
 
-    const {data: postsData} = useGetAllPostsQuery({limit, page: currentPage})
+    const {data: postsData, refetch} = useGetAllPostsQuery({limit, page: currentPage})
     let count: number = 0
     const {data: users} = useGetAllUsersQuery({limit: 1000})
     const [createPost] = useCreatePostsMutation()
@@ -28,19 +28,21 @@ export const Posts = () => {
     const publicDate = moment(new Date()).toISOString()
 
     useEffect(() => { // Продумать пополение данных
-        if (!!postsData && fetching) {
+        if (!!postsData && fetching && currentPage !== 1) {
             count = postsData.count
             setPosts(prevState => {
                 return [...prevState, ...postsData.results]
             } )
+            refetch()
             setFetching(false)
         }else if(!!postsData){
+            refetch()
             setPosts(postsData.results)
         }
     }, [postsData])
 
     useEffect(()=>{
-        if(fetching && postsData!.count > (limit * currentPage)){
+        if(fetching && postsData && postsData.count > (limit * currentPage)){
             setCurrentPage(prev => prev + 1)
         }
     },[fetching])
@@ -86,7 +88,12 @@ export const Posts = () => {
             <ul className={styles.postsItems}>
                 {posts.map((post: IPost, index) => {
                     return (
-                        <Post post={post} users={!!users ? users?.results : []} key={`post-key - ${index}`}/>
+                        <Post
+                            post={post}
+                            users={!!users ? users?.results : []}
+                            key={`post-key - ${index}`}
+                            setCurrentPage={setCurrentPage}
+                        />
                     )
                 })}
             </ul>

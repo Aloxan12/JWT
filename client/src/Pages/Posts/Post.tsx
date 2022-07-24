@@ -14,9 +14,10 @@ import {IPost} from "../../redux/api/dto/PostDto";
 interface IPostProps{
     post: IPost
     users?: IUser[]
+    setCurrentPage: (value: number)=> void
 }
 
-export const Post = ({post, users }: IPostProps) => {
+export const Post = ({post, users, setCurrentPage }: IPostProps) => {
     const [deletePost] = useDeletePostMutation()
 
     const user = useSelector<RootState, IUser | null>(state => state.auth.authData.user)
@@ -25,6 +26,7 @@ export const Post = ({post, users }: IPostProps) => {
         deletePost({id: post.id}).then(res =>{
             const { data } = res as {data: {status: number, message: string, post: IPost}}
             if(data.status === 204){
+                setCurrentPage(1)
                 ToastWrapper({
                     msg: data.message.replace(/"/g, ''),
                     type: ToastWrapperType.info,
