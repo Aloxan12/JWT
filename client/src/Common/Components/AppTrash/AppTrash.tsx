@@ -27,7 +27,10 @@ export const AppTrash = ({size, deleteHandler, text}: IAppTrashProps) => {
                     <div>{text || 'Удалить?'}</div>
                     <div>
                         <AppButton onClick={()=>setActive(false)} text={'нет'}/>
-                        <AppButton onClick={deleteHandler} text={'да'}/>
+                        <AppButton onClick={()=> {
+                            setActive(false)
+                            deleteHandler()
+                        }} text={'да'}/>
                     </div>
                 </div>
             </Modal>

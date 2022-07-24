@@ -28,14 +28,15 @@ export const Posts = () => {
     const publicDate = moment(new Date()).toISOString()
 
     useEffect(() => { // Продумать пополение данных
-        if (!!postsData) {
+        if (!!postsData && fetching) {
             count = postsData.count
             setPosts(prevState => {
                 return [...prevState, ...postsData.results]
             } )
+            setFetching(false)
+        }else if(!!postsData){
+            setPosts(postsData.results)
         }
-
-        setFetching(false)
     }, [postsData])
 
     useEffect(()=>{
@@ -62,6 +63,7 @@ export const Posts = () => {
         if (user && postText !== '') {
             await createPost({author: user.id, postText, publicDate})
             setPostText('')
+            setCurrentPage(1)
             ToastWrapper({
                 msg: "Пост опубликован".replace(/"/g, ''),
                 type: ToastWrapperType.success,
