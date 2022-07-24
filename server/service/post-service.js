@@ -22,7 +22,7 @@ class PostService{
                 postText: post.postText,
                 publicDate: post.publicDate,
                 author: post.author,
-            })).slice(offset,offset + limit)
+            })).slice(offset,Number(offset) + Number(limit))
         }
         // return posts
     }
