@@ -1,5 +1,5 @@
 import App from "../App";
-import {BrowserRouter, Route, RouteObject, Routes} from 'react-router-dom'
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import {Registration} from "../Pages/Registration/Registration";
 import {Header} from "../Pages/Header/Header";
 import {ToastContainer} from "react-toastify";
