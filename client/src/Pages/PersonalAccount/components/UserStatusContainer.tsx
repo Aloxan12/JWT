@@ -14,7 +14,7 @@ export const UserStatusContainer = ({user}: IUserStatusContainer) => {
     const [updateUserStatus] = useUpdateUserDetailMutation()
 
     const [editStatus, setEditStatus] = useState(false)
-    const [status, setStatus] = useState('')
+    const [status, setStatus] = useState(!!user.status ? user.status : '')
 
     const changeStatusHandler = () =>{
         updateUserStatus({id: user.id, data: {...user, status: status}})
