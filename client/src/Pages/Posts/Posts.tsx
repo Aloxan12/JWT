@@ -82,7 +82,8 @@ export const Posts = () => {
         <div className={styles.postBlock}>
             <div className={styles.postHeader}>Посты</div>
             <div className={styles.postCreate}>
-                <textarea value={postText} onChange={(e) => setPostText(e.currentTarget.value)}></textarea>
+                <textarea value={postText} onChange={(e) => setPostText(e.currentTarget.value)}>
+                </textarea>
                 <AppButton text="Опубликовать" onClick={createPostHandler}/>
             </div>
             <ul className={styles.postsItems}>
