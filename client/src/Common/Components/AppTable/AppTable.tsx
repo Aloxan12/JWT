@@ -1,9 +1,10 @@
 import React from 'react';
 
-interface IHeaderData{}
+interface IHeaderData {
+}
 
-interface IAppTable{
-    headerData:IHeaderData
+interface IAppTable {
+    headerData: IHeaderData
 }
 
 export const AppTable = () => {
