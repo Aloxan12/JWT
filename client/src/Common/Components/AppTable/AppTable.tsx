@@ -12,7 +12,7 @@ export const AppTable = () => {
     return (
         <div>
             <table>
-
+                <thead></thead>
             </table>
         </div>
     );
