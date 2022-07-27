@@ -8,11 +8,17 @@ interface IAppTable {
     headerData: IHeaderData[]
 }
 
-export const AppTable = () => {
+export const AppTable = ({headerData}:IAppTable) => {
     return (
         <div>
             <table>
-                <thead></thead>
+                <thead>
+                    {headerData.map((th, index)=>{
+                        return <div key={`th-table-${index}`}>
+                            {th.title}
+                        </div>
+                    })}
+                </thead>
                 <tbody></tbody>
             </table>
         </div>
