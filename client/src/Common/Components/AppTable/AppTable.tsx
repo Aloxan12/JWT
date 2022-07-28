@@ -2,6 +2,7 @@ import React from 'react';
 
 interface IHeaderData {
     title: string
+    sort?: string
 }
 
 interface IAppTable {
