@@ -3,6 +3,7 @@ import React from 'react';
 interface IHeaderData {
     title: string
     sort?: string
+    colWidth?: string // px or %
 }
 
 interface IAppTable {
