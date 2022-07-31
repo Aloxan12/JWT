@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 interface IHeaderData {
     title: string
@@ -6,11 +6,13 @@ interface IHeaderData {
     colWidth?: string // px or %
 }
 
-interface IAppTable {
+type IAppTable<T> = {
+    data: T
     headerData: IHeaderData[]
 }
 
-export const AppTable = ({headerData}:IAppTable) => {
+export const AppTable = <T, TKey>({headerData}:IAppTable<T>) => {
+    const [tableData, setTableData] = useState([])
     return (
         <div>
             <table>
@@ -21,7 +23,9 @@ export const AppTable = ({headerData}:IAppTable) => {
                         </div>
                     })}
                 </thead>
-                <tbody></tbody>
+                <tbody>
+
+                </tbody>
             </table>
         </div>
     );
