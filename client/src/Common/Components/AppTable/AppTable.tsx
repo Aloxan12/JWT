@@ -24,10 +24,10 @@ export const AppTable = <T, TKey>({headerData}:IAppTable<T>) => {
                     })}
                 </thead>
                 <tbody>
-                {tableData.map((item)=>{
+                {tableData.map((item, index)=>{
                     return(
-                        <tr>
-
+                        <tr key={`table-row-${index}`}>
+                            {}
                         </tr>
                     )
                 })
