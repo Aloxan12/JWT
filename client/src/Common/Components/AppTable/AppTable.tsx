@@ -16,6 +16,11 @@ export const AppTable = <T, TKey>({headerData}:IAppTable<T>) => {
     return (
         <div>
             <table>
+                <colgroup>
+                    {headerData.map((th, index)=>{
+                        return <col width={th.colWidth} />
+                    })}
+                </colgroup>
                 <thead>
                     {headerData.map((th, index)=>{
                         return <div key={`th-table-${index}`}>
