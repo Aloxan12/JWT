@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {AppPagination} from "../AppPagination/AppPagination";
 
 interface IHeaderData {
     title: string
@@ -84,6 +85,7 @@ export const AppTable = <T, TKey extends keyof T>({headerData, data, tableDataSe
                 }
                 </tbody>
             </table>
+            <AppPagination totalCount={1} limit={5} />
         </div>
     );
 };
