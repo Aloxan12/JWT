@@ -55,9 +55,9 @@ export const AppTable = <T, TKey extends keyof T>({headerData, data, tableDataSe
                 })}
                 </thead>
                 <tbody>
-                {tableData.map((item, index) => {
+                {tableData.map((item, itemIndex) => {
                     return (
-                        <tr key={`table-row-${index}`}>
+                        <tr key={`table-row-${itemIndex}`}>
                             {tableDataSelectors.map((
                                 {
                                     propsNameToDisable,
@@ -65,8 +65,19 @@ export const AppTable = <T, TKey extends keyof T>({headerData, data, tableDataSe
                                     renderItem = (item) =>
                                         name ? defaultRenderItem(item, name!) : '?',
                                 },
-                                    tdIndex,
-                            )=>{})}
+                                tdIndex,
+                            ) => {
+                                return <td
+                                    key={`tr-${itemIndex}-td-${tdIndex}`}
+                                    className={
+                                        (item[propsNameToDisable!] as unknown) === true
+                                            ? 'set-disabled'
+                                            : ''
+                                    }
+                                >
+                                    {renderItem(item)}
+                                </td>
+                            })}
                         </tr>
                     )
                 })
