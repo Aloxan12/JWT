@@ -1,10 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {AppPagination} from "../AppPagination/AppPagination";
+import {BaseQueryDto} from "../../../redux/api/dto/BaseDto";
 
 interface IHeaderData {
     title: string
     sort?: string
     colWidth?: string // px or %
+}
+
+interface ITableData<T> extends BaseQueryDto {
+    results: T[] | []
 }
 
 interface ISelector<TKey> {
@@ -24,7 +29,7 @@ interface ISelectorVoid<T> extends ISelector<keyof T> {
 type TSelector<T, TKey> = ISelectorName<TKey> | ISelectorVoid<T>
 
 type IAppTable<T, TKey> = {
-    data: T[]
+    data: ITableData<T>
     headerData: IHeaderData[]
     tableDataSelectors: TSelector<T, TKey>[]
 }
@@ -37,7 +42,7 @@ export const AppTable = <T, TKey extends keyof T>({headerData, data, tableDataSe
     }
 
     useEffect(() => {
-        setTableData(data)
+        setTableData(data.results)
     }, [data])
 
     return (
