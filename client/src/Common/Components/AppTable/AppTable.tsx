@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {AppPagination} from "../AppPagination/AppPagination";
 import {BaseQueryDto} from "../../../redux/api/dto/BaseDto";
+import styles from './AppTable.module.css'
 
 interface IHeaderData {
     title: string
@@ -46,7 +47,7 @@ export const AppTable = <T, TKey extends keyof T>({headerData, data, tableDataSe
     }, [data])
 
     return (
-        <div>
+        <div className={styles.AppTableWrap}>
             <table>
                 <colgroup>
                     {headerData.map((th, index) => {
