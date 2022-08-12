@@ -30,7 +30,7 @@ export function useBlocker(blocker: Blocker, when = true): void {
 export function useCallbackPrompt(when: boolean): (boolean | (() => void))[] {
   const navigate = useNavigate()
   const location = useLocation()
-  const [showPrompt, setShowPrompt] = useState(false)
+    const [showPrompt, setShowPrompt] = useState(false)
   const [lastLocation, setLastLocation] = useState<any>(null)
   const [confirmedNavigation, setConfirmedNavigation] = useState(false)
 
