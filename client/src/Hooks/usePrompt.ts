@@ -1,70 +1,66 @@
-import * as React from 'react'
-import { UNSAFE_NavigationContext } from 'react-router-dom'
-import type { History, Blocker, Transition } from 'history'
-import { useCallback, useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router'
+import * as React from 'react';
+import { UNSAFE_NavigationContext } from 'react-router-dom';
+import type { History, Blocker, Transition } from 'history';
+import { useCallback, useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router';
 
 export function useBlocker(blocker: Blocker, when = true): void {
-  const navigator = React.useContext(UNSAFE_NavigationContext)
-    .navigator as History
+  const navigator = React.useContext(UNSAFE_NavigationContext).navigator as History;
 
   React.useEffect(() => {
-    if (!when) return
+    if (!when) return;
 
     const unblock = navigator.block((tx: Transition) => {
       const autoUnblockingTx = {
         ...tx,
         retry() {
-          unblock()
-          tx.retry()
+          unblock();
+          tx.retry();
         },
-      }
+      };
 
-      blocker(autoUnblockingTx)
-    })
+      blocker(autoUnblockingTx);
+    });
 
-    return unblock
-  }, [navigator, blocker, when])
+    return unblock;
+  }, [navigator, blocker, when]);
 }
 
 export function useCallbackPrompt(when: boolean): (boolean | (() => void))[] {
-  const navigate = useNavigate()
-  const location = useLocation()
-    const [showPrompt, setShowPrompt] = useState(false)
-  const [lastLocation, setLastLocation] = useState<any>(null)
-  const [confirmedNavigation, setConfirmedNavigation] = useState(false)
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [showPrompt, setShowPrompt] = useState(false);
+  const [lastLocation, setLastLocation] = useState<any>(null);
+  const [confirmedNavigation, setConfirmedNavigation] = useState(false);
 
   const cancelNavigation = useCallback(() => {
-    setShowPrompt(false)
-  }, [])
+    setShowPrompt(false);
+  }, []);
 
   const handleBlockedNavigation = useCallback(
     (nextLocation) => {
-      if (
-        !confirmedNavigation &&
-        nextLocation.location.pathname !== location.pathname
-      ) {
-        setShowPrompt(true)
-        setLastLocation(nextLocation)
-        return false
+      if (!confirmedNavigation && nextLocation.location.pathname !== location.pathname) {
+        setShowPrompt(true);
+        setLastLocation(nextLocation);
+        return false;
       }
-      return true
+      return true;
     },
-    [confirmedNavigation],
-  )
+    [confirmedNavigation]
+  );
 
   const confirmNavigation = useCallback(() => {
-    setShowPrompt(false)
-    setConfirmedNavigation(true)
-  }, [])
+    setShowPrompt(false);
+    setConfirmedNavigation(true);
+  }, []);
 
   useEffect(() => {
     if (confirmedNavigation && lastLocation) {
-      navigate(lastLocation.location.pathname)
+      navigate(lastLocation.location.pathname);
     }
-  }, [confirmedNavigation, lastLocation])
+  }, [confirmedNavigation, lastLocation]);
 
-  useBlocker(handleBlockedNavigation, when)
+  useBlocker(handleBlockedNavigation, when);
 
-  return [showPrompt, confirmNavigation, cancelNavigation]
+  return [showPrompt, confirmNavigation, cancelNavigation];
 }
