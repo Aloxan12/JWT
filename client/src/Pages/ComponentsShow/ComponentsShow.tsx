@@ -6,10 +6,16 @@ import { AppInput } from '../../Common/Components/AppInput/AppInput';
 import { AppRating } from '../../Common/Components/AppRating/AppRating';
 import { AppInputFilter } from '../../Common/Components/AppInputFilter';
 import { AppDropdown } from '../../Common/Components/AppDropdown/AppDropdown';
+import { useGetAllUsersQuery } from '../../redux/api/usersApi';
+import { IUser } from '../../redux/api/dto/UserDto';
 
 export const ComponentsShow = () => {
+  const { data: users } = useGetAllUsersQuery({});
+  console.log('users', users);
+
   const [rating, setRating] = useState(0);
   const [dropdownData, setDropdownData] = useState<string | null>(null);
+  const [userData, setUserData] = useState<IUser | null>(null);
   return (
     <div className={styles.ComponentsShowWrapper}>
       <AppButton onClick={(e) => console.log(e.currentTarget)} />
@@ -29,6 +35,15 @@ export const ComponentsShow = () => {
         data={[`string`]}
         onChange={(value) => setDropdownData(value)}
         resetValueHandler={() => setDropdownData(null)}
+      />
+
+      <AppDropdown
+        value={userData}
+        data={!!users ? users.results : ([] as IUser[])}
+        propToShowInList={'email'}
+        propToShowInInput={'email'}
+        onChange={(value) => setUserData(value)}
+        resetValueHandler={() => setUserData(null)}
       />
     </div>
   );
