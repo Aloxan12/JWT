@@ -11,7 +11,6 @@ import { IUser } from '../../redux/api/dto/UserDto';
 
 export const ComponentsShow = () => {
   const { data: users } = useGetAllUsersQuery({});
-  console.log('users', users);
 
   const [rating, setRating] = useState(0);
   const [dropdownData, setDropdownData] = useState<string | null>(null);
