@@ -96,6 +96,7 @@ export const AppDropdown = <T, TKey extends keyof T>({
         error={error}
         placeholder={placeholder}
         dropdownActive={active}
+        disabled={!inputSearchFn}
       />
       {active && !!currentData && (
         <div className={styles.DropdownValuesBlock}>
