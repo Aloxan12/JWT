@@ -19,6 +19,7 @@ interface IAppInputBase {
   onChange: (value: string) => void;
   error?: string | null;
   inputMask?: InputMaskType;
+  disabled?: boolean;
   keyDirectionFn?: null | ((value: React.KeyboardEvent<HTMLInputElement>) => void); // использует исключительно для определения нажатия вверх или вниз на клавиатуре
 }
 
@@ -60,6 +61,7 @@ export const AppInput = ({
   placeholder,
   icoRight,
   inputMask,
+  disabled = false,
   keyDirectionFn = null,
 }: AppInputType) => {
   const wrapperProps = onClick ? { onClick } : {};
@@ -107,6 +109,7 @@ export const AppInput = ({
           type={type}
           onChange={onChangeHandler}
           {...keyDownPropsWrapper}
+          disabled={disabled}
         />
       </div>
       {error && <div className={styles.appInputError}>{error}</div>}
