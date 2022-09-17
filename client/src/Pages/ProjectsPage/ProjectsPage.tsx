@@ -5,7 +5,9 @@ const projectsData = [
   { title: 'Бридж', link: 'https://aloxan12.github.io/bridge' },
   { title: 'Карточки покемонов' },
   { title: 'Демо магазин' },
-  {},
+  { title: 'Прогноз погоды' },
+  { title: 'Поиск картинок' },
+  { title: 'Социальная сеть' },
 ];
 
 export const ProjectsPage = () => {

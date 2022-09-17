@@ -1,5 +1,8 @@
 .MyProjectPageWrap{
   display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 30px;
   border-radius: 4px;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   margin: 60px;
@@ -7,6 +10,27 @@
 }
 
 .ProjectItem{
+  width: 23.6%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
   display: inline-flex;
+  flex-wrap: wrap;
   padding: 20px;
+}
+
+@media screen and (max-width: 1787px) {
+  .ProjectItem{
+    width: 31%;
+  }
+}
+
+@media screen and (max-width: 1037px) {
+  .ProjectItem{
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .ProjectItem{
+    width: 100%;
+  }
 }
