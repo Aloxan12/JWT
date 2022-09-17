@@ -1,7 +1,12 @@
-.MyTestsPAgeWrap{
+.MyProjectPageWrap{
   display: flex;
   border-radius: 4px;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   margin: 60px;
   min-height: 70vh;
+}
+
+.ProjectItem{
+  display: inline-flex;
+  padding: 20px;
 }

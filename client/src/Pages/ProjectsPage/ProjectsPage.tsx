@@ -9,5 +9,15 @@ const projectsData = [
 ];
 
 export const ProjectsPage = () => {
-  return <div className={styles.MyTestsPAgeWrap}></div>;
+  return (
+    <div className={styles.MyProjectPageWrap}>
+      {projectsData.map((project, index) => {
+        return (
+          <div className={styles.ProjectItem} key={`project-item-${index}`}>
+            {project.title}
+          </div>
+        );
+      })}
+    </div>
+  );
 };
