@@ -19,6 +19,7 @@
 }
 
 .ProjectItemPhoto{
+  margin: auto;
   display: block;
 }
 .ProjectItemPhoto img{

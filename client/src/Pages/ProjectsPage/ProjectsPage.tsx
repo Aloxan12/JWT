@@ -20,7 +20,7 @@ export const ProjectsPage = () => {
               {project.title}
             </a>
             <div className={styles.ProjectItemPhoto}>
-              {/*<img src={project.photo} alt={'Бридж'} loading="eager" />*/}
+              <img src={project.photo} alt={'Бридж'} loading="eager" />
             </div>
           </div>
         );
