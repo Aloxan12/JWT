@@ -13,6 +13,7 @@ import { Users } from '../Pages/Users/Users';
 import { PersonalAccount } from '../Pages/PersonalAccount/PersonalAccount';
 import { UserProfile } from '../Pages/Users/UserProfile';
 import { IUser } from '../redux/api/dto/UserDto';
+import { TestsPage } from '../Pages/Tests/TestsPage';
 
 export const routesIsNotAuth = [
   {
@@ -61,6 +62,13 @@ const uniqRoutesByRole = {
       showInMenu: false,
       component: <UserProfile />,
     },
+    {
+      id: 'TestPage',
+      path: '/tests',
+      title: 'Мои тестовые',
+      showInMenu: true,
+      component: <TestsPage />,
+    },
   ],
   [RoleTypes.USER]: [
     {
@@ -102,7 +110,7 @@ const uniqRoutesByRole = {
   ],
 };
 export const routesByRole: RoutesForMenuType = {
-  [RoleTypes.ADMIN]: [...uniqRoutesByRole[RoleTypes.ADMIN], ...uniqRoutesByRole[RoleTypes.USER]],
+  [RoleTypes.ADMIN]: [...uniqRoutesByRole[RoleTypes.USER], ...uniqRoutesByRole[RoleTypes.ADMIN]],
   [RoleTypes.USER]: uniqRoutesByRole[RoleTypes.USER],
 };
 
