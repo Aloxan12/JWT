@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './ProjectsPage.module.css';
-
+import bridge from './utils/images/brige.png';
 const projectsData = [
-  { title: 'Бридж', link: 'https://aloxan12.github.io/bridge' },
+  { title: 'Бридж', link: 'https://aloxan12.github.io/bridge', photo: bridge },
   { title: 'Карточки покемонов' },
   { title: 'Демо магазин' },
   { title: 'Прогноз погоды' },
@@ -19,6 +19,9 @@ export const ProjectsPage = () => {
             <a href={project.link} target={'_blank'}>
               {project.title}
             </a>
+            <div className={styles.ProjectItemPhoto}>
+              {/*<img src={project.photo} alt={'Бридж'} loading="eager" />*/}
+            </div>
           </div>
         );
       })}

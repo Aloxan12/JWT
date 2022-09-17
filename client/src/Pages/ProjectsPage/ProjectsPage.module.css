@@ -13,8 +13,16 @@
   width: 23.6%;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   display: inline-flex;
+  flex-direction: column;
   flex-wrap: wrap;
   padding: 20px;
+}
+
+.ProjectItemPhoto{
+  display: block;
+}
+.ProjectItemPhoto img{
+  width: 100%;
 }
 
 @media screen and (max-width: 1787px) {
