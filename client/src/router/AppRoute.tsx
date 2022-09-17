@@ -13,7 +13,7 @@ import { Users } from '../Pages/Users/Users';
 import { PersonalAccount } from '../Pages/PersonalAccount/PersonalAccount';
 import { UserProfile } from '../Pages/Users/UserProfile';
 import { IUser } from '../redux/api/dto/UserDto';
-import { TestsPage } from '../Pages/Tests/TestsPage';
+import { ProjectsPage } from '../Pages/ProjectsPage/ProjectsPage';
 
 export const routesIsNotAuth = [
   {
@@ -63,11 +63,11 @@ const uniqRoutesByRole = {
       component: <UserProfile />,
     },
     {
-      id: 'TestPage',
-      path: '/tests',
-      title: 'Мои тестовые',
+      id: 'ProjectsPage',
+      path: '/projects',
+      title: 'Мои проекты',
       showInMenu: true,
-      component: <TestsPage />,
+      component: <ProjectsPage />,
     },
   ],
   [RoleTypes.USER]: [
