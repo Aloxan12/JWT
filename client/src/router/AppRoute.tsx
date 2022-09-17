@@ -52,50 +52,14 @@ export interface IRouteObj {
   component: JSX.Element;
 }
 
-export const routesByRole: RoutesForMenuType = {
+const uniqRoutesByRole = {
   [RoleTypes.ADMIN]: [
-    {
-      id: 'Main',
-      path: '/',
-      title: 'Главная',
-      showInMenu: true,
-      component: <App />,
-    },
-    {
-      id: 'PersonalAccount',
-      path: '/currentUser/:id',
-      title: 'Личный кабинет',
-      showInMenu: false,
-      component: <PersonalAccount />,
-    },
-    {
-      id: 'ComponentsShow',
-      path: '/componentsShow',
-      title: 'Компоненты',
-      showInMenu: true,
-      component: <ComponentsShow />,
-    },
-    {
-      id: 'Users',
-      path: '/users',
-      title: 'Пользователи',
-      showInMenu: true,
-      component: <Users />,
-    },
     {
       id: 'UserProfile',
       path: '/users/:id',
       title: 'Пользователь',
       showInMenu: false,
       component: <UserProfile />,
-    },
-    {
-      id: 'NotFound',
-      path: '*',
-      // exact: true,
-      title: 'Не найдена',
-      showInMenu: false,
-      component: <NotFound />,
     },
   ],
   [RoleTypes.USER]: [
@@ -136,6 +100,10 @@ export const routesByRole: RoutesForMenuType = {
       component: <NotFound />,
     },
   ],
+};
+export const routesByRole: RoutesForMenuType = {
+  [RoleTypes.ADMIN]: [...uniqRoutesByRole[RoleTypes.ADMIN], ...uniqRoutesByRole[RoleTypes.USER]],
+  [RoleTypes.USER]: uniqRoutesByRole[RoleTypes.USER],
 };
 
 export const AppRoutes = () => {
