@@ -1,4 +1,4 @@
-.AppButton{
+.AppButton {
     cursor: pointer;
     padding: 12px 20px;
     margin-left: 5%;
@@ -10,6 +10,7 @@
     font-weight: 600;
     transition: .3s;
 }
-.AppButton:hover{
+
+.AppButton:hover {
     box-shadow: 0 0 10px rgba(133, 196, 127, 0.78);
 }
