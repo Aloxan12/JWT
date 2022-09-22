@@ -4,13 +4,14 @@
 }
 
 .WrapperItems{
+  max-width: 400px;
   height: 210px;
   padding: 10px 36px;
 }
 
 .DaysWeek{
   display: flex;
-  gap: 15px;
+  font-size: 14px;
 }
 
 .Day{

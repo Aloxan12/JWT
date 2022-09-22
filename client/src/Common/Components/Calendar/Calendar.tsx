@@ -109,8 +109,8 @@ export const Calendar = () => {
             </div>
           ))}
         </div>
+        <div className={styles.Days}>{renderDays()}</div>
       </div>
-      <div className={styles.Days}>{renderDays()}</div>
     </div>
   );
 };
