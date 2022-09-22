@@ -27,7 +27,7 @@ const getStateDate = (val: string) => {
 
 const MONTHS = moment.months();
 const NUMBER_MONTHS = 12;
-const DAYS_WEEK = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
+const DAYS_WEEK = ['пн', 'Tu', 'ср', 'чт', 'пт', 'Sa', 'вс'];
 
 export const Calendar = () => {
   const [date, setDate] = useState(getStateDate('2022-09-21T09:12:54+03:00'));
@@ -37,8 +37,10 @@ export const Calendar = () => {
     () => getFirstDayMonth(date.month, date.year),
     [date.month, date.year]
   );
+  console.log('startDayMonth', startDayMonth);
+
   const daysInMonth = useMemo(
-    () => [...Array.from({ length: DAYS_WEEK.indexOf(startDayMonth) }, (x) => ''), ...days],
+    () => [...Array.from({ length: DAYS_WEEK.indexOf(startDayMonth) }, (x) => ' '), ...days],
     [startDayMonth, days]
   );
 
@@ -60,22 +62,20 @@ export const Calendar = () => {
     setDate((state) => ({ ...state, day }));
   };
 
-  const renderDays = useCallback(
-    () =>
-      daysInMonth.map((el, idx) => (
-        <div className={styles.Item} key={`day-${idx}`}>
-          {el && (
-            <span
-              className={el === date.day ? styles.Check : ''}
-              onClick={() => handlerChangeDay(el)}
-            >
-              {el}
-            </span>
-          )}
-        </div>
-      )),
-    [daysInMonth, date.day]
-  );
+  const renderDays = useCallback(() => {
+    return daysInMonth.map((el, idx) => (
+      <div className={styles.Item} key={`day-${idx}`}>
+        {el && (
+          <span
+            className={el === date.day ? styles.Check : ''}
+            onClick={() => handlerChangeDay(el)}
+          >
+            {el}
+          </span>
+        )}
+      </div>
+    ));
+  }, [daysInMonth, date.day]);
 
   useEffect(() => {
     setDays(
