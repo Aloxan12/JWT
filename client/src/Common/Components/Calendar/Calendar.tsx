@@ -12,8 +12,9 @@ export enum FormatDate {
 }
 
 const getAllDays = (count: number) => Array.from({ length: count }, (_, i) => String(++i));
-const getFirstDayMonth = (month: string, year: string) =>
-  moment(`${year}-${month}-1`, FormatDate.FULL_DATE).format(FormatDate.SHORT_DAY_WEEK);
+const getFirstDayMonth = (month: string, year: string) => {
+  return moment(`${year}-${month}-1`, FormatDate.FULL_DATE).format(FormatDate.SHORT_DAY_WEEK);
+};
 
 const getStateDate = (val: string) => {
   const date = moment(val);
