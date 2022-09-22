@@ -62,9 +62,12 @@ export const Calendar = () => {
   const renderDays = useCallback(
     () =>
       daysInMonth.map((el, idx) => (
-        <div className="item" key={`day-${idx}`}>
+        <div className={styles.Item} key={`day-${idx}`}>
           {el && (
-            <span className={el === date.day ? 'check' : ''} onClick={() => handlerChangeDay(el)}>
+            <span
+              className={el === date.day ? styles.Check : ''}
+              onClick={() => handlerChangeDay(el)}
+            >
               {el}
             </span>
           )}

@@ -38,3 +38,8 @@
   box-sizing: border-box;
   line-height: 1;
 }
+
+.Check{
+  color: red;
+  background-color: black;
+}
