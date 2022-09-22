@@ -12,3 +12,17 @@
   display: flex;
   gap: 15px;
 }
+
+.Day{
+  width: calc(100% / 7);
+  text-align: center;
+}
+.Days span{
+  height: 20px;
+  width: 35px;
+  border-radius: 5px;
+}
+
+.Item{
+
+}

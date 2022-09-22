@@ -58,7 +58,7 @@ export const Calendar = () => {
   const renderDays = useCallback(
     () =>
       daysInMonth.map((el, idx) => (
-        <div className="item" key={`day-${idx}`}>
+        <div className={styles.Item} key={`day-${idx}`}>
           {el && (
             <span
               className={el === date.day ? 'check' : ''}
@@ -86,13 +86,13 @@ export const Calendar = () => {
       <div className={styles.WrapperItems}>
         <div className={styles.DaysWeek}>
           {DAYS_WEEK.map((name) => (
-            <div className="day" key={name}>
+            <div className={styles.Day} key={name}>
               {name}
             </div>
           ))}
         </div>
       </div>
-      <div className="days">{renderDays()}</div>
+      <div className={styles.Days}>{renderDays()}</div>
     </div>
   );
 };
