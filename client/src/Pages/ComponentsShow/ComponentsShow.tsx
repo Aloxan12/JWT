@@ -8,6 +8,7 @@ import { AppInputFilter } from '../../Common/Components/AppInputFilter';
 import { AppDropdown } from '../../Common/Components/AppDropdown/AppDropdown';
 import { useGetAllUsersQuery } from '../../redux/api/usersApi';
 import { IUser } from '../../redux/api/dto/UserDto';
+import { Calendar } from '../../Common/Components/Calendar/Calendar';
 
 export const ComponentsShow = () => {
   const { data: users } = useGetAllUsersQuery({});
@@ -44,6 +45,9 @@ export const ComponentsShow = () => {
         onChange={(value) => setUserData(value)}
         resetValueHandler={() => setUserData(null)}
       />
+      <div>
+        <Calendar />
+      </div>
     </div>
   );
 };
