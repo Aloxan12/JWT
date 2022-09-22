@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './Calendar.module.css';
 import moment from 'moment';
 
@@ -55,17 +55,16 @@ export const Calendar = () => {
     }
   };
 
+  const handlerChangeDay = (day: string) => {
+    setDate((state) => ({ ...state, day }));
+  };
+
   const renderDays = useCallback(
     () =>
       daysInMonth.map((el, idx) => (
-        <div className={styles.Item} key={`day-${idx}`}>
+        <div className="item" key={`day-${idx}`}>
           {el && (
-            <span
-              className={el === date.day ? 'check' : ''}
-              onClick={() => {
-                // handlerChangeDay(el);
-              }}
-            >
+            <span className={el === date.day ? 'check' : ''} onClick={() => handlerChangeDay(el)}>
               {el}
             </span>
           )}
@@ -73,6 +72,22 @@ export const Calendar = () => {
       )),
     [daysInMonth, date.day]
   );
+
+  useEffect(() => {
+    setDays(
+      getAllDays(
+        moment(
+          `${date.year}-${date.month}`,
+          `${FormatDate.YEAR}-${FormatDate.FULL_MONTH}`
+        ).daysInMonth()
+      )
+    );
+    // onChange(
+    //   moment(`${date.year}-${date.month}-${date.day}`, FormatDate.FULL_DATE).format(
+    //     FormatDate.BASE_DATE
+    //   )
+    // );
+  }, [date.month, date.year]);
 
   return (
     <div className={styles.CalendarWrap}>
