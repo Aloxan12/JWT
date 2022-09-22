@@ -2,3 +2,13 @@
   font-size: 20px;
   min-width: 80vw;
 }
+
+.WrapperItems{
+  height: 210px;
+  padding: 10px 36px;
+}
+
+.DaysWeek{
+  display: flex;
+  gap: 15px;
+}
