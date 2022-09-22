@@ -17,12 +17,24 @@
   width: calc(100% / 7);
   text-align: center;
 }
+.Days{
+  font-size: 12px;
+  line-height: 1.21;
+  display: flex;
+  flex-wrap: wrap;
+}
 .Days span{
   height: 20px;
   width: 35px;
   border-radius: 5px;
 }
 
-.Item{
-
+.Item span{
+  border: 1px solid;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  line-height: 1;
 }
