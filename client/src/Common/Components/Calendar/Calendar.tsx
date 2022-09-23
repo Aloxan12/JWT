@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './Calendar.module.css';
 import moment from 'moment';
+import 'moment/locale/ru';
 
 export enum FormatDate {
   BASE_DATE = 'Y-MM-DD',
@@ -27,7 +28,7 @@ const getStateDate = (val: string) => {
 
 const MONTHS = moment.months();
 const NUMBER_MONTHS = 12;
-const DAYS_WEEK = ['пн', 'Tu', 'ср', 'чт', 'пт', 'Sa', 'вс'];
+const DAYS_WEEK = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
 
 export const Calendar = () => {
   const [date, setDate] = useState(getStateDate('2022-09-21T09:12:54+03:00'));
@@ -76,6 +77,8 @@ export const Calendar = () => {
       </div>
     ));
   }, [daysInMonth, date.day]);
+
+  moment.locale('ru');
 
   useEffect(() => {
     setDays(
