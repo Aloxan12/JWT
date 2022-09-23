@@ -38,7 +38,6 @@ export const Calendar = () => {
     () => getFirstDayMonth(date.month, date.year),
     [date.month, date.year]
   );
-  console.log('startDayMonth', startDayMonth);
 
   const daysInMonth = useMemo(
     () => [...Array.from({ length: DAYS_WEEK.indexOf(startDayMonth) }, (x) => ' '), ...days],
