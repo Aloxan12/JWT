@@ -17,7 +17,7 @@ export const Star = ({ active, onChange, setHelpText, value }: IStar) => {
           onClick={() => onChange(value)}
           onMouseEnter={() => setHelpText(value)}
           onMouseLeave={() => setHelpText(null)}
-        ></span>
+        />
       </div>
     </div>
   );
