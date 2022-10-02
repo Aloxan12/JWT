@@ -9,6 +9,7 @@ export enum IcoType {
 export enum InputMaskType {
   float,
   integer,
+  negativeInteger,
 }
 
 interface IAppInputBase {
@@ -72,6 +73,12 @@ export const AppInput = ({
       case InputMaskType.integer:
         const integerVal = e.currentTarget.value.replace(/\D/g, '').replace(/^(0)([0-9])+/g, '$2');
         result = integerVal;
+        break;
+      case InputMaskType.negativeInteger:
+        const factor = e.target.value.length > 1 && e.target.value[0] === '-' ? -1 : 1;
+        const isOnlyMinus = e.target.value === '-';
+        const integerNegative = e.target.value.replace(/\D/g, '').replace(/^(0)([0-9])+/g, '$2');
+        result = isOnlyMinus ? '-' : !!integerNegative ? `${Number(integerNegative) * factor}` : '';
         break;
       default:
         result = e.currentTarget.value;
