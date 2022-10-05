@@ -3,9 +3,14 @@ import { AppPagination } from '../AppPagination/AppPagination';
 import { BaseQueryDto } from '../../../redux/api/dto/BaseDto';
 import styles from './AppTable.module.css';
 
+interface ISortTableParams {
+  active: boolean;
+  input: JSX.Element;
+}
+
 interface IHeaderData {
   title: string;
-  sort?: string;
+  sort?: ISortTableParams;
   colWidth?: string; // px or %
 }
 
