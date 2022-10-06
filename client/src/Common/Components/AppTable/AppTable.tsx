@@ -66,7 +66,12 @@ export const AppTable = <T, TKey extends keyof T>({
         <thead>
           <tr>
             {headerData.map((th, index) => {
-              return <th key={`th-table-${index}`}>{th.title}</th>;
+              return (
+                <th key={`th-table-${index}`}>
+                  {th.title}
+                  {!!th.sort && <></>}
+                </th>
+              );
             })}
           </tr>
         </thead>
