@@ -69,7 +69,7 @@ export const AppTable = <T, TKey extends keyof T>({
               return (
                 <th key={`th-table-${index}`}>
                   {th.title}
-                  {!!th.sort && <span>сортировать</span>}
+                  {!!th.sort && <span>сортировать {th.sort.active && th.sort.input}</span>}
                 </th>
               );
             })}
