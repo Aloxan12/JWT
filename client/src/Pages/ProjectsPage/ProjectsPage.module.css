@@ -18,6 +18,13 @@
   padding: 20px;
 }
 
+.TitleBlock{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  column-gap: 10px;
+}
+
 .ProjectItemPhoto{
   margin: auto;
   display: block;

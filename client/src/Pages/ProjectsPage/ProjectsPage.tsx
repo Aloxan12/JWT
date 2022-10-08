@@ -16,11 +16,18 @@ export const ProjectsPage = () => {
       {projectsData.map((project, index) => {
         return (
           <div className={styles.ProjectItem} key={`project-item-${index}`}>
-            <a href={project.link} target={'_blank'}>
-              {project.title}
-            </a>
+            <div className={styles.TitleBlock}>
+              <span>
+                Название: <b>{project.title}</b>
+              </span>
+            </div>
             <div className={styles.ProjectItemPhoto}>
-              <img src={project.photo} alt={'Бридж'} loading="eager" />
+              <img src={project.photo} alt={project.title} loading="eager" />
+            </div>
+            <div className={styles.GoToProject}>
+              <a href={project.link} target={'_blank'}>
+                Смотреть
+              </a>
             </div>
           </div>
         );
