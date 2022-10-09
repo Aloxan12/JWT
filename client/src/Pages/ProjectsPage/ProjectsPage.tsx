@@ -7,7 +7,7 @@ const projectsData = [
   { title: 'Демо магазин' },
   { title: 'Прогноз погоды' },
   { title: 'Поиск картинок' },
-  { title: 'Социальная сеть' },
+  { title: 'Социальная сеть', link: 'https://aloxan12.github.io/ReactSocialNetwork' },
 ];
 
 export const ProjectsPage = () => {
