@@ -33,6 +33,24 @@
   width: 100%;
 }
 
+.GoToProject{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.GoToProject a{
+  text-decoration: underline;
+  color: black;
+  font-size: 20px;
+}
+
+.GoToProject a:hover{
+  cursor: pointer;
+  text-decoration: none;
+}
+
 @media screen and (max-width: 1787px) {
   .ProjectItem{
     width: 31%;
