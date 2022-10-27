@@ -40,7 +40,7 @@ export const Calendar = () => {
   );
 
   const daysInMonth = useMemo(
-    () => [...Array.from({ length: DAYS_WEEK.indexOf(startDayMonth) }, (x) => ' '), ...days],
+    () => [...Array.from({ length: DAYS_WEEK.indexOf(startDayMonth) }, (_) => ' '), ...days],
     [startDayMonth, days]
   );
 
