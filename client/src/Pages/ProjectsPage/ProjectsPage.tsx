@@ -3,6 +3,7 @@ import styles from './ProjectsPage.module.css';
 import bridge from './utils/images/brige.png';
 import pokemons from './utils/images/pokemons.png';
 import weather from './utils/images/weather.png';
+
 const projectsData = [
   { title: 'Бридж', link: 'https://aloxan12.github.io/bridge', photo: bridge },
   { title: 'Карточки покемонов', photo: pokemons },
