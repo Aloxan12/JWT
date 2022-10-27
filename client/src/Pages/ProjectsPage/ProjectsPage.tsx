@@ -3,6 +3,7 @@ import styles from './ProjectsPage.module.css';
 import bridge from './utils/images/brige.png';
 import pokemons from './utils/images/pokemons.png';
 import weather from './utils/images/weather.png';
+import socialPh from './utils/images/socialPh.png';
 
 const projectsData = [
   { title: 'Бридж', link: 'https://aloxan12.github.io/bridge', photo: bridge },
@@ -10,7 +11,11 @@ const projectsData = [
   { title: 'Демо магазин' },
   { title: 'Прогноз погоды', photo: weather },
   { title: 'Поиск картинок' },
-  { title: 'Социальная сеть', link: 'https://aloxan12.github.io/ReactSocialNetwork' },
+  {
+    title: 'Социальная сеть',
+    link: 'https://aloxan12.github.io/ReactSocialNetwork',
+    photo: socialPh,
+  },
 ];
 
 export const ProjectsPage = () => {
