@@ -4,13 +4,15 @@ import bridge from './utils/images/brige.png';
 import pokemons from './utils/images/pokemons.png';
 import weather from './utils/images/weather.png';
 import socialPh from './utils/images/socialPh.png';
+import photoSearch from './utils/images/photo-search.png';
+import demoShop from './utils/images/demo-shop.png';
 
 const projectsData = [
   { title: 'Бридж', link: 'https://aloxan12.github.io/bridge', photo: bridge },
   { title: 'Карточки покемонов', photo: pokemons },
-  { title: 'Демо магазин' },
+  { title: 'Демо магазин', photo: demoShop },
   { title: 'Прогноз погоды', photo: weather },
-  { title: 'Поиск картинок' },
+  { title: 'Поиск картинок', photo: photoSearch },
   {
     title: 'Социальная сеть',
     link: 'https://aloxan12.github.io/ReactSocialNetwork',
