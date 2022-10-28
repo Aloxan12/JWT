@@ -6,6 +6,7 @@ import weather from './utils/images/weather.png';
 import socialPh from './utils/images/socialPh.png';
 import photoSearch from './utils/images/photo-search.png';
 import demoShop from './utils/images/demo-shop.png';
+import chat from './utils/images/chat.png';
 
 const projectsData = [
   { title: 'Бридж', link: 'https://aloxan12.github.io/bridge', photo: bridge },
@@ -13,6 +14,7 @@ const projectsData = [
   { title: 'Демо магазин', photo: demoShop },
   { title: 'Прогноз погоды', photo: weather },
   { title: 'Поиск картинок', photo: photoSearch },
+  { title: 'Чат', link: 'https://aloxan12.github.io/socket-chat', photo: chat },
   {
     title: 'Социальная сеть',
     link: 'https://aloxan12.github.io/ReactSocialNetwork',
