@@ -13,7 +13,11 @@ const projectsData = [
   { title: 'Карточки покемонов', photo: pokemons },
   { title: 'Демо магазин', photo: demoShop },
   { title: 'Прогноз погоды', photo: weather },
-  { title: 'Поиск картинок', photo: photoSearch },
+  {
+    title: 'Поиск картинок',
+    link: 'https://aloxan12.github.io/Flickr/#/search',
+    photo: photoSearch,
+  },
   { title: 'Чат', link: 'https://aloxan12.github.io/socket-chat', photo: chat },
   {
     title: 'Социальная сеть',
