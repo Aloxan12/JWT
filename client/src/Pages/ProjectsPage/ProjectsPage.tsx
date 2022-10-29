@@ -41,9 +41,11 @@ export const ProjectsPage = () => {
               <img src={project.photo} alt={project.title} loading="eager" />
             </div>
             <div className={styles.GoToProject}>
-              <a href={project.link} target={'_blank'}>
-                Смотреть
-              </a>
+              {project.link && (
+                <a href={project.link} target={'_blank'}>
+                  Смотреть
+                </a>
+              )}
             </div>
           </div>
         );
