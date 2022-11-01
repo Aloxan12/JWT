@@ -12,7 +12,7 @@ const projectsData = [
   { title: 'Бридж', link: 'https://aloxan12.github.io/bridge', photo: bridge },
   { title: 'Карточки покемонов', photo: pokemons },
   { title: 'Демо магазин', photo: demoShop },
-  { title: 'Прогноз погоды', photo: weather },
+  { title: 'Прогноз погоды', link: 'https://aloxan12.github.io/weather-test/', photo: weather },
   {
     title: 'Поиск картинок',
     link: 'https://aloxan12.github.io/Flickr/#/search',
