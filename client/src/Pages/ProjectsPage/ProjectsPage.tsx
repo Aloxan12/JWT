@@ -38,7 +38,7 @@ export const ProjectsPage = () => {
               </span>
             </div>
             <div className={styles.ProjectItemPhoto}>
-              <img src={project.photo} alt={project.title} loading="eager" />
+              <img src={project.photo} alt={project.title} />
             </div>
             <div className={styles.GoToProject}>
               {project.link && (

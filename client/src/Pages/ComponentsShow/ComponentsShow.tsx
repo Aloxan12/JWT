@@ -9,6 +9,7 @@ import { AppDropdown } from '../../Common/Components/AppDropdown/AppDropdown';
 import { useGetAllUsersQuery } from '../../redux/api/usersApi';
 import { IUser } from '../../redux/api/dto/UserDto';
 import { Calendar } from '../../Common/Components/Calendar/Calendar';
+import { AppTable } from '../../Common/Components/AppTable/AppTable';
 
 export const ComponentsShow = () => {
   const { data: users } = useGetAllUsersQuery({});
@@ -48,6 +49,7 @@ export const ComponentsShow = () => {
       <div>
         <Calendar />
       </div>
+      <AppTable data={{ count: 0, results: [] }} tableDataSelectors={[]} headerData={[]} />
     </div>
   );
 };
