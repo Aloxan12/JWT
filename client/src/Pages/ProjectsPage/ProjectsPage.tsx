@@ -10,7 +10,11 @@ import chat from './utils/images/chat.png';
 
 const projectsData = [
   { title: 'Бридж', link: 'https://aloxan12.github.io/bridge', photo: bridge },
-  { title: 'Карточки покемонов', photo: pokemons },
+  {
+    title: 'Карточки покемонов',
+    photo: pokemons,
+    link: 'https://aloxan12.github.io/pokeapi-test/',
+  },
   { title: 'Демо магазин', photo: demoShop },
   { title: 'Прогноз погоды', link: 'https://aloxan12.github.io/weather-test/', photo: weather },
   {
