@@ -28,9 +28,6 @@ const projectsData = [
     link: 'https://aloxan12.github.io/ReactSocialNetwork',
     photo: socialPh,
   },
-  {
-    title: 'Список персонала',
-  },
 ];
 
 export const ProjectsPage = () => {
