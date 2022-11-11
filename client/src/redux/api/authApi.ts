@@ -23,7 +23,7 @@ const local = 'http://localhost:5555/api';
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://aloxan12.github.io/JWT/api',
+    baseUrl: 'http://localhost:5555/api',
     prepareHeaders: (headers, { getState }) => {
       // const accessToken = (getState() as RootState).auth.authData.accessToken
       // const refreshToken = (getState() as RootState).auth.authData.refreshToken

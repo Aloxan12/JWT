@@ -11,6 +11,12 @@ import { IUser } from '../../redux/api/dto/UserDto';
 import { Calendar } from '../../Common/Components/Calendar/Calendar';
 import { AppTable } from '../../Common/Components/AppTable/AppTable';
 
+export const tableHeaderMock = [
+  { title: 'Текст', colWidth: '33%' },
+  { title: 'Числа', colWidth: '33%' },
+  { title: 'Действие', colWidth: '33%' },
+];
+
 export const ComponentsShow = () => {
   const { data: users } = useGetAllUsersQuery({});
 
@@ -49,7 +55,11 @@ export const ComponentsShow = () => {
       <div>
         <Calendar />
       </div>
-      <AppTable data={{ count: 0, results: [] }} tableDataSelectors={[]} headerData={[]} />
+      <AppTable
+        data={{ count: 0, results: [] }}
+        tableDataSelectors={[]}
+        headerData={tableHeaderMock}
+      />
     </div>
   );
 };
