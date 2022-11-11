@@ -17,10 +17,15 @@
 .DaysWeek{
   display: flex;
   font-size: 14px;
+  font-weight: bold;
+}
+
+.ColorRed{
+  color: red;
 }
 
 .Day{
-  width: calc(100% / 7);
+  width: calc(99% / 7);
   text-align: center;
 }
 .Days{
@@ -30,8 +35,8 @@
   flex-wrap: wrap;
 }
 .Days span{
-  height: 20px;
-  width: 35px;
+  height: 25px;
+  width: 46px;
   border-radius: 5px;
 }
 

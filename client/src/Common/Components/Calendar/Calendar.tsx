@@ -108,8 +108,11 @@ export const Calendar = () => {
       </div>
       <div className={styles.WrapperItems}>
         <div className={styles.DaysWeek}>
-          {DAYS_WEEK.map((name) => (
-            <div className={styles.Day} key={name}>
+          {DAYS_WEEK.map((name, index) => (
+            <div
+              className={`${styles.Day} ${index === 6 || index === 5 ? styles.ColorRed : ''}`}
+              key={name}
+            >
               {name}
             </div>
           ))}
