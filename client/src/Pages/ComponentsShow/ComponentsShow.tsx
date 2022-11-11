@@ -52,14 +52,14 @@ export const ComponentsShow = () => {
         onChange={(value) => setUserData(value)}
         resetValueHandler={() => setUserData(null)}
       />
+      <Calendar />
       <div>
-        <Calendar />
+        <AppTable
+          data={{ count: 0, results: [] }}
+          tableDataSelectors={[]}
+          headerData={tableHeaderMock}
+        />
       </div>
-      <AppTable
-        data={{ count: 0, results: [] }}
-        tableDataSelectors={[]}
-        headerData={tableHeaderMock}
-      />
     </div>
   );
 };

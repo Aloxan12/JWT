@@ -106,7 +106,7 @@ export const AppTable = <T, TKey extends keyof T>({
           })}
         </tbody>
       </table>
-      <AppPagination totalCount={1} limit={5} />
+      {data && !!data.count && <AppPagination totalCount={data.count} limit={5} />}
     </div>
   );
 };
