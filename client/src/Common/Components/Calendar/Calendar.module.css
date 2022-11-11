@@ -1,5 +1,11 @@
 .CalendarWrap{
+  display: inline-flex;
+  flex-direction: column;
   font-size: 20px;
+}
+.Month{
+  display: flex;
+  justify-content: space-around;
 }
 
 .WrapperItems{

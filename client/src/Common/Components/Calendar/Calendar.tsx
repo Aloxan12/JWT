@@ -97,7 +97,7 @@ export const Calendar = () => {
 
   return (
     <div className={styles.CalendarWrap}>
-      <div className="month">
+      <div className={styles.Month}>
         <span onClick={() => handlerChangeMonth(0)}>{'<'}</span>
         <span className="current">
           {date.month} {date.year}
