@@ -35,12 +35,20 @@
   border-radius: 5px;
 }
 
-.Item span{
+.Item .Day{
   border: 1px solid;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  box-sizing: border-box;
+  line-height: 1;
+}
+.Item .EmptyDay{
+  border: 1px solid;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
   line-height: 1;
 }
