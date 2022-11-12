@@ -100,11 +100,15 @@ export const Calendar = () => {
   return (
     <div className={styles.CalendarWrap}>
       <div className={styles.Month}>
-        <span onClick={() => handlerChangeMonth(0)}>{'<'}</span>
+        <span className={styles.Arrow} onClick={() => handlerChangeMonth(0)}>
+          {'<'}
+        </span>
         <span className="current">
           {date.month} {date.year}
         </span>
-        <span onClick={() => handlerChangeMonth(1)}>{'>'}</span>
+        <span className={styles.Arrow} onClick={() => handlerChangeMonth(1)}>
+          {'>'}
+        </span>
       </div>
       <div className={styles.WrapperItems}>
         <div className={styles.DaysWeek}>

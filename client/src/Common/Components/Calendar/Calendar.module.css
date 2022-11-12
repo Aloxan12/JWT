@@ -8,6 +8,10 @@
   justify-content: space-around;
 }
 
+.Arrow{
+  cursor: pointer;
+}
+
 .WrapperItems{
   max-width: 400px;
   height: 210px;
