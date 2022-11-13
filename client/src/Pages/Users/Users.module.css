@@ -12,6 +12,8 @@
     border: none;
     color: #1D2732;
     display: inline-flex;
+    width: calc(100% / 7);
+    flex-grow: 1;
 }
 
 .UserItem{
