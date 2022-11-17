@@ -15,7 +15,7 @@ const projectsData = [
     photo: pokemons,
     link: 'https://aloxan12.github.io/pokeapi-test/',
   },
-  { title: 'Демо магазин', photo: demoShop },
+  { title: 'Демо магазин', link: 'https://aloxan12.github.io/ShopTest/', photo: demoShop },
   { title: 'Прогноз погоды', link: 'https://aloxan12.github.io/weather-test/', photo: weather },
   {
     title: 'Поиск картинок',
