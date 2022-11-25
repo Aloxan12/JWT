@@ -90,11 +90,9 @@ export const Calendar = () => {
         ).daysInMonth()
       )
     );
-    //onChange(
     moment(`${date.year}-${date.month}-${date.day}`, FormatDate.FULL_DATE).format(
       FormatDate.BASE_DATE
     );
-    //);
   }, [date.month, date.year]);
 
   return (
