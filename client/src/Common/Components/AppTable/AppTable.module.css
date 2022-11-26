@@ -1,3 +1,11 @@
 .AppTableWrap {
     padding: 15px;
 }
+
+tr th{
+    padding: 5px 15px;
+}
+
+tr td{
+    padding: 5px 15px;
+}

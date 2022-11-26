@@ -17,6 +17,16 @@ export const tableHeaderMock = [
   { title: 'Действие', colWidth: '33%' },
 ];
 
+const dataMock = {
+  count: 1,
+  results: [
+    { id: 1, text: 'text', number: 200 },
+    { id: 2, text: 'text 2', number: 300 },
+    { id: 3, text: 'text 3', number: 400 },
+    { id: 4, text: 'text 4', number: 500 },
+  ],
+};
+
 export const ComponentsShow = () => {
   const { data: users } = useGetAllUsersQuery({});
 
@@ -55,8 +65,24 @@ export const ComponentsShow = () => {
       <Calendar />
       <div>
         <AppTable
-          data={{ count: 0, results: [] }}
-          tableDataSelectors={[]}
+          data={dataMock}
+          tableDataSelectors={[
+            {
+              renderItem: (item) => {
+                return <div>{item.text}</div>;
+              },
+            },
+            {
+              renderItem: (item) => {
+                return <div>{item.number}</div>;
+              },
+            },
+            {
+              renderItem: (item) => {
+                return <div>удалить</div>;
+              },
+            },
+          ]}
           headerData={tableHeaderMock}
         />
       </div>
