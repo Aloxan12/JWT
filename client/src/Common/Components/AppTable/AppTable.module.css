@@ -4,8 +4,11 @@
 
 tr th{
     padding: 5px 15px;
+    text-align: left;
 }
 
 tr td{
     padding: 5px 15px;
+    text-align: left;
+    vertical-align: top;
 }
