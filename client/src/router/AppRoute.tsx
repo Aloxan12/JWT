@@ -14,6 +14,7 @@ import { PersonalAccount } from '../Pages/PersonalAccount/PersonalAccount';
 import { UserProfile } from '../Pages/Users/UserProfile';
 import { IUser } from '../redux/api/dto/UserDto';
 import { ProjectsPage } from '../Pages/ProjectsPage/ProjectsPage';
+import { BlankSheet } from '../Pages/BlankSheet/BlankSheet';
 
 export const routesIsNotAuth = [
   {
@@ -91,6 +92,13 @@ const uniqRoutesByRole = {
       title: 'Компоненты',
       showInMenu: true,
       component: <ComponentsShow />,
+    },
+    {
+      id: 'BlankSheet',
+      path: '/blank-sheet',
+      title: 'Чистый лист',
+      showInMenu: true,
+      component: <BlankSheet />,
     },
     {
       id: 'Users',
