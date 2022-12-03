@@ -67,7 +67,7 @@ export const AppInput = ({
 }: AppInputType) => {
   const wrapperProps = onClick ? { onClick } : {};
 
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     let result = '';
     switch (inputMask) {
       case InputMaskType.integer:
@@ -110,14 +110,23 @@ export const AppInput = ({
               className={`${styles.IcoRight} ${dropdownActive ? styles.Active : ''}`}
             />
           ))}
-        <input
-          value={!!value ? value : ''}
-          placeholder={placeholder}
-          type={type}
-          onChange={onChangeHandler}
-          {...keyDownPropsWrapper}
-          disabled={disabled}
-        />
+        {type === 'textarea' ? (
+          <textarea
+            value={!!value ? value : ''}
+            placeholder={placeholder}
+            onChange={onChangeHandler}
+            disabled={disabled}
+          />
+        ) : (
+          <input
+            value={!!value ? value : ''}
+            placeholder={placeholder}
+            onChange={onChangeHandler}
+            {...keyDownPropsWrapper}
+            disabled={disabled}
+            type={type}
+          />
+        )}
       </div>
       {error && <div className={styles.appInputError}>{error}</div>}
     </div>
