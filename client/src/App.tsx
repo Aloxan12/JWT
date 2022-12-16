@@ -4,7 +4,7 @@ import { Posts } from './Pages/Posts/Posts';
 
 function App() {
   return (
-    <div className={styles.appWrap}>
+    <div className={styles.AppWrap}>
       <Posts />
     </div>
   );
