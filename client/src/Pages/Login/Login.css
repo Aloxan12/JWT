@@ -73,3 +73,9 @@
     color: #0fbe0f;
     font-weight: 500;
 }
+
+@media screen and (max-width: 768px) {
+    .form-item{
+        min-width: 320px;
+    }
+}
