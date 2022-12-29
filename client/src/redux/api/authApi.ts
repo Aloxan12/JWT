@@ -20,11 +20,11 @@ interface ISendLogin {
 const git = 'https://aloxan12.github.io/JWT/api';
 const local = 'http://localhost:5555/api';
 const vercel = 'https://node-js-lyart.vercel.app/';
-
+export const host = location.href.includes('localhost') ? vercel : vercel;
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: vercel,
+    baseUrl: host,
     prepareHeaders: (headers, { getState }) => {
       // const accessToken = (getState() as RootState).auth.authData.accessToken
       // const refreshToken = (getState() as RootState).auth.authData.refreshToken
