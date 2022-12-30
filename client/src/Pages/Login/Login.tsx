@@ -7,9 +7,10 @@ import { setAuthData } from '../../redux/Reducers/authReducer/authReducer';
 import { useNavigate } from 'react-router-dom';
 import { ToastWrapper, ToastWrapperType } from '../../Common/Components/ToastWrapper/ToastWrapper';
 import { AppButton } from '../../Common/Components/AppButton/AppButton';
+import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
 
 export const Login = () => {
-  const [login, { isError }] = useLoginMutation();
+  const [login, { isLoading: isLoadingLogin, isError }] = useLoginMutation();
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -45,6 +46,7 @@ export const Login = () => {
 
   return (
     <div>
+      {isLoadingLogin && <AppLoader />}
       <div className="auth_wrap">
         <div className="registration-block">
           <div className="header-block">
