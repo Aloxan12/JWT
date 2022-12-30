@@ -1,22 +1,28 @@
-import {BaseQueryDto, IWithPagination} from "./BaseDto";
+import { BaseQueryDto, IWithPagination } from './BaseDto';
 
-export interface IPost{
-    author: string
-    postText: string
-    publicDate: string
-    id: string
+interface IAuthor {
+  id: string;
+  avatar: string | null;
+  email: string;
 }
 
-export interface ICreatePost{
-    author: string
-    postText: string
-    publicDate: string
+export interface IPost {
+  author: IAuthor;
+  postText: string;
+  publicDate: string;
+  id: string;
 }
 
-export interface IPostsResponseDto extends BaseQueryDto{
-    results: IPost[]
+export interface ICreatePost {
+  author: string;
+  postText: string;
+  publicDate: string;
 }
 
-export interface IPostRequestDto extends IWithPagination{
-    search?: string | null
+export interface IPostsResponseDto extends BaseQueryDto {
+  results: IPost[];
+}
+
+export interface IPostRequestDto extends IWithPagination {
+  search?: string | null;
 }

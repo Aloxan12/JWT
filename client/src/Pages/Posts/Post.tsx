@@ -37,9 +37,7 @@ export const Post = ({ post, users, setCurrentPage }: IPostProps) => {
   return (
     <li className={styles.postsItem}>
       <div className={styles.postsItemTitle}>
-        <span className={styles.postsItemAuthor}>
-          {users && users.find((item) => item.id === post.author)?.email}
-        </span>
+        <span className={styles.postsItemAuthor}>{post.author.email}</span>
         <div className={styles.postEditBlock}>
           <span>
             Опубликовано: {moment(post.publicDate).format('DD-MM-YYYY') || 'Дата не зафикирована'}
