@@ -15,6 +15,7 @@ import { UserProfile } from '../Pages/Users/UserProfile';
 import { IUser } from '../redux/api/dto/UserDto';
 import { ProjectsPage } from '../Pages/ProjectsPage/ProjectsPage';
 import { BlankSheet } from '../Pages/BlankSheet/BlankSheet';
+import { AppLoader } from '../Common/Components/AppLoader/AppLoader';
 
 export const routesIsNotAuth = [
   {
@@ -28,6 +29,12 @@ export const routesIsNotAuth = [
     path: '/login',
     // exact: true,
     component: <Login />,
+  },
+  {
+    id: 'start',
+    path: '/',
+    // exact: true,
+    component: <AppLoader />,
   },
   {
     id: 'NotFound',
