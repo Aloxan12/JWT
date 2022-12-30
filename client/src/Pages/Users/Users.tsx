@@ -11,6 +11,7 @@ import { RootState } from '../../redux/store';
 import { useIsAdmin } from '../../utils/helpers';
 import { NavLink } from 'react-router-dom';
 import { AppPagination } from '../../Common/Components/AppPagination/AppPagination';
+import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
 
 export const Users = () => {
   const [limit, setLimit] = useState(10);
@@ -23,11 +24,15 @@ export const Users = () => {
 
   const currentUser = useSelector((state: RootState) => state.auth.user);
   const isAdmin = useIsAdmin(!!currentUser ? currentUser.role : undefined);
-  const { data: users } = useGetAllUsersQuery(params);
+  const {
+    data: users,
+    isLoading: isLoadingList,
+    isFetching: isFetchingList,
+  } = useGetAllUsersQuery(params);
 
-  console.log('users', users);
   return (
     <div>
+      {(isFetchingList || isLoadingList) && <AppLoader />}
       <div className={commonStyles.FilterBlock}>
         <AppInputFilter
           searchParam="search"
