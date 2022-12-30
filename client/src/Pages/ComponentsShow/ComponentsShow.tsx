@@ -10,6 +10,7 @@ import { useGetAllUsersQuery } from '../../redux/api/usersApi';
 import { IUser } from '../../redux/api/dto/UserDto';
 import { Calendar } from '../../Common/Components/Calendar/Calendar';
 import { AppTable } from '../../Common/Components/AppTable/AppTable';
+import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
 
 export const tableHeaderMock = [
   { title: 'Текст', colWidth: '33%' },
@@ -86,6 +87,9 @@ export const ComponentsShow = () => {
           headerData={tableHeaderMock}
         />
       </div>
+      {/*<div>*/}
+      {/*  <AppLoader />*/}
+      {/*</div>*/}
     </div>
   );
 };

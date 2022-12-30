@@ -20,7 +20,7 @@ interface ISendLogin {
 const local = 'http://localhost:5555/api';
 const local2 = 'http://localhost:5000/';
 const vercel = 'https://node-js-lyart.vercel.app/';
-export const host = location.href.includes('localhost') ? local2 : local2;
+export const host = location.href.includes('localhost') ? vercel : vercel;
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
