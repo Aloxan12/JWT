@@ -32,7 +32,7 @@ export const Users = () => {
 
   return (
     <div>
-      {(isFetchingList || isLoadingList) && <AppLoader />}
+      {(isFetchingList || isLoadingList || true) && <AppLoader />}
       <div className={commonStyles.FilterBlock}>
         <AppInputFilter
           searchParam="search"
