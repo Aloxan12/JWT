@@ -13,11 +13,10 @@ import { IPost } from '../../redux/api/dto/PostDto';
 
 interface IPostProps {
   post: IPost;
-  users?: IUser[];
   setCurrentPage: (value: number) => void;
 }
 
-export const Post = ({ post, users, setCurrentPage }: IPostProps) => {
+export const Post = ({ post, setCurrentPage }: IPostProps) => {
   const [deletePost] = useDeletePostMutation();
 
   const user = useSelector<RootState, IUser | null>((state) => state.auth.authData.user);

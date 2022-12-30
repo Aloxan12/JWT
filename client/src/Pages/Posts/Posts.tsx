@@ -6,11 +6,11 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import moment from 'moment';
 import { ToastWrapper, ToastWrapperType } from '../../Common/Components/ToastWrapper/ToastWrapper';
-import { useGetAllUsersQuery } from '../../redux/api/usersApi';
 import { AppButton } from '../../Common/Components/AppButton/AppButton';
 import { IUser } from '../../redux/api/dto/UserDto';
 import { IPost } from '../../redux/api/dto/PostDto';
 import { throttle } from '../../Hooks/helpers/useDebounce';
+import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
 
 export const Posts = () => {
   const user = useSelector<RootState, IUser | null>((state) => state.auth.authData.user);
@@ -19,9 +19,13 @@ export const Posts = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [fetching, setFetching] = useState<boolean>(false);
 
-  const { data: postsData, refetch } = useGetAllPostsQuery({ limit, page: currentPage });
+  const {
+    data: postsData,
+    isLoading: isLoadingList,
+    isFetching: isFetchingList,
+    refetch,
+  } = useGetAllPostsQuery({ limit, page: currentPage });
   let count: number = 0;
-  const { data: users } = useGetAllUsersQuery({ limit: 1000 });
   const [createPost] = useCreatePostsMutation();
 
   const [postText, setPostText] = useState('');
@@ -84,6 +88,7 @@ export const Posts = () => {
 
   return (
     <div className={styles.postBlock}>
+      {(isFetchingList || isLoadingList) && <AppLoader />}
       <div className={styles.postHeader}>Посты</div>
       <div className={styles.postCreate}>
         <textarea value={postText} onChange={(e) => setPostText(e.currentTarget.value)} />
@@ -91,14 +96,7 @@ export const Posts = () => {
       </div>
       <ul className={styles.postsItems}>
         {posts.map((post: IPost, index) => {
-          return (
-            <Post
-              post={post}
-              users={!!users ? users?.results : []}
-              key={`post-key - ${index}`}
-              setCurrentPage={setCurrentPage}
-            />
-          );
+          return <Post post={post} key={`post-key - ${index}`} setCurrentPage={setCurrentPage} />;
         })}
       </ul>
     </div>

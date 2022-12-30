@@ -15,12 +15,14 @@ import { checkAuthApi } from '../../redux/api/checkAuthApi';
 import { IRouteObj } from '../../router/AppRoute';
 import fakeAvatar from '../../utils/images/fake_avatar.png';
 import { IUser } from '../../redux/api/dto/UserDto';
+import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
 
 interface IHeader {
   itemsRoute: IRouteObj[];
 }
 
 export const Header = ({ itemsRoute }: IHeader) => {
+  const [isLoading, setIsLoading] = useState(false);
   const user = useSelector<RootState, IUser | null>((state) => state.auth.user);
   const isAuth = useSelector<RootState, boolean>((state) => state.auth.isAuth);
   const [logoutApi] = useLogoutMutation();
@@ -42,14 +44,17 @@ export const Header = ({ itemsRoute }: IHeader) => {
   useEffect(() => {
     try {
       if (localStorage.getItem('token')) {
-        checkAuthApi().then((data) => {
-          if (data) {
-            localStorage.setItem('token', data.accessToken);
-            dispatch(setIsAuth(true));
-            dispatch(setAuthData(data));
-            dispatch(setUser(data.user));
-          }
-        });
+        setIsLoading(true);
+        checkAuthApi()
+          .then((data) => {
+            if (data) {
+              localStorage.setItem('token', data.accessToken);
+              dispatch(setIsAuth(true));
+              dispatch(setAuthData(data));
+              dispatch(setUser(data.user));
+            }
+          })
+          .finally(() => setIsLoading(false));
       } else {
         dispatch(setAuthData({ user: null, accessToken: null, refreshToken: null }));
         dispatch(setUser(null));
@@ -65,6 +70,7 @@ export const Header = ({ itemsRoute }: IHeader) => {
 
   return (
     <div className={styles.mainHeaderWrap}>
+      {isLoading && <AppLoader />}
       <div className={styles.mainHeaderTitle}>Название сайта</div>
       <div className={styles.mainHeaderAuth}>
         {user ? (
