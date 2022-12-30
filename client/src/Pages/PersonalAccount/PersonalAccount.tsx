@@ -10,6 +10,7 @@ import { ChangeAvatarContainer } from './components/ChangeAvatarContainer';
 import { ProfileInfoContainer } from './components/ProfileInfoContainer';
 import fakeAvatar from '../../utils/images/fake_avatar.png';
 import { IUser } from '../../redux/api/dto/UserDto';
+import { host } from '../../redux/api/authApi';
 
 export const PersonalAccount = () => {
   const { id } = useParams();
@@ -57,7 +58,7 @@ export const PersonalAccount = () => {
         <div className={styles.PersonalAccountPhotoBlock}>
           <img
             className={styles.PersonalAccountPhoto}
-            src={user && user.avatar ? `http://localhost:5555/` + user!.avatar : fakeAvatar}
+            src={user && user.avatar ? host + user!.avatar : fakeAvatar}
             alt={'avatar'}
           />
           <div className={styles.ChangePhotoBtn}>
