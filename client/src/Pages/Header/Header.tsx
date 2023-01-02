@@ -75,12 +75,12 @@ export const Header = ({ itemsRoute }: IHeader) => {
       <div className={styles.mainHeaderAuth}>
         {user ? (
           <div className={styles.mainHeaderIsAuth}>
-            <span className={styles.welcomeWrap}>
-              {user.email}
+            <div className={styles.welcomeWrap}>
+              <span className={styles.email}>{user.email}</span>
               <Link to={`currentUser/${user.id}`} className={styles.linkAva}>
                 <img src={!!user!.avatar ? host + user!.avatar : fakeAvatar} alt={'avatar'} />
               </Link>
-            </span>
+            </div>
             <span>
               <a className={styles.loginLink} onClick={logoutHandler}>
                 Выйти

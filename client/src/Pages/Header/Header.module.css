@@ -98,3 +98,34 @@ nav{
     background-color: black;
     height: 2px;
 }
+
+
+@media screen and (min-width: 1000px){
+    .welcomeWrap .email{
+        max-width: 300px;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .email{
+        max-width: 100px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .mainHeaderWrap {
+        padding: 20px 10px;
+    }
+    .mainHeaderWrap .mainHeaderTitle{
+        margin-left: 15%;
+    }
+    .mainHeaderWrap .mainHeaderAuth{
+        margin-right: 5%;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .email{
+        display: none;
+    }
+}
