@@ -61,10 +61,14 @@ ul li a{
 }
 
 @media screen and (max-width: 768px){
+    .menu{
+        height: 100%;
+    }
     .menuContent{
         width: 100%;
     }
     .blur{
+        width: 0;
         backdrop-filter: none;
     }
 }

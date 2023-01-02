@@ -29,7 +29,13 @@ export const BurgerMenu = ({ items, header, active, setActive }: IBurgerMenu) =>
         <ul>
           {items.map((item: IItemsRoute, i: number) => (
             <li key={`BurgerMenuKey - ${i}`}>
-              <NavLink to={item.path} onClick={() => setActive(false)}>
+              <NavLink
+                to={item.path}
+                onClick={() => {
+                  console.log('nen');
+                  setActive(false);
+                }}
+              >
                 {item.title}
               </NavLink>
               <span>{item.icon}</span>
