@@ -14,7 +14,7 @@ export const User = ({ user }: IUserProps) => {
       <div className={styles.UserPhotoBlock}>
         <img src={!!user.avatar ? host + user.avatar : fakeAvatar} alt={'avatar'} loading="eager" />
       </div>
-      <div>{user.email}</div>
+      <div className={styles.UserEmailBlock}>{user.email}</div>
       <div>Роль: {!!user.role ? user.role : 'Без роли'}</div>
     </div>
   );

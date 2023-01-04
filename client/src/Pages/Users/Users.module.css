@@ -1,5 +1,5 @@
 .UsersBlock{
-    max-width: 100%;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
@@ -12,22 +12,31 @@
     border: none;
     color: #1D2732;
     display: inline-flex;
-    width: calc(100% / 6);
+    width: calc(100%*1/6 - 50px);
     flex-grow: 1;
 }
 
 .UserItem{
+    width: 100%;
     border: 1px solid black;
     border-radius: 4px;
-    padding: 20px;
+    padding: 20px 15px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    align-items: center;
     justify-content: space-around;
 }
 
 .UserPhotoBlock img{
     max-width: 150px;
+}
+
+.UserEmailBlock{
+    max-width: 160px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 
@@ -60,4 +69,13 @@
     display: inline-flex;
     flex-direction: column;
     gap: 7px;
+}
+
+@media screen and (max-width: 1420px) {
+    /*.UserPhotoBlock img {*/
+    /*    max-width: 100px;*/
+    /*}*/
+    /*.UserEmailBlock{*/
+    /*    max-width: 120px;*/
+    /*}*/
 }
