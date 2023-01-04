@@ -44,7 +44,7 @@ export const ProjectsPage = () => {
           <div className={styles.ProjectItem} key={`project-item-${index}`}>
             <div className={styles.TitleBlock}>
               <span>
-                Название: <b>{project.title}</b>
+                <span>Название:</span> <b>{project.title}</b>
               </span>
             </div>
             <div className={styles.ProjectItemPhoto}>

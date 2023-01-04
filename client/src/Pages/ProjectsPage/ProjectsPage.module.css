@@ -65,6 +65,27 @@
   }
 }
 
+@media screen and (max-width: 825px) {
+  .ProjectItemPhoto img {
+    max-width: 150px;
+    max-height: 150px;
+  }
+  .TitleBlock span span{
+    display: none;
+  }
+  .TitleBlock>span>b{
+    display: block;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .ProjectItemPhoto img {
+    max-width: 100px;
+    max-height: 100px;
+  }
+}
+
 @media screen and (max-width: 490px) {
   .ProjectItem{
     width: 100%;
