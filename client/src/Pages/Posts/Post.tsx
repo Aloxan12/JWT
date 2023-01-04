@@ -39,7 +39,8 @@ export const Post = ({ post, setCurrentPage }: IPostProps) => {
         <span className={styles.postsItemAuthor}>{post.author.email}</span>
         <div className={styles.postEditBlock}>
           <span>
-            Опубликовано: {moment(post.publicDate).format('DD-MM-YYYY') || 'Дата не зафикирована'}
+            <span>Опубликовано:</span>{' '}
+            {moment(post.publicDate).format('DD-MM-YYYY') || 'Дата не зафикирована'}
           </span>
           {user && user.role === RoleTypes.ADMIN && (
             <div className={styles.postTrashBlock}>

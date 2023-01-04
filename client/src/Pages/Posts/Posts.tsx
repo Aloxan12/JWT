@@ -23,7 +23,6 @@ export const Posts = () => {
     data: postsData,
     isLoading: isLoadingList,
     isFetching: isFetchingList,
-    refetch,
   } = useGetAllPostsQuery({ limit, page: currentPage });
   let count: number = 0;
   const [createPost] = useCreatePostsMutation();
@@ -38,10 +37,8 @@ export const Posts = () => {
       setPosts((prevState) => {
         return [...prevState, ...postsData.results];
       });
-      refetch();
       setFetching(false);
     } else if (!!postsData) {
-      refetch();
       setPosts(postsData.results);
     }
   }, [postsData]);

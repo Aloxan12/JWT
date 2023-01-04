@@ -93,3 +93,23 @@
     font-size: 16px;
     width: 80%;
 }
+
+
+@media screen and (max-width: 1420px) {
+    .postCreate{
+        flex-direction: column;
+        row-gap: 15px;
+    }
+    .postEditBlock>span>span{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .postBlock{
+        width: 95%;
+    }
+    .postEditBlock>span{
+        font-size: 12px;
+    }
+}
