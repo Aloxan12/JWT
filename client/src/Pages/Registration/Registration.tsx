@@ -50,7 +50,7 @@ export const Registration = () => {
       {isLoadingRegistration && <AppLoader />}
       <div className="registration-block">
         <div className="header-block">
-          <span>Регистрация</span>
+          <span>Регестрация</span>
         </div>
         <form onSubmit={handleSubmit} className="form-block">
           <div className="form-item">
