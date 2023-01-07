@@ -12,6 +12,15 @@ export const BlankSheet = () => {
   return (
     <div className={styles.BlankSheetWrap}>
       <AppInput value={input} onChange={changeHandler} type={'textarea'} />
+      <iframe
+        src={
+          'https://drive.google.com/file/d/1IlbVWVd-Acal-LS1AM3raIAX_9KJJVoC/view?usp=share_link'
+        }
+      />
+      <img
+        src={'https://drive.google.com/uc?export=view&id=1IlbVWVd-Acal-LS1AM3raIAX_9KJJVoC'}
+        alt={'lol'}
+      />
     </div>
   );
 };

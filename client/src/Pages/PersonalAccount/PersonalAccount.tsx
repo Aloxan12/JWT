@@ -58,7 +58,7 @@ export const PersonalAccount = () => {
         <div className={styles.PersonalAccountPhotoBlock}>
           <img
             className={styles.PersonalAccountPhoto}
-            src={user && user.avatar ? host + user!.avatar : fakeAvatar}
+            src={user && user.avatar ? user!.avatar : fakeAvatar}
             alt={'avatar'}
           />
           <div className={styles.ChangePhotoBtn}>

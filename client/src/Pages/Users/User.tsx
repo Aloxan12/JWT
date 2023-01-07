@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Users.module.css';
 import fakeAvatar from '../../utils/images/fake_avatar.png';
 import { IUser } from '../../redux/api/dto/UserDto';
-import { host } from '../../redux/api/authApi';
 import { Tooltip } from '../../Common/Components/Tooltip/Tooltip';
 
 interface IUserProps {
@@ -13,7 +12,7 @@ export const User = ({ user }: IUserProps) => {
   return (
     <div key={user.id} className={styles.UserItem}>
       <div className={styles.UserPhotoBlock}>
-        <img src={!!user.avatar ? host + user.avatar : fakeAvatar} alt={'avatar'} loading="eager" />
+        <img src={!!user.avatar ? user.avatar : fakeAvatar} alt={'avatar'} loading="eager" />
       </div>
       <Tooltip content={user.email}>
         <div className={styles.UserEmailBlock}>{user.email}</div>

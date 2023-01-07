@@ -3,7 +3,7 @@ import styles from './Header.module.css';
 import { NavLink, Link, useMatch, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
-import { host, useLogoutMutation } from '../../redux/api/authApi';
+import { useLogoutMutation } from '../../redux/api/authApi';
 import {
   logout,
   setAuthData,
@@ -78,7 +78,7 @@ export const Header = ({ itemsRoute }: IHeader) => {
             <div className={styles.welcomeWrap}>
               <span className={styles.email}>{user.email}</span>
               <Link to={`currentUser/${user.id}`} className={styles.linkAva}>
-                <img src={!!user!.avatar ? host + user!.avatar : fakeAvatar} alt={'avatar'} />
+                <img src={!!user!.avatar ? user!.avatar : fakeAvatar} alt={'avatar'} />
               </Link>
             </div>
             <span>
