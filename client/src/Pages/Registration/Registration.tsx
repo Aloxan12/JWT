@@ -33,7 +33,7 @@ export const Registration = () => {
         const data = await registration({ email, password, role });
         if (!!data && !error) {
           ToastWrapper({
-            msg: 'Писльмо для подтверждаения регестрации отправлено на почту'.replace(/"/g, ''),
+            msg: 'Писльмо для подтверждаения регистрации отправлено на почту'.replace(/"/g, ''),
             type: ToastWrapperType.success,
           });
           navigate('/login');
@@ -50,7 +50,7 @@ export const Registration = () => {
       {isLoadingRegistration && <AppLoader />}
       <div className="registration-block">
         <div className="header-block">
-          <span>Регестрация</span>
+          <span>Регистрация</span>
         </div>
         <form onSubmit={handleSubmit} className="form-block">
           <div className="form-item">
@@ -118,7 +118,7 @@ export const Registration = () => {
             </span>
           </div>
           <div className="form-item btn-block">
-            <input type="submit" className="btn" value="Зарегестрироваться" />
+            <input type="submit" className="btn" value="Зарегистрироваться" />
             {errorText && <div className="error-text">{errorText}</div>}
             {success && <div className="success-text">{success}</div>}
           </div>

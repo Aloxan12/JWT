@@ -93,7 +93,7 @@ export const Header = ({ itemsRoute }: IHeader) => {
               Войти
             </NavLink>
             <NavLink className={styles.loginLink} to={'/registration'}>
-              Регетсрация
+              Регистрация
             </NavLink>
           </div>
         )}
