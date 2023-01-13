@@ -1,7 +1,3 @@
-*{
-    box-sizing: border-box;
-}
-
 .auth_wrap{
     height: calc(100vh - 67px);
     display: flex;
