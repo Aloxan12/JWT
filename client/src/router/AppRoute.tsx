@@ -18,6 +18,7 @@ import { BlankSheet } from '../Pages/BlankSheet/BlankSheet';
 import { AppLoader } from '../Common/Components/AppLoader/AppLoader';
 import '../styles/global.scss';
 import { MainLayout } from '../Pages/MainLayout/MainLayout';
+import { BootstrapCustomNetPage } from '../Pages/BootstrapCustomNetPage/BootstrapCustomNetPage';
 
 export const routesIsNotAuth = [
   {
@@ -115,6 +116,13 @@ const uniqRoutesByRole = {
       title: 'Пользователи',
       showInMenu: true,
       component: <Users />,
+    },
+    {
+      id: 'Bootstrap',
+      path: '/bootstrap-net',
+      title: 'Сетка',
+      showInMenu: true,
+      component: <BootstrapCustomNetPage />,
     },
     {
       id: 'NotFound',
