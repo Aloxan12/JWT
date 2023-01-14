@@ -33,7 +33,7 @@ export const useParamsControl = <T, TKey extends keyof T>({
 }: UseParamsControlType<T, TKey>) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.toString();
-  const [params, setParams] = useState({});
+  const [params, setParams] = useState<null | T>(null);
 
   const fullParamsList: (TKey | undefined)[] = withPagination
     ? ['limit' as TKey, 'page' as TKey, ...paramsList]
