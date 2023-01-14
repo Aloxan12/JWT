@@ -17,6 +17,7 @@ import { ProjectsPage } from '../Pages/ProjectsPage/ProjectsPage';
 import { BlankSheet } from '../Pages/BlankSheet/BlankSheet';
 import { AppLoader } from '../Common/Components/AppLoader/AppLoader';
 import '../styles/global.scss';
+import { MainLayout } from '../Pages/MainLayout/MainLayout';
 
 export const routesIsNotAuth = [
   {
@@ -138,19 +139,21 @@ export const AppRoutes = () => {
     <BrowserRouter>
       <Header itemsRoute={user ? routesByRole[user.role] : []} />
       <ToastContainer />
-      <Routes>
-        {isAuth
-          ? user
-            ? routesByRole[user.role].map((route) => {
+      <MainLayout>
+        <Routes>
+          {isAuth
+            ? user
+              ? routesByRole[user.role].map((route) => {
+                  const { id, component, path } = route;
+                  return <Route key={id} path={path} element={component} />;
+                })
+              : []
+            : routesIsNotAuth.map((route) => {
                 const { id, component, path } = route;
                 return <Route key={id} path={path} element={component} />;
-              })
-            : []
-          : routesIsNotAuth.map((route) => {
-              const { id, component, path } = route;
-              return <Route key={id} path={path} element={component} />;
-            })}
-      </Routes>
+              })}
+        </Routes>
+      </MainLayout>
     </BrowserRouter>
   );
 };

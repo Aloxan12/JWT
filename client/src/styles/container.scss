@@ -8,3 +8,16 @@
   padding-left: 15px;
   padding-right: 15px;
 }
+
+.row{
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: -15px;
+  padding-right: -15px;
+}
+
+.col{
+  flex: 1 0 0%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
