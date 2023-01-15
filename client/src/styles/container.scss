@@ -5,7 +5,7 @@
 }
 
 .container{
-  margin: 0 auto;
+  margin: 20px auto;
   max-width: $container-max-width;
   padding-left: $grid-gap-side;
   padding-right: $grid-gap-side;
@@ -14,10 +14,15 @@
 .row{
   display: flex;
   flex-wrap: wrap;
-  margin-left: $grid-gap-side;
-  margin-right: $grid-gap-side;
+  margin-left: -$grid-gap-side;
+  margin-right: -$grid-gap-side;
 
   margin-bottom: $grid-gap-side;
+
+  > * {
+    margin-left: $grid-gap-side;
+    margin-right: $grid-gap-side;
+  }
 }
 
 .col{
@@ -25,6 +30,26 @@
   margin-left: $grid-gap-side;
   margin-right: $grid-gap-side;
 }
+
+@mixin col($size){
+  flex: 0 0 auto;
+  width: calc(#{percentage($size / $grid-columns)} - #{$grid-gap});
+}
+
+//.col-1{
+//  @include col(1);
+//}
+//.col-2{
+//  @include col(2);
+//}
+
+@for $i from 1 through $grid-columns{
+  .col-#{$i}{
+    @include col($i)
+  }
+}
+
+
 
 .block{
   padding: 20px;

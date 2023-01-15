@@ -20,6 +20,65 @@ export const BootstrapCustomNetPage = () => {
         ea eaque enim error esse est expedita facere facilis illo illum in, itaque maiores minus
         natus non quae quasi quia rem rerum sed soluta tenetur veniam voluptate?
       </p>
+      <div className="row">
+        <div className="col-1">
+          <div className="block">.col-1</div>
+        </div>
+        <div className="col-1">
+          <div className="block">.col-1</div>
+        </div>
+        <div className="col-1">
+          <div className="block">.col-1</div>
+        </div>
+        <div className="col-1">
+          <div className="block">.col-1</div>
+        </div>
+        <div className="col-1">
+          <div className="block">.col-1</div>
+        </div>
+        <div className="col-1">
+          <div className="block">.col-1</div>
+        </div>
+        <div className="col-1">
+          <div className="block">.col-1</div>
+        </div>
+        <div className="col-1">
+          <div className="block">.col-1</div>
+        </div>
+        <div className="col-1">
+          <div className="block">.col-1</div>
+        </div>
+        <div className="col-1">
+          <div className="block">.col-1</div>
+        </div>
+        <div className="col-1">
+          <div className="block">.col-1</div>
+        </div>
+        <div className="col-1">
+          <div className="block">.col-1</div>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-2">
+          <div className="block">.col-2</div>
+        </div>
+        <div className="col-2">
+          <div className="block">.col-2</div>
+        </div>
+        <div className="col-2">
+          <div className="block">.col-2</div>
+        </div>
+        <div className="col-2">
+          <div className="block">.col-2</div>
+        </div>
+        <div className="col-2">
+          <div className="block">.col-2</div>
+        </div>
+        <div className="col-2">
+          <div className="block">.col-2</div>
+        </div>
+      </div>
     </React.Fragment>
   );
 };
