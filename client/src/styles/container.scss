@@ -1,27 +1,29 @@
+@import 'variables';
+
 *{
   box-sizing: border-box;
 }
 
 .container{
   margin: 0 auto;
-  max-width: 1440px;
-  padding-left: 15px;
-  padding-right: 15px;
+  max-width: $container-max-width;
+  padding-left: $grid-gap-side;
+  padding-right: $grid-gap-side;
 }
 
 .row{
   display: flex;
   flex-wrap: wrap;
-  margin-left: -15px;
-  margin-right: -15px;
+  margin-left: $grid-gap-side;
+  margin-right: $grid-gap-side;
 
-  margin-bottom: 15px;
+  margin-bottom: $grid-gap-side;
 }
 
 .col{
   flex: 1 0 0%;
-  margin-left: 15px;
-  margin-right: 15px;
+  margin-left: $grid-gap-side;
+  margin-right: $grid-gap-side;
 }
 
 .block{
