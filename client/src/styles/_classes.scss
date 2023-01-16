@@ -1,0 +1,32 @@
+@import 'variables';
+@import 'mixins';
+
+.container{
+  @include container;
+}
+
+.row{
+  @include row;
+}
+
+.col{
+  flex: 1 0 0%;
+  margin-left: $grid-gap-side;
+  margin-right: $grid-gap-side;
+}
+
+@for $i from 1 through $grid-columns{
+  .col-#{$i}{
+    @include col($i)
+  }
+}
+
+@each $bp, $width in $grid-breakpoints{
+  @include media($width){
+    @for $i from 1 through $grid-columns{
+      .col-#{$bp}-#{$i}{
+        @include col($i)
+      }
+    }
+  }
+}
