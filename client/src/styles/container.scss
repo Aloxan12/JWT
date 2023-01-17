@@ -7,7 +7,19 @@
 }
 
 
+.custom{
+  @include row;
 
+  @include bp(xxs){
+    background-color: green;
+  }
+  .logo{
+    @include col(3);
+  }
+  .nav{
+    @include col(9);
+  }
+}
 
 
 .block{

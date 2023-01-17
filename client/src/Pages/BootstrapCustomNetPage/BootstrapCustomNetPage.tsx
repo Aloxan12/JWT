@@ -79,6 +79,10 @@ export const BootstrapCustomNetPage = () => {
           <div className="block">.col-2</div>
         </div>
       </div>
+      <div className="custom">
+        <div className="logo block">logo</div>
+        <div className="nav block">nav</div>
+      </div>
     </React.Fragment>
   );
 };
