@@ -13,6 +13,9 @@
   @include bp(xxs){
     background-color: green;
   }
+  @include bp(md){
+
+  }
   .logo{
     @include col(3);
   }
