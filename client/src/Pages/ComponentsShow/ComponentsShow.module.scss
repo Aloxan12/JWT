@@ -3,7 +3,17 @@
 @import './src/styles/classes';
 
 .ComponentsShowWrapper{
-
+    .btnShowBlock{
+        @include row;
+        div{
+            @include col(3);
+        }
+        @include bp(md){
+            div{
+                @include col(2);
+            }
+        }
+    }
     //width: 100%;
     //display: flex;
     //flex-wrap: wrap;

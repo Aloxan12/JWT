@@ -35,17 +35,13 @@ export const ComponentsShow = () => {
   const [userData, setUserData] = useState<IUser | null>(null);
   return (
     <div className={styles.ComponentsShowWrapper}>
-      <div className="btn-show-block">
-        <div className="col-3">
+      <div className={styles.btnShowBlock}>
+        <div>
           <AppButton onClick={(e) => console.log(e.currentTarget)} />
         </div>
-        <div className="col-1">
+        <div>
           <AppTrash size={'small'} deleteHandler={() => console.log('что-то удалил')} />
-        </div>
-        <div className="col-1">
           <AppTrash size={'medium'} deleteHandler={() => console.log('что-то удалил')} />
-        </div>
-        <div className="col-1">
           <AppTrash size={'big'} deleteHandler={() => console.log('что-то удалил')} />
         </div>
       </div>
