@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useGetAllUsersQuery } from '../../redux/api/usersApi';
 import { User } from './User';
-import styles from './Users.module.css';
+import styles from './Users.module.scss';
 import { AppInputFilter } from '../../Common/Components/AppInputFilter';
 import commonStyles from '../../App.module.css';
 import { useParamsControl } from '../../Hooks/useParamsControl';

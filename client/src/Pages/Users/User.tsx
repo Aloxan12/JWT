@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Users.module.css';
+import styles from './Users.module.scss';
 import fakeAvatar from '../../utils/images/fake_avatar.png';
 import { IUser } from '../../redux/api/dto/UserDto';
 import { Tooltip } from '../../Common/Components/Tooltip/Tooltip';
