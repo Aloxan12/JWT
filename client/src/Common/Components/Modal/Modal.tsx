@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import style from './Modal.module.css';
+import style from './Modal.module.scss';
 
 type ModalType = {
   active: boolean;
@@ -10,11 +10,11 @@ type ModalType = {
 export const Modal: React.FC<ModalType> = ({ active, setActive, children, title }) => {
   return (
     <div
-      className={active ? `${style.modal} + '' + ${style.active}` : style.modal}
+      className={active ? `${style.modal} + ' ' + ${style.active}` : style.modal}
       onClick={() => setActive(false)}
     >
       <div
-        className={active ? `${style.modalContent} + '' + ${style.active}` : style.modalContent}
+        className={active ? `${style.modalContent} ${style.active}` : style.modalContent}
         onClick={(e) => e.stopPropagation()}
       >
         {title ? (

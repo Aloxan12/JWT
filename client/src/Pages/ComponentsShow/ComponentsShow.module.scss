@@ -5,26 +5,26 @@
 .ComponentsShowWrapper{
     .btnShowBlock{
         @include row;
-        div{
+        .btn-col{
             @include col(6);
         }
         @include bp(sm){
-            div{
+            .btn-col{
                 @include col(5);
             }
         }
         @include bp(sm){
-            div{
+            .btn-col{
                 @include col(4);
             }
         }
         @include bp(md){
-            div{
+            .btn-col{
                 @include col(3);
             }
         }
         @include bp(lg){
-            div{
+            .btn-col{
                 @include col(2);
             }
         }

@@ -36,10 +36,10 @@ export const ComponentsShow = () => {
   return (
     <div className={styles.ComponentsShowWrapper}>
       <div className={styles.btnShowBlock}>
-        <div>
+        <div className="btn-col">
           <AppButton onClick={(e) => console.log(e.currentTarget)} />
         </div>
-        <div>
+        <div className="btn-col">
           <AppTrash size={'small'} deleteHandler={() => console.log('что-то удалил')} />
           <AppTrash size={'medium'} deleteHandler={() => console.log('что-то удалил')} />
           <AppTrash size={'big'} deleteHandler={() => console.log('что-то удалил')} />
