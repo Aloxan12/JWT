@@ -10,17 +10,20 @@
 .custom{
   @include row;
 
-  @include bp(xxs){
-    background-color: green;
-  }
-  @include bp(md){
-
-  }
   .logo{
-    @include col(3);
+    @include col(6);
   }
   .nav{
-    @include col(9);
+    @include col(6);
+  }
+
+  @include bp(md){
+    .logo{
+      @include col(3);
+    }
+    .nav{
+      @include col(9);
+    }
   }
 }
 

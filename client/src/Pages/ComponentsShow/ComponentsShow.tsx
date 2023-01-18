@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AppButton } from '../../Common/Components/AppButton/AppButton';
 import { AppTrash } from '../../Common/Components/AppTrash/AppTrash';
-import styles from './ComponentsShow.module.css';
+import styles from './ComponentsShow.module.scss';
 import { AppInput } from '../../Common/Components/AppInput/AppInput';
 import { AppRating } from '../../Common/Components/AppRating/AppRating';
 import { AppInputFilter } from '../../Common/Components/AppInputFilter';
@@ -10,7 +10,6 @@ import { useGetAllUsersQuery } from '../../redux/api/usersApi';
 import { IUser } from '../../redux/api/dto/UserDto';
 import { Calendar } from '../../Common/Components/Calendar/Calendar';
 import { AppTable } from '../../Common/Components/AppTable/AppTable';
-import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
 
 export const tableHeaderMock = [
   { title: 'Текст', colWidth: '33%' },
@@ -36,10 +35,20 @@ export const ComponentsShow = () => {
   const [userData, setUserData] = useState<IUser | null>(null);
   return (
     <div className={styles.ComponentsShowWrapper}>
-      <AppButton onClick={(e) => console.log(e.currentTarget)} />
-      <AppTrash size={'small'} deleteHandler={() => console.log('что-то удалил')} />
-      <AppTrash size={'medium'} deleteHandler={() => console.log('что-то удалил')} />
-      <AppTrash size={'big'} deleteHandler={() => console.log('что-то удалил')} />
+      <div className="btn-show-block">
+        <div className="col-3">
+          <AppButton onClick={(e) => console.log(e.currentTarget)} />
+        </div>
+        <div className="col-1">
+          <AppTrash size={'small'} deleteHandler={() => console.log('что-то удалил')} />
+        </div>
+        <div className="col-1">
+          <AppTrash size={'medium'} deleteHandler={() => console.log('что-то удалил')} />
+        </div>
+        <div className="col-1">
+          <AppTrash size={'big'} deleteHandler={() => console.log('что-то удалил')} />
+        </div>
+      </div>
       <AppInput
         value={''}
         onChange={(e) => console.log(e)}
