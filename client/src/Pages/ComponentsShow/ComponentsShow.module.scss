@@ -6,11 +6,21 @@
     .btnShowBlock{
         @include row;
         div{
-            @include col(3);
+            @include col(6);
+        }
+        @include bp(sm){
+            div{
+                @include col(5);
+            }
+        }
+        @include bp(sm){
+            div{
+                @include col(4);
+            }
         }
         @include bp(md){
             div{
-                @include col(2);
+                @include col(3);
             }
         }
     }
