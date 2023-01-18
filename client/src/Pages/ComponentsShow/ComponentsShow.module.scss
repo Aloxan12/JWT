@@ -23,6 +23,11 @@
                 @include col(3);
             }
         }
+        @include bp(lg){
+            div{
+                @include col(2);
+            }
+        }
     }
     //width: 100%;
     //display: flex;

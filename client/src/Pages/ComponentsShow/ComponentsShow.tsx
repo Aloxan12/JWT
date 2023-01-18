@@ -40,9 +40,6 @@ export const ComponentsShow = () => {
           <AppButton onClick={(e) => console.log(e.currentTarget)} />
         </div>
         <div>
-          <AppButton onClick={(e) => console.log(e.currentTarget)} />
-        </div>
-        <div>
           <AppTrash size={'small'} deleteHandler={() => console.log('что-то удалил')} />
           <AppTrash size={'medium'} deleteHandler={() => console.log('что-то удалил')} />
           <AppTrash size={'big'} deleteHandler={() => console.log('что-то удалил')} />
