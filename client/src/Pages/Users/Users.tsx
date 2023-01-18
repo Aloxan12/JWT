@@ -50,14 +50,18 @@ export const Users = () => {
                   to={
                     user.id === currentUser.id ? `/currentUser/${user.id}/` : `/users/${user.id}/`
                   }
-                  className={styles.UserLink}
+                  className={styles.UserBlock}
                   key={user.id}
                 >
                   <User user={user} />
                 </NavLink>
               );
             } else {
-              return <User user={user} key={user.id} />;
+              return (
+                <div className={styles.UserBlock}>
+                  <User user={user} key={user.id} />
+                </div>
+              );
             }
           })}
       </div>
