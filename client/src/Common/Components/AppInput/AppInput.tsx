@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useMemo } from 'react';
-import styles from './AppInput.module.css';
+import styles from './AppInput.module.scss';
 import icoRightPhoto from '../../../utils/images/arrow-down.png';
 
 export enum IcoType {
@@ -116,6 +116,7 @@ export const AppInput = ({
             placeholder={placeholder}
             onChange={onChangeHandler}
             disabled={disabled}
+            className={`${styles.appTextareaInputBase}`}
           />
         ) : (
           <input
@@ -125,6 +126,7 @@ export const AppInput = ({
             {...keyDownPropsWrapper}
             disabled={disabled}
             type={type}
+            className={styles.appInputBase}
           />
         )}
       </div>

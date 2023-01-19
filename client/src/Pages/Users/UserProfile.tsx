@@ -13,10 +13,7 @@ export const UserProfile = () => {
     <div className={styles.UserProfileWrap}>
       <div className={styles.UserProfileInfoWrap}>
         <div className={styles.UserProfilePhoto}>
-          <img
-            src={user && user.avatar ? `http://localhost:5555/` + user!.avatar : fakeAvatar}
-            alt={'avatar'}
-          />
+          <img src={user && user.avatar ? user.avatar : fakeAvatar} alt={'avatar'} />
         </div>
         {!!user && (
           <div className={styles.UserProfileInfo}>
