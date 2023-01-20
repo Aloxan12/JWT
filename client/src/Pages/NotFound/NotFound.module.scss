@@ -34,7 +34,7 @@
     position: absolute;
     font-family: ‘Comic Sans MS’, cursive;
     top: 50%;
-    left: 46%;
+    left: 48%;
     transform: translate(-46%, -50%);
     z-index: 90;
 }
@@ -112,7 +112,7 @@
 
 @media screen and (max-width: 1200px){
     .NotFoundWrap img{
-        max-width: 400px;
+        max-width: 430px;
         top: calc(50% - 209px);
         left: calc(50% - 224px);
     }
@@ -141,7 +141,7 @@
 
 @media screen and (max-width: 930px){
     .NotFoundWrap img{
-        max-width: 200px;
+        max-width: 215px;
         top: calc(50% - 100px);
         left: calc(50% - 120px);
     }
