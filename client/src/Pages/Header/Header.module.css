@@ -50,7 +50,8 @@
     margin-left: 10px;
 }
 
-.linkAva img {
+.AvatarImg{
+    object-fit: cover;
     width: 40px;
     height: 40px;
     border-radius: 50%;
