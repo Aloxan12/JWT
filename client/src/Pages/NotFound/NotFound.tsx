@@ -41,13 +41,13 @@ export const NotFound = () => {
       </div>
       <div className={styles.onGoMainBtn}>
         <Tooltip content="Вернуться на главную" textColor="green">
-          <div className={styles.redTablet} onClick={() => navigate(isAuth ? '/' : '/login')}></div>
+          <div className={styles.redTablet} onClick={() => navigate(isAuth ? '/' : '/login')} />
         </Tooltip>
       </div>
       <div className={styles.onClosesBtn}>
         <Tooltip content="Покинуть сайт" textColor="green">
           <a href="https://www.google.com/">
-            <div className={styles.blueTablet}></div>
+            <div className={styles.blueTablet} />
           </a>
         </Tooltip>
       </div>

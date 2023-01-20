@@ -175,6 +175,9 @@
     .NotFoundWrap .runningStringBlock{
         left: 45%;
     }
+    .onGoMainBtn{
+        left: 9%;
+    }
     .onClosesBtn{
         right: -45%;
     }
