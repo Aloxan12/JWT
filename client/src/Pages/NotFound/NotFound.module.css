@@ -158,3 +158,24 @@
         right: -65px;
     }
 }
+
+@media screen and (max-width: 700px){
+    .onClosesBtn{
+        right: -25%;
+    }
+}
+
+@media screen and (max-width: 515px){
+    .onClosesBtn{
+        right: -35%;
+    }
+}
+
+@media screen and (max-width: 430px){
+    .NotFoundWrap .runningStringBlock{
+        left: 45%;
+    }
+    .onClosesBtn{
+        right: -45%;
+    }
+}
