@@ -1,184 +1,186 @@
-.NotFoundWrap{
-    top: 0;
-    left: 0;
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-}
-.NotFoundWrap img{
-    position: absolute;
-    top: calc(50% - 319px);
-    left: calc(50% - 313px);
-    max-width: 600px;
-    transform: rotate(90deg);
-    margin: auto;
-    z-index: 100;
+.NotFoundWrap {
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
 }
 
-.NotFoundWrap .NotFoundText{
-    color: rgba(93, 194, 84, 0.28);
-    position: absolute;
-    font-family: ‘Comic Sans MS’, cursive;
-    top: 50%;
-    left: 46%;
-    transform: translate(-46%, -50%);
-    font-size: 230px;
-    z-index: 91;
-}
-.NotFoundWrap .runningStringBlock{
-    position: absolute;
-    font-family: ‘Comic Sans MS’, cursive;
-    top: 50%;
-    left: 48%;
-    transform: translate(-46%, -50%);
-    z-index: 90;
+.NotFoundWrap img {
+  position: absolute;
+  top: calc(50% - 319px);
+  left: calc(50% - 313px);
+  max-width: 600px;
+  transform: rotate(90deg);
+  margin: auto;
+  z-index: 100;
 }
 
-.runningStringBlock{
-    display: inline-block;
-    width: 520px;
-    height: 400px;
-    background: rgb(0, 0, 0);
-    overflow: hidden;
-    padding: 30px 20px 20px 20px;
-    color: #0fbe0f;
+.NotFoundWrap .NotFoundText {
+  color: rgba(93, 194, 84, 0.28);
+  position: absolute;
+  font-family: ‘Comic Sans MS’, cursive;
+  top: 50%;
+  left: 46%;
+  transform: translate(-46%, -50%);
+  font-size: 230px;
+  z-index: 91;
+}
+
+.NotFoundWrap .runningStringBlock {
+  position: absolute;
+  font-family: ‘Comic Sans MS’, cursive;
+  top: 50%;
+  left: 48%;
+  transform: translate(-46%, -50%);
+  z-index: 90;
+}
+
+.runningStringBlock {
+  display: inline-block;
+  width: 520px;
+  height: 400px;
+  background: rgb(0, 0, 0);
+  overflow: hidden;
+  padding: 30px 20px 20px 20px;
+  color: #0fbe0f;
 }
 
 .runningStringBlock div {
-    display: inline-block;
-    white-space: nowrap;
-    animation: runningStringBlock 50s linear infinite 1s both;
+  display: inline-block;
+  white-space: nowrap;
+  animation: runningStringBlock 50s linear infinite 1s both;
 }
 
-.runningStringBlock:hover>div {
-    animation-play-state: running;
+.runningStringBlock:hover > div {
+  animation-play-state: running;
 }
 
 @keyframes runningStringBlock {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
-.onGoMainBtn{
-    width: 150px;
-    position: absolute;
-    top: 40%;
-    left: 13%;
-    z-index: 101;
+.onGoMainBtn {
+  width: 150px;
+  position: absolute;
+  top: 40%;
+  left: 13%;
+  z-index: 101;
 }
 
-.onClosesBtn{
-    width: 300px;
-    position: absolute;
-    top: 40%;
-    right: 0;
-    z-index: 101;
+.onClosesBtn {
+  width: 300px;
+  position: absolute;
+  top: 40%;
+  right: 0;
+  z-index: 101;
 }
 
-.redTablet{
-    cursor: pointer;
-    height: 150px;
-    width: 60px;
-    border-radius: 30px;
-    background: rgb(255,93,93);
-    background: radial-gradient(circle, rgba(255,93,93,0.9727241238292192) 0%, rgba(254,68,68,1) 5%, rgba(203,20,20,1) 41%, rgba(209,47,47,1) 81%, rgba(213,33,33,0.9951330874146533) 88%, rgba(200,0,0,0.9951330874146533) 100%);
+.redTablet {
+  cursor: pointer;
+  height: 150px;
+  width: 60px;
+  border-radius: 30px;
+  background: rgb(255, 93, 93);
+  background: radial-gradient(circle, rgba(255, 93, 93, 0.9727241238292192) 0%, rgba(254, 68, 68, 1) 5%, rgba(203, 20, 20, 1) 41%, rgba(209, 47, 47, 1) 81%, rgba(213, 33, 33, 0.9951330874146533) 88%, rgba(200, 0, 0, 0.9951330874146533) 100%);
 }
 
-.redTablet:hover{
-    box-shadow: 1px 1px 25px 41px rgb(218, 121, 121);
+.redTablet:hover {
+  box-shadow: 1px 1px 25px 41px rgb(218, 121, 121);
 }
 
-.blueTablet{
-    cursor: pointer;
-    height: 150px;
-    width: 60px;
-    border-radius: 30px;
-    background: rgb(115,106,255);
-    background: radial-gradient(circle, rgba(115,106,255,0.9727241238292192) 0%, rgba(106,95,255,1) 6%, rgba(81,12,242,1) 41%, rgba(85,24,228,1) 71%, rgba(58,21,212,0.9951330874146533) 88%, rgba(89,0,255,0.9951330874146533) 100%);
+.blueTablet {
+  cursor: pointer;
+  height: 150px;
+  width: 60px;
+  border-radius: 30px;
+  background: rgb(115, 106, 255);
+  background: radial-gradient(circle, rgba(115, 106, 255, 0.9727241238292192) 0%, rgba(106, 95, 255, 1) 6%, rgba(81, 12, 242, 1) 41%, rgba(85, 24, 228, 1) 71%, rgba(58, 21, 212, 0.9951330874146533) 88%, rgba(89, 0, 255, 0.9951330874146533) 100%);
 }
 
-.blueTablet:hover{
-    box-shadow: 1px 1px 25px 41px rgba(111, 154, 190, 0.64);
+.blueTablet:hover {
+  box-shadow: 1px 1px 25px 41px rgba(111, 154, 190, 0.64);
 }
 
-@media screen and (max-width: 1200px){
-    .NotFoundWrap img{
-        max-width: 430px;
-        top: calc(50% - 209px);
-        left: calc(50% - 224px);
-    }
+@media screen and (max-width: 1200px) {
+  .NotFoundWrap img {
+    max-width: 430px;
+    top: calc(50% - 209px);
+    left: calc(50% - 224px);
+  }
 
-    .runningStringBlock{
-        width: 400px;
-        height: 370px;
-        font-size: 14px;
-    }
-    .NotFoundWrap .NotFoundText{
-        font-size: 125px;
-    }
+  .runningStringBlock {
+    width: 400px;
+    height: 370px;
+    font-size: 14px;
+  }
+  .NotFoundWrap .NotFoundText {
+    font-size: 125px;
+  }
 
-    .onGoMainBtn, .onClosesBtn{
-        top: 45%;
-    }
-    .redTablet, .blueTablet{
-        height: 125px;
-        width: 50px
-    }
-    .onClosesBtn{
-        right: -10%;
-    }
+  .onGoMainBtn, .onClosesBtn {
+    top: 45%;
+  }
+  .redTablet, .blueTablet {
+    height: 125px;
+    width: 50px
+  }
+  .onClosesBtn {
+    right: -10%;
+  }
 }
 
 
-@media screen and (max-width: 930px){
-    .NotFoundWrap img{
-        max-width: 215px;
-        top: calc(50% - 100px);
-        left: calc(50% - 120px);
-    }
+@media screen and (max-width: 930px) {
+  .NotFoundWrap img {
+    max-width: 215px;
+    top: calc(50% - 100px);
+    left: calc(50% - 120px);
+  }
 
-    .runningStringBlock{
-        width: 185px;
-        height: 185px;
-        font-size: 8px;
-    }
-    .NotFoundWrap .NotFoundText{
-        font-size: 65px;
-    }
-    .onClosesBtn{
-        right: -65px;
-    }
+  .runningStringBlock {
+    width: 185px;
+    height: 185px;
+    font-size: 8px;
+  }
+  .NotFoundWrap .NotFoundText {
+    font-size: 65px;
+  }
+  .onClosesBtn {
+    right: -65px;
+  }
 }
 
-@media screen and (max-width: 700px){
-    .onClosesBtn{
-        right: -25%;
-    }
+@media screen and (max-width: 700px) {
+  .onClosesBtn {
+    right: -25%;
+  }
 }
 
-@media screen and (max-width: 515px){
-    .onClosesBtn{
-        right: -35%;
-    }
+@media screen and (max-width: 515px) {
+  .onClosesBtn {
+    right: -35%;
+  }
 }
 
-@media screen and (max-width: 430px){
-    .NotFoundWrap .runningStringBlock{
-        left: 45%;
-    }
-    .onGoMainBtn{
-        left: 9%;
-    }
-    .onClosesBtn{
-        right: -45%;
-    }
+@media screen and (max-width: 430px) {
+  .NotFoundWrap .runningStringBlock {
+    left: 45%;
+  }
+  .onGoMainBtn {
+    left: 9%;
+  }
+  .onClosesBtn {
+    right: -45%;
+  }
 }
