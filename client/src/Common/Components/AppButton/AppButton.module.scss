@@ -14,7 +14,7 @@
 }
 
 .red-btn{
-  color: #f6f4f4;
+  color: rgba(249, 250, 252, 0.7);
   background-color: #e03e3e;
   &:hover{
     color: white;
@@ -22,7 +22,7 @@
   }
 }
 .blue-btn{
-  color: #f6f4f4;
+  color: rgba(249, 250, 252, 0.7);
   background-color: #2847e7;
   &:hover{
     color: white;
@@ -32,6 +32,7 @@
 .green-btn{
   background-color: #d2face;
   &:hover{
+    color: black;
     box-shadow: 0 0 10px rgba(133, 196, 127, 0.78);
   }
 }
