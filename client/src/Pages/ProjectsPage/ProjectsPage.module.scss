@@ -1,0 +1,101 @@
+@import './src/styles/variables';
+@import './src/styles/mixins';
+@import './src/styles/classes';
+
+
+.MyProjectPageWrap{
+  display: inline-flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  border-radius: 4px;
+  margin: 60px auto;
+  min-height: 70vh;
+  @include row;
+
+  .ProjectItem{
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    display: inline-flex;
+    flex-direction: column;
+    row-gap: 10px;
+    flex-wrap: wrap;
+    padding: 20px;
+
+    .TitleBlock{
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      column-gap: 10px;
+    }
+    .ProjectItemPhoto{
+      margin: auto;
+      display: block;
+
+      img{
+        max-width: 250px;
+        max-height: 250px;
+      }
+    }
+    .GoToProject{
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+
+      a{
+        text-decoration: underline;
+        color: black;
+        font-size: 20px;
+
+        &:hover{
+          cursor: pointer;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  @include bp(xxs){
+    .ProjectItem{
+      @include col(3);
+    }
+  }
+}
+
+//@media screen and (max-width: 1787px) {
+//  .ProjectItem{
+//    width: 31%;
+//  }
+//}
+//
+//@media screen and (max-width: 1037px) {
+//  .ProjectItem{
+//    width: 45%;
+//  }
+//}
+//
+//@media screen and (max-width: 825px) {
+//  .ProjectItemPhoto img {
+//    max-width: 150px;
+//    max-height: 150px;
+//  }
+//  .TitleBlock span span{
+//    display: none;
+//  }
+//  .TitleBlock>span>b{
+//    display: block;
+//    text-align: center;
+//  }
+//}
+//
+//@media screen and (max-width: 610px) {
+//  .ProjectItemPhoto img {
+//    max-width: 100px;
+//    max-height: 100px;
+//  }
+//}
+//
+//@media screen and (max-width: 490px) {
+//  .ProjectItem{
+//    width: 100%;
+//  }
+//}

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ProjectsPage.module.css';
+import styles from './ProjectsPage.module.scss';
 import bridge from './utils/images/brige.png';
 import pokemons from './utils/images/pokemons.png';
 import weather from './utils/images/weather.png';
