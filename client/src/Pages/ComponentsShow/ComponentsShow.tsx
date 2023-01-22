@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppBtnSize, AppButton } from '../../Common/Components/AppButton/AppButton';
+import { AppBtnColor, AppBtnSize, AppButton } from '../../Common/Components/AppButton/AppButton';
 import { AppTrash } from '../../Common/Components/AppTrash/AppTrash';
 import styles from './ComponentsShow.module.scss';
 import { AppInput } from '../../Common/Components/AppInput/AppInput';
@@ -45,6 +45,13 @@ export const ComponentsShow = () => {
         <div className="btn-col">
           <AppButton size={AppBtnSize.big} onClick={(e) => console.log(e.currentTarget)} />
         </div>
+        <div className="btn-col">
+          <AppButton color={AppBtnColor.red} onClick={(e) => console.log(e.currentTarget)} />
+        </div>
+        <div className="btn-col">
+          <AppButton color={AppBtnColor.blue} onClick={(e) => console.log(e.currentTarget)} />
+        </div>
+
         <div className="btn-col">
           <AppTrash size={'small'} deleteHandler={() => console.log('что-то удалил')} />
           <AppTrash size={'medium'} deleteHandler={() => console.log('что-то удалил')} />
