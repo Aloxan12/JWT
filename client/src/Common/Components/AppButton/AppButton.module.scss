@@ -1,0 +1,30 @@
+.AppButton {
+  cursor: pointer;
+  margin-left: 5%;
+  border: none;
+  background-color: #d2face;
+  color: #363636;
+  border-radius: 14px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  transition: .3s;
+
+  &:hover {
+    box-shadow: 0 0 10px rgba(133, 196, 127, 0.78);
+  }
+}
+
+.small-btn{
+  font-size: 14px;
+  padding: 10px 12px;
+}
+
+.middle-btn{
+  font-size: 16px;
+  padding: 12px 20px;
+}
+
+.big-btn{
+  font-size: 18px;
+  padding: 14px 30px;
+}
