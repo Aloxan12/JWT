@@ -90,17 +90,19 @@ export const ComponentsShow = () => {
             resetValueHandler={() => setDropdownData(null)}
           />
         </div>
+        <div className="input-col">
+          <AppDropdown
+            label={'Дропдаун с бэка'}
+            value={userData}
+            data={!!users ? users.results : ([] as IUser[])}
+            propToShowInList={'email'}
+            propToShowInInput={'email'}
+            onChange={(value) => setUserData(value)}
+            resetValueHandler={() => setUserData(null)}
+          />
+        </div>
       </div>
       <AppRating value={rating} onChange={(value) => setRating(value)} />
-
-      <AppDropdown
-        value={userData}
-        data={!!users ? users.results : ([] as IUser[])}
-        propToShowInList={'email'}
-        propToShowInInput={'email'}
-        onChange={(value) => setUserData(value)}
-        resetValueHandler={() => setUserData(null)}
-      />
       <Calendar />
       <div>
         <AppTable
