@@ -102,30 +102,36 @@ export const ComponentsShow = () => {
           />
         </div>
       </div>
-      <AppRating value={rating} onChange={(value) => setRating(value)} />
-      <Calendar />
-      <div>
-        <AppTable
-          data={dataMock}
-          tableDataSelectors={[
-            {
-              renderItem: (item) => {
-                return <div>{item.text}</div>;
+      <div className={styles['other-show-block']}>
+        <div>
+          <AppRating value={rating} onChange={(value) => setRating(value)} />
+        </div>
+        <div>
+          <Calendar />
+        </div>
+        <div>
+          <AppTable
+            data={dataMock}
+            tableDataSelectors={[
+              {
+                renderItem: (item) => {
+                  return <div>{item.text}</div>;
+                },
               },
-            },
-            {
-              renderItem: (item) => {
-                return <div>{item.number}</div>;
+              {
+                renderItem: (item) => {
+                  return <div>{item.number}</div>;
+                },
               },
-            },
-            {
-              renderItem: (item) => {
-                return <div>удалить</div>;
+              {
+                renderItem: (item) => {
+                  return <div>удалить</div>;
+                },
               },
-            },
-          ]}
-          headerData={tableHeaderMock}
-        />
+            ]}
+            headerData={tableHeaderMock}
+          />
+        </div>
       </div>
       {/*<div>*/}
       {/*  <AppLoader />*/}

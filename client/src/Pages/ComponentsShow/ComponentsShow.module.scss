@@ -59,6 +59,9 @@
             }
         }
     }
+    .other-show-block{
+        @include row;
+    }
     //width: 100%;
     //display: flex;
     //flex-wrap: wrap;
