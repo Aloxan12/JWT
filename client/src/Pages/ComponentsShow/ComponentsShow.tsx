@@ -58,20 +58,40 @@ export const ComponentsShow = () => {
           <AppTrash size={'big'} deleteHandler={() => console.log('что-то удалил')} />
         </div>
       </div>
-      <AppInput
-        value={''}
-        onChange={(e) => console.log(e)}
-        label={'label'}
-        error={'error error errorerror error errorerror  error errorerror '}
-      />
-      <AppInputFilter searchParam={'search'} />
+      <div className={styles['input-show-block']}>
+        <div className="input-col">
+          <AppInput value={''} onChange={(e) => console.log(e)} label={'Базовый'} />
+        </div>
+        <div className="input-col">
+          <AppInputFilter label={'Фильтр'} searchParam={'search'} />
+        </div>
+        <div className="input-col">
+          <AppInput
+            value={''}
+            message="Подсказка"
+            onChange={(e) => console.log(e)}
+            label={'Подсказка'}
+          />
+        </div>
+        <div className="input-col">
+          <AppInput
+            value={''}
+            onChange={(e) => console.log(e)}
+            label={'Ошибка'}
+            error={'error error errorerror error errorerror  error errorerror '}
+          />
+        </div>
+        <div className="input-col">
+          <AppDropdown
+            label={'Дропдаун'}
+            value={dropdownData}
+            data={[`string`]}
+            onChange={(value) => setDropdownData(value)}
+            resetValueHandler={() => setDropdownData(null)}
+          />
+        </div>
+      </div>
       <AppRating value={rating} onChange={(value) => setRating(value)} />
-      <AppDropdown
-        value={dropdownData}
-        data={[`string`]}
-        onChange={(value) => setDropdownData(value)}
-        resetValueHandler={() => setDropdownData(null)}
-      />
 
       <AppDropdown
         value={userData}

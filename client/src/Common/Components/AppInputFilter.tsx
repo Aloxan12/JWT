@@ -38,7 +38,7 @@ export const AppInputFilter = ({
     return () => {
       clearTimeout(handler);
     };
-  }, [state]);
+  }, [searchParams, state]);
 
   const changeHandler = (value: string) => {
     setState(value);

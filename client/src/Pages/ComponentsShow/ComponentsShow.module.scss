@@ -29,6 +29,36 @@
             }
         }
     }
+
+    .input-show-block{
+        @include row;
+        .input-col{
+            @include col(6);
+        }
+        .input-col{
+            @include col(6);
+        }
+        @include bp(sm){
+            .input-col{
+                @include col(5);
+            }
+        }
+        @include bp(sm){
+            .input-col{
+                @include col(4);
+            }
+        }
+        @include bp(md){
+            .input-col{
+                @include col(3);
+            }
+        }
+        @include bp(lg){
+            .input-col{
+                @include col(2);
+            }
+        }
+    }
     //width: 100%;
     //display: flex;
     //flex-wrap: wrap;

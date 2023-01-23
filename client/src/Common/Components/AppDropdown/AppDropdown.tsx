@@ -5,6 +5,7 @@ import { AppInput } from '../AppInput/AppInput';
 interface IAppDropdownBase<T, TKey extends keyof T> {
   disabled?: boolean;
   error?: string;
+  label?: string;
   placeholder?: string;
   data: T[];
   value: T | null;
@@ -24,6 +25,7 @@ export const AppDropdown = <T, TKey extends keyof T>({
   resetValueHandler,
   error,
   placeholder,
+  label,
   propToShowInList,
   propToShowInInput,
   onChange,
@@ -97,6 +99,7 @@ export const AppDropdown = <T, TKey extends keyof T>({
         placeholder={placeholder}
         dropdownActive={active}
         disabled={!inputSearchFn}
+        label={label}
       />
       {active && !!currentData && (
         <div className={styles.DropdownValuesBlock}>

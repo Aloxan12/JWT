@@ -18,6 +18,7 @@ interface IAppInputBase {
   type?: string;
   value?: string | null;
   onChange: (value: string) => void;
+  message?: string | null;
   error?: string | null;
   inputMask?: InputMaskType;
   disabled?: boolean;
@@ -64,6 +65,7 @@ export const AppInput = ({
   inputMask,
   disabled = false,
   keyDirectionFn = null,
+  message,
 }: AppInputType) => {
   const wrapperProps = onClick ? { onClick } : {};
 
@@ -131,6 +133,7 @@ export const AppInput = ({
         )}
       </div>
       {error && <div className={styles.appInputError}>{error}</div>}
+      {message && !error && <div className={styles.appInputMessage}>{message}</div>}
     </div>
   );
 };
