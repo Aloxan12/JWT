@@ -125,7 +125,11 @@ export const ComponentsShow = () => {
               },
               {
                 renderItem: (item) => {
-                  return <div>удалить</div>;
+                  return (
+                    <div>
+                      <AppTrash deleteHandler={() => {}} />
+                    </div>
+                  );
                 },
               },
             ]}
