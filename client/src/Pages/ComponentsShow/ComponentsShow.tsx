@@ -127,7 +127,7 @@ export const ComponentsShow = () => {
                 renderItem: (item) => {
                   return (
                     <div>
-                      <AppTrash deleteHandler={() => {}} />
+                      <AppTrash deleteHandler={() => {}} text={'ltccndbntkmyj lfekbnm'} />
                     </div>
                   );
                 },
