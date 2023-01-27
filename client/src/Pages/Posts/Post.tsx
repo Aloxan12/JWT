@@ -10,6 +10,7 @@ import { RootState } from '../../redux/store';
 import { RoleTypes } from '../../router/AppRoute';
 import { IUser } from '../../redux/api/dto/UserDto';
 import { IPost } from '../../redux/api/dto/PostDto';
+import fakeAvatar from '../../utils/images/fake_avatar.png';
 
 interface IPostProps {
   post: IPost;
@@ -53,7 +54,9 @@ export const Post = ({ post, setCurrentPage }: IPostProps) => {
           )}
         </div>
       </div>
-      <div className={styles.postsItemAvatar}></div>
+      <div className={styles.postsItemAvatar}>
+        <img src={post.author?.avatar || fakeAvatar} alt={'avatar'} />
+      </div>
       <div className={styles.postsItemContent}>{contentToHtml(post.postText)}</div>
     </li>
   );
