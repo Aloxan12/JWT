@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from './Posts.module.css';
+import styles from './Posts.module.scss';
 import { useCreatePostsMutation, useGetAllPostsQuery } from '../../redux/api/postApi';
 import { Post } from './Post';
 import { useSelector } from 'react-redux';

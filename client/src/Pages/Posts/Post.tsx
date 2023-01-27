@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Posts.module.css';
+import styles from './Posts.module.scss';
 import moment from 'moment';
 import { useDeletePostMutation } from '../../redux/api/postApi';
 import { contentToHtml } from '../../utils/helpers';
@@ -53,6 +53,7 @@ export const Post = ({ post, setCurrentPage }: IPostProps) => {
           )}
         </div>
       </div>
+      <div className={styles.postsItemAvatar}></div>
       <div className={styles.postsItemContent}>{contentToHtml(post.postText)}</div>
     </li>
   );
