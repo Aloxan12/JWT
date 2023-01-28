@@ -55,7 +55,7 @@ export const Post = ({ post, setCurrentPage }: IPostProps) => {
         </div>
       </div>
       <div className={styles.postsItemAvatar}>
-        <img src={post.author?.avatar || fakeAvatar} alt={'avatar'} />
+        <img src={post.author?.avatar || fakeAvatar} alt="avatar" />
       </div>
       <div className={styles.postsItemContent}>{contentToHtml(post.postText)}</div>
     </li>
