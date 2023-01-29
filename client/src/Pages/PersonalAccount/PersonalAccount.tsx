@@ -10,13 +10,17 @@ import { ChangeAvatarContainer } from './components/ChangeAvatarContainer';
 import { ProfileInfoContainer } from './components/ProfileInfoContainer';
 import fakeAvatar from '../../utils/images/fake_avatar.png';
 import { IUser } from '../../redux/api/dto/UserDto';
-import { host } from '../../redux/api/authApi';
+import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
 
 export const PersonalAccount = () => {
   const { id } = useParams();
-  const { data: user } = useGetUserDetailQuery({ id: id! }, { skip: !id });
+  const {
+    data: user,
+    isLoading: isLoadingCurrent,
+    isFetching: isFetchingCurrent,
+  } = useGetUserDetailQuery({ id: id! }, { skip: !id });
 
-  const [uploadUserAvatar] = useUploadUserAvatarMutation();
+  const [uploadUserAvatar, { isLoading: isLoadingUpdate }] = useUploadUserAvatarMutation();
   const dispatch = useDispatch();
 
   const [changePhoto, setChangePhoto] = useState(false);
@@ -54,6 +58,7 @@ export const PersonalAccount = () => {
 
   return (
     <div className={styles.PersonalAccountWrap}>
+      {(isLoadingCurrent || isFetchingCurrent || isLoadingUpdate) && <AppLoader />}
       <div className={styles.PersonalAccountMainBlock}>
         <div className={styles.PersonalAccountPhotoBlock}>
           <img

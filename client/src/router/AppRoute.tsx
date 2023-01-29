@@ -34,16 +34,10 @@ export const routesIsNotAuth = [
     component: <Login />,
   },
   {
-    id: 'start',
-    path: '/',
-    // exact: true,
-    component: <AppLoader />,
-  },
-  {
-    id: 'NotFound',
+    id: 'Loader',
     path: '*',
     // exact: true,
-    component: <NotFound />,
+    component: <AppLoader />,
   },
 ];
 
