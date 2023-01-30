@@ -4,13 +4,19 @@ import { useGetUserDetailQuery } from '../../redux/api/usersApi';
 import styles from './Users.module.scss';
 import fakeAvatar from '../../utils/images/fake_avatar.png';
 import { RoleTypes } from '../../router/AppRoute';
+import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
 
 export const UserProfile = () => {
   const { id } = useParams();
-  const { data: user } = useGetUserDetailQuery({ id: id! }, { skip: !id });
+  const {
+    data: user,
+    isLoading: isLoadingCurrent,
+    isFetching: isFetchingCurrent,
+  } = useGetUserDetailQuery({ id: id! }, { skip: !id });
 
   return (
     <div className={styles.UserProfileWrap}>
+      {(isLoadingCurrent || isFetchingCurrent) && <AppLoader />}
       <div className={styles.UserProfileInfoWrap}>
         <div className={styles.UserProfilePhoto}>
           <img src={user && user.avatar ? user.avatar : fakeAvatar} alt={'avatar'} />
@@ -28,7 +34,7 @@ export const UserProfile = () => {
             </div>
           </div>
         )}
-        <div>посты</div>
+        {/*<div>посты</div>*/}
       </div>
     </div>
   );
