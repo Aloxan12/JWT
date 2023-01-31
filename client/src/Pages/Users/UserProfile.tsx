@@ -34,7 +34,6 @@ export const UserProfile = () => {
             </div>
           </div>
         )}
-        {/*<div>посты</div>*/}
       </div>
     </div>
   );
