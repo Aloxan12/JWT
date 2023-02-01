@@ -105,8 +105,9 @@
 
 .postEditBlock{
     display: flex;
-    justify-content: flex-start;
+    justify-content: end;
     align-items: flex-start;
+    flex-wrap: wrap;
 
     .postLikeBlock{
         display: inline-flex;
@@ -116,13 +117,16 @@
         padding: 5px 7px;
         border-radius: 5px;
         cursor: pointer;
-        border: 1px solid;
+        border: 1px solid rgba(0, 128, 0, 0.35);
         img{
             width: 20px;
             height: 20px;
         }
         &:hover{
-            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.75);
+            box-shadow: 0 5px 12px rgba(76, 217, 100, 0.58);
+        }
+        &:active{
+            box-shadow: 0 5px 12px rgba(51, 212, 35, 0.41);
         }
     }
     .likeActive{
