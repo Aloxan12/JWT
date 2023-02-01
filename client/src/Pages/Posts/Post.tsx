@@ -11,6 +11,7 @@ import { RoleTypes } from '../../router/AppRoute';
 import { IUser } from '../../redux/api/dto/UserDto';
 import { IPost } from '../../redux/api/dto/PostDto';
 import fakeAvatar from '../../utils/images/fake_avatar.png';
+import likePhoto from '../../utils/images/like.png';
 
 interface IPostProps {
   post: IPost;
@@ -39,7 +40,10 @@ export const Post = ({ post, setCurrentPage }: IPostProps) => {
       <div className={styles.postsItemTitle}>
         <span className={styles.postsItemAuthor}>{post.author.email}</span>
         <div className={styles.postEditBlock}>
-          <div>like</div>
+          <div className={`${styles.postLikeBlock} ${post.isLike ? styles.likeActive : ''}`}>
+            <img src={likePhoto} alt="like" />
+            нравиться
+          </div>
           {user && user.role === RoleTypes.ADMIN && (
             <div className={styles.postTrashBlock}>
               <AppTrash
