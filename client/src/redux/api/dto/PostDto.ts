@@ -11,6 +11,8 @@ export interface IPost {
   postText: string;
   publicDate: string;
   id: string;
+  likeCount: number;
+  isLike: boolean;
 }
 
 export interface ICreatePost {

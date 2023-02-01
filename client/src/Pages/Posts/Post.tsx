@@ -39,6 +39,7 @@ export const Post = ({ post, setCurrentPage }: IPostProps) => {
       <div className={styles.postsItemTitle}>
         <span className={styles.postsItemAuthor}>{post.author.email}</span>
         <div className={styles.postEditBlock}>
+          <div>like</div>
           {user && user.role === RoleTypes.ADMIN && (
             <div className={styles.postTrashBlock}>
               <AppTrash
