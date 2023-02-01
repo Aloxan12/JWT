@@ -39,10 +39,6 @@ export const Post = ({ post, setCurrentPage }: IPostProps) => {
       <div className={styles.postsItemTitle}>
         <span className={styles.postsItemAuthor}>{post.author.email}</span>
         <div className={styles.postEditBlock}>
-          <span>
-            <span>Опубликовано:</span>{' '}
-            {moment(post.publicDate).format('DD-MM-YYYY') || 'Дата не зафикирована'}
-          </span>
           {user && user.role === RoleTypes.ADMIN && (
             <div className={styles.postTrashBlock}>
               <AppTrash
@@ -53,6 +49,12 @@ export const Post = ({ post, setCurrentPage }: IPostProps) => {
             </div>
           )}
         </div>
+      </div>
+      <div className={styles.postDateBlock}>
+        <span>
+          <span>Опубликовано:</span>{' '}
+          {moment(post.publicDate).format('DD-MM-YYYY') || 'Дата не зафикирована'}
+        </span>
       </div>
       <div className={styles.postsItemAvatar}>
         <img src={post.author?.avatar || fakeAvatar} alt="avatar" />

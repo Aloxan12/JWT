@@ -58,7 +58,7 @@
 }
 .postsItem{
     position: relative;
-    padding: 5px;
+    padding: 5px 5px 15px 5px;
     width: 100%;
     margin: auto auto 15px auto;
     display: flex;
@@ -92,6 +92,14 @@
             width: 45px;
             height: 45px;
         }
+    }
+
+    .postDateBlock{
+        position: absolute;
+        right: 0;
+        bottom: 4px;
+        font-size: 12px;
+        opacity: .5;
     }
 }
 
