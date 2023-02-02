@@ -33,6 +33,13 @@ export const postApi = createApi({
       }),
       invalidatesTags: ['Posts'],
     }),
+    likePost: build.mutation<IPost, { id: string }>({
+      query: ({ id }) => ({
+        url: `/posts/${id}/like`,
+        method: 'PATCH',
+      }),
+      invalidatesTags: ['Posts'],
+    }),
     deletePost: build.mutation<{ post: IPost; message: string; status: number }, { id: string }>({
       query: ({ id }) => ({
         url: `/posts/${id}`,
@@ -44,4 +51,9 @@ export const postApi = createApi({
   }),
 });
 
-export const { useGetAllPostsQuery, useCreatePostsMutation, useDeletePostMutation } = postApi;
+export const {
+  useGetAllPostsQuery,
+  useCreatePostsMutation,
+  useLikePostMutation,
+  useDeletePostMutation,
+} = postApi;

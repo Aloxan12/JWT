@@ -42,7 +42,7 @@ export const Post = ({ post, setCurrentPage }: IPostProps) => {
         <div className={styles.postEditBlock}>
           <div className={`${styles.postLikeBlock} ${post.isLike ? styles.likeActive : ''}`}>
             <img src={likePhoto} alt="like" />
-            нравиться
+            {post.likeCount}
           </div>
           {user && user.role === RoleTypes.ADMIN && (
             <div className={styles.postTrashBlock}>
