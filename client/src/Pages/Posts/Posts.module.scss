@@ -108,7 +108,9 @@
     justify-content: end;
     align-items: flex-start;
     flex-wrap: wrap;
-
+    flex-direction: column;
+    row-gap: 15px;
+    position: relative;
     .postLikeBlock{
         display: inline-flex;
         justify-content: space-between;
@@ -135,7 +137,11 @@
 }
 
 .postTrashBlock{
-    margin-left: 15px;
+    position: absolute;
+    transform: translateX(0) translateY(100%);
+    bottom: -5px;
+    right: 0;
+
 }
 
 .postsItemContent{
