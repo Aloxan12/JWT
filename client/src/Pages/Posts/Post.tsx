@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styles from './Posts.module.scss';
 import moment from 'moment';
-import { useDeletePostMutation } from '../../redux/api/postApi';
+import { useDeletePostMutation, useLikePostMutation } from '../../redux/api/postApi';
 import { contentToHtml } from '../../utils/helpers';
 import { AppTrash } from '../../Common/Components/AppTrash/AppTrash';
 import { ToastWrapper, ToastWrapperType } from '../../Common/Components/ToastWrapper/ToastWrapper';
@@ -20,8 +20,13 @@ interface IPostProps {
 
 export const Post = ({ post, setCurrentPage }: IPostProps) => {
   const [deletePost] = useDeletePostMutation();
+  const [likePost] = useLikePostMutation();
 
   const user = useSelector<RootState, IUser | null>((state) => state.auth.authData.user);
+
+  const likePostHandler = useCallback(() => {
+    likePost({ id: post.id });
+  }, [post]);
 
   const deletePostHandler = () => {
     deletePost({ id: post.id }).then((res) => {
@@ -40,7 +45,10 @@ export const Post = ({ post, setCurrentPage }: IPostProps) => {
       <div className={styles.postsItemTitle}>
         <span className={styles.postsItemAuthor}>{post.author.email}</span>
         <div className={styles.postEditBlock}>
-          <div className={`${styles.postLikeBlock} ${post.isLike ? styles.likeActive : ''}`}>
+          <div
+            className={`${styles.postLikeBlock} ${post.isLike ? styles.likeActive : ''}`}
+            onClick={likePostHandler}
+          >
             <img src={likePhoto} alt="like" />
             {post.likeCount}
           </div>
