@@ -1,29 +1,14 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { ICreatePost, IPost, IPostRequestDto, IPostsResponseDto } from './dto/PostDto';
-import { host } from './authApi';
+import { authApi } from './authApi';
 
-export const postApi = createApi({
-  reducerPath: 'postApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: host,
-    prepareHeaders: (headers, { getState }) => {
-      const token = localStorage.getItem('token');
-      const refreshToken = localStorage.getItem('refreshToken');
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-        headers.set('refreshToken', `${refreshToken}`);
-      }
-      return headers;
-    },
-  }),
-  tagTypes: ['Posts'],
+export const postApi = authApi.injectEndpoints({
   endpoints: (build) => ({
     getAllPosts: build.query<IPostsResponseDto, IPostRequestDto | void | null>({
       query: (params) => ({
         url: '/posts',
         params: !!params ? params : {},
       }),
-      providesTags: ['Posts'],
+      providesTags: ['Posts', 'Users'],
     }),
     createPosts: build.mutation<IPost, ICreatePost>({
       query: (params) => ({
