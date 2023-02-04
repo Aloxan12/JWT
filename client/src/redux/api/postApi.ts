@@ -29,7 +29,6 @@ export const postApi = authApi.injectEndpoints({
       query: ({ id }) => ({
         url: `/posts/${id}`,
         method: 'DELETE',
-        // body: {id},
       }),
       invalidatesTags: ['Posts'],
     }),
