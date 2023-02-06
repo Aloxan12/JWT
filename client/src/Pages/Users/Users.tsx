@@ -58,8 +58,8 @@ export const Users = () => {
               );
             } else {
               return (
-                <div className={styles.UserBlock}>
-                  <User user={user} key={user.id} />
+                <div className={styles.UserBlock} key={user.id}>
+                  <User user={user} />
                 </div>
               );
             }
