@@ -2,182 +2,195 @@
 @import './src/styles/mixins';
 @import './src/styles/classes';
 
-.postBlock{
-    margin: 40px auto;
-    padding: 30px;
-    width: 70%;
-    display: flex;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    border-radius: 12px;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    .postHeader{
-        margin: auto;
-        font-size: 28px;
-        text-align: center;
-    }
+.postBlock {
+  margin: 40px auto;
+  padding: 30px;
+  width: 70%;
+  display: flex;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  .postHeader {
+    margin: auto;
+    font-size: 28px;
+    text-align: center;
+  }
 }
-.postCreate{
-    margin-top: 15px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+
+.postCreate {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.postCreate textarea {
+  width: 70%;
+  min-height: 80px;
+  padding: 7px;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+}
+
+.postCreate button {
+  cursor: pointer;
+  padding: 12px 20px;
+  margin-left: 5%;
+  border: none;
+  background-color: #d2face;
+  border-radius: 14px;
+  transition: .3s;
+}
+
+.postCreate button:hover {
+  box-shadow: 0 0 10px rgba(133, 196, 127, 0.78);
+}
+
+.postsItems {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-top: 15px;
+  padding: 10px 15px;
+  width: 100%;
+}
+
+.postsItem {
+  position: relative;
+  padding: 5px 5px 15px 5px;
+  width: 100%;
+  margin: auto auto 15px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border-bottom: 1px solid rgba(122, 119, 119, 0.3);
+
+  .postsItemTitle {
     width: 100%;
-}
-.postCreate textarea{
-    width: 70%;
-    min-height: 80px;
-    padding: 7px;
-    border: 1px solid #ccc;
-    border-radius: 16px;
-}
-
-.postCreate button{
-    cursor: pointer;
-    padding: 12px 20px;
-    margin-left: 5%;
-    border: none;
-    background-color: #d2face;
-    border-radius: 14px;
-    transition: .3s;
-}
-.postCreate button:hover{
-    box-shadow: 0 0 10px rgba(133, 196, 127, 0.78);
-}
-
-.postsItems{
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: flex-start;
-    margin-top: 15px;
-    padding: 10px 15px;
-    width: 100%;
-}
-.postsItem{
-    position: relative;
-    padding: 5px 5px 15px 5px;
-    width: 100%;
-    margin: auto auto 15px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    border-bottom: 1px solid rgba(122, 119, 119, 0.3);
-    .postsItemTitle{
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
-        font-size: 15px;
+    font-size: 15px;
 
-        .postsItemAuthor{
-            font-weight: 600;
-            color: #7171f1;
-        }
+    .postsItemAuthor {
+      font-weight: 600;
+      color: #7171f1;
     }
-    .postsItemAvatar{
-        position: absolute;
-        width: 45px;
-        height: 45px;
-        background-color: rgba(177, 178, 180, 0.7);
-        border-radius: 50%;
-        top: 40%;
-        img{
-            object-fit: cover;
-            border-radius:50%;
-            width: 45px;
-            height: 45px;
-        }
-    }
+  }
 
-    .postDateBlock{
-        position: absolute;
-        right: 0;
-        bottom: 4px;
-        font-size: 12px;
-        opacity: .5;
-    }
-}
-
-.postEditBlock{
-    display: flex;
-    justify-content: end;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    flex-direction: column;
-    row-gap: 15px;
-    position: relative;
-    .postLikeBlock{
-        display: inline-flex;
-        justify-content: space-between;
-        align-items: center;
-        column-gap: 7px;
-        padding: 5px 7px;
-        border-radius: 5px;
-        cursor: pointer;
-        border: 1px solid rgba(0, 128, 0, 0.35);
-        img{
-            width: 20px;
-            height: 20px;
-        }
-        &:hover{
-            box-shadow: 0 5px 12px rgba(76, 217, 100, 0.58);
-        }
-        &:active{
-            box-shadow: 0 5px 12px rgba(51, 212, 35, 0.41);
-        }
-    }
-    .likeActive{
-        background-color: #4cd964;
-    }
-}
-
-.postTrashBlock{
+  .postsItemAvatar {
     position: absolute;
-    transform: translateX(0) translateY(100%);
-    bottom: -5px;
+    width: 45px;
+    height: 45px;
+    background-color: rgba(177, 178, 180, 0.7);
+    border-radius: 50%;
+    top: 40%;
+
+    img {
+      object-fit: cover;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+    }
+  }
+
+  .postDateBlock {
+    position: absolute;
     right: 0;
+    bottom: 4px;
+    font-size: 12px;
+    opacity: .5;
+  }
+}
+
+.postEditBlock {
+  display: flex;
+  justify-content: end;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  flex-direction: column;
+  row-gap: 15px;
+  position: relative;
+
+  .postLikeBlock {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 7px;
+    padding: 5px 7px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid rgba(0, 128, 0, 0.35);
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
+
+    &:hover {
+      box-shadow: 0 5px 12px rgba(76, 217, 100, 0.58);
+    }
+
+    &:active {
+      box-shadow: 0 5px 12px rgba(51, 212, 35, 0.41);
+    }
+  }
+
+  .likeActive {
+    background-color: #4cd964;
+  }
+}
+
+.postTrashBlock {
+  position: absolute;
+  transform: translateX(0) translateY(100%);
+  bottom: -5px;
+  right: 0;
 
 }
 
-.postsItemContent{
-    margin: 15px auto;
-    text-align: left;
-    font-size: 16px;
-    width: 60%;
-    word-break: break-word;
+.postsItemContent {
+  margin: 15px auto;
+  text-align: left;
+  font-size: 16px;
+  width: 60%;
+  word-break: break-word;
 
-    @include bp(md){
-        width: 70%;
-    }
-    @include bp(lg){
-        width: 80%;
-    }
-    @include bp(xl){
-        width: 85%;
-    }
+  @include bp(md) {
+    width: 70%;
+  }
+  @include bp(lg) {
+    width: 80%;
+  }
+  @include bp(xl) {
+    width: 85%;
+  }
 }
 
 
 @media screen and (max-width: 1420px) {
-    .postCreate{
-        flex-direction: column;
-        row-gap: 15px;
-    }
-    .postEditBlock>span>span{
-        display: none;
-    }
+  .postCreate {
+    flex-direction: column;
+    row-gap: 15px;
+  }
+  .postEditBlock > span > span {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 650px) {
-    .postBlock{
-        width: 95%;
-    }
-    .postEditBlock>span{
-        font-size: 12px;
-    }
+  .postBlock {
+    width: 95%;
+  }
+  .postEditBlock > span {
+    font-size: 12px;
+  }
 }
