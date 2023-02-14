@@ -20,9 +20,9 @@ export const Registration = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email === '') {
+    if (email.trim() === '') {
       setErrorText('Поле "email" не заполнено!!');
-    } else if (password.length < 4 && password2.length < 4) {
+    } else if (password.trim().length < 4 && password2.trim().length < 4) {
       setErrorText('Поле пароль должно быть заполнено и быть длинее 4 символов!!');
     } else if (password !== password2) {
       setErrorText('Разные пароли!!');
