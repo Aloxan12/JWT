@@ -4,10 +4,6 @@ import { BaseQueryDto } from '../../redux/api/dto/BaseDto';
 import { AppPagination } from '../Components/AppPagination/AppPagination';
 import sortArrow from '../../utils/images/arrow-down.png';
 
-interface ISortTableParams {
-  name: string;
-}
-
 interface IHeaderData {
   title: string;
   sort?: string;
@@ -37,6 +33,7 @@ type TSelector<T, TKey> = ISelectorName<TKey> | ISelectorVoid<T>;
 type IAppTable<T, TKey> = {
   data: ITableData<T>;
   headerData: IHeaderData[];
+  chooseItems?: T[];
   tableDataSelectors: TSelector<T, TKey>[];
 };
 
@@ -65,7 +62,6 @@ export const AppTable = <T, TKey extends keyof T>({
     },
     [activeSort]
   );
-  console.log('activeSort', activeSort);
 
   useEffect(() => {
     setTableData(data.results);
@@ -100,7 +96,6 @@ export const AppTable = <T, TKey extends keyof T>({
                         onClick={() => onSortHandler(th.sort!)}
                       />
                     )}
-                    {/*Добавить тултип для сортировки*/}
                   </div>
                 </th>
               );
