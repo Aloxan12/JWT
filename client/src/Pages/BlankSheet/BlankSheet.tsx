@@ -4,8 +4,8 @@ import { AppTrash } from '../../Common/Components/AppTrash/AppTrash';
 import { AppTable } from '../../Common/AppTableFotobox/AppTable';
 
 export const tableHeaderMock = [
-  { title: 'Текст', colWidth: '33%', sort: { asc: '-text', desc: 'text' } },
-  { title: 'Числа', colWidth: '33%' },
+  { title: 'Текст', colWidth: '33%', sort: 'text' },
+  { title: 'Числа', colWidth: '33%', sort: 'number' },
   { title: 'Действие', colWidth: '33%' },
 ];
 

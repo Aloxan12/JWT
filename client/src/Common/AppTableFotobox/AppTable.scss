@@ -1,0 +1,38 @@
+.app-table-wrap {
+  thead {
+    tr {
+      th {
+        .thead-th {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .ico-sort {
+            width: 20px;
+            cursor: pointer;
+          }
+          .active-sort{
+            background-color: red;
+            transition: .5s;
+            transform: rotate(180deg);
+          }
+          .asc{
+            transition: .5s;
+            transform: rotate(0deg);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+tr th {
+  padding: 5px 15px;
+  text-align: left;
+}
+
+tr td {
+  padding: 5px 15px;
+  text-align: left;
+  vertical-align: top;
+}
