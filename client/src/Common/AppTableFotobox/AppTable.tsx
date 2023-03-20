@@ -68,8 +68,12 @@ export const AppTable = <T, TKey extends keyof T>({
   }, [data]);
 
   const tableRef = useRef<null | HTMLDivElement>(null);
+  const tableEl = tableRef.current;
+  const [scrollDisableUp, setScrollDisableUp] = useState(true);
+  const [scrollDisableDown, setScrollDisableDown] = useState(false);
 
   const handleScrollDown = () => {
+    setScrollDisableUp(false);
     tableRef?.current?.scrollBy({
       top: 100,
       behavior: 'smooth',
@@ -77,23 +81,23 @@ export const AppTable = <T, TKey extends keyof T>({
   };
 
   const handleScrollUp = () => {
-    tableRef?.current?.scrollBy({
+    const tableEl = tableRef.current;
+    tableEl?.scrollBy({
       top: -100,
       behavior: 'smooth',
     });
+    if (tableEl?.scrollTop && tableEl?.scrollTop - 100 <= 0) {
+      setScrollDisableUp(true);
+    }
   };
-
-  useEffect(() => {
-    console.log('1');
-  }, [tableRef]);
 
   return (
     <div className="table-with-scroll">
       <div className={'scroll-arrows'}>
-        <button onClick={handleScrollUp} className={'arrow-up'}>
+        <button onClick={handleScrollUp} className={'arrow-up'} disabled={scrollDisableUp}>
           Scroll Up
         </button>
-        <button onClick={handleScrollDown} className={'arrow-up'}>
+        <button onClick={handleScrollDown} className={'arrow-up'} disabled={scrollDisableDown}>
           Scroll Down
         </button>
       </div>
@@ -161,7 +165,7 @@ export const AppTable = <T, TKey extends keyof T>({
             })}
           </tbody>
         </table>
-        {data && !!data.count && <AppPagination totalCount={data.count} limit={5} />}
+        {/*{data && !!data.count && <AppPagination totalCount={data.count} limit={5} />}*/}
       </div>
     </div>
   );
