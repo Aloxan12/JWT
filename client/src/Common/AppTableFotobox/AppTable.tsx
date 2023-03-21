@@ -70,8 +70,9 @@ export const AppTable = <T, TKey extends keyof T>({
   const tableRef = useRef<null | HTMLDivElement>(null);
   const tableEl = tableRef.current;
   const [scrollDisableUp, setScrollDisableUp] = useState(true);
+  console.log();
   const [scrollDisableDown, setScrollDisableDown] = useState(false);
-
+  console.log('scrollDisableDown', scrollDisableDown);
   const handleScrollDown = () => {
     setScrollDisableUp(false);
     tableRef?.current?.scrollBy({
@@ -79,6 +80,12 @@ export const AppTable = <T, TKey extends keyof T>({
       behavior: 'smooth',
     });
   };
+  //
+  // useEffect(() => {
+  //   if (tableEl?.clientHeight || 200 > (tableEl?.scrollHeight || 0)) {
+  //     setScrollDisableDown(true);
+  //   }
+  // });
 
   const handleScrollUp = () => {
     const tableEl = tableRef.current;
@@ -86,7 +93,7 @@ export const AppTable = <T, TKey extends keyof T>({
       top: -100,
       behavior: 'smooth',
     });
-    if (tableEl?.scrollTop && tableEl?.scrollTop - 100 <= 0) {
+    if ((tableEl?.scrollTop && tableEl?.scrollTop - 100 <= 0) || tableEl?.scrollTop === 0) {
       setScrollDisableUp(true);
     }
   };
