@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './AppScrollWrapper.scss';
 
 export interface IAppScrollWrapperProps {
@@ -17,18 +17,16 @@ export const AppScrollWrapper = ({ children, childrenRef }: IAppScrollWrapperPro
       top: 100,
       behavior: 'smooth',
     });
-    console.log('redfff', !!ref && ref.scrollHeight - (ref.scrollTop + 200));
     if (!!ref && ref.scrollHeight - (ref.scrollTop + 200) <= 100) {
       setScrollDisableDown(true);
-      console.log('ndene');
     }
   };
-  //
-  // useEffect(() => {
-  //   if (tableEl?.clientHeight || 200 > (tableEl?.scrollHeight || 0)) {
-  //     setScrollDisableDown(true);
-  //   }
-  // });
+
+  useEffect(() => {
+    if (!!ref && ref.scrollHeight - (ref.scrollTop + 200) <= 100) {
+      setScrollDisableDown(true);
+    }
+  }, []);
 
   const handleScrollUp = () => {
     ref?.scrollBy({
@@ -44,7 +42,8 @@ export const AppScrollWrapper = ({ children, childrenRef }: IAppScrollWrapperPro
   };
   return (
     <div className="scroll-wrap">
-      <div className={'scroll-content'}>
+      <div className={'scroll-content'} style={{ maxHeight: 200, height: 200 }}>
+        {children}
         <div className={'scroll-arrows'}>
           <button onClick={handleScrollUp} className={'arrow-up'} disabled={scrollDisableUp}>
             Scroll Up
@@ -53,7 +52,6 @@ export const AppScrollWrapper = ({ children, childrenRef }: IAppScrollWrapperPro
             Scroll Down
           </button>
         </div>
-        {children}
       </div>
     </div>
   );
