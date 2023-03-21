@@ -9,7 +9,6 @@ export interface IAppScrollWrapperProps {
 export const AppScrollWrapper = ({ children, childrenRef }: IAppScrollWrapperProps) => {
   const ref = childrenRef.current;
   const [scrollDisableUp, setScrollDisableUp] = useState(true);
-  console.log();
   const [scrollDisableDown, setScrollDisableDown] = useState(false);
 
   const handleScrollDown = () => {
@@ -18,6 +17,11 @@ export const AppScrollWrapper = ({ children, childrenRef }: IAppScrollWrapperPro
       top: 100,
       behavior: 'smooth',
     });
+    console.log('redfff', !!ref && ref.scrollHeight - (ref.scrollTop + 200));
+    if (!!ref && ref.scrollHeight - (ref.scrollTop + 200) <= 100) {
+      setScrollDisableDown(true);
+      console.log('ndene');
+    }
   };
   //
   // useEffect(() => {
@@ -33,6 +37,9 @@ export const AppScrollWrapper = ({ children, childrenRef }: IAppScrollWrapperPro
     });
     if ((ref?.scrollTop && ref?.scrollTop - 100 <= 0) || ref?.scrollTop === 0) {
       setScrollDisableUp(true);
+    }
+    if (!!ref && ref.scrollHeight - (ref.scrollTop + 200) <= 100) {
+      setScrollDisableDown(false);
     }
   };
   return (
