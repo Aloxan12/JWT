@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './AppScrollWrapper.scss';
 
 export interface IAppScrollWrapperProps {
@@ -45,10 +45,18 @@ export const AppScrollWrapper = ({ children, childrenRef }: IAppScrollWrapperPro
       <div className={'scroll-content'} style={{ maxHeight: 200, height: 200 }}>
         {children}
         <div className={'scroll-arrows'}>
-          <button onClick={handleScrollUp} className={'arrow-up'} disabled={scrollDisableUp}>
+          <button
+            onClick={handleScrollUp}
+            className={`arrow-up ${scrollDisableUp ? 'disabled' : ''}`}
+            disabled={scrollDisableUp}
+          >
             Scroll Up
           </button>
-          <button onClick={handleScrollDown} className={'arrow-up'} disabled={scrollDisableDown}>
+          <button
+            onClick={handleScrollDown}
+            className={`arrow-down ${scrollDisableDown ? 'disabled' : ''}`}
+            disabled={scrollDisableDown}
+          >
             Scroll Down
           </button>
         </div>

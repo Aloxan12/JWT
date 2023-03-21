@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import './AppTable.scss';
 import { BaseQueryDto } from '../../redux/api/dto/BaseDto';
-import { AppPagination } from '../Components/AppPagination/AppPagination';
 import sortArrow from '../../utils/images/arrow-down.png';
 import { AppScrollWrapper } from '../AppScrollWrapper/AppScrollWrapper';
 
@@ -69,35 +68,6 @@ export const AppTable = <T, TKey extends keyof T>({
   }, [data]);
 
   const tableRef = useRef<null | HTMLDivElement>(null);
-  const tableEl = tableRef.current;
-  const [scrollDisableUp, setScrollDisableUp] = useState(true);
-  console.log();
-  const [scrollDisableDown, setScrollDisableDown] = useState(false);
-  console.log('scrollDisableDown', scrollDisableDown);
-  const handleScrollDown = () => {
-    setScrollDisableUp(false);
-    tableRef?.current?.scrollBy({
-      top: 100,
-      behavior: 'smooth',
-    });
-  };
-  //
-  // useEffect(() => {
-  //   if (tableEl?.clientHeight || 200 > (tableEl?.scrollHeight || 0)) {
-  //     setScrollDisableDown(true);
-  //   }
-  // });
-
-  const handleScrollUp = () => {
-    const tableEl = tableRef.current;
-    tableEl?.scrollBy({
-      top: -100,
-      behavior: 'smooth',
-    });
-    if ((tableEl?.scrollTop && tableEl?.scrollTop - 100 <= 0) || tableEl?.scrollTop === 0) {
-      setScrollDisableUp(true);
-    }
-  };
 
   return (
     <AppScrollWrapper childrenRef={tableRef}>
