@@ -17,6 +17,10 @@ const dataMock = {
     { id: 2, text: 'text 2', number: 300 },
     { id: 3, text: 'text 3', number: 400 },
     { id: 4, text: 'text 4', number: 500 },
+    { id: 5, text: 'text 4', number: 500 },
+    { id: 6, text: 'text 4', number: 500 },
+    { id: 7, text: 'text 4', number: 500 },
+    { id: 8, text: 'text 4', number: 500 },
   ],
 };
 

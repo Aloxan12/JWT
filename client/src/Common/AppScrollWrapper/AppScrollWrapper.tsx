@@ -37,15 +37,17 @@ export const AppScrollWrapper = ({ children, childrenRef }: IAppScrollWrapperPro
   };
   return (
     <div className="scroll-wrap">
-      <div className={'scroll-arrows'}>
-        <button onClick={handleScrollUp} className={'arrow-up'} disabled={scrollDisableUp}>
-          Scroll Up
-        </button>
-        <button onClick={handleScrollDown} className={'arrow-up'} disabled={scrollDisableDown}>
-          Scroll Down
-        </button>
+      <div className={'scroll-content'}>
+        <div className={'scroll-arrows'}>
+          <button onClick={handleScrollUp} className={'arrow-up'} disabled={scrollDisableUp}>
+            Scroll Up
+          </button>
+          <button onClick={handleScrollDown} className={'arrow-up'} disabled={scrollDisableDown}>
+            Scroll Down
+          </button>
+        </div>
+        {children}
       </div>
-      <div className={'scroll-content'}>{children}</div>
     </div>
   );
 };

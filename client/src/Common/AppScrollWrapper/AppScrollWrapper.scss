@@ -1,7 +1,8 @@
 .scroll-wrap{
   position: relative;
   background-color: #4cd964;
-  padding-right: 40px;
+  padding: 20px 50px 20px 20px;
+  border-radius: 4px;
 
   .scroll-arrows{
     position: absolute;
@@ -9,8 +10,8 @@
     display: flex;
     flex-direction: column;
     height: 87%;
-    right: 0;
-    top: 0;
+    right: -40px;
+    top: 2px;
     transform: translate(0%, 15%);
     justify-content: space-between;
     padding: 1px 0;
@@ -20,6 +21,7 @@
     }
   }
   .scroll-content{
+    position: relative;
     width: 100%;
     height: 100%;
   }
