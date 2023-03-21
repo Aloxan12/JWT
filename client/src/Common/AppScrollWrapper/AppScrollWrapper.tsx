@@ -26,7 +26,7 @@ export const AppScrollWrapper = ({ children, childrenRef }: IAppScrollWrapperPro
     if (!!ref && ref.scrollHeight - (ref.scrollTop + 200) <= 100) {
       setScrollDisableDown(true);
     }
-  }, []);
+  }, [ref]);
 
   const handleScrollUp = () => {
     ref?.scrollBy({
@@ -44,22 +44,26 @@ export const AppScrollWrapper = ({ children, childrenRef }: IAppScrollWrapperPro
     <div className="scroll-wrap">
       <div className={'scroll-content'} style={{ maxHeight: 200, height: 200 }}>
         {children}
-        <div className={'scroll-arrows'}>
-          <button
-            onClick={handleScrollUp}
-            className={`arrow-up ${scrollDisableUp ? 'disabled' : ''}`}
-            disabled={scrollDisableUp}
-          >
-            Scroll Up
-          </button>
-          <button
-            onClick={handleScrollDown}
-            className={`arrow-down ${scrollDisableDown ? 'disabled' : ''}`}
-            disabled={scrollDisableDown}
-          >
-            Scroll Down
-          </button>
-        </div>
+        {scrollDisableDown && scrollDisableUp ? (
+          <></>
+        ) : (
+          <div className={'scroll-arrows'}>
+            <button
+              onClick={handleScrollUp}
+              className={`arrow-up ${scrollDisableUp ? 'disabled' : ''}`}
+              disabled={scrollDisableUp}
+            >
+              Scroll Up
+            </button>
+            <button
+              onClick={handleScrollDown}
+              className={`arrow-down ${scrollDisableDown ? 'disabled' : ''}`}
+              disabled={scrollDisableDown}
+            >
+              Scroll Down
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
