@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styles from './BlankSheet.module.css';
 import { AppTrash } from '../../Common/Components/AppTrash/AppTrash';
 import { AppTable } from '../../Common/AppTableFotobox/AppTable';
+import { AppScrollWrapper } from '../../Common/AppScrollWrapper/AppScrollWrapper';
 
 export const tableHeaderMock = [
   { title: 'Текст', colWidth: '33%', sort: 'text' },
@@ -25,6 +26,7 @@ export const BlankSheet = () => {
   const changeHandler = (value: string) => {
     setInput(value);
   };
+  const ref = useRef<HTMLDivElement | null>(null);
 
   return (
     <div className={styles.BlankSheetWrap}>

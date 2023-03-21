@@ -3,6 +3,7 @@ import './AppTable.scss';
 import { BaseQueryDto } from '../../redux/api/dto/BaseDto';
 import { AppPagination } from '../Components/AppPagination/AppPagination';
 import sortArrow from '../../utils/images/arrow-down.png';
+import { AppScrollWrapper } from '../AppScrollWrapper/AppScrollWrapper';
 
 interface IHeaderData {
   title: string;
@@ -99,15 +100,7 @@ export const AppTable = <T, TKey extends keyof T>({
   };
 
   return (
-    <div className="table-with-scroll">
-      <div className={'scroll-arrows'}>
-        <button onClick={handleScrollUp} className={'arrow-up'} disabled={scrollDisableUp}>
-          Scroll Up
-        </button>
-        <button onClick={handleScrollDown} className={'arrow-up'} disabled={scrollDisableDown}>
-          Scroll Down
-        </button>
-      </div>
+    <AppScrollWrapper childrenRef={tableRef}>
       <div className={'app-table-wrap'} ref={tableRef}>
         <table>
           <colgroup>
@@ -174,6 +167,6 @@ export const AppTable = <T, TKey extends keyof T>({
         </table>
         {/*{data && !!data.count && <AppPagination totalCount={data.count} limit={5} />}*/}
       </div>
-    </div>
+    </AppScrollWrapper>
   );
 };
