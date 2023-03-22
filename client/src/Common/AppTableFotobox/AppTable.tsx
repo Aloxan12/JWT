@@ -70,73 +70,76 @@ export const AppTable = <T, TKey extends keyof T>({
   const tableRef = useRef<null | HTMLDivElement>(null);
 
   return (
-    <AppScrollWrapper childrenRef={tableRef}>
-      <div className={'app-table-wrap'} ref={tableRef}>
-        <table>
-          <colgroup>
-            {headerData.map((th, index) => {
-              return <col width={th.colWidth} key={`table-colgroup-${index}`} />;
-            })}
-          </colgroup>
-          <thead>
-            <tr>
+    <div className="app-table-wrap">
+      <div>выбрать</div>
+      <AppScrollWrapper childrenRef={tableRef} height={200}>
+        <div className={'app-table'} ref={tableRef}>
+          <table>
+            <colgroup>
               {headerData.map((th, index) => {
+                return <col width={th.colWidth} key={`table-colgroup-${index}`} />;
+              })}
+            </colgroup>
+            <thead>
+              <tr>
+                {headerData.map((th, index) => {
+                  return (
+                    <th key={`th-table-${index}`}>
+                      <div className={'thead-th'}>
+                        {th.title}
+                        {!!th.sort && (
+                          <img
+                            src={sortArrow}
+                            alt="sort-arrow"
+                            className={`ico-sort ${
+                              activeSort?.name === th.sort
+                                ? activeSort?.activeField === `-${th.sort}`
+                                  ? 'active-sort asc'
+                                  : 'active-sort'
+                                : ''
+                            }`}
+                            onClick={() => onSortHandler(th.sort!)}
+                          />
+                        )}
+                      </div>
+                    </th>
+                  );
+                })}
+              </tr>
+            </thead>
+            <tbody>
+              {tableData.map((item, itemIndex) => {
                 return (
-                  <th key={`th-table-${index}`}>
-                    <div className={'thead-th'}>
-                      {th.title}
-                      {!!th.sort && (
-                        <img
-                          src={sortArrow}
-                          alt="sort-arrow"
-                          className={`ico-sort ${
-                            activeSort?.name === th.sort
-                              ? activeSort?.activeField === `-${th.sort}`
-                                ? 'active-sort asc'
-                                : 'active-sort'
-                              : ''
-                          }`}
-                          onClick={() => onSortHandler(th.sort!)}
-                        />
-                      )}
-                    </div>
-                  </th>
+                  <tr key={`table-row-${itemIndex}`}>
+                    {tableDataSelectors.map(
+                      (
+                        {
+                          propsNameToDisable,
+                          name,
+                          renderItem = (item) => (name ? defaultRenderItem(item, name!) : '?'),
+                        },
+                        tdIndex
+                      ) => {
+                        return (
+                          <td
+                            key={`tr-${itemIndex}-td-${tdIndex}`}
+                            className={
+                              (item[propsNameToDisable!] as unknown) === true ? 'set-disabled' : ''
+                            }
+                          >
+                            {renderItem(item)}
+                          </td>
+                        );
+                      }
+                    )}
+                  </tr>
                 );
               })}
-            </tr>
-          </thead>
-          <tbody>
-            {tableData.map((item, itemIndex) => {
-              return (
-                <tr key={`table-row-${itemIndex}`}>
-                  {tableDataSelectors.map(
-                    (
-                      {
-                        propsNameToDisable,
-                        name,
-                        renderItem = (item) => (name ? defaultRenderItem(item, name!) : '?'),
-                      },
-                      tdIndex
-                    ) => {
-                      return (
-                        <td
-                          key={`tr-${itemIndex}-td-${tdIndex}`}
-                          className={
-                            (item[propsNameToDisable!] as unknown) === true ? 'set-disabled' : ''
-                          }
-                        >
-                          {renderItem(item)}
-                        </td>
-                      );
-                    }
-                  )}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        {/*{data && !!data.count && <AppPagination totalCount={data.count} limit={5} />}*/}
-      </div>
-    </AppScrollWrapper>
+            </tbody>
+          </table>
+          {/*{data && !!data.count && <AppPagination totalCount={data.count} limit={5} />}*/}
+        </div>
+      </AppScrollWrapper>
+    </div>
   );
 };

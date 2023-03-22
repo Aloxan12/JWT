@@ -4,9 +4,10 @@ import './AppScrollWrapper.scss';
 export interface IAppScrollWrapperProps {
   childrenRef: React.MutableRefObject<HTMLDivElement | null>;
   children: JSX.Element;
+  height: number;
 }
 
-export const AppScrollWrapper = ({ children, childrenRef }: IAppScrollWrapperProps) => {
+export const AppScrollWrapper = ({ children, childrenRef, height }: IAppScrollWrapperProps) => {
   const ref = childrenRef.current;
   const [scrollDisableUp, setScrollDisableUp] = useState(true);
   const [scrollDisableDown, setScrollDisableDown] = useState(false);
@@ -17,13 +18,13 @@ export const AppScrollWrapper = ({ children, childrenRef }: IAppScrollWrapperPro
       top: 100,
       behavior: 'smooth',
     });
-    if (!!ref && ref.scrollHeight - (ref.scrollTop + 200) <= 100) {
+    if (!!ref && ref.scrollHeight - (ref.scrollTop + height) <= 100) {
       setScrollDisableDown(true);
     }
   };
 
   useEffect(() => {
-    if (!!ref && ref.scrollHeight - (ref.scrollTop + 200) <= 100) {
+    if (!!ref && ref.scrollHeight - (ref.scrollTop + height) <= 100) {
       setScrollDisableDown(true);
     }
   }, [ref]);
@@ -36,13 +37,13 @@ export const AppScrollWrapper = ({ children, childrenRef }: IAppScrollWrapperPro
     if ((ref?.scrollTop && ref?.scrollTop - 100 <= 0) || ref?.scrollTop === 0) {
       setScrollDisableUp(true);
     }
-    if (!!ref && ref.scrollHeight - (ref.scrollTop + 200) <= 100) {
+    if (!!ref && ref.scrollHeight - (ref.scrollTop + height) <= 100) {
       setScrollDisableDown(false);
     }
   };
   return (
     <div className="scroll-wrap">
-      <div className={'scroll-content'} style={{ maxHeight: 200, height: 200 }}>
+      <div className={'scroll-content'} style={{ maxHeight: height, height: height }}>
         {children}
         {scrollDisableDown && scrollDisableUp ? (
           <></>
