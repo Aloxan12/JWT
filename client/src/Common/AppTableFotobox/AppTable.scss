@@ -9,10 +9,10 @@
     overflow-x: hidden;
     overflow-y: hidden;
     table{
-      border-collapse: separate;
-      border-spacing: 0;
+      border-collapse: collapse;
       thead {
         position: sticky;
+        background-color: #afabab;
         top: 0;
         padding: 10px 0;
         tr {
@@ -37,6 +37,11 @@
               }
             }
           }
+        }
+      }
+      tbody{
+        tr{
+          border-top: 1px dashed white;
         }
       }
     }

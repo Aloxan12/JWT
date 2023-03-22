@@ -5,9 +5,15 @@ export interface IAppScrollWrapperProps {
   childrenRef: React.MutableRefObject<HTMLDivElement | null>;
   children: JSX.Element;
   height: number;
+  mode?: 'button' | 'scroll';
 }
 
-export const AppScrollWrapper = ({ children, childrenRef, height }: IAppScrollWrapperProps) => {
+export const AppScrollWrapper = ({
+  children,
+  childrenRef,
+  height,
+  mode,
+}: IAppScrollWrapperProps) => {
   const ref = childrenRef.current;
   const [scrollDisableUp, setScrollDisableUp] = useState(true);
   const [scrollDisableDown, setScrollDisableDown] = useState(false);
@@ -43,9 +49,12 @@ export const AppScrollWrapper = ({ children, childrenRef, height }: IAppScrollWr
   };
   return (
     <div className="scroll-wrap">
-      <div className={'scroll-content'} style={{ maxHeight: height, height: height }}>
+      <div
+        className={`scroll-content ${mode === 'scroll' ? 'scroll-mode' : ''}`}
+        style={{ maxHeight: height, height: height }}
+      >
         {children}
-        {scrollDisableDown && scrollDisableUp ? (
+        {(scrollDisableDown && scrollDisableUp) || mode !== 'button' ? (
           <></>
         ) : (
           <div className={'scroll-arrows'}>

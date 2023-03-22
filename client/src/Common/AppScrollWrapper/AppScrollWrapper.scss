@@ -33,4 +33,16 @@
     height: 100%;
     display: flex;
   }
+  .scroll-mode{
+    &>.app-table{
+      overflow-x: auto;
+      overflow-y: auto;
+      &::-webkit-scrollbar-thumb{
+        background-color: violet;
+      }
+      &::-webkit-scrollbar {
+        width: 2px;
+      }
+    }
+  }
 }
