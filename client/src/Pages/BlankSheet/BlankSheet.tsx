@@ -1,8 +1,11 @@
 import React, { useRef, useState } from 'react';
-import styles from './BlankSheet.module.css';
+import './BlankSheet.scss';
 import { AppTrash } from '../../Common/Components/AppTrash/AppTrash';
 import { AppTable } from '../../Common/AppTableFotobox/AppTable';
 import { AppScrollWrapper } from '../../Common/AppScrollWrapper/AppScrollWrapper';
+import { IUser } from '../../redux/api/dto/UserDto';
+import { AppDropdown } from '../../Common/Components/AppDropdown/AppDropdown';
+import { useGetAllUsersQuery } from '../../redux/api/usersApi';
 
 export const tableHeaderMock = [
   { title: 'Текст', colWidth: '33%', sort: 'text' },
@@ -30,6 +33,8 @@ const dataMock = {
 };
 
 export const BlankSheet = () => {
+  const { data: users } = useGetAllUsersQuery({});
+  const [userData, setUserData] = useState<IUser | null>(null);
   const [input, setInput] = useState('');
 
   const changeHandler = (value: string) => {
@@ -38,36 +43,45 @@ export const BlankSheet = () => {
   const ref = useRef<HTMLDivElement | null>(null);
 
   return (
-    <div className={styles.BlankSheetWrap}>
-      <AppTable
-        data={dataMock}
-        tableDataSelectors={[
-          {
-            renderItem: (item) => {
-              return <div>{item.text}</div>;
-            },
-          },
-          {
-            renderItem: (item) => {
-              return <div>{item.number}</div>;
-            },
-          },
-          {
-            renderItem: (item) => {
-              return (
-                <div>
-                  <AppTrash
-                    deleteHandler={() => {}}
-                    text={'ltccndbntkmyj lfekbnm'}
-                    size={'medium'}
-                  />
-                </div>
-              );
-            },
-          },
-        ]}
-        headerData={tableHeaderMock}
+    <div className={'blank-sheet-wrap'}>
+      <AppDropdown
+        label={'Дропдаун с бэка'}
+        value={userData}
+        data={!!users ? users.results : ([] as IUser[])}
+        propToShowInList={'email'}
+        propToShowInInput={'email'}
+        onChange={(value) => setUserData(value)}
+        resetValueHandler={() => setUserData(null)}
       />
+      {/*<AppTable*/}
+      {/*  data={dataMock}*/}
+      {/*  tableDataSelectors={[*/}
+      {/*    {*/}
+      {/*      renderItem: (item) => {*/}
+      {/*        return <div>{item.text}</div>;*/}
+      {/*      },*/}
+      {/*    },*/}
+      {/*    {*/}
+      {/*      renderItem: (item) => {*/}
+      {/*        return <div>{item.number}</div>;*/}
+      {/*      },*/}
+      {/*    },*/}
+      {/*    {*/}
+      {/*      renderItem: (item) => {*/}
+      {/*        return (*/}
+      {/*          <div>*/}
+      {/*            <AppTrash*/}
+      {/*              deleteHandler={() => {}}*/}
+      {/*              text={'ltccndbntkmyj lfekbnm'}*/}
+      {/*              size={'medium'}*/}
+      {/*            />*/}
+      {/*          </div>*/}
+      {/*        );*/}
+      {/*      },*/}
+      {/*    },*/}
+      {/*  ]}*/}
+      {/*  headerData={tableHeaderMock}*/}
+      {/*/>*/}
     </div>
   );
 };
