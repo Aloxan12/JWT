@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useMemo } from 'react';
-import styles from './AppInput.module.scss';
+import './AppInput.scss';
 import icoRightPhoto from '../../../utils/images/arrow-down.png';
 
 export enum IcoType {
@@ -97,19 +97,15 @@ export const AppInput = ({
   }, [keyDirectionFn]);
 
   return (
-    <div className={styles.appInputWrap} {...wrapperProps}>
+    <div className={'app-input-wrap'} {...wrapperProps}>
       {label && <label>{label}</label>}
-      <div
-        className={`${styles.appInput} ${error ? styles.borderError : ''} ${
-          dropdownActive ? styles.Active : ''
-        }`}
-      >
+      <div className={`app-input ${error ? 'border-error' : ''} ${dropdownActive ? 'active' : ''}`}>
         {(!!icoRight && icoRight === IcoType.ico_right) ||
           (!!dropdownInput && (
             <img
               src={icoRightPhoto}
               alt="arrow-down"
-              className={`${styles.IcoRight} ${dropdownActive ? styles.Active : ''}`}
+              className={`ico-right ${dropdownActive ? 'active' : ''}`}
             />
           ))}
         {type === 'textarea' ? (
@@ -118,7 +114,7 @@ export const AppInput = ({
             placeholder={placeholder}
             onChange={onChangeHandler}
             disabled={disabled}
-            className={`${styles.appTextareaInputBase}`}
+            className={'app-textarea-input-base'}
           />
         ) : (
           <input
@@ -128,12 +124,12 @@ export const AppInput = ({
             {...keyDownPropsWrapper}
             disabled={disabled}
             type={type}
-            className={styles.appInputBase}
+            className={'app-input-base'}
           />
         )}
       </div>
-      {error && <div className={styles.appInputError}>{error}</div>}
-      {message && !error && <div className={styles.appInputMessage}>{message}</div>}
+      {error && <div className={'app-input-error'}>{error}</div>}
+      {message && !error && <div className={'app-input-message'}>{message}</div>}
     </div>
   );
 };
