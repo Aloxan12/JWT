@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styles from './AppDropdown.module.css';
+import './AppDropdown.scss';
 import { AppInput } from '../AppInput/AppInput';
 
 interface IAppDropdownBase<T, TKey extends keyof T> {
@@ -80,8 +80,8 @@ export const AppDropdown = <T, TKey extends keyof T>({
 
   return (
     <div
-      className={`${styles.AppDropdown} ${active ? styles.Active : ''} ${
-        paginationMode ? styles.PaginationMode : ''
+      className={`'app-dropdown' ${active ? 'active' : ''} ${
+        paginationMode ? 'pagination-mode' : ''
       }`}
       ref={refDropDown}
     >
@@ -102,12 +102,9 @@ export const AppDropdown = <T, TKey extends keyof T>({
         label={label}
       />
       {active && !!currentData && (
-        <div className={styles.DropdownValuesBlock}>
+        <div className={'dropdown-values-block'}>
           {!!resetValueHandler && (
-            <div
-              className={`${styles.ValueItem} ${styles.ResetFilter}`}
-              onClick={() => onChangeHandler(null)}
-            >
+            <div className={`value-item reset-filter`} onClick={() => onChangeHandler(null)}>
               Очистить фильтр
             </div>
           )}
@@ -116,7 +113,7 @@ export const AppDropdown = <T, TKey extends keyof T>({
             return (
               <div
                 onClick={() => onChangeHandler(item)}
-                className={`${styles.ValueItem}`}
+                className={'value-item'}
                 key={`dropdown-active${index}`}
               >
                 {itemValue}
