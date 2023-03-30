@@ -72,7 +72,7 @@ export const AppTable = <T, TKey extends keyof T>({
   return (
     <div className="app-table-wrap">
       <div>выбрать</div>
-      <AppScrollWrapper childrenRef={tableRef} height={200} mode={'button'}>
+      <AppScrollWrapper childrenRef={tableRef} mode={'button'}>
         <div className={'app-table'} ref={tableRef}>
           <table>
             <colgroup>
