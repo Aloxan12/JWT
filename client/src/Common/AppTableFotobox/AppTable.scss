@@ -1,37 +1,44 @@
-.app-table-wrap{
+.app-table-wrap {
 
   background-color: #afabab;
   border-radius: 8px;
   padding: 20px;
+
   .app-table {
     height: 200px;
     max-height: 200px;
     overflow-x: hidden;
     overflow-y: hidden;
-    table{
+
+    table {
       border-collapse: collapse;
+
       thead {
         position: sticky;
         background-color: #afabab;
         top: 0;
         padding: 10px 0;
+
         tr {
           th {
             .thead-th {
               display: flex;
               align-items: center;
               justify-content: space-between;
+
               .ico-sort {
                 width: 20px;
                 cursor: pointer;
               }
-              .active-sort{
+
+              .active-sort {
                 border-radius: 50%;
                 background-color: #a9a96b;
                 transition: .5s;
                 transform: rotate(180deg);
               }
-              .asc{
+
+              .asc {
                 transition: .5s;
                 transform: rotate(0deg);
               }
@@ -39,8 +46,9 @@
           }
         }
       }
-      tbody{
-        tr{
+
+      tbody {
+        tr {
           border-top: 1px dashed white;
         }
       }
