@@ -19,6 +19,7 @@ export const checkAuthApi = async () => {
       })
       .then((res) => res.data);
   } catch (e) {
+    history.pushState('', '', 'login');
     console.log(e);
   }
 };

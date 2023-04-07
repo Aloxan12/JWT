@@ -6,7 +6,6 @@ export const rtkErrorMiddleware: Middleware = (api: MiddlewareAPI) => (next) => 
   if (isRejectedWithValue(action)) {
     console.log('action.payload', action.payload);
     if (action.payload.status === 401) {
-      history.pushState('', '', 'login');
       api.dispatch(logout());
     }
     ToastWrapper({

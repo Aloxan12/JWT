@@ -43,7 +43,6 @@ export const Login = () => {
       console.log(e);
     }
   };
-
   return (
     <div>
       {isLoadingLogin && <AppLoader />}

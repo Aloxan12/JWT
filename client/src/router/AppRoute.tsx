@@ -37,7 +37,7 @@ export const routesIsNotAuth = [
     id: 'Loader',
     path: '*',
     // exact: true,
-    component: <AppLoader />,
+    component: <Login />,
   },
 ];
 
