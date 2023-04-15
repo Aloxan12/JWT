@@ -1,9 +1,10 @@
 {
   "files": {
-    "main.css": "/JWT/static/css/main.df19b089.css",
-    "main.js": "/JWT/static/js/main.86941d44.js",
+    "main.css": "/JWT/static/css/main.6d6e39e5.css",
+    "main.js": "/JWT/static/js/main.0212c81d.js",
     "static/js/787.c4e7f8f9.chunk.js": "/JWT/static/js/787.c4e7f8f9.chunk.js",
     "static/media/photo-search.png": "/JWT/static/media/photo-search.7e646fd156f482b79a0b.png",
+    "static/media/potolok.png": "/JWT/static/media/potolok.f3d3abd70d60ab6b9444.png",
     "static/media/paper.png": "/JWT/static/media/paper.c13dc81469de2771d44c.png",
     "static/media/employee.png": "/JWT/static/media/employee.e8870792c589d12f9f20.png",
     "static/media/pokemons.png": "/JWT/static/media/pokemons.db6096df03dcab3c9a80.png",
@@ -16,12 +17,12 @@
     "static/media/chat.png": "/JWT/static/media/chat.599dddeac232faaf954d.png",
     "static/media/trash.png": "/JWT/static/media/trash.ff6de8f4b8e11b0d507d.png",
     "index.html": "/JWT/index.html",
-    "main.df19b089.css.map": "/JWT/static/css/main.df19b089.css.map",
-    "main.86941d44.js.map": "/JWT/static/js/main.86941d44.js.map",
+    "main.6d6e39e5.css.map": "/JWT/static/css/main.6d6e39e5.css.map",
+    "main.0212c81d.js.map": "/JWT/static/js/main.0212c81d.js.map",
     "787.c4e7f8f9.chunk.js.map": "/JWT/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.df19b089.css",
-    "static/js/main.86941d44.js"
+    "static/css/main.6d6e39e5.css",
+    "static/js/main.0212c81d.js"
   ]
 }
