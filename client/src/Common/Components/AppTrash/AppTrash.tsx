@@ -22,21 +22,23 @@ export const AppTrash = ({ size, deleteHandler, text }: IAppTrashProps) => {
         onClick={() => setActive(true)}
       />
 
-      <Modal active={active} setActive={setActive} title="Предупреждение">
-        <div className={styles.trashModelContent}>
-          <div>{text || 'Удалить?'}</div>
-          <div>
-            <AppButton onClick={() => setActive(false)} text={'нет'} />
-            <AppButton
-              onClick={() => {
-                setActive(false);
-                deleteHandler();
-              }}
-              text={'да'}
-            />
+      {active && (
+        <Modal active={active} setActive={setActive} title="Предупреждение">
+          <div className={styles.trashModelContent}>
+            <div>{text || 'Удалить?'}</div>
+            <div>
+              <AppButton onClick={() => setActive(false)} text={'нет'} />
+              <AppButton
+                onClick={() => {
+                  setActive(false);
+                  deleteHandler();
+                }}
+                text={'да'}
+              />
+            </div>
           </div>
-        </div>
-      </Modal>
+        </Modal>
+      )}
     </React.Fragment>
   );
 };
