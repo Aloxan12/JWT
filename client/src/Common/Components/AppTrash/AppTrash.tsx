@@ -21,7 +21,6 @@ export const AppTrash = ({ size, deleteHandler, text }: IAppTrashProps) => {
         className={styles.trash + ' ' + `${size ? styles[size] : styles.big}`}
         onClick={() => setActive(true)}
       />
-
       {active && (
         <Modal active={active} setActive={setActive} title="Предупреждение">
           <div className={styles.trashModelContent}>
