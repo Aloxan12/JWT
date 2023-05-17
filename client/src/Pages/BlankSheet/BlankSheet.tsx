@@ -33,7 +33,7 @@ const Counter = ({ value }: CounterProps) => {
   const [count, setCount] = useState(value);
 
   useEffect(() => {
-    setCount(value);
+    setCount((prevState) => prevState + value);
   }, [value]);
 
   return (
