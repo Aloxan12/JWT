@@ -5,3 +5,22 @@
   justify-content: center;
   align-items: center;
 }
+
+.slider-container{
+  padding: 20px;
+  background-color: #ccc;
+
+  .slider{
+    display: flex;
+    width: 100px;
+    overflow: hidden;
+
+    .item{
+      user-select: none;
+      width: 100px;
+      min-width: 100px;
+      height: 100px;
+      border: 1px solid;
+    }
+  }
+}
