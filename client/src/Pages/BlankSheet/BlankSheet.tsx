@@ -1,18 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './BlankSheet.scss';
 
+const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+
 export const BlankSheet = () => {
+  const [] = useState<[]>([]);
   return (
     <div className="blank-sheet-wrap">
-      <div className="sticky-wrapper">
-        <div className="sticky-item">sticky 3</div>
-        <div className="sticky-item">sticky 2</div>
-        <div className="sticky-item">sticky 1</div>
-        <div>2121</div>
-        <div>21</div>
-        <div>21</div>
-        <div>21</div>
-        <div>12</div>
+      <div className="list">
+        {data.map((item) => (
+          <div key={item}>{item}</div>
+        ))}
       </div>
     </div>
   );
