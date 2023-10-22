@@ -15,7 +15,6 @@ import { UserProfile } from '../Pages/Users/UserProfile';
 import { IUser } from '../redux/api/dto/UserDto';
 import { ProjectsPage } from '../Pages/ProjectsPage/ProjectsPage';
 import { BlankSheet } from '../Pages/BlankSheet/BlankSheet';
-import { AppLoader } from '../Common/Components/AppLoader/AppLoader';
 import '../styles/global.scss';
 import { MainLayout } from '../Pages/MainLayout/MainLayout';
 import { BootstrapCustomNetPage } from '../Pages/BootstrapCustomNetPage/BootstrapCustomNetPage';
