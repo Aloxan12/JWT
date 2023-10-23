@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AuthState, host } from './authApi';
+import { host } from './authApi';
 import { IUser } from './dto/UserDto';
 
 export const checkAuthApi = async () => {

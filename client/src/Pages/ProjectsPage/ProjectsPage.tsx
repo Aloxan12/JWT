@@ -40,6 +40,11 @@ const projectsData = [
     link: 'https://aloxan12.github.io/potolki/',
     photo: potolok,
   },
+  {
+    title: 'Список дел',
+    link: 'https://aloxan12.github.io/vite-project/',
+    photo: potolok,
+  },
 ];
 
 export const ProjectsPage = () => {

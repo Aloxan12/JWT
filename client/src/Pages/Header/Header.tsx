@@ -33,7 +33,7 @@ export const Header = ({ itemsRoute }: IHeader) => {
 
   useEffect(() => {
     if (!localStorage.getItem('token')) {
-      navigate('/login');
+      navigate('/');
     } else {
       if (isSameUrl) {
         navigate('/');
