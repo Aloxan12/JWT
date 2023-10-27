@@ -18,6 +18,7 @@ import { BlankSheet } from '../Pages/BlankSheet/BlankSheet';
 import '../styles/global.scss';
 import { MainLayout } from '../Pages/MainLayout/MainLayout';
 import { BootstrapCustomNetPage } from '../Pages/BootstrapCustomNetPage/BootstrapCustomNetPage';
+import { UiKit } from '../Pages/UIKit/UIKit';
 
 export const routesIsNotAuth = [
   {
@@ -72,6 +73,13 @@ const uniqRoutesByRole = {
       title: 'Мои проекты',
       showInMenu: true,
       component: <ProjectsPage />,
+    },
+    {
+      id: 'UIKit',
+      path: '/ui_kit',
+      title: 'ui kit',
+      showInMenu: true,
+      component: <UiKit />,
     },
   ],
   [RoleTypes.USER]: [
