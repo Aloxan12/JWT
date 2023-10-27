@@ -6,12 +6,23 @@ interface AppCardProps {
   className?: string;
   title?: string;
   max?: boolean;
+  withoutBorder?: boolean;
+  boxShadow?: boolean;
   children: ReactNode;
 }
 
-export const AppCard = ({ className, children, title, max }: AppCardProps) => {
+export const AppCard = ({
+  className,
+  children,
+  title,
+  max,
+  withoutBorder,
+  boxShadow,
+}: AppCardProps) => {
   const mods: Mods = {
     [cls.max]: max,
+    [cls.boxShadow]: boxShadow,
+    [cls.withoutBorder]: withoutBorder,
   };
   return (
     <div className={classNames(cls.card, mods, [className])}>
