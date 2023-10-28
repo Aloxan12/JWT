@@ -8,15 +8,19 @@ export const CardsContainers = () => {
       <AppCard title="AppCard" boxShadow>
         <div>AppCard boxShadow</div>
       </AppCard>
+
       <AppCard title="AppCard">
         <div>AppCard</div>
       </AppCard>
+
       <AppCard title="AppCard" withoutBorder boxShadow>
         <div>AppCard boxShadow withoutBorder</div>
       </AppCard>
+
       <AppCard title="AppCard" withoutBorder>
         <div>AppCard withoutBorder</div>
       </AppCard>
+
       <AppCard title="AppCard max" max>
         <div>AppCard max</div>
       </AppCard>
