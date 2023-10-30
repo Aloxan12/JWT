@@ -9,7 +9,9 @@ export const ButtonsContainers = () => {
       <Flex wrap max gap="16">
         <AppButton title="кнопка small clear" size="small" theme="clear" />
         <AppButton title="кнопка base" size="base" />
-        <AppButton title="кнопка big" size="big" />
+        <AppButton title="кнопка big" size="big" theme="full-bg" />
+        <AppButton title="кнопка disabled" theme="full-bg" disabled />
+        <AppButton title="кнопка full" max theme="full-bg" />
       </Flex>
     </AppCard>
   );

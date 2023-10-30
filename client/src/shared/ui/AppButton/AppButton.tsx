@@ -28,6 +28,7 @@ export const AppButton = memo(
     const mods: Mods = {
       [cls.size]: size,
       [cls.loading]: isLoading,
+      [cls.disabled]: disabled,
       [cls.max]: max,
     };
     return (

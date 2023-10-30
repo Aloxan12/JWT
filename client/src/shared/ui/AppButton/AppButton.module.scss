@@ -3,6 +3,13 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
+  border-radius: 6px;
+}
+
+.button{
+  &:not(&.disabled):hover {
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+  }
 }
 
 .button:active {
@@ -23,8 +30,11 @@
 }
 
 .outline{
-  border-radius: 4px;
   border: 1px solid gray;
+}
+
+.full-bg{
+  background-color: #d2face;
 }
 
 .max{
