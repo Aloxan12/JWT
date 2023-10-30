@@ -7,8 +7,8 @@ import { CardsContainers } from './containers/CardsContainers';
 export const UiKit = () => {
   return (
     <Flex direction="column" gap="16" justify="start" align="start" className={cls.uiKitWrapper}>
-      <CardsContainers />
       <ButtonsContainers />
+      <CardsContainers />
     </Flex>
   );
 };
