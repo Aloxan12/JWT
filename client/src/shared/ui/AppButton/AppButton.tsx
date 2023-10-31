@@ -36,7 +36,7 @@ export const AppButton = memo(
         className={classNames(cls.button, mods, [className, cls[theme], cls[size]])}
         disabled={disabled}
       >
-        {title}
+        <span>{title}</span>
       </button>
     );
   }

@@ -11,6 +11,7 @@ export const ButtonsContainers = () => {
         <AppButton title="кнопка base" size="base" />
         <AppButton title="кнопка big" size="big" theme="full-bg" />
         <AppButton title="кнопка disabled" theme="full-bg" disabled />
+        <AppButton title="кнопка loading" theme="full-bg" isLoading />
         <AppButton title="кнопка full" max theme="full-bg" />
       </Flex>
     </AppCard>
