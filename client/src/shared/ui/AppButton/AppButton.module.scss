@@ -4,6 +4,10 @@
   background-color: transparent;
   cursor: pointer;
   border-radius: 6px;
+  min-width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .button{
@@ -46,16 +50,6 @@
   pointer-events: none;
 }
 
-.loading {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%) 100%;
-  background-size: 200% 100%;
-  background-position: -100% 0;
-  color: transparent;
-  pointer-events: none;
-  &:after {
-    content: "";
-    display: block;
-    width: 100%;
-    padding-bottom: 100%;
-  }
+.loading{
+
 }

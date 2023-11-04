@@ -13,6 +13,7 @@ interface AppButtonProps {
   disabled?: boolean;
   isLoading?: boolean;
   max?: boolean;
+  tooltipText?: string;
 }
 
 export const AppButton = memo(
