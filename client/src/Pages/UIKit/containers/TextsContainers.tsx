@@ -16,6 +16,10 @@ export const TextsContainers = () => {
         <AppText text="текст size-14" size="14" />
         <AppText text="текст size-16" size="16" />
         <AppText text="текст size-18" size="18" />
+
+        <AppText text="текст color-black" />
+        <AppText text="текст color-red" color="red" />
+        <AppText text="текст color-gray" color="gray" />
       </Flex>
     </AppCard>
   );
