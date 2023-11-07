@@ -2,11 +2,19 @@ import React from 'react';
 import { AppCard } from '../../../shared/ui/AppCard/AppCard';
 import { Flex } from '../../../shared/ui/Flex/Flex';
 import { AppText } from '../../../shared/ui/AppText/AppText';
+import { AppTitle } from '../../../shared/ui/AppTitle/AppTitle';
 
 export const TextsContainers = () => {
   return (
     <AppCard max title="Текст" withoutBorder>
       <Flex wrap max gap="16">
+        <AppTitle title="Заголовок 1" titleTag="h1" />
+        <AppTitle title="Заголовок 2" titleTag="h2" />
+        <AppTitle title="Заголовок 3" titleTag="h3" />
+        <AppTitle title="Заголовок 4" titleTag="h4" />
+        <AppTitle title="Заголовок 5" titleTag="h5" />
+        <AppTitle title="Заголовок 6" titleTag="h6" />
+
         <AppText text="текст" />
 
         <AppText text="текст bold-500" bold="500" />

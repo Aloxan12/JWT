@@ -5,6 +5,7 @@ import { classNames, Mods } from '../../lib/classNames/classNames';
 type TextBold = '400' | '500' | '600' | '700';
 type TextSize = '14' | '16' | '18';
 type TextColor = 'black' | 'red' | 'gray';
+type TextAlign = 'left' | 'center' | 'right';
 
 interface AppTextProps {
   className?: string;
@@ -12,11 +13,14 @@ interface AppTextProps {
   bold?: TextBold;
   size?: TextSize;
   color?: TextColor;
+  align?: TextAlign;
 }
 
 export const AppText = memo(
-  ({ text, className, size = '16', bold = '400', color = 'black' }: AppTextProps) => {
-    const mods: Mods = {};
+  ({ text, className, size = '16', bold = '400', color = 'black', align }: AppTextProps) => {
+    const mods: Mods = {
+      [cls.align]: align,
+    };
     return (
       <p
         className={classNames(cls.text, mods, [
