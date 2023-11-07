@@ -28,8 +28,7 @@ export const AppButton = memo(
   }: AppButtonProps) => {
     const mods: Mods = {
       [cls.size]: size,
-      [cls.loading]: isLoading,
-      [cls.disabled]: disabled,
+      [cls.disabled]: isLoading || disabled,
       [cls.max]: max,
     };
     return (
@@ -37,6 +36,7 @@ export const AppButton = memo(
         className={classNames(cls.button, mods, [className, cls[theme], cls[size]])}
         disabled={disabled}
       >
+        {isLoading && <div className={cls.loading} />}
         <span>{title}</span>
       </button>
     );

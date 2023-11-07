@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .button{
@@ -51,5 +52,38 @@
 }
 
 .loading{
+  &:before {
+    content: '';
+    position: absolute;
+    right: calc(50% - 11px);
+    top: calc(50% + 2px);
+    margin-top: -12px;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #33d423;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.5s;
+    animation: 0.8s linear infinite rotate;
+  }
+    pointer-events: none;
+    cursor: not-allowed;
 
+    &:before {
+      transition-delay: 0.5s;
+      transition-duration: 1s;
+      opacity: 1;
+    }
+}
+
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
