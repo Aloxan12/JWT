@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import cls from './AppTooltip.module.css';
+import cls from './AppTooltip.module.scss';
 
 type AppTooltipType = {
   delay?: number;
