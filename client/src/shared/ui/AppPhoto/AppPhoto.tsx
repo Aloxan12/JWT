@@ -1,17 +1,18 @@
 import React, { ImgHTMLAttributes, ReactElement, useLayoutEffect, useState } from 'react';
+import { AppSkeleton } from '../AppSkeleton/AppSkeleton';
 
 interface AppPhotoProps extends ImgHTMLAttributes<HTMLImageElement> {
   className?: string;
-  fallback?: ReactElement;
   errorFallback?: ReactElement;
 }
 
 export const AppPhoto = ({
   className,
-  fallback,
   errorFallback,
   src,
   alt,
+  width,
+  height,
   ...otherProps
 }: AppPhotoProps) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -29,8 +30,8 @@ export const AppPhoto = ({
     };
   }, [src]);
 
-  if (isLoading && fallback) {
-    return fallback;
+  if (isLoading) {
+    return <AppSkeleton width={width} height={height} />;
   }
 
   if (hasError && errorFallback) {
