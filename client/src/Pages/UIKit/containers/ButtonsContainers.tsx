@@ -19,7 +19,6 @@ export const ButtonsContainers = () => {
           theme="full-bg"
           tooltipText={'какой то текст какой то текст какой то текст какой то текст какой то текст'}
         />
-        <AppButton title="111 111 111" size="big" theme="full-bg" tooltipText={' тексттекст'} />
         <AppButton title="кнопка full" max theme="full-bg" />
       </Flex>
     </AppCard>

@@ -1,6 +1,6 @@
 :root {
-    --tooltip-text-color: white;
-    --tooltip-background-color: black;
+    --tooltip-text-color: #fff;
+    --tooltip-background-color:  #4CAF50;
     --tooltip-margin: 30px;
     --tooltip-arrow-size: 6px;
 }
@@ -23,6 +23,7 @@
     width: max-content;
     max-width: 200px;
     height: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 
     &::before {
         content: "";
@@ -77,14 +78,13 @@
 
 .TooltipTip.left {
     left: auto;
-    right: calc(100% + var(--tooltip-margin));
+    right: calc(100% + 10px);
     top: 50%;
     transform: translateX(0) translateY(-50%);
 }
 
 .TooltipTip.left::before {
-    left: auto;
-    right: calc(var(--tooltip-arrow-size) * -1);
+    left: calc(100% + 5px);
     top: 50%;
     transform: translateX(0) translateY(-50%);
     border-left-color: var(--tooltip-background-color);
