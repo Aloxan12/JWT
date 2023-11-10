@@ -45,7 +45,11 @@ export const AppButton = memo(
     );
 
     if (tooltipText) {
-      return <AppTooltip content={tooltipText}>{content}</AppTooltip>;
+      return (
+        <AppTooltip content={tooltipText} direction="bottom">
+          {content}
+        </AppTooltip>
+      );
     }
 
     return content;

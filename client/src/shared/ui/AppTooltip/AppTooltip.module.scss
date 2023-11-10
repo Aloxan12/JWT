@@ -50,13 +50,12 @@
     border-top-color: var(--tooltip-background-color);
 }
 
-/* Absolute positioning */
 .TooltipTip.right {
     left: calc(100% + var(--tooltip-margin));
     top: 50%;
     transform: translateX(0) translateY(-50%);
 }
-/* CSS border triangles */
+
 .TooltipTip.right::before {
     left: calc(var(--tooltip-arrow-size) * -1);
     top: 50%;
@@ -64,24 +63,26 @@
     border-right-color: var(--tooltip-background-color);
 }
 
-/* Absolute positioning */
 .TooltipTip.bottom {
-    bottom: calc(var(--tooltip-margin) * -1);
-}
-/* CSS border triangles */
-.TooltipTip.bottom::before {
-    top: 100%;
-    border-bottom-color: var(--tooltip-background-color);
+    bottom: -5px;
+    left: 50%;
+    transform: translate(-50%, 100%);
 }
 
-/* Absolute positioning */
+.TooltipTip.bottom::before {
+    bottom: 99%;
+    left: 50%;
+    transform: rotate(180deg);
+    border-top-color: var(--tooltip-background-color);
+}
+
 .TooltipTip.left {
     left: auto;
     right: calc(100% + var(--tooltip-margin));
     top: 50%;
     transform: translateX(0) translateY(-50%);
 }
-/* CSS border triangles */
+
 .TooltipTip.left::before {
     left: auto;
     right: calc(var(--tooltip-arrow-size) * -1);
