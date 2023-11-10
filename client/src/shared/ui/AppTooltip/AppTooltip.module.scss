@@ -11,7 +11,6 @@
     position: relative;
 }
 
-/* Absolute positioning */
 .TooltipTip {
     position: absolute;
     border-radius: 4px;
@@ -51,7 +50,7 @@
 }
 
 .TooltipTip.right {
-    left: calc(100% + var(--tooltip-margin));
+    left: calc(100% + 10px);
     top: 50%;
     transform: translateX(0) translateY(-50%);
 }

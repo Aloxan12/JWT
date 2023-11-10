@@ -3,7 +3,7 @@ import cls from './AppTooltip.module.scss';
 
 type AppTooltipType = {
   delay?: number;
-  direction?: string;
+  direction?: 'top' | 'bottom' | 'left' | 'right';
   content?: string;
   children?: React.ReactNode;
 };
