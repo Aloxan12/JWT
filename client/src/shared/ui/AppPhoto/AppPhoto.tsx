@@ -1,5 +1,7 @@
 import React, { ImgHTMLAttributes, ReactElement, useLayoutEffect, useState } from 'react';
 import { AppSkeleton } from '../AppSkeleton/AppSkeleton';
+import cls from './AppPhoto.module.scss';
+import { classNames } from '../../lib/classNames/classNames';
 
 interface AppPhotoProps extends ImgHTMLAttributes<HTMLImageElement> {
   className?: string;
@@ -38,5 +40,7 @@ export const AppPhoto = ({
     return errorFallback;
   }
 
-  return <img src={src} className={className} alt={alt} {...otherProps} />;
+  return (
+    <img src={src} className={classNames(cls.img, {}, [className])} alt={alt} {...otherProps} />
+  );
 };
