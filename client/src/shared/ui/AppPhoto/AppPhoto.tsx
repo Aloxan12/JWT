@@ -41,6 +41,13 @@ export const AppPhoto = ({
   }
 
   return (
-    <img src={src} className={classNames(cls.img, {}, [className])} alt={alt} {...otherProps} />
+    <img
+      src={src}
+      className={classNames(cls.img, {}, [className])}
+      width={width}
+      height={height}
+      alt={alt}
+      {...otherProps}
+    />
   );
 };
