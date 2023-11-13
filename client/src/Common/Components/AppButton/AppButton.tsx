@@ -15,7 +15,7 @@ export enum AppBtnSize {
 
 interface IAppButtonProps {
   text?: string;
-  onClick: (e: MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
   size?: AppBtnSize;
   color?: AppBtnColor;
