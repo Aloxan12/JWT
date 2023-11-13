@@ -1,7 +1,21 @@
 
+.popoverWrap{
+  position: relative;
+  display: inline-flex;
 
-.content{
-  position: fixed;
-  border-radius: 12px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+  .content{
+    min-width: 200px;
+    opacity: 0;
+    z-index: -1;
+    position: fixed;
+    border-radius: 12px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+  }
+
+  &.active{
+    .content{
+      opacity: 1;
+      z-index: 10;
+    }
+  }
 }
