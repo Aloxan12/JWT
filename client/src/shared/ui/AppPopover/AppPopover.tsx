@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import React, { ReactNode, useRef, useState } from 'react';
 import cls from './AppPopover.module.scss';
 import { classNames, Mods } from '../../lib/classNames/classNames';
 import { useOutsideClick } from '../../lib/hooks/useOutsideClick';
@@ -11,7 +11,18 @@ interface AppPopoverProps {
   positions?: 'top' | 'bottom' | 'right' | 'left';
 }
 
-const positionValue = {};
+const positionActiveStyle = (position: string, positionData: PositionData) => {
+  switch (position) {
+    case 'top':
+      return { top: positionData.top, left: positionData.left };
+    case 'right':
+      return { right: positionData.right, top: positionData.top };
+    case 'left':
+      return { left: positionData.left, top: positionData.top };
+    default:
+      return { top: positionData.bottom, left: positionData.left };
+  }
+};
 
 export const AppPopover = ({ className, btn, positions = 'bottom', content }: AppPopoverProps) => {
   const popoverRef = useRef<HTMLDivElement>(null);
@@ -22,25 +33,21 @@ export const AppPopover = ({ className, btn, positions = 'bottom', content }: Ap
     [cls.active]: active,
   };
   const openPopover = () => setActive(true);
-  const closePopover = () => setActive(true);
+  const closePopover = () => setActive(false);
 
   useGetPosition(active, popoverRef, setPosition);
   useOutsideClick(closePopover, popoverRef);
 
-  useEffect(() => {
-    if (popoverRef) {
-    }
-    return () => {};
-  }, []);
-
   return (
     <div
-      className={classNames(cls.popoverWrap, mods, [className, positions])}
+      className={classNames(cls.popoverWrap, mods, [className, cls[positions]])}
       ref={popoverRef}
       onClick={openPopover}
     >
       {btn}
-      <div className={cls.content}>{content}</div>
+      <div className={cls.content} style={positionActiveStyle(positions, position)}>
+        {content}
+      </div>
     </div>
   );
 };

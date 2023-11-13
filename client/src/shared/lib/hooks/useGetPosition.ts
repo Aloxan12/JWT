@@ -5,6 +5,8 @@ export interface PositionData {
   bottom: number;
   right: number;
   left: number;
+  height?: number;
+  width?: number;
 }
 
 export const useGetPosition = (
@@ -14,14 +16,20 @@ export const useGetPosition = (
 ) => {
   const getPosition = () => {
     if (ref.current) {
-      const { left, top, bottom, right } = ref.current.getBoundingClientRect();
-      setPosition({ left, top, bottom, right });
+      const { left, top, bottom, right, height, width } = ref.current.getBoundingClientRect();
+      setPosition({ left, top, bottom, right, height, width });
     }
   };
 
   useEffect(() => {
     if (trigger) {
       getPosition();
+      window.addEventListener('resize', getPosition, false);
     }
+    return () => {
+      if (trigger) {
+        window.removeEventListener('resize', getPosition, false);
+      }
+    };
   }, [trigger]);
 };
