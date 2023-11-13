@@ -21,7 +21,7 @@ export const AppPopover = ({ className, btn, positions = 'bottom', content }: Ap
   const openPopover = () => setActive(true);
   const closePopover = () => setActive(true);
 
-  useOutsideClick();
+  useOutsideClick(closePopover, popoverRef);
 
   return (
     <div
