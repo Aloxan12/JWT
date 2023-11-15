@@ -3,6 +3,7 @@ import { AppCard } from '../../../shared/ui/AppCard/AppCard';
 import { Flex } from '../../../shared/ui/Flex/Flex';
 import { AppPopover } from '../../../shared/ui/AppPopover/AppPopover';
 import { AppButton } from '../../../shared/ui/AppButton/AppButton';
+import Ico from '../../../utils/images/icons/success.svg';
 
 export const NotificationsContainers = () => {
   return (
@@ -24,7 +25,6 @@ export const NotificationsContainers = () => {
           btn={<AppButton title="Поповер вниз" />}
           content={
             <Flex direction="column" gap="8">
-              <div>1</div>
               <div>2</div>
               <div>3</div>
               <div>4</div>
@@ -38,7 +38,6 @@ export const NotificationsContainers = () => {
           content={
             <Flex direction="column" gap="8">
               <div>1</div>
-              <div>2</div>
               <div>3</div>
               <div>4</div>
             </Flex>
@@ -52,8 +51,17 @@ export const NotificationsContainers = () => {
             <Flex direction="column" gap="8">
               <div>1</div>
               <div>2</div>
-              <div>3</div>
               <div>4</div>
+            </Flex>
+          }
+        />
+
+        <AppPopover
+          positions="left"
+          btn={<img src={Ico} alt={''} />}
+          content={
+            <Flex direction="column" gap="8">
+              <div>Пример с иконкой</div>
             </Flex>
           }
         />
