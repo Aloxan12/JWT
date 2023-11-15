@@ -16,7 +16,7 @@ const positionActiveStyle = (position: string, positionData: PositionData) => {
     case 'top':
       return { top: positionData.top, left: positionData.left };
     case 'right':
-      return { right: positionData.right, top: positionData.top };
+      return { left: positionData.left, top: positionData.top };
     case 'left':
       return { left: positionData.left, top: positionData.top };
     default:

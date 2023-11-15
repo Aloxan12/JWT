@@ -36,3 +36,17 @@
     transform: translate(-20%, 7px);
   }
 }
+
+.left{
+  .content{
+    top: auto;
+    transform: translate(calc(-7px + -100%), -25%);
+  }
+}
+
+.right{
+  .content{
+    top: auto;
+    transform: translate(calc(-7px + -100%), -25%);
+  }
+}

@@ -31,6 +31,32 @@ export const NotificationsContainers = () => {
             </Flex>
           }
         />
+
+        <AppPopover
+          positions="right"
+          btn={<AppButton title="Поповер право" />}
+          content={
+            <Flex direction="column" gap="8">
+              <div>1</div>
+              <div>2</div>
+              <div>3</div>
+              <div>4</div>
+            </Flex>
+          }
+        />
+
+        <AppPopover
+          positions="left"
+          btn={<AppButton title="Поповер лево" />}
+          content={
+            <Flex direction="column" gap="8">
+              <div>1</div>
+              <div>2</div>
+              <div>3</div>
+              <div>4</div>
+            </Flex>
+          }
+        />
       </Flex>
     </AppCard>
   );
