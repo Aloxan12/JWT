@@ -1,20 +1,22 @@
-import React, { ImgHTMLAttributes, ReactElement, useLayoutEffect, useState } from 'react';
+import React, { ImgHTMLAttributes, useLayoutEffect, useState } from 'react';
 import { AppSkeleton } from '../AppSkeleton/AppSkeleton';
 import cls from './AppPhoto.module.scss';
 import { classNames } from '../../lib/classNames/classNames';
 
+type PhotoRadiusType = '4' | '8' | '12';
+
 interface AppPhotoProps extends ImgHTMLAttributes<HTMLImageElement> {
+  radius?: PhotoRadiusType;
   className?: string;
-  errorFallback?: ReactElement;
 }
 
 export const AppPhoto = ({
   className,
-  errorFallback,
   src,
   alt,
   width,
   height,
+  radius = '4',
   ...otherProps
 }: AppPhotoProps) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -33,17 +35,17 @@ export const AppPhoto = ({
   }, [src]);
 
   if (isLoading) {
-    return <AppSkeleton width={width} height={height} />;
+    return <AppSkeleton width={width} height={height} border={`${radius}px`} />;
   }
 
-  if (hasError && errorFallback) {
-    return errorFallback;
+  if (hasError) {
+    return <AppSkeleton width={width} height={height} border={`${radius}px`} />;
   }
 
   return (
     <img
       src={src}
-      className={classNames(cls.img, {}, [className])}
+      className={classNames(cls.img, {}, [className, cls[`border-radius-${radius}`]])}
       width={width}
       height={height}
       alt={alt}

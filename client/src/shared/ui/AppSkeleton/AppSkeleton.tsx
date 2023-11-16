@@ -11,7 +11,7 @@ interface SkeletonProps {
 
 export const AppSkeleton = memo((props: SkeletonProps) => {
   const { className, height, width, border } = props;
-
+  console.log('border', border);
   const styles: CSSProperties = {
     width,
     height,

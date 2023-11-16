@@ -4,14 +4,14 @@ import { Flex } from '../../shared/ui/Flex/Flex';
 import { ButtonsContainers } from './containers/ButtonsContainers';
 import { CardsContainers } from './containers/CardsContainers';
 import { TextsContainers } from './containers/TextsContainers';
-import { PhotoContainers } from './containers/PhotoContainers';
 import { NotificationsContainers } from './containers/NotificationsContainers';
+import { PhotosContainers } from './containers/PhotosContainers';
 
 export const UiKit = () => {
   return (
     <Flex direction="column" gap="16" justify="start" align="start" className={cls.uiKitWrapper}>
       <NotificationsContainers />
-      <PhotoContainers />
+      <PhotosContainers />
       <TextsContainers />
       <ButtonsContainers />
       <CardsContainers />
