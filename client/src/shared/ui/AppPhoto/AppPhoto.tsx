@@ -4,9 +4,11 @@ import cls from './AppPhoto.module.scss';
 import { classNames } from '../../lib/classNames/classNames';
 
 type PhotoRadiusType = '4' | '8' | '12';
+type PhotoFitType = 'cover' | 'contain';
 
 interface AppPhotoProps extends ImgHTMLAttributes<HTMLImageElement> {
   radius?: PhotoRadiusType;
+  fit?: PhotoFitType;
   className?: string;
 }
 
@@ -17,6 +19,7 @@ export const AppPhoto = ({
   width,
   height,
   radius = '4',
+  fit,
   ...otherProps
 }: AppPhotoProps) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -45,7 +48,11 @@ export const AppPhoto = ({
   return (
     <img
       src={src}
-      className={classNames(cls.img, {}, [className, cls[`border-radius-${radius}`]])}
+      className={classNames(cls.img, {}, [
+        className,
+        cls[`border-radius-${radius}`],
+        fit ? fit : '',
+      ])}
       width={width}
       height={height}
       alt={alt}
