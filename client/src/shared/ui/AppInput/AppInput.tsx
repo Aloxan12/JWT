@@ -29,7 +29,8 @@ export const AppInput = ({
     let result: string = '';
     switch (mask) {
       case 'number':
-        result = e.target.value;
+        const integerVal = e.target.value.replace(/\D/g, '').replace(/^(0)([0-9])+/g, '$2');
+        result = integerVal;
         break;
       case 'float':
         const floatVal = e.target.value
