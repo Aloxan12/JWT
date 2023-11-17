@@ -1,0 +1,16 @@
+.inputWrap{
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  .inputBlock{
+
+    .inputBase{
+      border: 1px solid var(--color-gray);
+      border-radius: 4px;
+      padding: 6px 12px;
+      outline: none;
+      font-size: var(--font-size-base);
+    }
+  }
+}
