@@ -3,6 +3,7 @@ import { AppCard } from '../../../shared/ui/AppCard/AppCard';
 import { Flex } from '../../../shared/ui/Flex/Flex';
 import { AppText } from '../../../shared/ui/AppText/AppText';
 import { AppTitle } from '../../../shared/ui/AppTitle/AppTitle';
+import { AppLink } from '../../../shared/ui/AppLink/AppLink';
 
 export const TextsContainers = () => {
   return (
@@ -28,6 +29,8 @@ export const TextsContainers = () => {
         <AppText text="текст color-black" />
         <AppText text="текст color-red" color="red" />
         <AppText text="текст color-gray" color="gray" />
+
+        <AppLink to="">Ссылка</AppLink>
       </Flex>
     </AppCard>
   );
