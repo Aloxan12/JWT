@@ -10,8 +10,8 @@ export const InputsContainers = () => {
   return (
     <AppCard max title="Инпуты" withoutBorder>
       <Flex wrap max gap="16" align="end">
-        <AppInput label="с лэйблом" placeholder="введите текст" />
-        <AppInput placeholder="введите текст" />
+        <AppInput label="с лэйблом" placeholder="Введите текст" />
+        <AppInput placeholder="Введите текст" />
       </Flex>
     </AppCard>
   );

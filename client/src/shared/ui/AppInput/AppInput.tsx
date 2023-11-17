@@ -7,17 +7,45 @@ type HTMLInputProps = Omit<
   'value' | 'onChange' | 'readOnly'
 >;
 
+type InputMaskType = 'number' | 'float' | 'phone';
+
 interface AppInputProps extends HTMLInputProps {
   value?: string | number;
   onChange?: (value: string) => void;
   className?: string;
   label?: string;
+  mask?: InputMaskType;
 }
 
-export const AppInput = ({ className, label, value, onChange, ...otherProps }: AppInputProps) => {
+export const AppInput = ({
+  className,
+  label,
+  value,
+  onChange,
+  mask,
+  ...otherProps
+}: AppInputProps) => {
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    let result: string = e.target.value;
-
+    let result: string = '';
+    switch (mask) {
+      case 'number':
+        result = e.target.value;
+        break;
+      case 'float':
+        const floatVal = e.target.value
+          .replace(/[,]+/g, '.')
+          .replace(/^\.+/g, '')
+          .replace(/^(0)([0-9])+/g, '$2')
+          .match(/(^[0-9]*(\.)?[0-9]{0,2})*/g);
+        result = !!floatVal ? floatVal[0] : '';
+        break;
+      case 'phone':
+        result = e.target.value;
+        break;
+      default:
+        result = e.target.value;
+        break;
+    }
     onChange?.(result);
   };
 
