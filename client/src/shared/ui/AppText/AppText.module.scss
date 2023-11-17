@@ -1,12 +1,12 @@
 
 .black{
-  color: black;
+  color: #262525;
 }
 .red{
-  color: red;
+  color: var(--color-red);
 }
 .gray{
-  color: rgba(122, 116, 116, 0.75);
+  color: var(--color-gray);
 }
 
 .left{

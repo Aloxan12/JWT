@@ -32,7 +32,7 @@ export const AppPopover = ({ className, btn, positions = 'bottom', content }: Ap
   const mods: Mods = {
     [cls.active]: active,
   };
-  const openPopover = () => setActive(true);
+  const openPopover = () => setActive((prevState) => !prevState);
   const closePopover = () => setActive(false);
 
   useGetPosition(active, popoverRef, setPosition);
