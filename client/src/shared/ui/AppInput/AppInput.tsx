@@ -1,6 +1,6 @@
 import React, { ChangeEvent, InputHTMLAttributes } from 'react';
 import cls from './AppInput.module.scss';
-import { classNames } from '../../lib/classNames/classNames';
+import { classNames, Mods } from '../../lib/classNames/classNames';
 
 type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -14,15 +14,18 @@ interface AppInputProps extends HTMLInputProps {
   onChange?: (value: string) => void;
   className?: string;
   label?: string;
+  fullWidth?: boolean;
   mask?: InputMaskType;
 }
 
 export const AppInput = ({
   className,
+  fullWidth,
   label,
   value,
   onChange,
   mask,
+  type = 'text',
   ...otherProps
 }: AppInputProps) => {
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -50,11 +53,21 @@ export const AppInput = ({
     onChange?.(result);
   };
 
+  const mods: Mods = {
+    [cls.fullWidth]: fullWidth,
+  };
+
   return (
-    <div className={classNames(cls.inputWrap, {}, [className])}>
+    <div className={classNames(cls.inputWrap, mods, [className])}>
       {label && <label>{label}</label>}
       <div className={cls.inputBlock}>
-        <input className={cls.inputBase} value={value} {...otherProps} onChange={onChangeHandler} />
+        <input
+          className={cls.inputBase}
+          value={value}
+          {...otherProps}
+          onChange={onChangeHandler}
+          type={type}
+        />
       </div>
     </div>
   );
