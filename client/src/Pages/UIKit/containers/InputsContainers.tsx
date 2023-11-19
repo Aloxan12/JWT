@@ -6,6 +6,7 @@ import { AppInput } from '../../../shared/ui/AppInput/AppInput';
 export const InputsContainers = () => {
   const [value, setValue] = useState('');
   const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
   const [float, setFloat] = useState('');
   return (
     <AppCard max title="Инпуты" withoutBorder>
@@ -18,6 +19,7 @@ export const InputsContainers = () => {
           value={float}
           onChange={setFloat}
         />
+        <AppInput placeholder="Введите телефон" mask="phone" value={phone} onChange={setPhone} />
         <AppInput placeholder="Введите текст" value={value} onChange={setValue} fullWidth />
       </Flex>
     </AppCard>

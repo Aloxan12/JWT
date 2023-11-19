@@ -29,7 +29,7 @@ export const AppInput = ({
   ...otherProps
 }: AppInputProps) => {
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    let result: string = '';
+    let result: string;
     switch (mask) {
       case 'number':
         const integerVal = e.target.value.replace(/\D/g, '').replace(/^(0)([0-9])+/g, '$2');
@@ -44,7 +44,7 @@ export const AppInput = ({
         result = !!floatVal ? floatVal[0] : '';
         break;
       case 'phone':
-        result = e.target.value;
+        result = e.target.value.replace(/[^\d+()]/g, '').slice(0, 15);
         break;
       default:
         result = e.target.value;
