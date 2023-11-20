@@ -1,6 +1,7 @@
 import React, { ChangeEvent, InputHTMLAttributes } from 'react';
 import cls from './AppInput.module.scss';
 import { classNames, Mods } from '../../lib/classNames/classNames';
+import { AppSvg } from '../AppSvg/AppSvg';
 
 type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -8,12 +9,15 @@ type HTMLInputProps = Omit<
 >;
 
 type InputMaskType = 'number' | 'float' | 'phone';
+type InputIcoPosition = 'left' | 'right';
 
 interface AppInputProps extends HTMLInputProps {
   value?: string | number;
   onChange?: (value: string) => void;
   className?: string;
   label?: string;
+  ico?: string;
+  icoPosition?: InputIcoPosition;
   fullWidth?: boolean;
   mask?: InputMaskType;
 }
@@ -26,6 +30,8 @@ export const AppInput = ({
   onChange,
   mask,
   type = 'text',
+  icoPosition = 'left',
+  ico,
   ...otherProps
 }: AppInputProps) => {
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -55,12 +61,14 @@ export const AppInput = ({
 
   const mods: Mods = {
     [cls.fullWidth]: fullWidth,
+    [cls[`ico-p-${icoPosition}`]]: ico,
   };
 
   return (
     <div className={classNames(cls.inputWrap, mods, [className])}>
       {label && <label>{label}</label>}
       <div className={cls.inputBlock}>
+        {ico && <AppSvg svg={ico} />}
         <input
           className={cls.inputBase}
           value={value}

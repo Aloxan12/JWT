@@ -13,6 +13,12 @@
       outline: none;
       font-size: var(--font-size-base);
     }
+
+    .ico{
+      width: 16px;
+      fill: var(--color-gray);
+      color: var(--color-gray);
+    }
   }
   &.fullWidth{
     width: 100%;
