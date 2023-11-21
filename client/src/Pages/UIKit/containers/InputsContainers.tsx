@@ -9,10 +9,12 @@ export const InputsContainers = () => {
   const [number, setNumber] = useState('');
   const [phone, setPhone] = useState('');
   const [float, setFloat] = useState('');
+  console.log('SearchIco', SearchIco);
   return (
     <AppCard max title="Инпуты" withoutBorder>
       <Flex wrap max gap="16" align="end">
         <AppInput label="с лэйблом" placeholder="Введите текст" value={value} onChange={setValue} />
+        <SearchIco />
         <AppInput
           label="с иконкой"
           placeholder="Введите текст"

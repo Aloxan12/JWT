@@ -14,7 +14,8 @@
       font-size: var(--font-size-base);
     }
 
-    .ico{
+    .ico *{
+      font-size: 16px;
       width: 16px;
       fill: var(--color-gray);
       color: var(--color-gray);

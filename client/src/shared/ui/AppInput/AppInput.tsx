@@ -61,7 +61,7 @@ export const AppInput = ({
 
   const mods: Mods = {
     [cls.fullWidth]: fullWidth,
-    [cls[`ico-p-${icoPosition}`]]: ico,
+    [cls[`ico-p-${icoPosition}`]]: !!ico,
   };
 
   return (
