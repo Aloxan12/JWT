@@ -14,7 +14,6 @@ export const InputsContainers = () => {
     <AppCard max title="Инпуты" withoutBorder>
       <Flex wrap max gap="16" align="end">
         <AppInput label="с лэйблом" placeholder="Введите текст" value={value} onChange={setValue} />
-        <SearchIco />
         <AppInput
           label="с иконкой"
           placeholder="Введите текст"
