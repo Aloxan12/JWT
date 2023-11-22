@@ -2,6 +2,7 @@ import React, { ChangeEvent, InputHTMLAttributes } from 'react';
 import cls from './AppInput.module.scss';
 import { classNames, Mods } from '../../lib/classNames/classNames';
 import { AppSvg } from '../AppSvg/AppSvg';
+import { ReactComponent } from '../../../utils/images/icons/search.svg';
 
 type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -16,7 +17,7 @@ interface AppInputProps extends HTMLInputProps {
   onChange?: (value: string) => void;
   className?: string;
   label?: string;
-  ico?: string;
+  ico?: typeof ReactComponent;
   icoPosition?: InputIcoPosition;
   fullWidth?: boolean;
   mask?: InputMaskType;
