@@ -3,6 +3,7 @@ import { AppCard } from '../../../shared/ui/AppCard/AppCard';
 import { Flex } from '../../../shared/ui/Flex/Flex';
 import { AppInput } from '../../../shared/ui/AppInput/AppInput';
 import { ReactComponent as SearchIco } from '../../../utils/images/icons/search.svg';
+import { ReactComponent as ArrowIco } from '../../../utils/images/icons/arrow-down.svg';
 
 export const InputsContainers = () => {
   const [value, setValue] = useState('');
@@ -15,11 +16,19 @@ export const InputsContainers = () => {
       <Flex wrap max gap="16" align="end">
         <AppInput label="с лэйблом" placeholder="Введите текст" value={value} onChange={setValue} />
         <AppInput
+          label="с иконкой слева"
+          placeholder="Введите текст"
+          value={value}
+          onChange={setValue}
+          icoLeft={SearchIco}
+        />
+        <AppInput
           label="с иконкой"
           placeholder="Введите текст"
           value={value}
           onChange={setValue}
           icoLeft={SearchIco}
+          icoRight={ArrowIco}
         />
         <AppInput
           label="с иконкой справа"
