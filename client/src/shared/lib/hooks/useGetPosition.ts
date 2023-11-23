@@ -25,10 +25,12 @@ export const useGetPosition = (
     if (trigger) {
       getPosition();
       window.addEventListener('resize', getPosition, false);
+      window.addEventListener('scroll', getPosition, false);
     }
     return () => {
       if (trigger) {
         window.removeEventListener('resize', getPosition, false);
+        window.removeEventListener('scroll', getPosition, false);
       }
     };
   }, [trigger]);
