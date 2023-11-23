@@ -1,7 +1,7 @@
 import React from 'react';
-import { ReactComponent } from '../../../utils/images/icons/search.svg';
 import cls from './AppSvg.module.scss';
 import { classNames } from '../../lib/classNames/classNames';
+import { ReactComponent } from '*.svg';
 
 type SvgSizeType = 'sm' | 'base' | 'big';
 

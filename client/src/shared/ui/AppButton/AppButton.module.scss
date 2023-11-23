@@ -8,17 +8,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 8px;
   position: relative;
-}
 
-.button{
   &:not(&.disabled):hover {
-  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+    box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
   }
-}
-
-.button:active {
-  transform: scale(0.96);
+  &:active {
+    transform: scale(0.96);
+  }
 }
 
 .small{

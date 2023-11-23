@@ -2,6 +2,8 @@ import React, { memo } from 'react';
 import cls from './AppButton.module.scss';
 import { classNames, Mods } from '../../lib/classNames/classNames';
 import { AppTooltip } from '../AppTooltip/AppTooltip';
+import { AppSvg } from '../AppSvg/AppSvg';
+import { ReactComponent } from '*.svg';
 
 type AppButtonSize = 'small' | 'base' | 'big';
 type AppButtonTheme = 'clear' | 'outline' | 'full-bg';
@@ -15,6 +17,8 @@ interface AppButtonProps {
   isLoading?: boolean;
   max?: boolean;
   tooltipText?: string;
+  icoLeft?: typeof ReactComponent;
+  icoRight?: typeof ReactComponent;
 }
 
 export const AppButton = memo(
@@ -27,11 +31,15 @@ export const AppButton = memo(
     isLoading,
     max,
     tooltipText,
+    icoRight,
+    icoLeft,
   }: AppButtonProps) => {
     const mods: Mods = {
       [cls.size]: size,
       [cls.disabled]: isLoading || disabled,
       [cls.max]: max,
+      [cls.icoLeft]: !!icoLeft,
+      [cls.icoRight]: !!icoRight,
     };
 
     const content = (
@@ -40,7 +48,9 @@ export const AppButton = memo(
         disabled={disabled}
       >
         {isLoading && <div className={cls.loading} />}
+        {icoLeft && <AppSvg svg={icoLeft} />}
         <span>{title}</span>
+        {icoRight && <AppSvg svg={icoRight} />}
       </button>
     );
 
