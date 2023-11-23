@@ -19,7 +19,14 @@ export const InputsContainers = () => {
           placeholder="Введите текст"
           value={value}
           onChange={setValue}
-          ico={SearchIco}
+          icoLeft={SearchIco}
+        />
+        <AppInput
+          label="с иконкой справа"
+          placeholder="Введите текст"
+          value={value}
+          onChange={setValue}
+          icoRight={SearchIco}
         />
         <AppInput placeholder="Введите число" mask="number" value={number} onChange={setNumber} />
         <AppInput

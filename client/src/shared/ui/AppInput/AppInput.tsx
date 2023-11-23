@@ -10,15 +10,14 @@ type HTMLInputProps = Omit<
 >;
 
 type InputMaskType = 'number' | 'float' | 'phone';
-type InputIcoPosition = 'left' | 'right';
 
 interface AppInputProps extends HTMLInputProps {
   value?: string | number;
   onChange?: (value: string) => void;
   className?: string;
   label?: string;
-  ico?: typeof ReactComponent;
-  icoPosition?: InputIcoPosition;
+  icoLeft?: typeof ReactComponent;
+  icoRight?: typeof ReactComponent;
   fullWidth?: boolean;
   mask?: InputMaskType;
 }
@@ -31,8 +30,8 @@ export const AppInput = ({
   onChange,
   mask,
   type = 'text',
-  icoPosition = 'left',
-  ico,
+  icoLeft,
+  icoRight,
   ...otherProps
 }: AppInputProps) => {
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -62,14 +61,16 @@ export const AppInput = ({
 
   const mods: Mods = {
     [cls.fullWidth]: fullWidth,
-    [cls[`ico-p-${icoPosition}`]]: !!ico,
+    [cls.icoLeft]: !!icoLeft,
+    [cls.icoRight]: !!icoRight,
   };
 
   return (
     <div className={classNames(cls.inputWrap, mods, [className])}>
       {label && <label>{label}</label>}
       <div className={cls.inputBlock}>
-        {ico && <AppSvg svg={ico} />}
+        {icoLeft && <AppSvg svg={icoLeft} size="sm" className={`${cls.ico} ${cls.left}`} />}
+        {icoRight && <AppSvg svg={icoRight} size="sm" className={`${cls.ico} ${cls.right}`} />}
         <input
           className={cls.inputBase}
           value={value}
