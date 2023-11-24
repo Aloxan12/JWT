@@ -15,18 +15,16 @@ export const AppInputFilter = ({ searchParam, label, placeholder, fullWidth }: A
   const [value, setValue] = useState(searchParams.get(searchParam) || '');
 
   const onChangeHandler = useCallback(() => {
-    setSearchParams((sp) => {
-      const isParameterEntry = !!sp.get(searchParam);
-      if (!isParameterEntry && !!value) {
-        sp.append(searchParam, value);
-      } else if (!!value) {
-        sp.set(searchParam, value);
-      } else if (!value) {
-        sp.delete(searchParam);
-      }
-      return sp;
-    });
-  }, [searchParam, value]);
+    const isParameterEntry = !!searchParams.get(searchParam);
+    if (!isParameterEntry && !!value) {
+      searchParams.append(searchParam, value);
+    } else if (!!value) {
+      searchParams.set(searchParam, value);
+    } else if (!value) {
+      searchParams.delete(searchParam);
+    }
+    setSearchParams(searchParams.toString());
+  }, [searchParam, searchParams, value]);
 
   useEffect(() => {
     if (isInitialMount.current) {
