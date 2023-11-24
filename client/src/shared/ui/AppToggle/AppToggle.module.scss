@@ -1,0 +1,57 @@
+$transition: all ease 0.5s;
+
+label.checkboxSlider {
+  position: relative;
+  display: inline-block;
+  min-width: 36px;
+  height: 20px;
+  margin: 0;
+
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px;
+    background-color: var(--color-gray);
+    transition: $transition;
+    box-shadow: inset -1px -1px 1px rgba(255, 255, 255, 0.25), inset 0px 1px 1px rgba(0, 0, 0, 0.3);
+  }
+
+  .activeNot{
+    cursor: default;
+  }
+
+  .slider:before {
+    content: "off";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 22px;
+    width: 24px;
+    top: -10%;
+    padding-bottom: 2px;
+    font-size: 12px;
+    font-weight: 450;
+    color: #fff;
+    background-color: #ccd0d4;
+    transition: $transition;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), inset -1px -1px 1px rgba(0, 0, 0, 0.15), inset 1px 1px 1px rgba(255, 255, 255, 0.15);
+  }
+
+  input:checked + .slider:before {
+    content: "on";
+    transform: translateX(50%);
+    background-color: var(--color-green);
+  }
+}
