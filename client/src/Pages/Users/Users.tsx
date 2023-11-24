@@ -4,7 +4,7 @@ import { User } from './User';
 import styles from './Users.module.scss';
 import { AppInputFilter } from '../../Common/Components/AppInputFilter';
 import commonStyles from '../../App.module.css';
-import { useParamsControl } from '../../Hooks/useParamsControl';
+import { useParamsControl } from '../../shared/lib/hooks/useParamsControl';
 import { IUsersRequestDto } from '../../redux/api/dto/UserDto';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';

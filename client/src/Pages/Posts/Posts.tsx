@@ -9,7 +9,7 @@ import { ToastWrapper, ToastWrapperType } from '../../Common/Components/ToastWra
 import { AppButton } from '../../Common/Components/AppButton/AppButton';
 import { IUser } from '../../redux/api/dto/UserDto';
 import { IPost } from '../../redux/api/dto/PostDto';
-import { throttle } from '../../Hooks/helpers/useDebounce';
+import { throttle } from '../../shared/lib/hooks/useDebounce';
 import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
 
 export const Posts = () => {
