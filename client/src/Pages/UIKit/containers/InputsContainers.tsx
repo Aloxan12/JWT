@@ -5,12 +5,14 @@ import { AppInput } from '../../../shared/ui/AppInput/AppInput';
 import { ReactComponent as SearchIco } from '../../../utils/images/icons/search.svg';
 import { ReactComponent as ArrowIco } from '../../../utils/images/icons/arrow-down.svg';
 import { AppInputFilter } from '../../../features/AppInputFilter/AppInputFilter';
+import { AppCheckbox } from '../../../shared/ui/AppCheckbox/AppCheckbox';
 
 export const InputsContainers = () => {
   const [value, setValue] = useState('');
   const [number, setNumber] = useState('');
   const [phone, setPhone] = useState('');
   const [float, setFloat] = useState('');
+  const [checkbox, setCheckbox] = useState(false);
 
   return (
     <AppCard max title="Инпуты" withoutBorder>
@@ -47,6 +49,7 @@ export const InputsContainers = () => {
           onChange={setFloat}
         />
         <AppInput placeholder="Введите телефон" mask="phone" value={phone} onChange={setPhone} />
+        <AppCheckbox id={'checkbox'} value={checkbox} onChange={setCheckbox} text={'Выбери меня'} />
         <AppInput placeholder="Введите текст" value={value} onChange={setValue} fullWidth />
       </Flex>
     </AppCard>
