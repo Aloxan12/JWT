@@ -4,6 +4,7 @@ import { Flex } from '../../../shared/ui/Flex/Flex';
 import { AppInput } from '../../../shared/ui/AppInput/AppInput';
 import { ReactComponent as SearchIco } from '../../../utils/images/icons/search.svg';
 import { ReactComponent as ArrowIco } from '../../../utils/images/icons/arrow-down.svg';
+import { AppInputFilter } from '../../../features/AppInputFilter/AppInputFilter';
 
 export const InputsContainers = () => {
   const [value, setValue] = useState('');
@@ -37,6 +38,7 @@ export const InputsContainers = () => {
           onChange={setValue}
           icoRight={SearchIco}
         />
+        <AppInputFilter searchParam={'search'} label={'Фильтр'} placeholder="Введите название" />
         <AppInput placeholder="Введите число" mask="number" value={number} onChange={setNumber} />
         <AppInput
           placeholder="Введите число с плавающей запятой"
