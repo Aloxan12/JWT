@@ -1,12 +1,18 @@
 import React, { memo } from 'react';
 import cls from './AppInputFile.module.scss';
 
-interface AppInputFileProps {}
+interface AppInputFileProps {
+  className?: string;
+  text?: string;
+}
 
 export const AppInputFile = memo(({}: AppInputFileProps) => {
   return (
     <div className={cls.inputFileWrap}>
-      <input type="file" />
+      <label className={cls.inputFile}>
+        <input type="file" name="file" />
+        <span>Выберите файл</span>
+      </label>
     </div>
   );
 });

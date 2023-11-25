@@ -7,6 +7,7 @@ import { ReactComponent as ArrowIco } from '../../../utils/images/icons/arrow-do
 import { AppInputFilter } from '../../../features/AppInputFilter/AppInputFilter';
 import { AppCheckbox } from '../../../shared/ui/AppCheckbox/AppCheckbox';
 import { AppToggle } from '../../../shared/ui/AppToggle/AppToggle';
+import { AppInputFile } from '../../../shared/ui/AppInputFile/AppInputFile';
 
 export const InputsContainers = () => {
   const [value, setValue] = useState('');
@@ -52,6 +53,7 @@ export const InputsContainers = () => {
         <AppInput placeholder="Введите телефон" mask="phone" value={phone} onChange={setPhone} />
         <AppCheckbox id={'checkbox'} value={checkbox} onChange={setCheckbox} text={'Выбери меня'} />
         <AppToggle value={checkbox} onChange={setCheckbox} />
+        <AppInputFile />
         <AppInput placeholder="Введите текст" value={value} onChange={setValue} fullWidth />
       </Flex>
     </AppCard>
