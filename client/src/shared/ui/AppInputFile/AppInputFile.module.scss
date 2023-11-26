@@ -13,15 +13,11 @@
     cursor: pointer;
     outline: none;
     text-decoration: none;
-    font-size: 14px;
-    vertical-align: middle;
-    color: rgb(255 255 255);
+    padding: 8px 12px;
+    font-size: 16px;
     text-align: center;
-    border-radius: 4px;
-    background-color: #419152;
-    line-height: 22px;
-    height: 40px;
-    padding: 10px 20px;
+    border-radius: 6px;
+    background-color: var(--color-green-main);
     box-sizing: border-box;
     border: none;
     margin: 0;
@@ -42,8 +38,8 @@
 }
 
 .inputFile:hover span {
-  background-color: #59be6e;
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
 }
 .inputFile:active span {
-  background-color: #2E703A;
+  background-color: var(--color-green-medium);
 }
