@@ -53,7 +53,8 @@ export const InputsContainers = () => {
         <AppInput placeholder="Введите телефон" mask="phone" value={phone} onChange={setPhone} />
         <AppCheckbox id={'checkbox'} value={checkbox} onChange={setCheckbox} text={'Выбери меня'} />
         <AppToggle value={checkbox} onChange={setCheckbox} />
-        <AppInputFile />
+        <AppInputFile theme="btn" />
+        <AppInputFile theme="text" />
         <AppInput placeholder="Введите текст" value={value} onChange={setValue} fullWidth />
       </Flex>
     </AppCard>
