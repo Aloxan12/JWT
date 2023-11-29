@@ -1,51 +1,47 @@
-.inputFileWrap{
-  display: flex;
-  flex-direction: column;
 
-  .inputFile {
+.inputFile {
+  position: relative;
+  display: inline-block;
+
+  span {
     position: relative;
     display: inline-block;
-
-    span {
-      position: relative;
-      display: inline-block;
-      cursor: pointer;
-      outline: none;
-      text-decoration: none;
-      padding: 8px 12px;
-      font-size: 16px;
-      text-align: center;
-      box-sizing: border-box;
-      border: none;
-      margin: 0;
-    }
-
-    input[type=file] {
-      position: absolute;
-      z-index: -1;
-      opacity: 0;
-      display: block;
-      width: 0;
-      height: 0;
-      &:disabled + span {
-        background-color: #eee;
-      }
-    }
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    padding: 8px 12px;
+    font-size: 16px;
+    text-align: center;
+    box-sizing: border-box;
+    border: none;
+    margin: 0;
   }
 
-  &.btn{
-    .inputFile{
-      span{
-        transition: background-color 0.2s;
-        border-radius: 6px;
-        background-color: var(--color-green-main);
-      }
-      &:hover span {
-        box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
-      }
-      &:active span {
-        background-color: var(--color-green-medium);
-      }
+  input[type=file] {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    display: block;
+    width: 0;
+    height: 0;
+
+    &:disabled + span {
+      background-color: #eee;
+    }
+  }
+  &.btn {
+    span {
+      transition: background-color 0.2s;
+      border-radius: 6px;
+      background-color: var(--color-green-main);
+    }
+
+    &:hover span {
+      box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+    }
+
+    &:active span {
+      background-color: var(--color-green-medium);
     }
   }
 }

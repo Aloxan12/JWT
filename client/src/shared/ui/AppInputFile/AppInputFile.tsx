@@ -18,12 +18,10 @@ export const AppInputFile = memo(
     };
 
     return (
-      <div className={classNames(cls.inputFileWrap, mods, [className, cls[theme]])}>
-        <label className={cls.inputFile}>
-          <input type="file" name="file" />
-          <span>{text || 'Выберите файл'}</span>
-        </label>
-      </div>
+      <label className={classNames(cls.inputFile, mods, [className, cls[theme]])}>
+        <input type="file" name="file" />
+        <span>{text || 'Выберите файл'}</span>
+      </label>
     );
   }
 );
