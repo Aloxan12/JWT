@@ -25,6 +25,7 @@ const positionActiveStyle = (position: string, positionData: PositionData) => {
 };
 
 export const AppPopover = ({ className, btn, positions = 'bottom', content }: AppPopoverProps) => {
+  const popoverWrapRef = useRef<HTMLDivElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
   const [position, setPosition] = useState<PositionData>({ top: 0, bottom: 0, right: 0, left: 0 });
@@ -35,17 +36,21 @@ export const AppPopover = ({ className, btn, positions = 'bottom', content }: Ap
   const openPopover = () => setActive((prevState) => !prevState);
   const closePopover = () => setActive(false);
 
-  useGetPosition(active, popoverRef, setPosition);
-  useOutsideClick(closePopover, popoverRef);
+  useGetPosition(active, popoverWrapRef, setPosition);
+  useOutsideClick(closePopover, popoverWrapRef, popoverRef);
 
   return (
     <div
       className={classNames(cls.popoverWrap, mods, [className, cls[positions]])}
-      ref={popoverRef}
+      ref={popoverWrapRef}
       onClick={openPopover}
     >
       {btn}
-      <div className={cls.content} style={positionActiveStyle(positions, position)}>
+      <div
+        className={cls.content}
+        style={positionActiveStyle(positions, position)}
+        ref={popoverRef}
+      >
         {content}
       </div>
     </div>

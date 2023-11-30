@@ -3,36 +3,36 @@ import { RefObject, useCallback, useEffect } from 'react';
 export const useOutsideClick = (
   callback: () => void,
   ref: RefObject<HTMLDivElement>,
-  extraRef?: RefObject<HTMLDivElement>
+  triggerRef?: RefObject<HTMLDivElement>,
+  active: boolean = true
 ) => {
   const outSideClickHandler = useCallback(
     (e) => {
       e.stopPropagation();
-      if (extraRef?.current) {
-        if (
-          ref.current &&
-          !ref.current.contains(e.target) &&
-          !extraRef.current.contains(e.target)
-        ) {
-          callback();
+      if (ref.current) {
+        const ignoreElements = [ref.current];
+
+        if (triggerRef?.current) {
+          ignoreElements.push(triggerRef?.current);
         }
-      } else {
-        if (ref.current && !ref.current.contains(e.target)) {
+
+        console.log('triggerRef', triggerRef);
+        if (!ignoreElements.some((ref) => !ref.contains(e.target))) {
           callback();
         }
       }
     },
-    [callback, extraRef, ref]
+    [callback, triggerRef, ref]
   );
 
   useEffect(() => {
-    if (ref) {
+    if (active) {
       document.addEventListener('mousedown', outSideClickHandler, false);
     }
     return () => {
-      if (ref) {
+      if (active) {
         document.removeEventListener('mousedown', outSideClickHandler, false);
       }
     };
-  }, [outSideClickHandler, ref, extraRef]);
+  }, [outSideClickHandler, ref, triggerRef, active]);
 };
