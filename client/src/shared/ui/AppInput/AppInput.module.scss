@@ -25,6 +25,24 @@
         right: 7px
       }
     }
+
+    .error{
+      font-size: 14px;
+      position: absolute;
+      bottom: 0;
+      color: var(--color-red);
+      transform: translate(0, 100%);
+    }
+    .message{
+      font-size: 14px;
+      position: absolute;
+      bottom: 0;
+      color: var(--color-gray);
+      transform: translate(0, 100%);
+    }
+  }
+  &.error .inputBlock .inputBase{
+    border-color: var(--color-red);
   }
   &.icoLeft{
     .inputBlock .inputBase{

@@ -16,6 +16,8 @@ interface AppInputProps extends HTMLInputProps {
   onChange?: (value: string) => void;
   className?: string;
   label?: string;
+  error?: string;
+  message?: string;
   icoLeft?: typeof ReactComponent;
   icoRight?: typeof ReactComponent;
   fullWidth?: boolean;
@@ -32,6 +34,8 @@ export const AppInput = ({
   type = 'text',
   icoLeft,
   icoRight,
+  error,
+  message,
   ...otherProps
 }: AppInputProps) => {
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -61,6 +65,7 @@ export const AppInput = ({
 
   const mods: Mods = {
     [cls.fullWidth]: fullWidth,
+    [cls.error]: error,
     [cls.icoLeft]: !!icoLeft,
     [cls.icoRight]: !!icoRight,
   };
@@ -78,6 +83,8 @@ export const AppInput = ({
           onChange={onChangeHandler}
           type={type}
         />
+        {error && <div className={cls.error}>{error}</div>}
+        {!error && message && <div className={cls.message}>{message}</div>}
       </div>
     </div>
   );

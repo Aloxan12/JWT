@@ -45,6 +45,18 @@ export const InputsContainers = () => {
         <AppInputFilter searchParam={'search'} label={'Фильтр'} placeholder="Введите название" />
         <AppInput placeholder="Введите число" mask="number" value={number} onChange={setNumber} />
         <AppInput
+          placeholder="Введите"
+          error="Обязательное поле"
+          value={value}
+          onChange={setValue}
+        />
+        <AppInput
+          placeholder="Введите"
+          message="Дополнительный текст"
+          value={value}
+          onChange={setValue}
+        />
+        <AppInput
           placeholder="Введите число с плавающей запятой"
           mask="float"
           value={float}
