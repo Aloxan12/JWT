@@ -33,19 +33,18 @@ export const AppPopover = ({ className, btn, positions = 'bottom', content }: Ap
   const mods: Mods = {
     [cls.active]: active,
   };
+
   const openPopover = () => setActive((prevState) => !prevState);
   const closePopover = () => setActive(false);
 
   useGetPosition(active, popoverWrapRef, setPosition);
-  useOutsideClick(closePopover, popoverWrapRef, popoverRef);
+  useOutsideClick(closePopover, popoverWrapRef, popoverRef, active);
 
   return (
-    <div
-      className={classNames(cls.popoverWrap, mods, [className, cls[positions]])}
-      ref={popoverWrapRef}
-      onClick={openPopover}
-    >
-      {btn}
+    <div className={classNames(cls.popoverWrap, mods, [className, cls[positions]])}>
+      <div ref={popoverWrapRef} onClick={openPopover}>
+        {btn}
+      </div>
       <div
         className={cls.content}
         style={positionActiveStyle(positions, position)}

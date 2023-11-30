@@ -8,16 +8,13 @@ export const useOutsideClick = (
 ) => {
   const outSideClickHandler = useCallback(
     (e) => {
-      e.stopPropagation();
       if (ref.current) {
         const ignoreElements = [ref.current];
-
         if (triggerRef?.current) {
-          ignoreElements.push(triggerRef?.current);
+          ignoreElements.push(triggerRef.current);
         }
 
-        console.log('triggerRef', triggerRef);
-        if (!ignoreElements.some((ref) => !ref.contains(e.target))) {
+        if (!ignoreElements.some((el) => el.contains(e.target))) {
           callback();
         }
       }
