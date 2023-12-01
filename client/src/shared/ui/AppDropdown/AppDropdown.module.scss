@@ -1,0 +1,31 @@
+.dropdownWrap{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &.fullWidth{
+    width: 100%;
+  }
+
+  .inputDropdown{
+    pointer-events: none;
+    svg{
+      transition: .3s;
+    }
+  }
+
+  .searchFn{
+    .inputDropdown{
+      pointer-events: auto;
+    }
+  }
+
+  &.active{
+    .inputDropdown{
+      svg{
+        transition: .3s;
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

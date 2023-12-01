@@ -9,6 +9,20 @@ import { AppInputFilter } from '../../../features/AppInputFilter/AppInputFilter'
 import { AppCheckbox } from '../../../shared/ui/AppCheckbox/AppCheckbox';
 import { AppToggle } from '../../../shared/ui/AppToggle/AppToggle';
 import { AppInputFile } from '../../../shared/ui/AppInputFile/AppInputFile';
+import { AppDropdown } from '../../../shared/ui/AppDropdown/AppDropdown';
+
+const dropdownDataMock = [
+  { id: 1, name: 'kolya' },
+  { id: 2, name: 'vasya' },
+  { id: 3, name: 'mike' },
+  { id: 4, name: 'bobi' },
+  { id: 5, name: 'vika' },
+  { id: 6, name: 'alex' },
+  { id: 7, name: 'alex' },
+  { id: 8, name: 'alex' },
+  { id: 9, name: 'vika' },
+  { id: 10, name: 'vika' },
+];
 
 export const InputsContainers = () => {
   const [value, setValue] = useState('');
@@ -16,10 +30,17 @@ export const InputsContainers = () => {
   const [phone, setPhone] = useState('');
   const [float, setFloat] = useState('');
   const [checkbox, setCheckbox] = useState(false);
+  const [dropdownData, setDropdownData] = useState(null);
 
   return (
     <AppCard max title="Инпуты" withoutBorder>
       <Flex wrap max gap="16" align="end">
+        <AppDropdown
+          data={dropdownDataMock}
+          value={dropdownData}
+          label="Выпадающий список"
+          placeholder={'Выбрать'}
+        />
         <AppInput label="с лэйблом" placeholder="Введите текст" value={value} onChange={setValue} />
         <AppInput
           label="с иконкой слева"
