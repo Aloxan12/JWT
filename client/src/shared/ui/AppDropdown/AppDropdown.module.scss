@@ -6,7 +6,7 @@
   &.fullWidth{
     width: 100%;
   }
-
+  cursor: pointer;
   .inputDropdown{
     pointer-events: none;
     svg{
@@ -21,25 +21,50 @@
   }
 
   .dropdownItems{
+    opacity: 0;
+    z-index: -1;
     width: 100%;
     position: absolute;
     left: 0;
     bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
     transform: translate(0, 100%);
     border: 1px solid var(--color-gray);
     background-color: white;
-    z-index: 15;
     border-radius: 6px;
     max-height: 200px;
-    overflow: auto;
+    overflow-y: auto;
+    transition: linear .3s;
+
+    .dropdownItem{
+      width: 100%;
+      max-width: 100%;
+      font-size: 16px;
+      margin: 0;
+      padding: 7px;
+      border-radius: 6px;
+      &:hover{
+        background-color: var(--color-gray-light);
+      }
+      &.active{
+        background-color: var(--color-gray-light);
+      }
+    }
   }
 
-  &.active{
+  &.activeDropdown{
     .inputDropdown{
       svg{
         transition: .3s;
         transform: rotate(180deg);
       }
+    }
+    .dropdownItems{
+      opacity: 1;
+      z-index: 15;
+      transition: linear .3s;
     }
   }
 }

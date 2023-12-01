@@ -30,7 +30,7 @@ export const InputsContainers = () => {
   const [phone, setPhone] = useState('');
   const [float, setFloat] = useState('');
   const [checkbox, setCheckbox] = useState(false);
-  const [dropdownData, setDropdownData] = useState(null);
+  const [dropdownData, setDropdownData] = useState<null | { id: number; name: string }>(null);
 
   return (
     <AppCard max title="Инпуты" withoutBorder>
@@ -38,6 +38,7 @@ export const InputsContainers = () => {
         <AppDropdown
           data={dropdownDataMock}
           value={dropdownData}
+          onChange={setDropdownData}
           label="Выпадающий список"
           placeholder={'Выбрать'}
           propName={'name'}

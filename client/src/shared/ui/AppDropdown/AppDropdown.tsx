@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, MouseEvent } from 'react';
 import cls from './AppDropdown.module.scss';
 import { AppInput } from '../AppInput/AppInput';
 import { classNames, Mods } from '../../lib/classNames/classNames';
@@ -9,6 +9,7 @@ interface AppDropdownProps<T, TKey extends keyof T> {
   className?: string;
   data: T[];
   value: T | null;
+  onChange: (value: T | null) => void;
   propName?: TKey;
   propValue?: TKey;
   label?: string;
@@ -36,12 +37,13 @@ export const AppDropdown = <T, TKey extends keyof T>({
   search,
   searchFn,
   disabled,
+  onChange,
 }: AppDropdownProps<T, TKey>) => {
   const dropdownWrapRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
 
   const mods: Mods = {
-    [cls.active]: active,
+    [cls.activeDropdown]: active,
     [cls.searchFn]: !!searchFn,
     [cls.fullWidth]: !!fullWidth,
   };
@@ -50,6 +52,12 @@ export const AppDropdown = <T, TKey extends keyof T>({
   const closeDropdown = () => setActive(false);
 
   useOutsideClick(closeDropdown, dropdownWrapRef);
+
+  const changeHandler = (e: MouseEvent<HTMLLIElement>, value: T | null) => {
+    e.stopPropagation();
+    onChange(value);
+    setActive(false);
+  };
 
   const valueShow =
     !!searchFn && active ? search : !!value ? (propName ? value[propName] : value) : '';
@@ -70,12 +78,23 @@ export const AppDropdown = <T, TKey extends keyof T>({
         className={cls.inputDropdown}
         disabled={disabled}
       />
-      <ul className={cls.dropdownItems}>
-        {data.map((item) => (
-          <li key={`${propValue ? item[propValue] : item}`}>{`${
-            propName ? item[propName] : item
-          }`}</li>
-        ))}
+      <ul className={cls.dropdownItems} onChange={(e) => e.preventDefault()}>
+        {data.map((item) => {
+          const itemValue = `${propValue ? item[propValue] : item}`;
+          const currentValue = `${value ? (propValue ? value[propValue] : value) : ''}`;
+          const itemName = `${propName ? item[propName] : item}`;
+          return (
+            <li
+              className={classNames(cls.dropdownItem, {
+                [cls.active]: currentValue === itemValue,
+              })}
+              key={itemValue}
+              onClick={(e) => changeHandler(e, item)}
+            >
+              {itemName}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
