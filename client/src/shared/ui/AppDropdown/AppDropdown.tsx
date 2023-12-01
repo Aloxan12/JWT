@@ -45,7 +45,6 @@ export const AppDropdown = <T, TKey extends keyof T>({
     [cls.searchFn]: !!searchFn,
     [cls.fullWidth]: !!fullWidth,
   };
-  console.log('active', active);
 
   const onDropdown = () => setActive((prev) => !prev);
   const closeDropdown = () => setActive(false);
@@ -71,6 +70,13 @@ export const AppDropdown = <T, TKey extends keyof T>({
         className={cls.inputDropdown}
         disabled={disabled}
       />
+      <ul className={cls.dropdownItems}>
+        {data.map((item) => (
+          <li key={`${propValue ? item[propValue] : item}`}>{`${
+            propName ? item[propName] : item
+          }`}</li>
+        ))}
+      </ul>
     </div>
   );
 };

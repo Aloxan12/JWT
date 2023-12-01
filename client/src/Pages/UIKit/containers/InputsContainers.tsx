@@ -40,6 +40,8 @@ export const InputsContainers = () => {
           value={dropdownData}
           label="Выпадающий список"
           placeholder={'Выбрать'}
+          propName={'name'}
+          propValue={'id'}
         />
         <AppInput label="с лэйблом" placeholder="Введите текст" value={value} onChange={setValue} />
         <AppInput
