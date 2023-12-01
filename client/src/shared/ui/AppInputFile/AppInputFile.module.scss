@@ -3,7 +3,7 @@
   position: relative;
   display: inline-block;
 
-  span {
+  div {
     position: relative;
     display: inline-block;
     cursor: pointer;
@@ -16,6 +16,18 @@
     border: none;
     margin: 0;
   }
+  &.ico{
+    div{
+      display: flex;
+      gap: 7px;
+      align-items: center;
+      .ico{
+        font-size: 24px;
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
 
   input[type=file] {
     position: absolute;
@@ -25,22 +37,22 @@
     width: 0;
     height: 0;
 
-    &:disabled + span {
+    &:disabled + div {
       background-color: #eee;
     }
   }
   &.btn {
-    span {
+    div {
       transition: background-color 0.2s;
       border-radius: 6px;
       background-color: var(--color-green-main);
     }
 
-    &:hover span {
+    &:hover div {
       box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
     }
 
-    &:active span {
+    &:active div {
       background-color: var(--color-green-medium);
     }
   }

@@ -4,6 +4,7 @@ import { Flex } from '../../../shared/ui/Flex/Flex';
 import { AppInput } from '../../../shared/ui/AppInput/AppInput';
 import { ReactComponent as SearchIco } from '../../../utils/images/icons/search.svg';
 import { ReactComponent as ArrowIco } from '../../../utils/images/icons/arrow-down.svg';
+import { ReactComponent as ClipIco } from '../../../utils/images/icons/clip.svg';
 import { AppInputFilter } from '../../../features/AppInputFilter/AppInputFilter';
 import { AppCheckbox } from '../../../shared/ui/AppCheckbox/AppCheckbox';
 import { AppToggle } from '../../../shared/ui/AppToggle/AppToggle';
@@ -28,7 +29,7 @@ export const InputsContainers = () => {
           icoLeft={SearchIco}
         />
         <AppInput
-          label="с иконкой"
+          label="с иконками"
           placeholder="Введите текст"
           value={value}
           onChange={setValue}
@@ -65,8 +66,8 @@ export const InputsContainers = () => {
         <AppInput placeholder="Введите телефон" mask="phone" value={phone} onChange={setPhone} />
         <AppCheckbox id={'checkbox'} value={checkbox} onChange={setCheckbox} text={'Выбери меня'} />
         <AppToggle value={checkbox} onChange={setCheckbox} />
-        <AppInputFile theme="btn" />
-        <AppInputFile theme="text" />
+        <AppInputFile theme="btn" ico={ClipIco} />
+        <AppInputFile theme="text" ico={ClipIco} />
         <AppInput placeholder="Введите текст" value={value} onChange={setValue} fullWidth />
       </Flex>
     </AppCard>
