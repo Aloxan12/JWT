@@ -8,6 +8,18 @@
   padding-right: $grid-gap-side;
 }
 
+@mixin scroll{
+  &::-webkit-scrollbar{
+    width: 4px;
+    height: 4px;
+    background-color: white;
+  }
+  &::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background-color: var(--color-gray-light);
+  }
+}
+
 @mixin row{
   display: flex;
   flex-wrap: wrap;
