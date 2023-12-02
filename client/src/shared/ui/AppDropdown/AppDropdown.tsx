@@ -5,10 +5,9 @@ import { classNames, Mods } from '../../lib/classNames/classNames';
 import { ReactComponent as ArrowIco } from '../../../utils/images/icons/arrow-down.svg';
 import { useOutsideClick } from '../../lib/hooks/useOutsideClick';
 
-interface AppDropdownBase<T, TKey extends keyof T> {
+export interface AppDropdownBase<T, TKey extends keyof T> {
   className?: string;
   data: T[];
-  onChange: (value: T | null) => void;
   propName?: TKey;
   propValue?: TKey;
   label?: string;
@@ -24,10 +23,12 @@ interface AppDropdownBase<T, TKey extends keyof T> {
 
 interface AppDropdownOneProps<T, TKey extends keyof T> extends AppDropdownBase<T, TKey> {
   value?: T | null;
+  onChange: (value: T | null) => void;
   values?: never;
 }
 interface AppDropdownMultiProps<T, TKey extends keyof T> extends AppDropdownBase<T, TKey> {
   values?: T[];
+  onChange: (value: T | null) => void;
   value?: never;
 }
 
@@ -72,7 +73,7 @@ export const AppDropdown = <T, TKey extends keyof T>({
     setActive(false);
   };
 
-  const valueShow = values
+  const valueShow = !values
     ? !!searchFn && active
       ? search
       : !!value
