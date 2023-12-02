@@ -5,10 +5,9 @@ import { classNames, Mods } from '../../lib/classNames/classNames';
 import { ReactComponent as ArrowIco } from '../../../utils/images/icons/arrow-down.svg';
 import { useOutsideClick } from '../../lib/hooks/useOutsideClick';
 
-interface AppDropdownProps<T, TKey extends keyof T> {
+interface AppDropdownBase<T, TKey extends keyof T> {
   className?: string;
   data: T[];
-  value: T | null;
   onChange: (value: T | null) => void;
   propName?: TKey;
   propValue?: TKey;
@@ -23,10 +22,24 @@ interface AppDropdownProps<T, TKey extends keyof T> {
   searchFn?: (value: string) => void;
 }
 
+interface AppDropdownOneProps<T, TKey extends keyof T> extends AppDropdownBase<T, TKey> {
+  value?: T | null;
+  values?: never;
+}
+interface AppDropdownMultiProps<T, TKey extends keyof T> extends AppDropdownBase<T, TKey> {
+  values?: T[];
+  value?: never;
+}
+
+type AppDropdownProps<T, TKey extends keyof T> =
+  | AppDropdownOneProps<T, TKey>
+  | AppDropdownMultiProps<T, TKey>;
+
 export const AppDropdown = <T, TKey extends keyof T>({
   className,
   data,
   value,
+  values,
   propName,
   propValue,
   label,
@@ -55,12 +68,19 @@ export const AppDropdown = <T, TKey extends keyof T>({
 
   const changeHandler = (e: MouseEvent<HTMLLIElement>, value: T | null) => {
     e.stopPropagation();
-    onChange(value);
+    onChange?.(value);
     setActive(false);
   };
 
-  const valueShow =
-    !!searchFn && active ? search : !!value ? (propName ? value[propName] : value) : '';
+  const valueShow = values
+    ? !!searchFn && active
+      ? search
+      : !!value
+      ? propName
+        ? value[propName]
+        : value
+      : ''
+    : '';
   return (
     <div
       className={classNames(cls.dropdownWrap, mods, [className])}
