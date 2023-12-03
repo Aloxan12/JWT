@@ -10,6 +10,7 @@ import { AppCheckbox } from '../../../shared/ui/AppCheckbox/AppCheckbox';
 import { AppToggle } from '../../../shared/ui/AppToggle/AppToggle';
 import { AppInputFile } from '../../../shared/ui/AppInputFile/AppInputFile';
 import { AppDropdown } from '../../../shared/ui/AppDropdown/AppDropdown';
+import { AppMultiDropdown } from '../../../shared/ui/AppDropdown/AppMultiDropdown';
 
 const dropdownDataMock = [
   { id: 1, name: 'kolya' },
@@ -31,6 +32,7 @@ export const InputsContainers = () => {
   const [float, setFloat] = useState('');
   const [checkbox, setCheckbox] = useState(false);
   const [dropdownData, setDropdownData] = useState<null | { id: number; name: string }>(null);
+  const [multiDropdownData, setMultiDropdownData] = useState<{ id: number; name: string }[]>([]);
 
   return (
     <AppCard max title="Инпуты" withoutBorder>
@@ -43,6 +45,15 @@ export const InputsContainers = () => {
           placeholder={'Выбрать'}
           propName={'name'}
           propValue={'id'}
+        />
+        <AppMultiDropdown
+          data={dropdownDataMock}
+          propName={'name'}
+          propValue={'id'}
+          label="Мульти выпадающий список"
+          placeholder="Выбрать"
+          values={multiDropdownData}
+          onChange={setMultiDropdownData}
         />
         <AppInput label="с лэйблом" placeholder="Введите текст" value={value} onChange={setValue} />
         <AppInput

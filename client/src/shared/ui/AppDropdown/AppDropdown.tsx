@@ -1,4 +1,4 @@
-import React, { useRef, useState, MouseEvent } from 'react';
+import React, { useRef, useState, MouseEvent, useMemo } from 'react';
 import cls from './AppDropdown.module.scss';
 import { AppInput } from '../AppInput/AppInput';
 import { classNames, Mods } from '../../lib/classNames/classNames';
@@ -70,8 +70,16 @@ export const AppDropdown = <T, TKey extends keyof T>({
   const changeHandler = (e: MouseEvent<HTMLLIElement>, value: T | null) => {
     e.stopPropagation();
     onChange?.(value);
-    setActive(false);
+    !values && setActive(false);
   };
+
+  const valuesObj: { [key: string]: boolean } = useMemo(() => {
+    if (!values) return {};
+    return values.reduce(
+      (acc, el) => ({ ...acc, [`${propValue ? el[propValue] : el}`]: true }),
+      {}
+    );
+  }, [values]);
 
   const valueShow = !values
     ? !!searchFn && active
@@ -91,7 +99,7 @@ export const AppDropdown = <T, TKey extends keyof T>({
       <AppInput
         value={`${valueShow}`}
         label={label}
-        placeholder={placeholder}
+        placeholder={values?.length ? `Выбрано: ${values?.length}` : placeholder}
         message={message}
         error={error}
         fullWidth={!!fullWidth}
@@ -107,7 +115,8 @@ export const AppDropdown = <T, TKey extends keyof T>({
           return (
             <li
               className={classNames(cls.dropdownItem, {
-                [cls.active]: currentValue === itemValue,
+                [cls.active]:
+                  currentValue === itemValue || valuesObj[`${propValue ? item[propValue] : item}`],
               })}
               key={itemValue}
               onClick={(e) => changeHandler(e, item)}
