@@ -14,7 +14,6 @@ export const AppMultiDropdown = <T, TKey extends keyof T>({
 }: AppMultiDropdownProps<T, TKey>) => {
   const onChangeHandler = (value: T | null) => {
     if (!!value) {
-      console.log('value', value);
       const foundItem = values.find((item) =>
         propValue ? item[propValue] === value[propValue] : item === value
       );
