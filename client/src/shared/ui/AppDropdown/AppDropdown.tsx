@@ -1,9 +1,13 @@
-import React, { useRef, useState, MouseEvent, useMemo } from 'react';
+import React, { useRef, useState, MouseEvent, useMemo, FormEvent } from 'react';
 import cls from './AppDropdown.module.scss';
 import { AppInput } from '../AppInput/AppInput';
 import { classNames, Mods } from '../../lib/classNames/classNames';
 import { ReactComponent as ArrowIco } from '../../../utils/images/icons/arrow-down.svg';
 import { useOutsideClick } from '../../lib/hooks/useOutsideClick';
+
+const preventDefaultHandler = (e: FormEvent<HTMLUListElement>) => {
+  e.preventDefault();
+};
 
 export interface AppDropdownBase<T, TKey extends keyof T> {
   className?: string;
@@ -107,25 +111,28 @@ export const AppDropdown = <T, TKey extends keyof T>({
         className={cls.inputDropdown}
         disabled={disabled}
       />
-      <ul className={cls.dropdownItems} onChange={(e) => e.preventDefault()}>
-        {data.map((item) => {
-          const itemValue = `${propValue ? item[propValue] : item}`;
-          const currentValue = `${value ? (propValue ? value[propValue] : value) : ''}`;
-          const itemName = `${propName ? item[propName] : item}`;
-          return (
-            <li
-              className={classNames(cls.dropdownItem, {
-                [cls.active]:
-                  currentValue === itemValue || valuesObj[`${propValue ? item[propValue] : item}`],
-              })}
-              key={itemValue}
-              onClick={(e) => changeHandler(e, item)}
-            >
-              {itemName}
-            </li>
-          );
-        })}
-      </ul>
+      {active && (
+        <ul className={cls.dropdownItems} onChange={preventDefaultHandler}>
+          {data.map((item) => {
+            const itemValue = `${propValue ? item[propValue] : item}`;
+            const currentValue = `${value ? (propValue ? value[propValue] : value) : ''}`;
+            const itemName = `${propName ? item[propName] : item}`;
+            return (
+              <li
+                className={classNames(cls.dropdownItem, {
+                  [cls.active]:
+                    currentValue === itemValue ||
+                    valuesObj[`${propValue ? item[propValue] : item}`],
+                })}
+                key={itemValue}
+                onClick={(e) => changeHandler(e, item)}
+              >
+                {itemName}
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 };
