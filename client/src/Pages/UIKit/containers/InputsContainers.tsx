@@ -55,7 +55,14 @@ export const InputsContainers = () => {
           values={multiDropdownData}
           onChange={setMultiDropdownData}
         />
-        <AppInput label="с лэйблом" placeholder="Введите текст" value={value} onChange={setValue} />
+        <AppInput label="Лейбл" placeholder="Введите текст" value={value} onChange={setValue} />
+        <AppInput
+          label="таймпикер"
+          placeholder="Время"
+          type="time"
+          value={value}
+          onChange={setValue}
+        />
         <AppInput
           label="с иконкой слева"
           placeholder="Введите текст"
