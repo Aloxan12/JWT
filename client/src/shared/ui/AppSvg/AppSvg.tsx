@@ -11,6 +11,6 @@ interface AppSvgProps {
   size?: SvgSizeType;
 }
 
-export const AppSvg = ({ svg: Svg, className, size = 'base' }: AppSvgProps) => {
-  return <Svg className={classNames(cls.ico, {}, [className, cls[size]])} />;
+export const AppSvg = ({ svg: Svg, className, size }: AppSvgProps) => {
+  return <Svg className={classNames(cls.ico, { [cls[size || '']]: !!size }, [className])} />;
 };

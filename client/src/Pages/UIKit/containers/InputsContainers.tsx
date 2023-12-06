@@ -11,6 +11,7 @@ import { AppToggle } from '../../../shared/ui/AppToggle/AppToggle';
 import { AppInputFile } from '../../../shared/ui/AppInputFile/AppInputFile';
 import { AppDropdown } from '../../../shared/ui/AppDropdown/AppDropdown';
 import { AppMultiDropdown } from '../../../shared/ui/AppDropdown/AppMultiDropdown';
+import { AppTimePicker } from '../../../shared/ui/AppTimePicker/AppTimePicker';
 
 const dropdownDataMock = [
   { id: 1, name: 'kolya' },
@@ -63,6 +64,7 @@ export const InputsContainers = () => {
           value={value}
           onChange={setValue}
         />
+        <AppTimePicker />
         <AppInput
           label="с иконкой слева"
           placeholder="Введите текст"

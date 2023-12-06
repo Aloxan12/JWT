@@ -17,7 +17,9 @@
 
     .ico {
       position: absolute;
-      top: calc(50% - 8px);
+      top: calc(50% - 10px);
+      max-width: 20px;
+      max-height: 20px;
       &.left{
         left: 7px
       }

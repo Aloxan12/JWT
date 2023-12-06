@@ -74,8 +74,8 @@ export const AppInput = ({
     <div className={classNames(cls.inputWrap, mods, [className])}>
       {label && <label>{label}</label>}
       <div className={cls.inputBlock}>
-        {icoLeft && <AppSvg svg={icoLeft} size="sm" className={`${cls.ico} ${cls.left}`} />}
-        {icoRight && <AppSvg svg={icoRight} size="sm" className={`${cls.ico} ${cls.right}`} />}
+        {icoLeft && <AppSvg svg={icoLeft} className={`${cls.ico} ${cls.left} ico`} />}
+        {icoRight && <AppSvg svg={icoRight} className={`${cls.ico} ${cls.right} ico`} />}
         <input
           className={cls.inputBase}
           value={value}
