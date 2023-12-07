@@ -20,6 +20,7 @@ interface AppInputProps extends HTMLInputProps {
   message?: string;
   icoLeft?: typeof ReactComponent;
   icoRight?: typeof ReactComponent;
+  icoRightOnClick?: () => void;
   fullWidth?: boolean;
   mask?: InputMaskType;
 }
@@ -36,6 +37,7 @@ export const AppInput = ({
   icoRight,
   error,
   message,
+  icoRightOnClick,
   ...otherProps
 }: AppInputProps) => {
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -75,7 +77,13 @@ export const AppInput = ({
       {label && <label>{label}</label>}
       <div className={cls.inputBlock}>
         {icoLeft && <AppSvg svg={icoLeft} className={`${cls.ico} ${cls.left} ico`} />}
-        {icoRight && <AppSvg svg={icoRight} className={`${cls.ico} ${cls.right} ico`} />}
+        {icoRight && (
+          <AppSvg
+            svg={icoRight}
+            className={`${cls.ico} ${cls.right} ico`}
+            onClick={icoRightOnClick}
+          />
+        )}
         <input
           className={cls.inputBase}
           value={value}

@@ -9,8 +9,14 @@ interface AppSvgProps {
   className?: string;
   svg: typeof ReactComponent;
   size?: SvgSizeType;
+  onClick?: () => void;
 }
 
-export const AppSvg = ({ svg: Svg, className, size }: AppSvgProps) => {
-  return <Svg className={classNames(cls.ico, { [cls[size || '']]: !!size }, [className])} />;
+export const AppSvg = ({ svg: Svg, className, size, onClick }: AppSvgProps) => {
+  return (
+    <Svg
+      className={classNames(cls.ico, { [cls[size || '']]: !!size }, [className])}
+      onClick={onClick}
+    />
+  );
 };
