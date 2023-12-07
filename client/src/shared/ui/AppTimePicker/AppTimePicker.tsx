@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { classNames, Mods } from '../../lib/classNames/classNames';
 import cls from './AppTimePicker.module.scss';
 import { AppInput } from '../AppInput/AppInput';
@@ -12,32 +12,8 @@ interface AppTimePickerProps {
   onChange?: (value: string) => void;
 }
 
-const hours = [
-  '00',
-  '01',
-  '02',
-  '03',
-  '04',
-  '05',
-  '06',
-  '07',
-  '08',
-  '09',
-  '10',
-  '11',
-  '12',
-  '13',
-  '14',
-  '15',
-  '16',
-  '17',
-  '18',
-  '19',
-  '20',
-  '21',
-  '22',
-  '23',
-];
+const hoursArray = Array.from({ length: 24 }, (_, index) => String(index).padStart(2, '0'));
+const minutesArray = Array.from({ length: 60 }, (_, index) => String(index).padStart(2, '0'));
 
 export const AppTimePicker = ({
   value,
@@ -47,12 +23,24 @@ export const AppTimePicker = ({
   label,
 }: AppTimePickerProps) => {
   const [active, setActive] = useState(false);
-
+  const [hour, min] = useMemo(() => (value ? value.split(':') : ['', '']), [value]);
   const onActiveHandler = () => setActive((prevState) => !prevState);
 
   const mods: Mods = {
     [cls.active]: active,
   };
+
+  const onChangeHandler = (type: 'h' | 'min', valueItem: string) => () => {
+    let newTime: string = '';
+    if (type === 'h') {
+      newTime = `${valueItem}:${min || '00'}`;
+    }
+    if (type === 'min') {
+      newTime = `${hour || '00'}:${valueItem}`;
+    }
+    onChange?.(newTime);
+  };
+
   return (
     <div className={classNames(cls.timepickerWrap, mods, [className])} onClick={onActiveHandler}>
       <AppInput
@@ -64,9 +52,29 @@ export const AppTimePicker = ({
         label={label}
         className={cls.timepickerInput}
       />
-      <div className={cls.timesList}>
-        <div>часы</div>
-        <div>минуты</div>
+      <div className={cls.timesListWrap}>
+        <div className={cls.timesList}>
+          {hoursArray.map((item) => (
+            <div
+              key={`hour-${item}`}
+              className={classNames(cls.item, { [cls.active]: hour === item })}
+              onClick={onChangeHandler('h', item)}
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+        <div className={cls.timesList}>
+          {minutesArray.map((item) => (
+            <div
+              key={`hour-${item}`}
+              className={classNames(cls.item, { [cls.active]: min === item })}
+              onClick={onChangeHandler('min', item)}
+            >
+              {item}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -64,7 +64,7 @@ export const InputsContainers = () => {
           value={value}
           onChange={setValue}
         />
-        <AppTimePicker />
+        <AppTimePicker value={value} onChange={setValue} />
         <AppInput
           label="с иконкой слева"
           placeholder="Введите текст"

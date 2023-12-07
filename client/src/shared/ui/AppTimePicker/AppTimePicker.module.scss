@@ -3,6 +3,7 @@
 .timepickerWrap{
   position: relative;
   .timepickerInput{
+    min-width: 100px;
       svg{
         cursor: pointer;
         width: 24px;
@@ -11,7 +12,8 @@
         max-height: 24px;
       }
   }
-  .timesList{
+  .timesListWrap{
+    width: 100%;
     position: absolute;
     bottom: -4px;
     left: 0;
@@ -22,10 +24,26 @@
     z-index: var(--z-index-dropdown);
 
     display: flex;
+    justify-content: space-between;
     gap: 5px;
     padding: 4px;
 
     max-height: 200px;
-    @include scroll();
+    .timesList{
+      @include scroll();
+      padding-right: 3px;
+      .item{
+        border-radius: 4px;
+        padding: 5px;
+        cursor: pointer;
+        &:hover{
+          background-color: var(--color-gray-light);
+        }
+        &.active{
+          pointer-events: none;
+          background-color: var(--color-gray-light);
+        }
+      }
+    }
   }
 }
