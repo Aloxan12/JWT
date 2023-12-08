@@ -3,8 +3,8 @@ import { RefObject, useCallback, useEffect } from 'react';
 export const useOutsideClick = (
   callback: () => void,
   ref: RefObject<HTMLDivElement>,
-  triggerRef?: RefObject<HTMLDivElement>,
-  active: boolean = true
+  active: boolean = true,
+  triggerRef?: RefObject<HTMLDivElement>
 ) => {
   const outSideClickHandler = useCallback(
     (e) => {

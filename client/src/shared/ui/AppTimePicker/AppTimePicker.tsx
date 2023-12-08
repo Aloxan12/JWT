@@ -1,8 +1,9 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import { classNames, Mods } from '../../lib/classNames/classNames';
 import cls from './AppTimePicker.module.scss';
 import { AppInput } from '../AppInput/AppInput';
 import { ReactComponent as ClockIco } from '../../../utils/images/icons/watch.svg';
+import { useOutsideClick } from '../../lib/hooks/useOutsideClick';
 
 interface AppTimePickerProps {
   className?: string;
@@ -22,6 +23,7 @@ export const AppTimePicker = ({
   placeholder,
   label,
 }: AppTimePickerProps) => {
+  const ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
   const [hour, min] = useMemo(() => (value ? value.split(':') : ['', '']), [value]);
   const onActiveHandler = () => setActive((prevState) => !prevState);
@@ -29,6 +31,8 @@ export const AppTimePicker = ({
   const mods: Mods = {
     [cls.active]: active,
   };
+
+  useOutsideClick(onActiveHandler, ref, active);
 
   const onChangeHandler = (type: 'h' | 'min', valueItem: string) => () => {
     let newTime: string = '';
@@ -42,7 +46,11 @@ export const AppTimePicker = ({
   };
 
   return (
-    <div className={classNames(cls.timepickerWrap, mods, [className])} onClick={onActiveHandler}>
+    <div
+      className={classNames(cls.timepickerWrap, mods, [className])}
+      onClick={onActiveHandler}
+      ref={ref}
+    >
       <AppInput
         value={value}
         onChange={onChange}
@@ -52,30 +60,32 @@ export const AppTimePicker = ({
         label={label}
         className={cls.timepickerInput}
       />
-      <div className={cls.timesListWrap}>
-        <div className={cls.timesList}>
-          {hoursArray.map((item) => (
-            <div
-              key={`hour-${item}`}
-              className={classNames(cls.item, { [cls.active]: hour === item })}
-              onClick={onChangeHandler('h', item)}
-            >
-              {item}
-            </div>
-          ))}
+      {active && (
+        <div className={cls.timesListWrap}>
+          <div className={cls.timesList}>
+            {hoursArray.map((item) => (
+              <div
+                key={`hour-${item}`}
+                className={classNames(cls.item, { [cls.active]: hour === item })}
+                onClick={onChangeHandler('h', item)}
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+          <div className={cls.timesList}>
+            {minutesArray.map((item) => (
+              <div
+                key={`hour-${item}`}
+                className={classNames(cls.item, { [cls.active]: min === item })}
+                onClick={onChangeHandler('min', item)}
+              >
+                {item}
+              </div>
+            ))}
+          </div>
         </div>
-        <div className={cls.timesList}>
-          {minutesArray.map((item) => (
-            <div
-              key={`hour-${item}`}
-              className={classNames(cls.item, { [cls.active]: min === item })}
-              onClick={onChangeHandler('min', item)}
-            >
-              {item}
-            </div>
-          ))}
-        </div>
-      </div>
+      )}
     </div>
   );
 };
