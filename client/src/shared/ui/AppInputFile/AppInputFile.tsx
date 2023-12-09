@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import cls from './AppInputFile.module.scss';
 import { classNames, Mods } from '../../lib/classNames/classNames';
 import { ReactComponent } from '../../../utils/images/icons/search.svg';
@@ -8,6 +8,8 @@ type AppInputFileTheme = 'btn' | 'text';
 
 interface AppInputFileProps {
   className?: string;
+  file: null | File;
+  onChange: (file: null | File) => void;
   text?: string;
   theme?: AppInputFileTheme;
   disabled?: boolean;
@@ -15,7 +17,8 @@ interface AppInputFileProps {
 }
 
 export const AppInputFile = memo(
-  ({ text, theme = 'btn', className, disabled, ico }: AppInputFileProps) => {
+  ({ text, theme = 'btn', className, disabled, ico, file, onChange }: AppInputFileProps) => {
+    const [inputFile, setInputFile] = useState('');
     const mods: Mods = {
       [cls.disabled]: disabled,
       [cls.ico]: !!ico,

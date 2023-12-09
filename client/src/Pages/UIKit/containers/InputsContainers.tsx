@@ -12,6 +12,7 @@ import { AppInputFile } from '../../../shared/ui/AppInputFile/AppInputFile';
 import { AppDropdown } from '../../../shared/ui/AppDropdown/AppDropdown';
 import { AppMultiDropdown } from '../../../shared/ui/AppDropdown/AppMultiDropdown';
 import { AppTimePicker } from '../../../shared/ui/AppTimePicker/AppTimePicker';
+import { AppPhoto } from '../../../shared/ui/AppPhoto/AppPhoto';
 
 const dropdownDataMock = [
   { id: 1, name: 'kolya' },
@@ -31,6 +32,7 @@ export const InputsContainers = () => {
   const [number, setNumber] = useState('');
   const [phone, setPhone] = useState('');
   const [float, setFloat] = useState('');
+  const [file, setFile] = useState<File | null>(null);
   const [checkbox, setCheckbox] = useState(false);
   const [dropdownData, setDropdownData] = useState<null | { id: number; name: string }>(null);
   const [multiDropdownData, setMultiDropdownData] = useState<{ id: number; name: string }[]>([]);
@@ -110,8 +112,9 @@ export const InputsContainers = () => {
         <AppInput placeholder="Введите телефон" mask="phone" value={phone} onChange={setPhone} />
         <AppCheckbox id={'checkbox'} value={checkbox} onChange={setCheckbox} text={'Выбери меня'} />
         <AppToggle value={checkbox} onChange={setCheckbox} />
-        <AppInputFile theme="btn" ico={ClipIco} />
-        <AppInputFile theme="text" ico={ClipIco} />
+        <AppInputFile file={file} onChange={setFile} theme="btn" ico={ClipIco} />
+        <AppInputFile file={file} onChange={setFile} theme="text" ico={ClipIco} />
+        {file && <AppPhoto src={URL.createObjectURL(file)} width={50} height={50} />}
         <AppInput placeholder="Введите текст" value={value} onChange={setValue} fullWidth />
       </Flex>
     </AppCard>
