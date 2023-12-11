@@ -112,8 +112,8 @@ export const InputsContainers = () => {
         <AppInput placeholder="Введите телефон" mask="phone" value={phone} onChange={setPhone} />
         <AppCheckbox id={'checkbox'} value={checkbox} onChange={setCheckbox} text={'Выбери меня'} />
         <AppToggle value={checkbox} onChange={setCheckbox} />
-        <AppInputFile file={file} onChange={setFile} theme="btn" ico={ClipIco} />
-        <AppInputFile file={file} onChange={setFile} theme="text" ico={ClipIco} />
+        <AppInputFile onChange={setFile} theme="btn" ico={ClipIco} />
+        <AppInputFile onChange={setFile} theme="text" ico={ClipIco} />
         {file && <AppPhoto src={URL.createObjectURL(file)} width={50} height={50} />}
         <AppInput placeholder="Введите текст" value={value} onChange={setValue} fullWidth />
       </Flex>
