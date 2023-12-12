@@ -10,7 +10,7 @@ import {
   setIsAuth,
   setUser,
 } from '../../app/core/redux/Reducers/authReducer/authReducer';
-import { BurgerMenu } from '../../Common/Components/BurgerMenu/BurgerMenu';
+import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
 import { checkAuthApi } from '../../app/core/api/checkAuthApi';
 import { IRouteObj } from '../../app/core/router/AppRouter';
 import fakeAvatar from '../../utils/images/fake_avatar.png';

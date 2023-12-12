@@ -1,7 +1,7 @@
 import App from '../../App';
 import { Route, Routes } from 'react-router-dom';
 import { Registration } from '../../../Pages/Registration/Registration';
-import { Header } from '../../../Pages/Header/Header';
+import { Header } from '../../../widgets/Header/Header';
 import { ToastContainer } from 'react-toastify';
 import React, { useEffect } from 'react';
 import { Login } from '../../../Pages/Login/Login';

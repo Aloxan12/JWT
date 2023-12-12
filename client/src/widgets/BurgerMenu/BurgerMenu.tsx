@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './BurgerMenu.module.css';
 import { NavLink } from 'react-router-dom';
-import { IRouteObj } from '../../../app/core/router/AppRouter';
+import { IRouteObj } from '../../app/core/router/AppRouter';
 
 interface IItemsRoute {
   path: string;
