@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { isPaginationResetReg } from '../../../shared/lib/hooks/useParamsControl';
 import styles from './AppPagination.module.css';
-import commonStyles from '../../../app/App.module.css';
+import commonStyles from '../../../app/App.scss';
 import { AppDropdown } from '../AppDropdown/AppDropdown';
 
 function createPages(pages: (number | string)[], pagesCount: number, currentPage: number) {

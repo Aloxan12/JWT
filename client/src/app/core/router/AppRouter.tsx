@@ -141,18 +141,10 @@ export const routesByRole: RoutesForMenuType = {
 };
 
 export const AppRouter = () => {
-  const { isAuth, user, isInit } = useAppSelector((state) => state.auth);
-  const dispatch = useAppDispatch();
+  const { isAuth, user } = useAppSelector((state) => state.auth);
 
-  useEffect(() => {
-    dispatch(setIsInit());
-  }, [dispatch]);
-
-  if (!isInit) return <AppLoader />;
   return (
-    <div>
-      <Header itemsRoute={user ? routesByRole[user.role] : []} />
-      <ToastContainer />
+    <Routes>
       <MainLayout>
         <Routes>
           {isAuth
@@ -168,6 +160,6 @@ export const AppRouter = () => {
               })}
         </Routes>
       </MainLayout>
-    </div>
+    </Routes>
   );
 };
