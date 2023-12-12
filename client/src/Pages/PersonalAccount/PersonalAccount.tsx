@@ -3,13 +3,13 @@ import styles from './PersonalAccount.module.css';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AppButton } from '../../Common/Components/AppButton/AppButton';
-import { useGetUserDetailQuery, useUploadUserAvatarMutation } from '../../redux/api/usersApi';
-import { checkAuthApi } from '../../redux/api/checkAuthApi';
-import { setUser } from '../../redux/Reducers/authReducer/authReducer';
+import { useGetUserDetailQuery, useUploadUserAvatarMutation } from '../../app/core/api/usersApi';
+import { checkAuthApi } from '../../app/core/api/checkAuthApi';
+import { setUser } from '../../app/core/redux/Reducers/authReducer/authReducer';
 import { ChangeAvatarContainer } from './components/ChangeAvatarContainer';
 import { ProfileInfoContainer } from './components/ProfileInfoContainer';
 import fakeAvatar from '../../utils/images/fake_avatar.png';
-import { IUser } from '../../redux/api/dto/UserDto';
+import { IUser } from '../../app/core/api/dto/UserDto';
 import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
 
 export const PersonalAccount = () => {

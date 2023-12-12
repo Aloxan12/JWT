@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import './Registration.css';
-import { useRegistrationMutation } from '../../redux/api/authApi';
+import { useRegistrationMutation } from '../../app/core/api/authApi';
 import { ToastWrapper, ToastWrapperType } from '../../Common/Components/ToastWrapper/ToastWrapper';
 import { useNavigate } from 'react-router-dom';
-import { RoleTypes } from '../../router/AppRoute';
+import { RoleTypes } from '../../app/core/router/AppRouter';
 import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
 
 export const Registration = () => {

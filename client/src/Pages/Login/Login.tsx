@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
-import { useLoginMutation } from '../../redux/api/authApi';
+import { useLoginMutation } from '../../app/core/api/authApi';
 import './Login.css';
-import { useAppDispatch } from '../../redux/store';
-import { setAuthData } from '../../redux/Reducers/authReducer/authReducer';
+import { useAppDispatch } from '../../app/core/redux/store';
+import { setAuthData } from '../../app/core/redux/Reducers/authReducer/authReducer';
 import { useNavigate } from 'react-router-dom';
 import { ToastWrapper, ToastWrapperType } from '../../Common/Components/ToastWrapper/ToastWrapper';
 import { AppButton } from '../../Common/Components/AppButton/AppButton';

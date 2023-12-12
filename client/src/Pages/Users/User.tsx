@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Users.module.scss';
 import fakeAvatar from '../../utils/images/fake_avatar.png';
-import { IUser } from '../../redux/api/dto/UserDto';
+import { IUser } from '../../app/core/api/dto/UserDto';
 import { Tooltip } from '../../Common/Components/Tooltip/Tooltip';
 
 interface IUserProps {

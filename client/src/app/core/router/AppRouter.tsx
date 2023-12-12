@@ -1,24 +1,24 @@
-import App from '../App';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Registration } from '../Pages/Registration/Registration';
-import { Header } from '../Pages/Header/Header';
+import App from '../../App';
+import { Route, Routes } from 'react-router-dom';
+import { Registration } from '../../../Pages/Registration/Registration';
+import { Header } from '../../../Pages/Header/Header';
 import { ToastContainer } from 'react-toastify';
-import React from 'react';
-import { Login } from '../Pages/Login/Login';
-import { ComponentsShow } from '../Pages/ComponentsShow/ComponentsShow';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
-import { NotFound } from '../Pages/NotFound/NotFound';
-import { Users } from '../Pages/Users/Users';
-import { PersonalAccount } from '../Pages/PersonalAccount/PersonalAccount';
-import { UserProfile } from '../Pages/Users/UserProfile';
-import { IUser } from '../redux/api/dto/UserDto';
-import { ProjectsPage } from '../Pages/ProjectsPage/ProjectsPage';
-import { BlankSheet } from '../Pages/BlankSheet/BlankSheet';
-import '../styles/global.scss';
-import { MainLayout } from '../Pages/MainLayout/MainLayout';
-import { BootstrapCustomNetPage } from '../Pages/BootstrapCustomNetPage/BootstrapCustomNetPage';
-import { UiKit } from '../Pages/UIKit/UIKit';
+import React, { useEffect } from 'react';
+import { Login } from '../../../Pages/Login/Login';
+import { ComponentsShow } from '../../../Pages/ComponentsShow/ComponentsShow';
+import { useAppDispatch, useAppSelector } from '../redux/store';
+import { NotFound } from '../../../Pages/NotFound/NotFound';
+import { Users } from '../../../Pages/Users/Users';
+import { PersonalAccount } from '../../../Pages/PersonalAccount/PersonalAccount';
+import { UserProfile } from '../../../Pages/Users/UserProfile';
+import { ProjectsPage } from '../../../Pages/ProjectsPage/ProjectsPage';
+import { BlankSheet } from '../../../Pages/BlankSheet/BlankSheet';
+import '../../../styles/global.scss';
+import { MainLayout } from '../../../Pages/MainLayout/MainLayout';
+import { BootstrapCustomNetPage } from '../../../Pages/BootstrapCustomNetPage/BootstrapCustomNetPage';
+import { UiKit } from '../../../Pages/UIKit/UIKit';
+import { AppLoader } from '../../../Common/Components/AppLoader/AppLoader';
+import { setIsInit } from '../redux/Reducers/authReducer/authReducer';
 
 export const routesIsNotAuth = [
   {
@@ -140,12 +140,17 @@ export const routesByRole: RoutesForMenuType = {
   [RoleTypes.USER]: uniqRoutesByRole[RoleTypes.USER],
 };
 
-export const AppRoutes = () => {
-  const isAuth = useSelector<RootState, boolean>((state) => state.auth.isAuth);
-  const user = useSelector<RootState, IUser | null>((state) => state.auth.authData.user);
+export const AppRouter = () => {
+  const { isAuth, user, isInit } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    dispatch(setIsInit());
+  }, [dispatch]);
+
+  if (!isInit) return <AppLoader />;
   return (
-    <BrowserRouter>
+    <div>
       <Header itemsRoute={user ? routesByRole[user.role] : []} />
       <ToastContainer />
       <MainLayout>
@@ -163,6 +168,6 @@ export const AppRoutes = () => {
               })}
         </Routes>
       </MainLayout>
-    </BrowserRouter>
+    </div>
   );
 };

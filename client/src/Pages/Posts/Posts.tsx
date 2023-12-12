@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Posts.module.scss';
-import { useCreatePostsMutation, useGetAllPostsQuery } from '../../redux/api/postApi';
+import { useCreatePostsMutation, useGetAllPostsQuery } from '../../app/core/api/postApi';
 import { Post } from './Post';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { RootState } from '../../app/core/redux/store';
 import moment from 'moment';
 import { ToastWrapper, ToastWrapperType } from '../../Common/Components/ToastWrapper/ToastWrapper';
 import { AppButton } from '../../Common/Components/AppButton/AppButton';
-import { IUser } from '../../redux/api/dto/UserDto';
-import { IPost } from '../../redux/api/dto/PostDto';
+import { IUser } from '../../app/core/api/dto/UserDto';
+import { IPost } from '../../app/core/api/dto/PostDto';
 import { throttle } from '../../shared/lib/hooks/useDebounce';
 import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
 

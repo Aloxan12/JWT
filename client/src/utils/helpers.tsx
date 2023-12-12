@@ -1,4 +1,4 @@
-import { RoleTypes } from '../router/AppRoute';
+import { RoleTypes } from '../app/core/router/AppRouter';
 
 export const contentToHtml = (text: string) =>
   text

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { useGetAllUsersQuery } from '../../redux/api/usersApi';
+import { useGetAllUsersQuery } from '../../app/core/api/usersApi';
 import { User } from './User';
 import styles from './Users.module.scss';
 import { AppInputFilter } from '../../Common/Components/AppInputFilter';
-import commonStyles from '../../App.module.css';
+import commonStyles from '../../app/App.module.css';
 import { useParamsControl } from '../../shared/lib/hooks/useParamsControl';
-import { IUsersRequestDto } from '../../redux/api/dto/UserDto';
+import { IUsersRequestDto } from '../../app/core/api/dto/UserDto';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { RootState } from '../../app/core/redux/store';
 import { useIsAdmin } from '../../utils/helpers';
 import { NavLink } from 'react-router-dom';
 import { AppPagination } from '../../Common/Components/AppPagination/AppPagination';

@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './App.module.css';
-import { Posts } from './Pages/Posts/Posts';
+import { AppRouter } from './core/router/AppRouter';
 
 function App() {
   return (
     <div className={styles.AppWrap}>
-      <Posts />
+      <AppRouter />
     </div>
   );
 }

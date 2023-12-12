@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react';
 import styles from './Header.module.css';
 import { NavLink, Link, useMatch, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../../redux/store';
-import { useLogoutMutation } from '../../redux/api/authApi';
+import { RootState, useAppDispatch } from '../../app/core/redux/store';
+import { useLogoutMutation } from '../../app/core/api/authApi';
 import {
   logout,
   setAuthData,
   setIsAuth,
   setUser,
-} from '../../redux/Reducers/authReducer/authReducer';
+} from '../../app/core/redux/Reducers/authReducer/authReducer';
 import { BurgerMenu } from '../../Common/Components/BurgerMenu/BurgerMenu';
-import { checkAuthApi } from '../../redux/api/checkAuthApi';
-import { IRouteObj } from '../../router/AppRoute';
+import { checkAuthApi } from '../../app/core/api/checkAuthApi';
+import { IRouteObj } from '../../app/core/router/AppRouter';
 import fakeAvatar from '../../utils/images/fake_avatar.png';
-import { IUser } from '../../redux/api/dto/UserDto';
+import { IUser } from '../../app/core/api/dto/UserDto';
 import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
 
 interface IHeader {

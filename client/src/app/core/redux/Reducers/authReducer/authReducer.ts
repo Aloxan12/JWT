@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AuthState } from '../../api/authApi';
-import { RoleTypes } from '../../../router/AppRoute';
-import { IUser } from '../../api/dto/UserDto';
+import { AuthState } from '../../../api/authApi';
+import { RoleTypes } from '../../../router/AppRouter';
+import { IUser } from '../../../api/dto/UserDto';
 
 type AuthInitialStateType = {
   user: IUser | null;
   authData: AuthState;
   isAuth: boolean;
+  isInit: boolean;
 };
 
 const authInitialState: AuthInitialStateType = {
@@ -24,6 +25,7 @@ const authInitialState: AuthInitialStateType = {
     user: null,
   },
   isAuth: false,
+  isInit: false,
 };
 
 const authReducer = createSlice({
@@ -45,6 +47,9 @@ const authReducer = createSlice({
     setUser: (state, { payload: user }: PayloadAction<IUser | null>) => {
       state.user = user;
     },
+    setIsInit: (state) => {
+      state.isInit = true;
+    },
     logout: (state) => {
       state.isAuth = false;
       state.user = null;
@@ -54,6 +59,6 @@ const authReducer = createSlice({
   },
 });
 
-export const { setAuthData, logout, setIsAuth, setUser } = authReducer.actions;
+export const { setAuthData, logout, setIsAuth, setUser, setIsInit } = authReducer.actions;
 
 export default authReducer.reducer;

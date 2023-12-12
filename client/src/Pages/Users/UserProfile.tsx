@@ -1,9 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useGetUserDetailQuery } from '../../redux/api/usersApi';
+import { useGetUserDetailQuery } from '../../app/core/api/usersApi';
 import styles from './Users.module.scss';
 import fakeAvatar from '../../utils/images/fake_avatar.png';
-import { RoleTypes } from '../../router/AppRoute';
+import { RoleTypes } from '../../app/core/router/AppRouter';
 import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
 
 export const UserProfile = () => {

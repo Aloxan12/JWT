@@ -1,15 +1,15 @@
 import React, { useCallback } from 'react';
 import styles from './Posts.module.scss';
 import moment from 'moment';
-import { useDeletePostMutation, useLikePostMutation } from '../../redux/api/postApi';
+import { useDeletePostMutation, useLikePostMutation } from '../../app/core/api/postApi';
 import { contentToHtml } from '../../utils/helpers';
 import { AppTrash } from '../../Common/Components/AppTrash/AppTrash';
 import { ToastWrapper, ToastWrapperType } from '../../Common/Components/ToastWrapper/ToastWrapper';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { RoleTypes } from '../../router/AppRoute';
-import { IUser } from '../../redux/api/dto/UserDto';
-import { IPost } from '../../redux/api/dto/PostDto';
+import { RootState } from '../../app/core/redux/store';
+import { RoleTypes } from '../../app/core/router/AppRouter';
+import { IUser } from '../../app/core/api/dto/UserDto';
+import { IPost } from '../../app/core/api/dto/PostDto';
 import fakeAvatar from '../../utils/images/fake_avatar.png';
 import likePhoto from '../../utils/images/like.png';
 

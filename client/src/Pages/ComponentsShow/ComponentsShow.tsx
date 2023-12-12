@@ -6,8 +6,8 @@ import { AppInput } from '../../Common/Components/AppInput/AppInput';
 import { AppRating } from '../../Common/Components/AppRating/AppRating';
 import { AppInputFilter } from '../../Common/Components/AppInputFilter';
 import { AppDropdown } from '../../Common/Components/AppDropdown/AppDropdown';
-import { useGetAllUsersQuery } from '../../redux/api/usersApi';
-import { IUser } from '../../redux/api/dto/UserDto';
+import { useGetAllUsersQuery } from '../../app/core/api/usersApi';
+import { IUser } from '../../app/core/api/dto/UserDto';
 import { Calendar } from '../../Common/Components/Calendar/Calendar';
 import { AppTable } from '../../Common/Components/AppTable/AppTable';
 

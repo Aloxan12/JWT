@@ -1,6 +1,9 @@
 import { isRejectedWithValue, Middleware, MiddlewareAPI } from '@reduxjs/toolkit';
-import { ToastWrapper, ToastWrapperType } from '../../Common/Components/ToastWrapper/ToastWrapper';
-import { logout } from '../Reducers/authReducer/authReducer';
+import {
+  ToastWrapper,
+  ToastWrapperType,
+} from '../../../Common/Components/ToastWrapper/ToastWrapper';
+import { logout } from '../redux/Reducers/authReducer/authReducer';
 
 export const rtkErrorMiddleware: Middleware = (api: MiddlewareAPI) => (next) => (action) => {
   if (isRejectedWithValue(action)) {
