@@ -3,7 +3,7 @@ import { useGetAllUsersQuery } from '../../app/core/api/usersApi';
 import { User } from './User';
 import styles from './Users.module.scss';
 import { AppInputFilter } from '../../Common/Components/AppInputFilter';
-import commonStyles from '../../app/App.scss';
+import '../../app/App.scss';
 import { useParamsControl } from '../../shared/lib/hooks/useParamsControl';
 import { IUsersRequestDto } from '../../app/core/api/dto/UserDto';
 import { useSelector } from 'react-redux';
@@ -33,7 +33,7 @@ export const Users = () => {
   return (
     <div>
       {(isFetchingList || isLoadingList) && <AppLoader />}
-      <div className={commonStyles.FilterBlock}>
+      <div className={''}>
         <AppInputFilter
           searchParam="search"
           placeholder={'Введите email'}
