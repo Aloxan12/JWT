@@ -1,12 +1,10 @@
 import App from '../../App';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, useLocation, useMatch } from 'react-router-dom';
 import { Registration } from '../../../Pages/Registration/Registration';
-import { Header } from '../../../widgets/Header/Header';
-import { ToastContainer } from 'react-toastify';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Login } from '../../../Pages/Login/Login';
 import { ComponentsShow } from '../../../Pages/ComponentsShow/ComponentsShow';
-import { useAppDispatch, useAppSelector } from '../redux/store';
+import { useAppSelector } from '../redux/store';
 import { NotFound } from '../../../Pages/NotFound/NotFound';
 import { Users } from '../../../Pages/Users/Users';
 import { PersonalAccount } from '../../../Pages/PersonalAccount/PersonalAccount';
@@ -14,11 +12,10 @@ import { UserProfile } from '../../../Pages/Users/UserProfile';
 import { ProjectsPage } from '../../../Pages/ProjectsPage/ProjectsPage';
 import { BlankSheet } from '../../../Pages/BlankSheet/BlankSheet';
 import '../../../styles/global.scss';
-import { MainLayout } from '../../../Pages/MainLayout/MainLayout';
 import { BootstrapCustomNetPage } from '../../../Pages/BootstrapCustomNetPage/BootstrapCustomNetPage';
 import { UiKit } from '../../../Pages/UIKit/UIKit';
-import { AppLoader } from '../../../Common/Components/AppLoader/AppLoader';
-import { setIsInit } from '../redux/Reducers/authReducer/authReducer';
+import { NotAuthRoutes } from './NotAuthRoutes';
+import { MainLayoutRoutes } from './MainLayoutRoutes';
 
 export const routesIsNotAuth = [
   {
@@ -140,26 +137,42 @@ export const routesByRole: RoutesForMenuType = {
   [RoleTypes.USER]: uniqRoutesByRole[RoleTypes.USER],
 };
 
-export const AppRouter = () => {
-  const { isAuth, user } = useAppSelector((state) => state.auth);
+interface IRedirect {
+  path?: string;
+}
 
+export const AppRedirect = ({ path = '/' }: IRedirect) => {
+  const location = useLocation();
+  return <Navigate to={path} state={{ from: location }} replace />;
+};
+
+const RequireAuth = ({
+  children,
+  routesWithAuth,
+}: {
+  children: JSX.Element;
+  routesWithAuth: JSX.Element;
+}) => {
+  const isAuthenticated = true; // useAppSelector((state) => state.auth.token)
+  const isInit = useAppSelector((state) => state.auth.isInit);
+  const isSameUrl = !!useMatch('login') || !!useMatch('registration');
+  console.log('2', isInit);
+  if (!isInit) {
+    return null;
+  }
+
+  if (!isAuthenticated) {
+    return isSameUrl ? children : <AppRedirect path={'/login'} />;
+  }
+
+  return routesWithAuth;
+};
+
+export const AppRouter = () => {
+  console.log('1');
   return (
-    <Routes>
-      <MainLayout>
-        <Routes>
-          {isAuth
-            ? user
-              ? routesByRole[user.role].map((route) => {
-                  const { id, component, path } = route;
-                  return <Route key={id} path={path} element={component} />;
-                })
-              : []
-            : routesIsNotAuth.map((route) => {
-                const { id, component, path } = route;
-                return <Route key={id} path={path} element={component} />;
-              })}
-        </Routes>
-      </MainLayout>
-    </Routes>
+    <RequireAuth routesWithAuth={<MainLayoutRoutes />}>
+      <NotAuthRoutes />
+    </RequireAuth>
   );
 };

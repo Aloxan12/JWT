@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AuthState } from '../../../api/authApi';
 import { RoleTypes } from '../../../router/AppRouter';
 import { IUser } from '../../../api/dto/UserDto';
+import { REHYDRATE } from 'redux-persist/es/constants';
 
 type AuthInitialStateType = {
   user: IUser | null;
@@ -47,9 +48,6 @@ const authReducer = createSlice({
     setUser: (state, { payload: user }: PayloadAction<IUser | null>) => {
       state.user = user;
     },
-    setIsInit: (state) => {
-      state.isInit = true;
-    },
     logout: (state) => {
       state.isAuth = false;
       state.user = null;
@@ -57,8 +55,13 @@ const authReducer = createSlice({
       localStorage.removeItem('refreshToken');
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(REHYDRATE, (state) => {
+      state.isInit = true;
+    });
+  },
 });
 
-export const { setAuthData, logout, setIsAuth, setUser, setIsInit } = authReducer.actions;
+export const { setAuthData, logout, setIsAuth, setUser } = authReducer.actions;
 
 export default authReducer.reducer;

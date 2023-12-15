@@ -1,10 +1,12 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 import '../../styles/container.scss';
 
-interface IMainLayoutProps {
-  children: React.ReactNode;
-}
-
-export const MainLayout = ({ children }: IMainLayoutProps) => {
-  return <div className="container">{children}</div>;
+export const MainLayout = () => {
+  return (
+    <div className="container">
+      nen
+      <Outlet />
+    </div>
+  );
 };

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { isPaginationResetReg } from '../../../shared/lib/hooks/useParamsControl';
 import styles from './AppPagination.module.css';
-import commonStyles from '../../../app/App.scss';
 import { AppDropdown } from '../AppDropdown/AppDropdown';
 
 function createPages(pages: (number | string)[], pagesCount: number, currentPage: number) {
@@ -75,8 +74,8 @@ export const AppPagination = ({ totalCount, setLimit, limit, sticky }: IAppPagin
   }, [page]);
 
   return (
-    <div className={commonStyles.WidthCenter}>
-      <div className={`${styles.AppPaginationWrap} ${sticky ? commonStyles.StickyBottom : ''}`}>
+    <div>
+      <div className={`${styles.AppPaginationWrap}`}>
         {pages.map((page, index) => {
           return (
             <div
