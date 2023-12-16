@@ -4,6 +4,7 @@ import cls from './AppCard.module.scss';
 
 interface AppCardProps {
   className?: string;
+  classNameContent?: string;
   title?: string;
   max?: boolean;
   withoutBorder?: boolean;
@@ -13,6 +14,7 @@ interface AppCardProps {
 
 export const AppCard = ({
   className,
+  classNameContent,
   children,
   title,
   max,
@@ -27,7 +29,7 @@ export const AppCard = ({
   return (
     <div className={classNames(cls.card, mods, [className])}>
       {title && <span className={cls.title}>{title}</span>}
-      <div className={cls.content}>{children}</div>
+      <div className={classNames(cls.content, {}, [classNameContent])}>{children}</div>
     </div>
   );
 };

@@ -3,13 +3,6 @@ import styles from './BurgerMenu.module.css';
 import { NavLink } from 'react-router-dom';
 import { IRouteObj } from '../../app/core/router/AppRouter';
 
-interface IItemsRoute {
-  path: string;
-  id: string;
-  title: string;
-  icon?: string;
-}
-
 interface IBurgerMenu {
   active: boolean;
   setActive: (value: boolean) => void;
@@ -27,18 +20,16 @@ export const BurgerMenu = ({ items, header, active, setActive }: IBurgerMenu) =>
       <div className={styles.menuContent} onClick={(e) => e.stopPropagation()}>
         <div className={styles.menuHeader}>{header}</div>
         <ul>
-          {items.map((item: IItemsRoute, i: number) => (
+          {items.map((item, i: number) => (
             <li key={`BurgerMenuKey - ${i}`}>
               <NavLink
                 to={item.path}
                 onClick={() => {
-                  console.log('nen');
                   setActive(false);
                 }}
               >
-                {item.title}
+                {item.path}
               </NavLink>
-              <span>{item.icon}</span>
             </li>
           ))}
         </ul>

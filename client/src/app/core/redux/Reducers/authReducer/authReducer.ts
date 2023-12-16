@@ -8,7 +8,7 @@ type AuthInitialStateType = {
   user: IUser | null;
   authData: AuthState;
   isAuth: boolean;
-  isInit: boolean;
+  rehydrated: boolean;
 };
 
 const authInitialState: AuthInitialStateType = {
@@ -26,7 +26,7 @@ const authInitialState: AuthInitialStateType = {
     user: null,
   },
   isAuth: false,
-  isInit: false,
+  rehydrated: false,
 };
 
 const authReducer = createSlice({
@@ -57,7 +57,7 @@ const authReducer = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(REHYDRATE, (state) => {
-      state.isInit = true;
+      state.rehydrated = true;
     });
   },
 });

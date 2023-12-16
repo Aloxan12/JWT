@@ -112,12 +112,7 @@ export const Header = ({ itemsRoute }: IHeader) => {
           </div>
         </nav>
       )}
-      <BurgerMenu
-        active={menuActive}
-        setActive={setMenuActive}
-        header="Меню"
-        items={itemsRoute.filter((item) => item.showInMenu)}
-      />
+      <BurgerMenu active={menuActive} setActive={setMenuActive} header="Меню" items={itemsRoute} />
     </div>
   );
 };

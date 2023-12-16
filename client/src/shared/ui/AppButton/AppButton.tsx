@@ -19,6 +19,7 @@ interface AppButtonProps {
   tooltipText?: string;
   icoLeft?: typeof ReactComponent;
   icoRight?: typeof ReactComponent;
+  onClick?: () => void;
 }
 
 export const AppButton = memo(
@@ -33,6 +34,7 @@ export const AppButton = memo(
     tooltipText,
     icoRight,
     icoLeft,
+    onClick,
   }: AppButtonProps) => {
     const mods: Mods = {
       [cls.size]: size,
@@ -46,6 +48,7 @@ export const AppButton = memo(
       <button
         className={classNames(cls.button, mods, [className, cls[theme], cls[size]])}
         disabled={disabled}
+        onClick={onClick}
       >
         {isLoading && <div className={cls.loading} />}
         {icoLeft && <AppSvg svg={icoLeft} />}

@@ -2,12 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import { setupStore } from './app/core/redux/store';
+import { store } from './app/core/redux/store';
 import App from './app/App';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-
-const store = setupStore();
 
 ReactDOM.render(
   <React.StrictMode>
