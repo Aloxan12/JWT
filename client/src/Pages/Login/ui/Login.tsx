@@ -15,6 +15,7 @@ import { Flex } from '../../../shared/ui/Flex/Flex';
 import { AppCard } from '../../../shared/ui/AppCard/AppCard';
 import { AppTitle } from '../../../shared/ui/AppTitle/AppTitle';
 import cls from './Login.module.scss';
+import { AppText } from '../../../shared/ui/AppText/AppText';
 
 const Login = () => {
   const [login, { isLoading: isLoadingLogin, isError }] = useLoginMutation();
@@ -72,7 +73,7 @@ const Login = () => {
           />
           <AppButton title="Войти" onClick={loginHandler} theme="full-bg" />
           {/*<AppButton onClick={() => loginHandler(email, password)} text="Войти" />*/}
-          {error && <div className="error-text">{error}</div>}
+          {error && <AppText color="red" text={error} className={cls.errorBlock} />}
         </Flex>
       </AppCard>
     </Flex>

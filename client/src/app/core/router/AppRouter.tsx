@@ -1,6 +1,6 @@
+import { useAppSelector } from '../redux/store';
 import { Navigate, useLocation, useMatch } from 'react-router-dom';
 import React from 'react';
-import { useAppSelector } from '../redux/store';
 import '../../../styles/global.scss';
 import { NotAuthRoutes } from './NotAuthRoutes';
 import { MainLayoutRoutes } from './MainLayoutRoutes';

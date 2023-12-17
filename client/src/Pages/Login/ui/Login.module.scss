@@ -1,6 +1,12 @@
 .loginWrap{
     height: 100vh;
     .loginForm{
-        padding: 30px;
+        padding: 35px;
+        position: relative;
+
+        .errorBlock{
+            position: absolute;
+            bottom: 2px;
+        }
     }
 }
