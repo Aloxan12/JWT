@@ -25,7 +25,7 @@ const authInitialState: AuthInitialStateType = {
     refreshToken: null,
     user: null,
   },
-  isAuth: false,
+  isAuth: true,
   rehydrated: false,
 };
 

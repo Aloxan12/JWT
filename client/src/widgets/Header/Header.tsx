@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Header.module.css';
-import { NavLink, Link, useMatch, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useMatch, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../app/core/redux/store';
 import { useLogoutMutation } from '../../app/core/api/authApi';
@@ -10,18 +10,13 @@ import {
   setIsAuth,
   setUser,
 } from '../../app/core/redux/Reducers/authReducer/authReducer';
-import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
 import { checkAuthApi } from '../../app/core/api/checkAuthApi';
-import { IRouteObj } from '../../app/core/router/AppRouter';
 import fakeAvatar from '../../utils/images/fake_avatar.png';
 import { IUser } from '../../app/core/api/dto/UserDto';
 import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
+import { Sidebar } from '../Sidebar/Sidebar';
 
-interface IHeader {
-  itemsRoute: IRouteObj[];
-}
-
-export const Header = ({ itemsRoute }: IHeader) => {
+export const Header = () => {
   const [isLoading, setIsLoading] = useState(false);
   const user = useSelector<RootState, IUser | null>((state) => state.auth.user);
   const isAuth = useSelector<RootState, boolean>((state) => state.auth.isAuth);
@@ -102,17 +97,18 @@ export const Header = ({ itemsRoute }: IHeader) => {
           </div>
         )}
       </div>
-      {isAuth && (
-        <nav>
-          <div
-            className={styles.burgerBtn}
-            onClick={() => setMenuActive((prevState) => !prevState)}
-          >
-            <span />
-          </div>
-        </nav>
-      )}
-      <BurgerMenu active={menuActive} setActive={setMenuActive} header="Меню" items={itemsRoute} />
+      <Sidebar />
+      {/*{isAuth && (*/}
+      {/*  <nav>*/}
+      {/*    <div*/}
+      {/*      className={styles.burgerBtn}*/}
+      {/*      onClick={() => setMenuActive((prevState) => !prevState)}*/}
+      {/*    >*/}
+      {/*      <span />*/}
+      {/*    </div>*/}
+      {/*  </nav>*/}
+      {/*)}*/}
+      {/*<BurgerMenu active={menuActive} setActive={setMenuActive} header="Меню" items={itemsRoute} />*/}
     </div>
   );
 };

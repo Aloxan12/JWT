@@ -1,7 +1,7 @@
 import { IRouteObjectExtended, IRoutesByRole } from './types';
 import { routeConfig } from './routeConfig';
-import { MainLayout } from '../../../Pages/MainLayout/MainLayout';
 import { NotFound } from '../../../Pages/NotFound/NotFound';
+import { MainLayoutPage } from '../../../widgets/MainLayoutPage/MainLayoutPage';
 
 export const RoutesByRole = ({ roles }: IRoutesByRole) => {
   const roleRoutes: IRouteObjectExtended[] = routeConfig
@@ -12,7 +12,7 @@ export const RoutesByRole = ({ roles }: IRoutesByRole) => {
 
   const resultRole: IRouteObjectExtended[] = [
     {
-      element: <MainLayout />,
+      element: <MainLayoutPage />,
       path: '/',
       children: roleRoutes,
     },

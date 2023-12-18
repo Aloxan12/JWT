@@ -34,14 +34,15 @@ const RequireAuth = ({
 }) => {
   const isAuthenticated = useAppSelector((state) => state.auth.isAuth);
   const isInit = useAppSelector((state) => state.auth.rehydrated);
-  const isSameUrl = !!useMatch('login') || !!useMatch('registration');
+  const isSameUrl = !!useMatch('login');
+  const isSameUrlTwo = !!useMatch('registration');
 
   if (!isInit) {
     return null;
   }
 
   if (!isAuthenticated) {
-    return isSameUrl ? children : <AppRedirect path={'/login'} />;
+    return isSameUrl || isSameUrlTwo ? children : <AppRedirect path={'/login'} />;
   }
 
   return routesWithAuth;
