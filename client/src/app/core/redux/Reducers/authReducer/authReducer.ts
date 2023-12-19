@@ -1,18 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IUser } from '../../../api/dto/UserDto';
-import { REHYDRATE } from 'redux-persist/es/constants';
 import { LoginResponse } from '../../../api/dto/BaseDto';
 
 type AuthInitialStateType = {
   user: IUser | null;
   token: string | null;
-  rehydrated: boolean;
 };
 
 const authInitialState: AuthInitialStateType = {
   user: null,
   token: null,
-  rehydrated: false,
 };
 
 const authReducer = createSlice({
@@ -30,11 +27,6 @@ const authReducer = createSlice({
       state.token = null;
       state.user = null;
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(REHYDRATE, (state) => {
-      state.rehydrated = true;
-    });
   },
 });
 

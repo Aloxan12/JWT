@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Header.module.css';
-import { Link, NavLink, useMatch, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/core/redux/store';
 import { useLogoutMutation, useRefreshTokenQuery } from '../../app/core/api/authApi';
 import { logout, setAuthData } from '../../app/core/redux/Reducers/authReducer/authReducer';
@@ -9,12 +9,9 @@ import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
 import { Sidebar } from '../Sidebar/Sidebar';
 
 export const Header = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const { user, token: isAuth } = useAppSelector((state) => state.auth);
   const [logoutApi] = useLogoutMutation();
-  const { data: refreshTokenData } = useRefreshTokenQuery(null, {
-    refetchOnMountOrArgChange: true,
-  });
+  const { data: refreshTokenData, isLoading: isLoadingRefresh } = useRefreshTokenQuery(null);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [menuActive, setMenuActive] = useState(false);
@@ -25,27 +22,6 @@ export const Header = () => {
     }
   }, [refreshTokenData, setAuthData, dispatch]);
 
-  // useEffect(() => {
-  //   try {
-  //     if (localStorage.getItem('token')) {
-  //       setIsLoading(true);
-  //       checkAuthApi()
-  //         .then((data) => {
-  //           if (data) {
-  //             localStorage.setItem('token', data.accessToken);
-  //             dispatch(setIsAuth(true));
-  //             dispatch(setAuthData(data));
-  //             dispatch(setUser(data.user));
-  //           }
-  //         })
-  //         .finally(() => setIsLoading(false));
-  //     } else {
-  //       dispatch(setAuthData({ user: null, accessToken: null, refreshToken: null }));
-  //       dispatch(setUser(null));
-  //     }
-  //   } catch (e) {}
-  // }, [isAuth]);
-
   const logoutHandler = async () => {
     await logoutApi();
     dispatch(logout());
@@ -54,7 +30,7 @@ export const Header = () => {
 
   return (
     <div className={styles.mainHeaderWrap}>
-      {isLoading && <AppLoader />}
+      {isLoadingRefresh && <AppLoader />}
       <div className={styles.mainHeaderTitle}>Название сайта</div>
       <div className={styles.mainHeaderAuth}>
         {user ? (
