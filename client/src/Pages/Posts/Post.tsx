@@ -22,7 +22,7 @@ export const Post = ({ post, setCurrentPage }: IPostProps) => {
   const [deletePost] = useDeletePostMutation();
   const [likePost] = useLikePostMutation();
 
-  const user = useSelector<RootState, IUser | null>((state) => state.auth.authData.user);
+  const user = useSelector<RootState, IUser | null>((state) => state.auth.user);
 
   const likePostHandler = useCallback(() => {
     likePost({ id: post.id });

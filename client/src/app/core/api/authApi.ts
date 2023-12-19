@@ -1,12 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RoleTypes } from '../router/AppRouter';
-import { IUser } from './dto/UserDto';
-
-export interface AuthState {
-  accessToken: string | null;
-  refreshToken: string | null;
-  user: IUser | null;
-}
+import { LoginResponse } from './dto/BaseDto';
+import { RootState } from '../redux/store';
 
 interface ISendRegistration {
   email: string;
@@ -20,32 +15,36 @@ interface ISendLogin {
 const local = 'http://localhost:5555/api';
 const local2 = 'http://localhost:5000/';
 const vercel = 'https://node-js-lyart.vercel.app/';
-export const host = location.href.includes('localhost') ? vercel : vercel;
+export const host = location.href.includes('localhost') ? local2 : vercel;
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
     baseUrl: host,
+    credentials: 'include',
     prepareHeaders: (headers, { getState }) => {
-      // const accessToken = (getState() as RootState).auth.authData.accessToken
-      // const refreshToken = (getState() as RootState).auth.authData.refreshToken
-      const accessToken = localStorage.getItem('token');
-      const refreshToken = localStorage.getItem('refreshToken');
-      if (accessToken || refreshToken) {
+      const accessToken = (getState() as RootState).auth.token;
+      if (accessToken) {
         headers.set('authorization', `Bearer ${accessToken}`);
-        headers.set('refreshToken', `${refreshToken}`);
       }
       return headers;
     },
   }),
   tagTypes: ['Users', 'Posts'],
   endpoints: (build) => ({
-    login: build.mutation<AuthState, ISendLogin>({
+    login: build.mutation<LoginResponse, ISendLogin>({
       query: (params) => ({
         url: '/login',
         method: 'POST',
         body: params,
       }),
       invalidatesTags: ['Users'],
+    }),
+    refreshToken: build.query<null, null>({
+      query: () => ({
+        method: 'GET',
+        url: '/refresh',
+      }),
+      providesTags: ['Users'],
     }),
     logout: build.mutation<void, void>({
       query: (params) => ({
@@ -55,7 +54,7 @@ export const authApi = createApi({
       }),
       invalidatesTags: ['Users'],
     }),
-    registration: build.mutation<AuthState, ISendRegistration>({
+    registration: build.mutation<LoginResponse, ISendRegistration>({
       query: (params) => ({
         url: '/registration',
         method: 'POST',
@@ -66,4 +65,9 @@ export const authApi = createApi({
   }),
 });
 
-export const { useRegistrationMutation, useLoginMutation, useLogoutMutation } = authApi;
+export const {
+  useRegistrationMutation,
+  useLoginMutation,
+  useLogoutMutation,
+  useRefreshTokenQuery,
+} = authApi;

@@ -32,7 +32,7 @@ const RequireAuth = ({
   children: JSX.Element;
   routesWithAuth: JSX.Element;
 }) => {
-  const isAuthenticated = useAppSelector((state) => state.auth.isAuth);
+  const isAuthenticated = useAppSelector((state) => state.auth.token);
   const isInit = useAppSelector((state) => state.auth.rehydrated);
   const isSameUrl = !!useMatch('login');
   const isSameUrlTwo = !!useMatch('registration');

@@ -13,8 +13,9 @@ const rootReducer = combineReducers({
 });
 
 const persistConfig: PersistConfig<RootState> = {
-  key: 'auth',
+  key: 'my-site',
   storage,
+  whitelist: ['auth'],
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

@@ -3,8 +3,7 @@ import styles from './NotFound.module.scss';
 import paper from '../../utils/images/paper.png';
 import { Tooltip } from '../../Common/Components/Tooltip/Tooltip';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../app/core/redux/store';
+import { useAppSelector } from '../../app/core/redux/store';
 
 const arrNotFoundText = [
   'page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404',
@@ -27,7 +26,7 @@ const arrNotFoundText = [
 
 export const NotFound = () => {
   const navigate = useNavigate();
-  const isAuth = useSelector<RootState, boolean>((state) => state.auth.isAuth);
+  const isAuth = useAppSelector((state) => state.auth.token);
   return (
     <React.Fragment>
       <div className={styles.NotFoundWrap}>

@@ -13,7 +13,7 @@ import { throttle } from '../../shared/lib/hooks/useDebounce';
 import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
 
 export const Posts = () => {
-  const user = useSelector<RootState, IUser | null>((state) => state.auth.authData.user);
+  const user = useSelector<RootState, IUser | null>((state) => state.auth.user);
   const [posts, setPosts] = useState<IPost[]>([]);
   const limit = 10;
   const [currentPage, setCurrentPage] = useState<number>(1);

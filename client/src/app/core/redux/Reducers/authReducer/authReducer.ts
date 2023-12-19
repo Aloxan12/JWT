@@ -1,31 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AuthState } from '../../../api/authApi';
-import { RoleTypes } from '../../../router/AppRouter';
 import { IUser } from '../../../api/dto/UserDto';
 import { REHYDRATE } from 'redux-persist/es/constants';
+import { LoginResponse } from '../../../api/dto/BaseDto';
 
 type AuthInitialStateType = {
   user: IUser | null;
-  authData: AuthState;
-  isAuth: boolean;
+  token: string | null;
   rehydrated: boolean;
 };
 
 const authInitialState: AuthInitialStateType = {
-  user: {
-    email: '',
-    id: '',
-    isActivated: false,
-    role: RoleTypes.USER,
-    avatar: '',
-    status: '',
-  },
-  authData: {
-    accessToken: null,
-    refreshToken: null,
-    user: null,
-  },
-  isAuth: true,
+  user: null,
+  token: null,
   rehydrated: false,
 };
 
@@ -33,26 +19,19 @@ const authReducer = createSlice({
   name: 'auth',
   initialState: authInitialState as AuthInitialStateType,
   reducers: {
-    setAuthData: (state, { payload: AuthState }: PayloadAction<AuthState>) => {
-      state.authData = AuthState;
-      if (AuthState.accessToken !== null && AuthState.refreshToken !== null && AuthState.user) {
-        localStorage.setItem('token', AuthState.accessToken);
-        localStorage.setItem('refreshToken', AuthState.refreshToken);
-        state.isAuth = true;
-        state.user = AuthState.user;
-      }
+    setAuthData: (state, { payload }: PayloadAction<LoginResponse>) => {
+      state.token = payload.accessToken;
+      state.user = payload.user;
     },
-    setIsAuth: (state, { payload: isAuth }: PayloadAction<boolean>) => {
-      state.isAuth = isAuth;
+    setToken: (state, { payload: token }: PayloadAction<string | null>) => {
+      state.token = token;
     },
     setUser: (state, { payload: user }: PayloadAction<IUser | null>) => {
       state.user = user;
     },
     logout: (state) => {
-      state.isAuth = false;
+      state.token = null;
       state.user = null;
-      localStorage.removeItem('token');
-      localStorage.removeItem('refreshToken');
     },
   },
   extraReducers: (builder) => {
@@ -62,6 +41,6 @@ const authReducer = createSlice({
   },
 });
 
-export const { setAuthData, logout, setIsAuth, setUser } = authReducer.actions;
+export const { setAuthData, logout, setToken, setUser } = authReducer.actions;
 
 export default authReducer.reducer;
