@@ -2,6 +2,8 @@ import { useRoutes } from 'react-router-dom';
 import { useMemo, Suspense } from 'react';
 import { IRouteObjectExtended, RoleTypes } from './types';
 import { RoutesByRole } from './Roles';
+import { useAppSelector } from '../redux/store';
+import { getUserData } from '../redux/Reducers/auth/selectors';
 
 interface IUserRoutes {
   routesByUserRole: IRouteObjectExtended[];
@@ -13,11 +15,10 @@ const UserRoutes = ({ routesByUserRole }: IUserRoutes) => {
 };
 
 export const MainLayoutRoutes = () => {
-  // const { data: currentUser } = useGetCurrentUserQuery()
-  const currentUser = { userRoles: [RoleTypes.ADMIN] };
+  const user = useAppSelector(getUserData);
   const routesByUserRole = useMemo(() => {
-    return currentUser ? RoutesByRole({ roles: currentUser.userRoles as RoleTypes[] }) : [];
-  }, [currentUser]);
+    return user ? RoutesByRole({ roles: [user.role] as RoleTypes[] }) : [];
+  }, [user]);
   if (routesByUserRole.length === 0) {
     return null;
   }

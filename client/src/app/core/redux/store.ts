@@ -1,18 +1,10 @@
-import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { authApi } from '../api/authApi';
 import { rtkErrorMiddleware } from '../middleware/error-middleware';
-import authReducer from './Reducers/authReducer/authReducer';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { persistReducer, PersistConfig, persistStore } from 'redux-persist';
+import { PersistConfig, persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { SystemReducer } from './Reducers/system/systemSlice';
-
-const rootReducer = combineReducers({
-  [authApi.reducerPath]: authApi.reducer,
-  auth: authReducer,
-  system: SystemReducer,
-});
+import { rootReducer } from './rootReducer';
 
 const persistConfig: PersistConfig<RootState> = {
   key: 'my-site',

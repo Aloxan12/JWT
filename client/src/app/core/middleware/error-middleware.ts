@@ -3,7 +3,7 @@ import {
   ToastWrapper,
   ToastWrapperType,
 } from '../../../Common/Components/ToastWrapper/ToastWrapper';
-import { logout } from '../redux/Reducers/authReducer/authReducer';
+import { logout } from '../redux/Reducers/auth/authSlice';
 
 export const rtkErrorMiddleware: Middleware = (api: MiddlewareAPI) => (next) => (action) => {
   if (isRejectedWithValue(action)) {

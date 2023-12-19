@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import { useLoginMutation } from '../../../app/core/api/authApi';
 import { useAppDispatch } from '../../../app/core/redux/store';
-import { setAuthData } from '../../../app/core/redux/Reducers/authReducer/authReducer';
+import { setAuthData } from '../../../app/core/redux/Reducers/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 import {
   ToastWrapper,

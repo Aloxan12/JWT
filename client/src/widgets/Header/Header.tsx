@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styles from './Header.module.css';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/core/redux/store';
 import { useLogoutMutation, useRefreshTokenQuery } from '../../app/core/api/authApi';
-import { logout, setAuthData } from '../../app/core/redux/Reducers/authReducer/authReducer';
+import { logout, setAuthData } from '../../app/core/redux/Reducers/auth/authSlice';
 import fakeAvatar from '../../utils/images/fake_avatar.png';
-import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
 import { Sidebar } from '../Sidebar/Sidebar';
 
 export const Header = () => {
@@ -14,7 +13,6 @@ export const Header = () => {
   const { data: refreshTokenData, isLoading: isLoadingRefresh } = useRefreshTokenQuery(null);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [menuActive, setMenuActive] = useState(false);
 
   useEffect(() => {
     if (refreshTokenData) {
@@ -30,7 +28,7 @@ export const Header = () => {
 
   return (
     <div className={styles.mainHeaderWrap}>
-      {isLoadingRefresh && <AppLoader />}
+      <Sidebar />
       <div className={styles.mainHeaderTitle}>Название сайта</div>
       <div className={styles.mainHeaderAuth}>
         {user ? (
@@ -62,18 +60,6 @@ export const Header = () => {
           </div>
         )}
       </div>
-      <Sidebar />
-      {/*{isAuth && (*/}
-      {/*  <nav>*/}
-      {/*    <div*/}
-      {/*      className={styles.burgerBtn}*/}
-      {/*      onClick={() => setMenuActive((prevState) => !prevState)}*/}
-      {/*    >*/}
-      {/*      <span />*/}
-      {/*    </div>*/}
-      {/*  </nav>*/}
-      {/*)}*/}
-      {/*<BurgerMenu active={menuActive} setActive={setMenuActive} header="Меню" items={itemsRoute} />*/}
     </div>
   );
 };

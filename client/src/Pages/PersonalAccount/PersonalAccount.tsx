@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AppButton } from '../../Common/Components/AppButton/AppButton';
 import { useGetUserDetailQuery, useUploadUserAvatarMutation } from '../../app/core/api/usersApi';
-import { setUser } from '../../app/core/redux/Reducers/authReducer/authReducer';
+import { setUser } from '../../app/core/redux/Reducers/auth/authSlice';
 import { ChangeAvatarContainer } from './components/ChangeAvatarContainer';
 import { ProfileInfoContainer } from './components/ProfileInfoContainer';
 import fakeAvatar from '../../utils/images/fake_avatar.png';
