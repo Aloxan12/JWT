@@ -33,9 +33,12 @@ const RequireAuth = ({
   routesWithAuth: JSX.Element;
 }) => {
   const isAuthenticated = useAppSelector((state) => state.auth.token);
-  const isInit = useAppSelector((state) => state.auth.rehydrated);
+  const isInit = useAppSelector((state) => state.system.rehydrated);
   const isSameUrl = !!useMatch('login');
   const isSameUrlTwo = !!useMatch('registration');
+
+  console.log('isInit', isInit);
+  console.log('isInit', isAuthenticated);
 
   if (!isInit) {
     return null;

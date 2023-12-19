@@ -6,10 +6,12 @@ import authReducer from './Reducers/authReducer/authReducer';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { persistReducer, PersistConfig, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { SystemReducer } from './Reducers/system/systemSlice';
 
 const rootReducer = combineReducers({
   [authApi.reducerPath]: authApi.reducer,
   auth: authReducer,
+  system: SystemReducer,
 });
 
 const persistConfig: PersistConfig<RootState> = {

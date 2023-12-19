@@ -3,7 +3,7 @@ import styles from './Header.module.css';
 import { Link, NavLink, useMatch, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/core/redux/store';
 import { useLogoutMutation, useRefreshTokenQuery } from '../../app/core/api/authApi';
-import { logout } from '../../app/core/redux/Reducers/authReducer/authReducer';
+import { logout, setAuthData } from '../../app/core/redux/Reducers/authReducer/authReducer';
 import fakeAvatar from '../../utils/images/fake_avatar.png';
 import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
 import { Sidebar } from '../Sidebar/Sidebar';
@@ -18,19 +18,12 @@ export const Header = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [menuActive, setMenuActive] = useState(false);
-  const isSameUrl = !!useMatch('login');
 
   useEffect(() => {
-    if (!localStorage.getItem('token')) {
-      navigate('/');
-    } else {
-      if (isSameUrl) {
-        navigate('/');
-      }
+    if (refreshTokenData) {
+      dispatch(setAuthData(refreshTokenData));
     }
-  }, [isAuth]);
-  console.log('men');
-  console.log('refreshTokenData', refreshTokenData);
+  }, [refreshTokenData, setAuthData, dispatch]);
 
   // useEffect(() => {
   //   try {

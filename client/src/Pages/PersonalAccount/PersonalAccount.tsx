@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AppButton } from '../../Common/Components/AppButton/AppButton';
 import { useGetUserDetailQuery, useUploadUserAvatarMutation } from '../../app/core/api/usersApi';
-import { checkAuthApi } from '../../app/core/api/checkAuthApi';
 import { setUser } from '../../app/core/redux/Reducers/authReducer/authReducer';
 import { ChangeAvatarContainer } from './components/ChangeAvatarContainer';
 import { ProfileInfoContainer } from './components/ProfileInfoContainer';
@@ -45,7 +44,6 @@ export const PersonalAccount = () => {
       formData.append('img', file);
       const res = await uploadUserAvatar({ id, img: file });
       if (!!res) {
-        await checkAuthApi();
         // @ts-ignore
         dispatch(setUser(res.data ? (res.data as IUser) : null));
         setChangePhoto(false);
