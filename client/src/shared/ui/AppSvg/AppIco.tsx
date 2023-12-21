@@ -1,5 +1,5 @@
 import React from 'react';
-import cls from './AppSvg.module.scss';
+import cls from './AppIco.module.scss';
 import { classNames } from '../../lib/classNames/classNames';
 import { ReactComponent } from '*.svg';
 
@@ -12,7 +12,7 @@ interface AppSvgProps {
   onClick?: () => void;
 }
 
-export const AppSvg = ({ svg: Svg, className, size, onClick }: AppSvgProps) => {
+export const AppIco = ({ svg: Svg, className, size, onClick }: AppSvgProps) => {
   return (
     <Svg
       className={classNames(cls.ico, { [cls[size || '']]: !!size }, [className])}

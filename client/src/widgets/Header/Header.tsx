@@ -10,7 +10,7 @@ import { Sidebar } from '../Sidebar/Sidebar';
 export const Header = () => {
   const { user, token: isAuth } = useAppSelector((state) => state.auth);
   const [logoutApi] = useLogoutMutation();
-  const { data: refreshTokenData } = useRefreshTokenQuery(null);
+  const { data: refreshTokenData } = useRefreshTokenQuery();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 

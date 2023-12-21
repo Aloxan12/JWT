@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import cls from './AppButton.module.scss';
 import { classNames, Mods } from '../../lib/classNames/classNames';
 import { AppTooltip } from '../AppTooltip/AppTooltip';
-import { AppSvg } from '../AppSvg/AppSvg';
+import { AppIco } from '../AppSvg/AppIco';
 import { ReactComponent } from '*.svg';
 
 type AppButtonSize = 'small' | 'base' | 'big';
@@ -51,9 +51,9 @@ export const AppButton = memo(
         onClick={onClick}
       >
         {isLoading && <div className={cls.loading} />}
-        {icoLeft && <AppSvg svg={icoLeft} />}
+        {icoLeft && <AppIco svg={icoLeft} />}
         <span>{title}</span>
-        {icoRight && <AppSvg svg={icoRight} />}
+        {icoRight && <AppIco svg={icoRight} />}
       </button>
     );
 

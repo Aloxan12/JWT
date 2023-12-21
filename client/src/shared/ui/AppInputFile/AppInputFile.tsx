@@ -2,7 +2,7 @@ import React, { ChangeEvent, memo, useState } from 'react';
 import cls from './AppInputFile.module.scss';
 import { classNames, Mods } from '../../lib/classNames/classNames';
 import { ReactComponent } from '../../../utils/images/icons/search.svg';
-import { AppSvg } from '../AppSvg/AppSvg';
+import { AppIco } from '../AppSvg/AppIco';
 
 type AppInputFileTheme = 'btn' | 'text';
 
@@ -32,7 +32,7 @@ export const AppInputFile = memo(
       <label className={classNames(cls.inputFile, mods, [className, cls[theme]])}>
         <input value={inputFile} onChange={onChangeHandler} type="file" name="file" />
         <div>
-          {ico && <AppSvg svg={ico} size="base" className={`${cls.ico}`} />}
+          {ico && <AppIco svg={ico} size="base" className={`${cls.ico}`} />}
           {text || 'Выберите файл'}
         </div>
       </label>

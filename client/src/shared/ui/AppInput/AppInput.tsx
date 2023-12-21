@@ -1,7 +1,7 @@
 import React, { ChangeEvent, InputHTMLAttributes } from 'react';
 import cls from './AppInput.module.scss';
 import { classNames, Mods } from '../../lib/classNames/classNames';
-import { AppSvg } from '../AppSvg/AppSvg';
+import { AppIco } from '../AppSvg/AppIco';
 import { ReactComponent } from '../../../utils/images/icons/search.svg';
 
 type HTMLInputProps = Omit<
@@ -76,9 +76,9 @@ export const AppInput = ({
     <div className={classNames(cls.inputWrap, mods, [className])}>
       {label && <label>{label}</label>}
       <div className={cls.inputBlock}>
-        {icoLeft && <AppSvg svg={icoLeft} className={`${cls.ico} ${cls.left} ico`} />}
+        {icoLeft && <AppIco svg={icoLeft} className={`${cls.ico} ${cls.left} ico`} />}
         {icoRight && (
-          <AppSvg
+          <AppIco
             svg={icoRight}
             className={`${cls.ico} ${cls.right} ico`}
             onClick={icoRightOnClick}

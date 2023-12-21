@@ -4,7 +4,7 @@ import { Flex } from '../../../shared/ui/Flex/Flex';
 import { AppPhoto } from '../../../shared/ui/AppPhoto/AppPhoto';
 import Photo from '../../../utils/images/fake-photo.jpg';
 import { ReactComponent as SearchIco } from '../../../utils/images/icons/search.svg';
-import { AppSvg } from '../../../shared/ui/AppSvg/AppSvg';
+import { AppIco } from '../../../shared/ui/AppSvg/AppIco';
 
 export const PhotosContainers = () => {
   return (
@@ -45,9 +45,9 @@ export const PhotosContainers = () => {
           radius="12"
         />
 
-        <AppSvg svg={SearchIco} size={'sm'} />
-        <AppSvg svg={SearchIco} size={'base'} />
-        <AppSvg svg={SearchIco} size={'big'} />
+        <AppIco svg={SearchIco} size={'sm'} />
+        <AppIco svg={SearchIco} size={'base'} />
+        <AppIco svg={SearchIco} size={'big'} />
       </Flex>
     </AppCard>
   );
