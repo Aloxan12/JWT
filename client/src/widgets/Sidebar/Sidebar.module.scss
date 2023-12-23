@@ -37,10 +37,13 @@
     position: fixed;
     top: 0;
     left: 0;
+    z-index: var(--z-index-sidebar-menu);
     height: 100vh;
     background-color: white;
     min-width: 320px;
     border-radius: 0 20px 20px 0;
+    transform: translateX(-100%);
+    transition: .4s;
 
     .title{
       font-size: 22px;
@@ -81,6 +84,23 @@
       &.active{
         pointer-events: none;
       }
+    }
+  }
+
+  .overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: var(--z-index-sidebar-bg);
+  }
+
+  &.openMenu{
+    .sidebarMenu{
+      transform: translateX(0);
+      transition: .4s;
     }
   }
 }

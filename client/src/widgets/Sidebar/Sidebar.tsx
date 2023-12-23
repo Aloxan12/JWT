@@ -27,8 +27,11 @@ export const Sidebar = () => {
   };
 
   const itemsList = useMemo(
-    () => sidebarItemsList.map((item) => <SidebarItem item={item} key={item.path} />),
-    [isOpen, sidebarItemsList]
+    () =>
+      sidebarItemsList.map((item) => (
+        <SidebarItem item={item} key={item.path} onClose={onCloseHandler} />
+      )),
+    [isOpen, sidebarItemsList, onCloseHandler]
   );
 
   return (
@@ -43,17 +46,24 @@ export const Sidebar = () => {
         <AppText className={cls.title} bold="700" text="Меню" />
         {itemsList}
       </Flex>
+      {isOpen && <div className={cls.overlay} onClick={onCloseHandler} />}
     </div>
   );
 };
 
 interface SidebarItemProps {
   item: { name: string; path: string; ico?: typeof ReactComponent };
+  onClose: () => void;
 }
 
-const SidebarItem = ({ item }: SidebarItemProps) => {
+const SidebarItem = ({ item, onClose }: SidebarItemProps) => {
   return (
-    <AppLink className={cls.sidebarItem} activeClassName={cls.active} to={item.path}>
+    <AppLink
+      className={cls.sidebarItem}
+      activeClassName={cls.active}
+      to={item.path}
+      onClick={onClose}
+    >
       <div className={cls.icoBlock}>
         <AppIco svg={SearchIco} className={cls.ico} />
       </div>
