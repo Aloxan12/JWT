@@ -3,7 +3,7 @@ import cls from './AppText.module.scss';
 import { classNames, Mods } from '../../lib/classNames/classNames';
 
 type TextBold = '400' | '500' | '600' | '700';
-type TextSize = '14' | '16' | '18';
+type TextSize = '14' | '16' | '18' | '20';
 type TextColor = 'black' | 'red' | 'gray';
 type TextAlign = 'left' | 'center' | 'right';
 
