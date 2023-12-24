@@ -1,0 +1,35 @@
+.sidebarItem{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  border-radius: 6px;
+  padding: 6px 12px 6px 15px;
+  .icoBlock{
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background-color: var(--color-gray--extra-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+    .ico{
+      max-height: 18px;
+    }
+  }
+  &:hover, &.active{
+    background-color: var(--color-green-main);
+    border-color: transparent;
+    .icoBlock{
+      transition: .3s;
+      background-color: var(--color-green-medium);
+      .ico *{
+        fill: #626161;
+      }
+    }
+  }
+  &.active{
+    pointer-events: none;
+  }
+}

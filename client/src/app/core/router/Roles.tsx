@@ -2,6 +2,7 @@ import { IRouteObjectExtended, IRoutesByRole } from './types';
 import { routeConfig } from './routeConfig';
 import { NotFound } from '../../../Pages/NotFound/NotFound';
 import { MainLayoutPage } from '../../../widgets/MainLayoutPage/MainLayoutPage';
+import { LogoutPage } from '../../../Pages/Logout';
 
 export const RoutesByRole = ({ roles }: IRoutesByRole) => {
   const roleRoutes: IRouteObjectExtended[] = routeConfig
@@ -18,7 +19,7 @@ export const RoutesByRole = ({ roles }: IRoutesByRole) => {
     },
     {
       path: '/logout',
-      element: <div>Выйти</div>,
+      element: <LogoutPage />,
     },
     {
       path: '*',

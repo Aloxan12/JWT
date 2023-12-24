@@ -15,4 +15,16 @@ export const allRoutePaths = {
   registration: {
     path: 'registration',
   },
+  main: {
+    path: '/posts',
+  },
+  users: {
+    path: 'users',
+  },
+  uiKit: {
+    path: 'ui-kit',
+  },
+  projects: {
+    path: 'projects',
+  },
 };

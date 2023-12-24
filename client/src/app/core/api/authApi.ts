@@ -38,7 +38,7 @@ export const authApi = createApi({
       }),
       invalidatesTags: ['Users'],
     }),
-    refreshToken: build.query<void, void>({
+    refreshToken: build.query<LoginResponse, null | void>({
       query: () => ({
         method: 'GET',
         url: '/refresh',
