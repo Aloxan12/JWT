@@ -1,4 +1,5 @@
 import {
+  allRoutePaths,
   getRouteBlankSheet,
   getRouteCurrentUser,
   getRouteForbidden,
@@ -14,10 +15,15 @@ import { UiKit } from '../../../Pages/UIKit/UIKit';
 import { BlankSheet } from '../../../Pages/BlankSheet/BlankSheet';
 import { ProjectsPage } from '../../../Pages/ProjectsPage/ProjectsPage';
 import { IRouteObjectExtended } from './types';
+import { Posts } from '../../../Pages/Posts/Posts';
 
 export const routeConfig: IRouteObjectExtended[] = [
   {
-    path: getRouteUsers(),
+    path: '/',
+    element: <Posts />,
+  },
+  {
+    path: allRoutePaths.users.path,
     element: <Users />,
   },
   {
@@ -29,11 +35,11 @@ export const routeConfig: IRouteObjectExtended[] = [
     element: <UserProfile />,
   },
   {
-    path: getRouteProjects(),
+    path: allRoutePaths.projects.path,
     element: <ProjectsPage />,
   },
   {
-    path: getRouteUiKit(),
+    path: allRoutePaths.uiKit.path,
     element: <UiKit />,
   },
   {

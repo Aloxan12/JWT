@@ -6,7 +6,6 @@ export const MainLayoutPage = () => {
   return (
     <div>
       <Header />
-      MainLayoutPage
       <Outlet />
     </div>
   );
