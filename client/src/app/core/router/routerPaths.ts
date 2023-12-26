@@ -16,7 +16,7 @@ export const allRoutePaths = {
     path: 'registration',
   },
   main: {
-    path: '/posts',
+    path: '/',
   },
   users: {
     path: 'users',
