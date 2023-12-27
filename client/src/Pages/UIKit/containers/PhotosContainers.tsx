@@ -5,6 +5,7 @@ import { AppPhoto } from '../../../shared/ui/AppPhoto/AppPhoto';
 import Photo from '../../../utils/images/fake-photo.jpg';
 import { ReactComponent as SearchIco } from '../../../utils/images/icons/search.svg';
 import { AppIco } from '../../../shared/ui/AppSvg/AppIco';
+import { AppAvatar } from '../../../shared/ui/AppAvatar/AppAvatar';
 
 export const PhotosContainers = () => {
   return (
@@ -48,6 +49,7 @@ export const PhotosContainers = () => {
         <AppIco svg={SearchIco} size={'sm'} />
         <AppIco svg={SearchIco} size={'base'} />
         <AppIco svg={SearchIco} size={'big'} />
+        <AppAvatar src={''} />
       </Flex>
     </AppCard>
   );
