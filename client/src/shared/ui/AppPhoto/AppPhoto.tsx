@@ -48,7 +48,7 @@ export const AppPhoto = ({
   return (
     <img
       src={src}
-      className={classNames(cls.img, {}, [className, cls[`border-radius-${radius}`], cls[fit]])}
+      className={classNames(cls.img, {}, [cls[`border-radius-${radius}`], cls[fit], className])}
       width={width}
       height={height}
       alt={alt}
