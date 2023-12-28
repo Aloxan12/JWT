@@ -3,19 +3,16 @@ import {
   getRouteBlankSheet,
   getRouteCurrentUser,
   getRouteForbidden,
-  getRouteProjects,
-  getRouteUiKit,
   getRouteUserDetail,
-  getRouteUsers,
 } from './routerPaths';
-import { Users } from '../../../Pages/Users/Users';
-import { UserProfile } from '../../../Pages/Users/UserProfile';
-import { NotFound } from '../../../Pages/NotFound/NotFound';
-import { UiKit } from '../../../Pages/UIKit/UIKit';
-import { BlankSheet } from '../../../Pages/BlankSheet/BlankSheet';
-import { ProjectsPage } from '../../../Pages/ProjectsPage/ProjectsPage';
+import { Users } from '../../../pages/Users/Users';
+import { UserProfile } from '../../../pages/Users/UserProfile';
+import { NotFound } from '../../../pages/NotFound/NotFound';
+import { UiKit } from '../../../pages/UIKit/UIKit';
+import { BlankSheet } from '../../../pages/BlankSheet/BlankSheet';
+import { ProjectsPage } from '../../../pages/ProjectsPage/ProjectsPage';
 import { IRouteObjectExtended } from './types';
-import { Posts } from '../../../Pages/Posts/Posts';
+import { Posts } from '../../../pages/Posts/Posts';
 
 export const routeConfig: IRouteObjectExtended[] = [
   {

@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { MainLayoutRoutes } from './MainLayoutRoutes';
-import { Registration } from '../../../Pages/Registration/Registration';
-import { LoginPage } from '../../../Pages/Login';
+import { Registration } from '../../../pages/Registration/Registration';
+import { LoginPage } from '../../../pages/Login';
 import { Suspense } from 'react';
 import { allRoutePaths } from './routerPaths';
 

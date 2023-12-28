@@ -6,7 +6,7 @@ import cls from './AppAvatar.module.scss';
 
 interface AppAvatarProps {
   className?: string;
-  src: string;
+  src?: string;
 }
 
 export const AppAvatar = ({ src, className }: AppAvatarProps) => {
