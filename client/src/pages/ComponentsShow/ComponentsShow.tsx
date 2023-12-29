@@ -124,7 +124,7 @@ export const ComponentsShow = () => {
                 },
               },
               {
-                renderItem: (item) => {
+                renderItem: () => {
                   return (
                     <div>
                       <AppTrash
