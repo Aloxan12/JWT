@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import cls from './AppButton.module.scss';
 import { classNames, Mods } from '../../lib/classNames/classNames';
-import { AppTooltip } from '../AppTooltip/AppTooltip';
+import { Tooltip } from '../Tooltip/Tooltip';
 import { AppIco } from '../AppSvg/AppIco';
 import { ReactComponent } from '*.svg';
 
@@ -58,7 +58,7 @@ export const AppButton = memo(
     );
 
     if (tooltipText) {
-      return <AppTooltip content={tooltipText}>{content}</AppTooltip>;
+      return <Tooltip content={tooltipText}>{content}</Tooltip>;
     }
 
     return content;

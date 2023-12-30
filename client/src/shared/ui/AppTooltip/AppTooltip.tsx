@@ -1,38 +1,31 @@
-import React, { useState } from 'react';
 import cls from './AppTooltip.module.scss';
+import { classNames } from '../../lib/classNames/classNames';
+import { ReactNode, useRef } from 'react';
+import { useGetPosition } from '../../lib/hooks/useGetPosition';
+import { useHover } from '../../lib/hooks/useHover';
+import { onStopPropagationHandler } from '../../lib/onStopPropagationHandler';
 
-type AppTooltipType = {
-  delay?: number;
-  direction?: 'top' | 'bottom' | 'left' | 'right';
-  content?: string;
-  children?: React.ReactNode;
-};
+interface AppTooltipProps {
+  className?: string;
+  children: ReactNode | string;
+  tooltipContent: ReactNode | string;
+}
 
-export const AppTooltip = (props: AppTooltipType) => {
-  let timeout: ReturnType<typeof setTimeout>;
-  const [active, setActive] = useState(false);
-
-  const showTip = () => {
-    timeout = setTimeout(() => {
-      setActive(true);
-    }, props.delay || 400);
-  };
-
-  const hideTip = () => {
-    clearInterval(timeout);
-    setActive(false);
-  };
+export const AppTooltip = ({ className, children, tooltipContent }: AppTooltipProps) => {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [isHover, hoverFnBind] = useHover();
+  const position = useGetPosition(ref, isHover);
 
   return (
-    <div className={cls.TooltipWrapper} onMouseEnter={showTip} onMouseLeave={hideTip}>
-      {props.children}
-      {active && (
+    <div className={classNames(cls.tooltipWrap, {}, [className])} ref={ref} {...hoverFnBind}>
+      {children}
+      {isHover && (
         <div
-          className={
-            `${cls.TooltipTip} ` + `${props.direction ? cls[props.direction] : cls['top']} `
-          }
+          className={cls.tooltipContent}
+          style={{ top: position.top, left: position.left }}
+          onClick={onStopPropagationHandler}
         >
-          {props.content}
+          {tooltipContent}
         </div>
       )}
     </div>
