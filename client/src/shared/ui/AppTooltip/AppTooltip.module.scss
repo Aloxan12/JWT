@@ -1,0 +1,23 @@
+.tooltipWrap{
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+
+  .tooltipContent{
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateY(-100%);
+    background-color: white;
+    border-radius: 10px;
+    padding: 8px;
+    box-shadow: 0 3px 5px 0 rgba(54, 20, 107, 0.15);
+    z-index: 10;
+  }
+  &.bottom{
+    .tooltipContent{
+      height: max-content;
+      transform: translateY(0%);
+    }
+  }
+}

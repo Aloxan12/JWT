@@ -4,6 +4,7 @@ export interface PositionData {
   left: number;
   top: number;
   width: number;
+  height?: number;
   bottom: number;
 }
 
@@ -11,12 +12,12 @@ export const useGetPosition = (
   ref: React.MutableRefObject<HTMLDivElement | null> | null,
   active: boolean
 ): PositionData => {
-  const [position, setPosition] = useState({ left: 0, top: 0, width: 0, bottom: 0 });
+  const [position, setPosition] = useState({ left: 0, top: 0, width: 0, bottom: 0, height: 0 });
 
   const getPosition = useCallback(() => {
     if (ref?.current) {
-      const { left, top, bottom, width } = ref.current.getBoundingClientRect();
-      setPosition({ left, top, bottom, width });
+      const { left, top, bottom, width, height } = ref.current.getBoundingClientRect();
+      setPosition({ left, top, bottom, width, height });
     }
   }, [ref]);
 

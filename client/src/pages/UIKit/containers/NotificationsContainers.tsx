@@ -4,6 +4,7 @@ import { Flex } from '../../../shared/ui/Flex/Flex';
 import { AppPopover } from '../../../shared/ui/AppPopover/AppPopover';
 import { AppButton } from '../../../shared/ui/AppButton/AppButton';
 import Ico from '../../../utils/images/icons/success.svg';
+import { AppTooltip } from '../../../shared/ui/AppTooltip/AppTooltip';
 
 export const NotificationsContainers = () => {
   return (
@@ -64,6 +65,24 @@ export const NotificationsContainers = () => {
               <div>Пример с иконкой</div>
             </Flex>
           }
+        />
+
+        <AppTooltip
+          children={<img src={Ico} alt={''} />}
+          tooltipContent={
+            <Flex direction="column" gap="8">
+              <div>Пример с иконкой</div>
+            </Flex>
+          }
+        />
+        <AppTooltip
+          children={<img src={Ico} alt={''} />}
+          tooltipContent={
+            <Flex direction="column" gap="8">
+              <div>тултип вниз</div>
+            </Flex>
+          }
+          positionContent="bottom"
         />
       </Flex>
     </AppCard>
