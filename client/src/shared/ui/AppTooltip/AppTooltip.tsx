@@ -9,14 +9,16 @@ interface AppTooltipProps {
   className?: string;
   children: ReactNode | string;
   tooltipContent: ReactNode | string;
-  positionContent?: 'top' | 'bottom';
+  positionContentV?: 'top' | 'bottom';
+  positionContentH?: 'base' | 'left' | 'right';
 }
 
 export const AppTooltip = ({
   className,
   children,
   tooltipContent,
-  positionContent = 'top',
+  positionContentV = 'top',
+  positionContentH = 'base',
 }: AppTooltipProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [isHover, hoverFnBind] = useHover();
@@ -24,7 +26,11 @@ export const AppTooltip = ({
 
   return (
     <div
-      className={classNames(cls.tooltipWrap, {}, [cls[positionContent], className])}
+      className={classNames(cls.tooltipWrap, {}, [
+        cls[positionContentV],
+        cls[positionContentH],
+        className,
+      ])}
       ref={ref}
       {...hoverFnBind}
     >
@@ -33,8 +39,8 @@ export const AppTooltip = ({
         <div
           className={cls.tooltipContent}
           style={{
-            top: position.top - (positionContent === 'top' ? 0 : -(position?.height || 0)),
-            left: position.left,
+            top: position.top - (positionContentV === 'top' ? 0 : -(position?.height || 0)),
+            left: positionContentH === 'left' ? position.left + position.width : position.left,
           }}
           onClick={onStopPropagationHandler}
         >

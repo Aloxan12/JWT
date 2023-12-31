@@ -82,7 +82,8 @@ export const NotificationsContainers = () => {
               <div>тултип вниз</div>
             </Flex>
           }
-          positionContent="bottom"
+          positionContentV="bottom"
+          positionContentH="left"
         />
       </Flex>
     </AppCard>

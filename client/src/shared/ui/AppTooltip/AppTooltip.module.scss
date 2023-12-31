@@ -20,4 +20,9 @@
       transform: translateY(0%);
     }
   }
+  &.left{
+    .tooltipContent{
+      transform: translateX(-100%);
+    }
+  }
 }
