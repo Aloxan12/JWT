@@ -3,12 +3,12 @@ import { classNames } from '../../lib/classNames/classNames';
 import { ReactNode, useRef } from 'react';
 import { useGetPosition } from '../../lib/hooks/useGetPosition';
 import { useHover } from '../../lib/hooks/useHover';
-import { onStopPropagationHandler } from '../../lib/onStopPropagationHandler';
 
 interface AppTooltipProps {
   className?: string;
   children: ReactNode | string;
   tooltipContent: ReactNode | string;
+  outsideClose?: boolean;
   positionContentV?: 'top' | 'bottom';
   positionContentH?: 'base' | 'left' | 'right';
 }
@@ -19,6 +19,7 @@ export const AppTooltip = ({
   tooltipContent,
   positionContentV = 'top',
   positionContentH = 'base',
+  outsideClose = false,
 }: AppTooltipProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [isHover, hoverFnBind] = useHover();
@@ -35,14 +36,14 @@ export const AppTooltip = ({
       {...hoverFnBind}
     >
       {children}
-      {isHover && (
+      {isHover && !outsideClose && (
         <div
           className={cls.tooltipContent}
           style={{
             top: position.top - (positionContentV === 'top' ? 0 : -(position?.height || 0)),
             left: positionContentH === 'left' ? position.left + position.width : position.left,
           }}
-          onClick={onStopPropagationHandler}
+          onClick={(e) => e.preventDefault()}
         >
           {tooltipContent}
         </div>
