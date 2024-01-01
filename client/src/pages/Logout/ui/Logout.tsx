@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useAppDispatch } from '../../../app/core/redux/store';
 import { logout } from '../../../app/core/redux/Reducers/auth/authSlice';
 import { useLogoutMutation } from '../../../app/core/api/authApi';
+import { AppLoader } from '../../../Common/Components/AppLoader/AppLoader';
 
 const Logout = () => {
   const dispatch = useAppDispatch();
@@ -9,11 +10,10 @@ const Logout = () => {
   useEffect(() => {
     logoutMutation()
       .unwrap()
-      .then((res) => {
-        console.log('res', res);
+      .then(() => {
         dispatch(logout());
       });
   }, []);
-  return <div>LogOut</div>;
+  return <AppLoader />;
 };
 export default Logout;

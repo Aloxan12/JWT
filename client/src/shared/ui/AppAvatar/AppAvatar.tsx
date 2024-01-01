@@ -14,7 +14,9 @@ export const AppAvatar = ({ src, className, ...otherProps }: AppAvatarProps) => 
     <AppPhoto
       className={classNames(cls.avatarWrap, {}, [className])}
       src={src || avatarFake}
-      width={'40px'}
+      width="40px"
+      height="40px"
+      radius="50%"
       {...otherProps}
     />
   );

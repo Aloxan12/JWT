@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import cls from './Header.module.scss';
 import { useAppDispatch, useAppSelector } from '../../app/core/redux/store';
 import { useRefreshTokenQuery } from '../../app/core/api/authApi';
@@ -9,6 +9,12 @@ import { AppLink } from '../../shared/ui/AppLink/AppLink';
 import { AppText } from '../../shared/ui/AppText/AppText';
 import { Flex } from '../../shared/ui/Flex/Flex';
 import { AppTooltip } from '../../shared/ui/AppTooltip/AppTooltip';
+import { AppPopover } from '../../shared/ui/AppPopover/AppPopover';
+
+const menuData = [
+  { name: 'Профиль', path: 'currentProfile' },
+  { name: 'Выйти', path: 'logout' },
+];
 
 export const Header = () => {
   const { user } = useAppSelector((state) => state.auth);
@@ -22,7 +28,19 @@ export const Header = () => {
     }
   }, [refreshTokenData, setAuthData, dispatch]);
 
-  const onMenuHandler = () => setIsMenuClose((prevState) => !prevState);
+  const onMenuHandler = useCallback(() => setIsMenuClose((prevState) => !prevState), []);
+
+  const menuList = useMemo(() => {
+    return (
+      <Flex direction="column" gap="8" align="start" className={cls.menuList}>
+        {menuData.map((item) => (
+          <AppLink to={item.path} key={item.path} onClick={onMenuHandler}>
+            {item.name}
+          </AppLink>
+        ))}
+      </Flex>
+    );
+  }, [onMenuHandler]);
 
   return (
     <header className={cls.mainHeaderWrap}>
@@ -31,15 +49,11 @@ export const Header = () => {
         <AppText text="Название сайта" className={cls.title} />
         <Flex className={cls.userPopover} gap="8">
           <span>{user?.email}</span>
-          <AppTooltip
-            tooltipContent={<div onMouseDown={onMenuHandler}>меню</div>}
-            positionContentH="left"
-            positionContentV="bottom"
-            outsideClose={isMenuClose}
-          >
-            <AppAvatar src={user?.avatar} onMouseOver={onMenuHandler} />
-          </AppTooltip>
-          <AppLink to={'/logout'} children="Выйти" />
+          <AppPopover
+            positions="bottom"
+            content={menuList}
+            btn={<AppAvatar src={user?.avatar} onMouseOver={onMenuHandler} />}
+          />
         </Flex>
       </div>
     </header>

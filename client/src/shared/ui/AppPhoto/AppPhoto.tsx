@@ -3,7 +3,7 @@ import { AppSkeleton } from '../AppSkeleton/AppSkeleton';
 import cls from './AppPhoto.module.scss';
 import { classNames } from '../../lib/classNames/classNames';
 
-type PhotoRadiusType = '4' | '8' | '12';
+type PhotoRadiusType = '4' | '8' | '12' | '50%';
 type PhotoFitType = 'cover' | 'contain';
 
 interface AppPhotoProps extends ImgHTMLAttributes<HTMLImageElement> {
@@ -38,11 +38,11 @@ export const AppPhoto = ({
   }, [src]);
 
   if (isLoading) {
-    return <AppSkeleton width={width} height={height} border={`${radius}px`} />;
+    return <AppSkeleton width={width} height={height} border={`${radius}`} />;
   }
 
   if (hasError) {
-    return <AppSkeleton width={width} height={height} border={`${radius}px`} />;
+    return <AppSkeleton width={width} height={height} border={`${radius}`} />;
   }
 
   return (
