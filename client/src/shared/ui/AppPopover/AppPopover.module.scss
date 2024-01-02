@@ -32,20 +32,18 @@
 
 .bottom{
   .content{
-    top: auto;
-    transform: translate(-20%, 7px);
+    transform: translateY(7px);
   }
 }
 
 .left{
   .content{
-    top: auto;
-    transform: translate(calc(-7px + -100%), -25%);
+    transform: translateX(-100%);
   }
 }
 
 .right{
   .content{
-    transform: translate(10px, -25%);
+    transform: translateX(0%);
   }
 }

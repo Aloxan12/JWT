@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AppCard } from '../../../shared/ui/AppCard/AppCard';
 import { Flex } from '../../../shared/ui/Flex/Flex';
 import { AppPopover } from '../../../shared/ui/AppPopover/AppPopover';
@@ -7,11 +7,14 @@ import Ico from '../../../utils/images/icons/success.svg';
 import { AppTooltip } from '../../../shared/ui/AppTooltip/AppTooltip';
 
 export const NotificationsContainers = () => {
+  const [active, setActive] = useState(false);
   return (
     <AppCard max title="Уведомления" withoutBorder>
       <Flex wrap max gap="16">
         <AppPopover
-          positions="top"
+          positionsV="top"
+          active={active}
+          setActive={setActive}
           btn={<AppButton title="Поповер вверх" />}
           content={
             <Flex direction="column" gap="8">
@@ -23,6 +26,8 @@ export const NotificationsContainers = () => {
           }
         />
         <AppPopover
+          active={active}
+          setActive={setActive}
           btn={<AppButton title="Поповер вниз" />}
           content={
             <Flex direction="column" gap="8">
@@ -34,7 +39,9 @@ export const NotificationsContainers = () => {
         />
 
         <AppPopover
-          positions="right"
+          active={active}
+          setActive={setActive}
+          positionsH="right"
           btn={<AppButton title="Поповер право" />}
           content={
             <Flex direction="column" gap="8">
@@ -46,8 +53,10 @@ export const NotificationsContainers = () => {
         />
 
         <AppPopover
-          positions="left"
-          btn={<AppButton title="Поповер лево" />}
+          active={active}
+          setActive={setActive}
+          positionsH="left"
+          btn={<AppButton title="Поповер лево вниз влево" />}
           content={
             <Flex direction="column" gap="8">
               <div>1</div>
@@ -58,7 +67,9 @@ export const NotificationsContainers = () => {
         />
 
         <AppPopover
-          positions="left"
+          active={active}
+          setActive={setActive}
+          positionsH="left"
           btn={<img src={Ico} alt={''} />}
           content={
             <Flex direction="column" gap="8">

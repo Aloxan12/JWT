@@ -8,7 +8,6 @@ import { AppAvatar } from '../../shared/ui/AppAvatar/AppAvatar';
 import { AppLink } from '../../shared/ui/AppLink/AppLink';
 import { AppText } from '../../shared/ui/AppText/AppText';
 import { Flex } from '../../shared/ui/Flex/Flex';
-import { AppTooltip } from '../../shared/ui/AppTooltip/AppTooltip';
 import { AppPopover } from '../../shared/ui/AppPopover/AppPopover';
 
 const menuData = [
@@ -20,7 +19,7 @@ export const Header = () => {
   const { user } = useAppSelector((state) => state.auth);
   const { data: refreshTokenData } = useRefreshTokenQuery();
   const dispatch = useAppDispatch();
-  const [isMenuClose, setIsMenuClose] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     if (refreshTokenData) {
@@ -28,7 +27,7 @@ export const Header = () => {
     }
   }, [refreshTokenData, setAuthData, dispatch]);
 
-  const onMenuHandler = useCallback(() => setIsMenuClose((prevState) => !prevState), []);
+  const onMenuHandler = useCallback(() => setIsOpen((prevState) => !prevState), []);
 
   const menuList = useMemo(() => {
     return (
@@ -50,7 +49,10 @@ export const Header = () => {
         <Flex className={cls.userPopover} gap="8">
           <span>{user?.email}</span>
           <AppPopover
-            positions="bottom"
+            active={isOpen}
+            setActive={setIsOpen}
+            positionsV="bottom"
+            positionsH="left"
             content={menuList}
             btn={<AppAvatar src={user?.avatar} onMouseOver={onMenuHandler} />}
           />
