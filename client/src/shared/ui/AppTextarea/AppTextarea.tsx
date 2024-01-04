@@ -8,12 +8,14 @@ interface AppTextareaProps {
   className?: string;
   fullWidth?: boolean;
   value?: string;
+  label?: string;
+  placeholder?: string;
   onChange?: (value: string) => void;
   rows?: TextareaRowsType;
 }
 
 export const AppTextarea = memo(
-  ({ className, value, onChange, fullWidth, rows = '2' }: AppTextareaProps) => {
+  ({ className, value, onChange, fullWidth, rows = '2', placeholder, label }: AppTextareaProps) => {
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
       onChange?.(e.currentTarget.value);
     };
@@ -24,7 +26,13 @@ export const AppTextarea = memo(
 
     return (
       <div className={classNames(cls.textareaWrap, mods, [cls[`row-${rows}`], className])}>
-        <textarea value={value} onChange={onChangeHandler} />
+        {label && <label>{label}</label>}
+        <textarea
+          value={value}
+          onChange={onChangeHandler}
+          className={cls.textarea}
+          placeholder={placeholder}
+        />
       </div>
     );
   }
