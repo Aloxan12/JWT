@@ -15,6 +15,7 @@ export const Sidebar = () => {
 
   const mods: Mods = {
     [cls.openMenu]: isOpen,
+    'active-sidebar': isOpen,
   };
 
   const itemsList = useMemo(

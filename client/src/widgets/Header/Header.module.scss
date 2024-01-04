@@ -22,6 +22,15 @@
         }
         .userPopover{
             margin-left: auto;
+
+            .avatar{
+                cursor: pointer;
+            }
+            @media (max-width: 500px) {
+                .email{
+                    display: none;
+                }
+            }
         }
     }
     .menuList{
