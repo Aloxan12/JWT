@@ -12,12 +12,12 @@ import { UiKit } from '../../../pages/UIKit/UIKit';
 import { BlankSheet } from '../../../pages/BlankSheet/BlankSheet';
 import { ProjectsPage } from '../../../pages/ProjectsPage/ProjectsPage';
 import { IRouteObjectExtended } from './types';
-import { Posts } from '../../../pages/Posts/Posts';
+import { PostsPage } from '../../../pages/Posts';
 
 export const routeConfig: IRouteObjectExtended[] = [
   {
     path: '/',
-    element: <Posts />,
+    element: <PostsPage />,
   },
   {
     path: allRoutePaths.users.path,

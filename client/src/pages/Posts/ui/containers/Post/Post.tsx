@@ -1,17 +1,20 @@
 import React, { useCallback } from 'react';
-import styles from './Posts.module.scss';
+import styles from '../../Posts.module.scss';
 import moment from 'moment';
-import { useDeletePostMutation, useLikePostMutation } from '../../app/core/api/postApi';
-import { contentToHtml } from '../../utils/helpers';
-import { AppTrash } from '../../Common/Components/AppTrash/AppTrash';
-import { ToastWrapper, ToastWrapperType } from '../../Common/Components/ToastWrapper/ToastWrapper';
+import { useDeletePostMutation, useLikePostMutation } from '../../../../../app/core/api/postApi';
+import { contentToHtml } from '../../../../../utils/helpers';
+import { AppTrash } from '../../../../../Common/Components/AppTrash/AppTrash';
+import {
+  ToastWrapper,
+  ToastWrapperType,
+} from '../../../../../Common/Components/ToastWrapper/ToastWrapper';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../app/core/redux/store';
-import { RoleTypes } from '../../app/core/router/AppRouter';
-import { IUser } from '../../app/core/api/dto/UserDto';
-import { IPost } from '../../app/core/api/dto/PostDto';
-import fakeAvatar from '../../utils/images/fake_avatar.png';
-import likePhoto from '../../utils/images/like.png';
+import { RootState } from '../../../../../app/core/redux/store';
+import { RoleTypes } from '../../../../../app/core/router/AppRouter';
+import { IUser } from '../../../../../app/core/api/dto/UserDto';
+import { IPost } from '../../../../../app/core/api/dto/PostDto';
+import likePhoto from '../../../../../utils/images/like.png';
+import { AppAvatar } from '../../../../../shared/ui/AppAvatar/AppAvatar';
 
 interface IPostProps {
   post: IPost;
@@ -70,7 +73,7 @@ export const Post = ({ post, setCurrentPage }: IPostProps) => {
         </span>
       </div>
       <div className={styles.postsItemAvatar}>
-        <img src={post.author?.avatar || fakeAvatar} alt="avatar" />
+        <AppAvatar src={post.author?.avatar || ''} />
       </div>
       <div className={styles.postsItemContent}>{contentToHtml(post.postText)}</div>
     </li>
