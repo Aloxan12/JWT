@@ -8,6 +8,9 @@
 .gray{
   color: var(--color-gray);
 }
+.violet{
+  color: var(--color-violet);
+}
 
 .left{
   text-align: left;
@@ -17,6 +20,12 @@
 }
 .right{
   text-align: right;
+}
+
+.ellipsis{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .size-14 {

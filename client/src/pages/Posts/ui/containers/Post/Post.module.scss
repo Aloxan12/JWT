@@ -1,0 +1,73 @@
+.postsItem {
+  position: relative;
+  padding: 5px 5px 15px 5px;
+  width: 100%;
+  margin: auto auto 15px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border-bottom: 1px solid rgba(122, 119, 119, 0.3);
+
+  .postDateBlock {
+    position: absolute;
+    right: 0;
+    bottom: 4px;
+    font-size: 12px;
+    opacity: .5;
+  }
+
+  .email{
+    max-width: 300px;
+  }
+  
+  @media (max-width: 760px) {
+    .email{
+      max-width: 200px;
+    }
+  }
+  @media (max-width: 550px) {
+    .email{
+      max-width: 100px;
+    }
+  }
+  @media (max-width: 400px) {
+    .email{
+      max-width: 10vw;
+      text-overflow: clip;
+    }
+  }
+}
+
+
+.postLikeBlock {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 7px;
+  padding: 5px 7px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid rgba(0, 128, 0, 0.35);
+
+  &:hover {
+    box-shadow: 0 5px 12px rgba(76, 217, 100, 0.58);
+  }
+
+  &:active {
+    box-shadow: 0 5px 12px rgba(51, 212, 35, 0.41);
+  }
+}
+
+.likeActive {
+  color: white;
+  background-color: #61c171;
+}
+
+.postsItemContent {
+  margin: 15px 15px 10px 0;
+  text-align: left;
+  font-size: 16px;
+  width: 60%;
+  word-break: break-word;
+}

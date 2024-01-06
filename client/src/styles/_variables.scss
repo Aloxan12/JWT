@@ -23,6 +23,7 @@ $grid-breakpoints: (
   --font-size-xl: 20px;
 
 
+  --color-violet: #7171f1;
   --color-red: #e11010;
   --color-gray: #7A7474BF;
   --color-gray-light: rgba(226, 228, 234, 0.73);
@@ -31,6 +32,8 @@ $grid-breakpoints: (
   --color-green-medium: #86cc7f;
   --color-green: #3ec230;
   --color-link: #36369a;
+
+  --overlay-color: rgba(0, 0, 0, 0.49);
 
 
   // z-index

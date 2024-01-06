@@ -24,13 +24,16 @@ export const CreatePost = ({ setCurrentPage }: CreatePostProps) => {
 
   const createPostHandler = () => {
     if (user && postText !== '') {
-      createPost({ author: user.id, postText, publicDate: moment(new Date()).toISOString() });
-      setPostText('');
-      setCurrentPage(1);
-      ToastWrapper({
-        msg: 'Пост опубликован'.replace(/"/g, ''),
-        type: ToastWrapperType.success,
-      });
+      createPost({ author: user.id, postText, publicDate: moment(new Date()).toISOString() }).then(
+        () => {
+          setPostText('');
+          setCurrentPage(1);
+          ToastWrapper({
+            msg: 'Пост опубликован'.replace(/"/g, ''),
+            type: ToastWrapperType.success,
+          });
+        }
+      );
     }
   };
 

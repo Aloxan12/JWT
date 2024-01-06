@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import styles from '../../Posts.module.scss';
+import cls from '../../Posts.module.scss';
 import { IPost } from '../../../../../app/core/api/dto/PostDto';
 import { Post } from '../Post/Post';
 import { useGetAllPostsQuery } from '../../../../../app/core/api/postApi';
 import { throttle } from '../../../../../shared/lib/hooks/useDebounce';
 import { AppLoader } from '../../../../../Common/Components/AppLoader/AppLoader';
+import { useAppSelector } from '../../../../../app/core/redux/store';
+import { userIsAdmin } from '../../../../../app/core/redux/Reducers/auth/selectors';
 
 interface PostListProps {
   currentPage: number;
@@ -13,6 +15,7 @@ interface PostListProps {
 
 export const PostList = ({ currentPage, setCurrentPage }: PostListProps) => {
   const [fetching, setFetching] = useState<boolean>(false);
+  const isAdmin = useAppSelector(userIsAdmin);
   const [posts, setPosts] = useState<IPost[]>([]);
   const limit = 10;
   const {
@@ -50,14 +53,14 @@ export const PostList = ({ currentPage, setCurrentPage }: PostListProps) => {
     return () => document.removeEventListener('scroll', throttleScrollHandler);
   }, []);
 
-  console.log('postsData', posts);
-
   return (
     <>
       {(isFetchingList || isLoadingList) && <AppLoader />}
-      <ul className={styles.postsItems}>
+      <ul className={cls.postsItems}>
         {posts.map((post: IPost) => {
-          return <Post post={post} key={post.id} setCurrentPage={setCurrentPage} />;
+          return (
+            <Post isAdmin={isAdmin} post={post} key={post.id} setCurrentPage={setCurrentPage} />
+          );
         })}
       </ul>
     </>

@@ -1,37 +1,36 @@
 import React, { useCallback } from 'react';
-import styles from '../../Posts.module.scss';
+import cls from './Post.module.scss';
 import moment from 'moment';
 import { useDeletePostMutation, useLikePostMutation } from '../../../../../app/core/api/postApi';
 import { contentToHtml } from '../../../../../utils/helpers';
-import { AppTrash } from '../../../../../Common/Components/AppTrash/AppTrash';
+import { AppTrash } from '../../../../../shared/ui/AppTrash/AppTrash';
 import {
   ToastWrapper,
   ToastWrapperType,
 } from '../../../../../Common/Components/ToastWrapper/ToastWrapper';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../../../app/core/redux/store';
-import { RoleTypes } from '../../../../../app/core/router/AppRouter';
-import { IUser } from '../../../../../app/core/api/dto/UserDto';
 import { IPost } from '../../../../../app/core/api/dto/PostDto';
 import likePhoto from '../../../../../utils/images/like.png';
 import { AppAvatar } from '../../../../../shared/ui/AppAvatar/AppAvatar';
+import { Flex } from '../../../../../shared/ui/Flex/Flex';
+import { AppText } from '../../../../../shared/ui/AppText/AppText';
+import { AppPhoto } from '../../../../../shared/ui/AppPhoto/AppPhoto';
+import { classNames, Mods } from '../../../../../shared/lib/classNames/classNames';
 
 interface IPostProps {
+  isAdmin: boolean;
   post: IPost;
   setCurrentPage: (value: number) => void;
 }
 
-export const Post = ({ post, setCurrentPage }: IPostProps) => {
+export const Post = ({ post, setCurrentPage, isAdmin }: IPostProps) => {
   const [deletePost] = useDeletePostMutation();
   const [likePost] = useLikePostMutation();
-
-  const user = useSelector<RootState, IUser | null>((state) => state.auth.user);
 
   const likePostHandler = useCallback(() => {
     likePost({ id: post.id });
   }, [post]);
 
-  const deletePostHandler = () => {
+  const deletePostHandler = (onClose?: () => void) => {
     deletePost({ id: post.id }).then((res) => {
       const { data } = res as { data: { status: number; message: string; post: IPost } };
       if (data.status === 204) {
@@ -40,23 +39,35 @@ export const Post = ({ post, setCurrentPage }: IPostProps) => {
           msg: data.message.replace(/"/g, ''),
           type: ToastWrapperType.info,
         });
+        onClose?.();
       }
     });
   };
+
+  const modsLike: Mods = {
+    [cls.likeActive]: post.isLike,
+  };
+
   return (
-    <li className={styles.postsItem}>
-      <div className={styles.postsItemTitle}>
-        <span className={styles.postsItemAuthor}>{post.author.email}</span>
-        <div className={styles.postEditBlock}>
-          <div
-            className={`${styles.postLikeBlock} ${post.isLike ? styles.likeActive : ''}`}
-            onClick={likePostHandler}
-          >
-            <img src={likePhoto} alt="like" />
+    <li className={cls.postsItem}>
+      <Flex max justify="between">
+        <Flex gap="8">
+          <AppAvatar src={post.author?.avatar || ''} />
+          <AppText
+            text={post.author.email}
+            color="violet"
+            bold="600"
+            isEllipsis
+            className={cls.email}
+          />
+        </Flex>
+        <Flex gap="8">
+          <div className={classNames(cls.postLikeBlock, modsLike, [])} onClick={likePostHandler}>
+            <AppPhoto src={likePhoto} alt="like" width={20} height={20} />
             {post.likeCount}
           </div>
-          {user && user.role === RoleTypes.ADMIN && (
-            <div className={styles.postTrashBlock}>
+          {isAdmin && (
+            <div className={cls.postTrashBlock}>
               <AppTrash
                 deleteHandler={deletePostHandler}
                 size={'medium'}
@@ -64,18 +75,15 @@ export const Post = ({ post, setCurrentPage }: IPostProps) => {
               />
             </div>
           )}
-        </div>
-      </div>
-      <div className={styles.postDateBlock}>
+        </Flex>
+      </Flex>
+      <div className={cls.postDateBlock}>
         <span>
           <span>Опубликовано:</span>{' '}
           {moment(post.publicDate).format('DD-MM-YYYY') || 'Дата не зафикирована'}
         </span>
       </div>
-      <div className={styles.postsItemAvatar}>
-        <AppAvatar src={post.author?.avatar || ''} />
-      </div>
-      <div className={styles.postsItemContent}>{contentToHtml(post.postText)}</div>
+      <div className={cls.postsItemContent}>{contentToHtml(post.postText)}</div>
     </li>
   );
 };

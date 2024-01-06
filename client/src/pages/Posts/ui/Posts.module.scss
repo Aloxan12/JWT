@@ -25,119 +25,12 @@
   width: 100%;
 }
 
-.postsItem {
-  position: relative;
-  padding: 5px 5px 15px 5px;
-  width: 100%;
-  margin: auto auto 15px auto;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  border-bottom: 1px solid rgba(122, 119, 119, 0.3);
-
-  .postsItemTitle {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    font-size: 15px;
-
-    .postsItemAuthor {
-      font-weight: 600;
-      color: #7171f1;
-    }
-  }
-
-  .postsItemAvatar {
-    position: absolute;
-    width: 45px;
-    height: 45px;
-    background-color: rgba(177, 178, 180, 0.7);
-    border-radius: 50%;
-    top: 40%;
-
-    img {
-      object-fit: cover;
-      border-radius: 50%;
-      width: 45px;
-      height: 45px;
-    }
-  }
-
-  .postDateBlock {
-    position: absolute;
-    right: 0;
-    bottom: 4px;
-    font-size: 12px;
-    opacity: .5;
-  }
-}
-
-.postEditBlock {
-  display: flex;
-  justify-content: end;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  flex-direction: column;
-  row-gap: 15px;
-  position: relative;
-
-  .postLikeBlock {
-    display: inline-flex;
-    justify-content: space-between;
-    align-items: center;
-    column-gap: 7px;
-    padding: 5px 7px;
-    border-radius: 5px;
-    cursor: pointer;
-    border: 1px solid rgba(0, 128, 0, 0.35);
-
-    img {
-      width: 20px;
-      height: 20px;
-    }
-
-    &:hover {
-      box-shadow: 0 5px 12px rgba(76, 217, 100, 0.58);
-    }
-
-    &:active {
-      box-shadow: 0 5px 12px rgba(51, 212, 35, 0.41);
-    }
-  }
-
-  .likeActive {
-    color: white;
-    background-color: #61c171;
-  }
-}
-
 .postTrashBlock {
   position: absolute;
   bottom: -5px;
   top: 40px;
   right: 0;
 
-}
-
-.postsItemContent {
-  margin: 15px auto;
-  text-align: left;
-  font-size: 16px;
-  width: 60%;
-  word-break: break-word;
-
-  @include bp(md) {
-    width: 70%;
-  }
-  @include bp(lg) {
-    width: 80%;
-  }
-  @include bp(xl) {
-    width: 85%;
-  }
 }
 
 

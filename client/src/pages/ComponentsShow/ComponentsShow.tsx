@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AppBtnColor, AppBtnSize, AppButton } from '../../Common/Components/AppButton/AppButton';
-import { AppTrash } from '../../Common/Components/AppTrash/AppTrash';
+import { AppTrash } from '../../shared/ui/AppTrash/AppTrash';
 import styles from './ComponentsShow.module.scss';
 import { AppInput } from '../../Common/Components/AppInput/AppInput';
 import { AppRating } from '../../Common/Components/AppRating/AppRating';

@@ -4,7 +4,7 @@ import { classNames, Mods } from '../../lib/classNames/classNames';
 
 type TextBold = '400' | '500' | '600' | '700';
 type TextSize = '14' | '16' | '18' | '20';
-type TextColor = 'black' | 'red' | 'gray';
+type TextColor = 'black' | 'red' | 'gray' | 'violet';
 type TextAlign = 'left' | 'center' | 'right';
 
 interface AppTextProps {
@@ -14,12 +14,22 @@ interface AppTextProps {
   size?: TextSize;
   color?: TextColor;
   align?: TextAlign;
+  isEllipsis?: boolean;
 }
 
 export const AppText = memo(
-  ({ text, className, size = '16', bold = '400', color = 'black', align }: AppTextProps) => {
+  ({
+    text,
+    className,
+    size = '16',
+    bold = '400',
+    color = 'black',
+    align,
+    isEllipsis,
+  }: AppTextProps) => {
     const mods: Mods = {
       [cls.align]: align,
+      [cls.ellipsis]: isEllipsis,
     };
     return (
       <p
