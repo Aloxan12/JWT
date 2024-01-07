@@ -3,21 +3,18 @@ import styles from './PersonalAccount.module.css';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AppButton } from '../../Common/Components/AppButton/AppButton';
-import { useGetUserDetailQuery, useUploadUserAvatarMutation } from '../../app/core/api/usersApi';
+import { useUploadUserAvatarMutation } from '../../app/core/api/usersApi';
 import { setUser } from '../../app/core/redux/Reducers/auth/authSlice';
 import { ChangeAvatarContainer } from './components/ChangeAvatarContainer';
 import { ProfileInfoContainer } from './components/ProfileInfoContainer';
-import fakeAvatar from '../../utils/images/fake_avatar.png';
 import { IUser } from '../../app/core/api/dto/UserDto';
 import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
+import { useAppSelector } from '../../app/core/redux/store';
+import { AppPhoto } from '../../shared/ui/AppPhoto/AppPhoto';
 
 export const PersonalAccount = () => {
   const { id } = useParams();
-  const {
-    data: user,
-    isLoading: isLoadingCurrent,
-    isFetching: isFetchingCurrent,
-  } = useGetUserDetailQuery({ id: id! }, { skip: !id });
+  const { user } = useAppSelector((state) => state.auth);
 
   const [uploadUserAvatar, { isLoading: isLoadingUpdate }] = useUploadUserAvatarMutation();
   const dispatch = useDispatch();
@@ -50,20 +47,17 @@ export const PersonalAccount = () => {
       }
     }
   };
+
   if (!user) {
     return null;
   }
 
   return (
     <div className={styles.PersonalAccountWrap}>
-      {(isLoadingCurrent || isFetchingCurrent || isLoadingUpdate) && <AppLoader />}
+      {isLoadingUpdate && <AppLoader />}
       <div className={styles.PersonalAccountMainBlock}>
         <div className={styles.PersonalAccountPhotoBlock}>
-          <img
-            className={styles.PersonalAccountPhoto}
-            src={user && user.avatar ? user!.avatar : fakeAvatar}
-            alt="avatar"
-          />
+          <AppPhoto className={styles.PersonalAccountPhoto} src={user.avatar} alt="avatar" />
           <div className={styles.ChangePhotoBtn}>
             <AppButton onClick={() => setChangePhoto(true)} text={'Сменить фото'} />
             {changePhoto && (

@@ -1,7 +1,6 @@
 import {
   allRoutePaths,
   getRouteBlankSheet,
-  getRouteCurrentUser,
   getRouteForbidden,
   getRouteUserDetail,
 } from './routerPaths';
@@ -13,6 +12,7 @@ import { BlankSheet } from '../../../pages/BlankSheet/BlankSheet';
 import { ProjectsPage } from '../../../pages/ProjectsPage/ProjectsPage';
 import { IRouteObjectExtended } from './types';
 import { PostsPage } from '../../../pages/Posts';
+import { PersonalAccount } from '../../../pages/PersonalAccount/PersonalAccount';
 
 export const routeConfig: IRouteObjectExtended[] = [
   {
@@ -28,8 +28,8 @@ export const routeConfig: IRouteObjectExtended[] = [
     element: <UserProfile />,
   },
   {
-    path: getRouteCurrentUser(),
-    element: <UserProfile />,
+    path: allRoutePaths.currentProfile.path,
+    element: <PersonalAccount />,
   },
   {
     path: allRoutePaths.projects.path,

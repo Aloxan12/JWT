@@ -5,9 +5,10 @@ import { AppLink } from '../../../shared/ui/AppLink/AppLink';
 import { AppPopover } from '../../../shared/ui/AppPopover/AppPopover';
 import { AppAvatar } from '../../../shared/ui/AppAvatar/AppAvatar';
 import { useAppSelector } from '../../../app/core/redux/store';
+import { allRoutePaths } from '../../../app/core/router/routerPaths';
 
 const menuData = [
-  { name: 'Профиль', path: 'currentProfile' },
+  { name: 'Профиль', path: allRoutePaths.currentProfile.path },
   { name: 'Выйти', path: 'logout' },
 ];
 

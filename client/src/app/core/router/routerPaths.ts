@@ -18,6 +18,9 @@ export const allRoutePaths = {
   main: {
     path: '/',
   },
+  currentProfile: {
+    path: 'current-profile',
+  },
   users: {
     path: 'users',
   },
