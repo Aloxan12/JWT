@@ -1,8 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import styles from './PersonalAccount.module.css';
+import cls from './PersonalAccount.module.scss';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { AppButton } from '../../Common/Components/AppButton/AppButton';
 import { useUploadUserAvatarMutation } from '../../app/core/api/usersApi';
 import { setUser } from '../../app/core/redux/Reducers/auth/authSlice';
 import { ChangeAvatarContainer } from './components/ChangeAvatarContainer';
@@ -11,6 +10,7 @@ import { IUser } from '../../app/core/api/dto/UserDto';
 import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
 import { useAppSelector } from '../../app/core/redux/store';
 import { AppPhoto } from '../../shared/ui/AppPhoto/AppPhoto';
+import { AppButton } from '../../shared/ui/AppButton/AppButton';
 
 export const PersonalAccount = () => {
   const { id } = useParams();
@@ -53,13 +53,13 @@ export const PersonalAccount = () => {
   }
 
   return (
-    <div className={styles.PersonalAccountWrap}>
+    <div className={cls.PersonalAccountWrap}>
       {isLoadingUpdate && <AppLoader />}
-      <div className={styles.PersonalAccountMainBlock}>
-        <div className={styles.PersonalAccountPhotoBlock}>
-          <AppPhoto className={styles.PersonalAccountPhoto} src={user.avatar} alt="avatar" />
-          <div className={styles.ChangePhotoBtn}>
-            <AppButton onClick={() => setChangePhoto(true)} text={'Сменить фото'} />
+      <div className={cls.PersonalAccountMainBlock}>
+        <div className={cls.PersonalAccountPhotoBlock}>
+          <AppPhoto className={cls.PersonalAccountPhoto} src={user.avatar} alt="avatar" />
+          <div className={cls.ChangePhotoBtn}>
+            <AppButton onClick={() => setChangePhoto(true)} text="Сменить фото" theme="full-bg" />
             {changePhoto && (
               <ChangeAvatarContainer
                 file={file}

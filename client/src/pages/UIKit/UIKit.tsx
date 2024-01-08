@@ -7,10 +7,12 @@ import { TextsContainers } from './containers/TextsContainers';
 import { NotificationsContainers } from './containers/NotificationsContainers';
 import { PhotosContainers } from './containers/PhotosContainers';
 import { InputsContainers } from './containers/InputsContainers';
+import { OtherBlocksContainer } from './containers/OtherBlocksContainer';
 
 export const UiKit = () => {
   return (
     <Flex direction="column" gap="16" justify="start" align="start" className={cls.uiKitWrapper}>
+      <OtherBlocksContainer />
       <InputsContainers />
       <NotificationsContainers />
       <PhotosContainers />

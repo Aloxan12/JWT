@@ -1,0 +1,29 @@
+.dropBlock{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 200px;
+  width: 200px;
+  min-width: 200px;
+
+  .dropItem, .dropArea{
+    flex: 1;
+    width: 100%;
+    border: 1px dashed var(--color-gray);
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .dropArea{
+    border-color: black;
+  }
+
+  .photo{
+    border: 1px solid var(--color-gray);
+    border-radius: 10px;
+  }
+}

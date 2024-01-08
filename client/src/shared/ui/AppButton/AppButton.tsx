@@ -11,6 +11,7 @@ type AppButtonTheme = 'clear' | 'outline' | 'full-bg';
 interface AppButtonProps {
   className?: string;
   title?: string;
+  text?: string;
   size?: AppButtonSize;
   theme?: AppButtonTheme;
   disabled?: boolean;
@@ -26,6 +27,7 @@ export const AppButton = memo(
   ({
     className,
     title,
+    text,
     size = 'base',
     theme = 'outline',
     disabled,
@@ -52,7 +54,7 @@ export const AppButton = memo(
       >
         {isLoading && <div className={cls.loading} />}
         {icoLeft && <AppIco svg={icoLeft} />}
-        <span>{title}</span>
+        <span>{title || text}</span>
         {icoRight && <AppIco svg={icoRight} />}
       </button>
     );

@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import styles from '../PersonalAccount.module.css';
+import styles from '../PersonalAccount.module.scss';
 import { AppButton } from '../../../Common/Components/AppButton/AppButton';
 import { Modal } from '../../../Common/Components/Modal/Modal';
 import { getFileType } from '../../../utils/helpers';

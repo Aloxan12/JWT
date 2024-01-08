@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { IUser } from '../../../app/core/api/dto/UserDto';
 import { useUpdateUserDetailMutation } from '../../../app/core/api/usersApi';
-import styles from '../PersonalAccount.module.css';
+import styles from '../PersonalAccount.module.scss';
 import { AppInput } from '../../../Common/Components/AppInput/AppInput';
 import { Tooltip } from '../../../Common/Components/Tooltip/Tooltip';
 import { AppButton } from '../../../Common/Components/AppButton/AppButton';

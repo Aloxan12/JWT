@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../PersonalAccount.module.css';
+import styles from '../PersonalAccount.module.scss';
 import { RoleTypes } from '../../../app/core/router/AppRouter';
 import { UserStatusContainer } from './UserStatusContainer';
 import { IUser } from '../../../app/core/api/dto/UserDto';

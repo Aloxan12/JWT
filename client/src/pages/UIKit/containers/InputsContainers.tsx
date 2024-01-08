@@ -13,7 +13,6 @@ import { AppDropdown } from '../../../shared/ui/AppDropdown/AppDropdown';
 import { AppMultiDropdown } from '../../../shared/ui/AppDropdown/AppMultiDropdown';
 import { AppTimePicker } from '../../../shared/ui/AppTimePicker/AppTimePicker';
 import { AppPhoto } from '../../../shared/ui/AppPhoto/AppPhoto';
-import { AppTextarea } from '../../../shared/ui/AppTextarea/AppTextarea';
 
 const dropdownDataMock = [
   { id: 1, name: 'kolya' },
@@ -41,20 +40,6 @@ export const InputsContainers = () => {
   return (
     <AppCard max title="Инпуты" withoutBorder>
       <Flex wrap max gap="16" align="end">
-        <Flex max align="start">
-          <Flex direction="column">
-            <AppInput label="Лейбл" placeholder="Введите текст" value={value} onChange={setValue} />
-            <AppInput placeholder="Введите текст" value={value} onChange={setValue} />
-            <AppInput placeholder="Введите текст" value={value} onChange={setValue} />
-          </Flex>
-          <AppTextarea
-            label="Лейбл"
-            placeholder="Введите текст"
-            value={value}
-            onChange={setValue}
-            rows="3"
-          />
-        </Flex>
         <AppDropdown
           data={dropdownDataMock}
           value={dropdownData}
