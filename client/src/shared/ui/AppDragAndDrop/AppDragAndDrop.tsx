@@ -46,7 +46,7 @@ export const AppDragAndDrop = ({ className, file, setFile, children }: AppDragAn
           onDragLeave={dragLeaveHandler}
           onDragOver={dragStartHandler}
         >
-          {children ? (
+          {!!children ? (
             children
           ) : (
             <span>Перетащите файл, чтобы {file ? `заменить(${file.name})` : 'загрузить'} его</span>
