@@ -11,12 +11,14 @@ interface AppPopoverProps {
   btn: ReactNode;
   content: ReactNode;
   className?: string;
+  classNameContent?: string;
   positionsV?: 'top' | 'bottom';
   positionsH?: 'left' | 'right' | 'base';
 }
 
 export const AppPopover = ({
   className,
+  classNameContent,
   btn,
   positionsV = 'bottom',
   positionsH = 'base',
@@ -46,7 +48,7 @@ export const AppPopover = ({
         {btn}
       </div>
       <div
-        className={cls.content}
+        className={classNames(cls.content, {}, [classNameContent])}
         style={positionActiveStyle(positionsV, position, positionsH)}
         ref={popoverRef}
       >
