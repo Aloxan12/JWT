@@ -15,7 +15,7 @@ export const AppDragAndDropPhoto = ({
   className,
 }: AppDragAndDropProps) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
-
+  const removeFile = () => setFile(null);
   if (file) {
     return (
       <div className={classNames(cls.dropBlock, {}, [className])}>
@@ -31,9 +31,8 @@ export const AppDragAndDropPhoto = ({
           }
           content={
             <Flex direction="column" gap="8" align="start">
-              <div>1</div>
-              <div>2</div>
-              <div>3</div>
+              <div>Выбрать другой файл</div>
+              <div onClick={removeFile}>Удалить</div>
             </Flex>
           }
           className={cls.optionsBlock}
