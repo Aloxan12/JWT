@@ -58,7 +58,11 @@ export const PersonalAccount = () => {
       {isLoadingUpdate && <AppLoader />}
       <div className={cls.PersonalAccountMainBlock}>
         <div className={cls.PersonalAccountPhotoBlock}>
-          <AppPhoto className={cls.PersonalAccountPhoto} src={user.avatar} alt="avatar" />
+          <AppPhoto
+            className={cls.PersonalAccountPhoto}
+            src={user.avatar ? `${user.avatar}/view` : undefined}
+            alt="avatar"
+          />
           <div className={cls.ChangePhotoBtn}>
             <AppButton onClick={() => setChangePhoto(true)} text="Сменить фото" theme="full-bg" />
             {changePhoto && (
