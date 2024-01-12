@@ -35,11 +35,12 @@ export const PersonalAccount = () => {
     }
   }, [changePhoto]);
 
-  const uploadUserAvatarHandler = async () => {
+  const uploadUserAvatarHandler = () => {
     if (!!file && !!id) {
       const formData = new FormData();
       formData.append('img', file);
-      const res = await uploadUserAvatar({ id, img: file });
+      const res = uploadUserAvatar({ id, img: file });
+      console.log('dsad');
       if (!!res) {
         // @ts-ignore
         dispatch(setUser(res.data ? (res.data as IUser) : null));

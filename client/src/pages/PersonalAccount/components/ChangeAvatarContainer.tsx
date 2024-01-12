@@ -1,10 +1,10 @@
 import React, { ChangeEvent } from 'react';
-import styles from '../PersonalAccount.module.scss';
-import { AppButton } from '../../../Common/Components/AppButton/AppButton';
+import cls from '../PersonalAccount.module.scss';
 import { Modal } from '../../../Common/Components/Modal/Modal';
 import { getFileType } from '../../../utils/helpers';
 import { AppDragAndDropPhoto } from '../../../shared/ui/AppDragAndDrop/AppDragAndDropPhoto';
 import { Flex } from '../../../shared/ui/Flex/Flex';
+import { AppButton } from '../../../shared/ui/AppButton/AppButton';
 
 interface IChangeAvatarProps {
   file: File | null;
@@ -14,7 +14,7 @@ interface IChangeAvatarProps {
   changePhoto: boolean;
   setChangePhoto: (value: boolean) => void;
   handleChangeFile: (event: ChangeEvent<HTMLInputElement>) => void;
-  uploadUserAvatarHandler: () => Promise<void>;
+  uploadUserAvatarHandler: () => void;
 }
 
 export const ChangeAvatarContainer = ({
@@ -32,17 +32,17 @@ export const ChangeAvatarContainer = ({
   return (
     <div>
       <Modal active={changePhoto} setActive={setChangePhoto}>
-        <div className={styles.SelectFileBlock}>
-          <AppDragAndDropPhoto file={file} setFile={setFile} className={styles.dragBlock}>
+        <div className={cls.SelectFileBlock}>
+          <AppDragAndDropPhoto file={file} setFile={setFile} className={cls.dragBlock}>
             <Flex gap="8" direction="column">
-              <div className={styles.BtnChooseFile}>
+              <div className={cls.BtnChooseFile}>
                 <input
                   type="file"
                   name="file"
                   id="file"
                   accept={'image/*'}
                   value={inputFile}
-                  className={styles.InputFile}
+                  className={cls.InputFile}
                   onChange={(e) => {
                     setInputFile(e.target.value);
                     handleChangeFile(e);
@@ -54,19 +54,19 @@ export const ChangeAvatarContainer = ({
                 <p>Или перенесите его сюда.</p>
               </span>
             </Flex>
-            <p className={styles.BottomText}>
-              Файл должен быть <span className={styles.FileForamt}>JPG, PNG, </span> формата!
+            <p className={cls.BottomText}>
+              Файл должен быть <span className={cls.FileForamt}>JPG, PNG, </span> формата!
             </p>
           </AppDragAndDropPhoto>
           {!!file && (
             <React.Fragment>
               {fileType.toLowerCase() === 'jpg' || fileType.toLowerCase() === 'png' ? (
-                <div className={styles.FileBlock}>
+                <div className={cls.FileBlock}>
                   <span>{file.name}</span>
-                  <AppButton onClick={uploadUserAvatarHandler} text={'Сохранить новое фото'} />
+                  <AppButton onClick={uploadUserAvatarHandler} text="Сохранить новое фото" max />
                 </div>
               ) : (
-                <div className={styles.FileErrorBlock}>
+                <div className={cls.FileErrorBlock}>
                   <span>Вы выбрали не верный формат файла</span>
                 </div>
               )}
