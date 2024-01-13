@@ -1,4 +1,4 @@
-import React, { ImgHTMLAttributes, useLayoutEffect, useState } from 'react';
+import React, { ImgHTMLAttributes, useEffect, useState } from 'react';
 import { AppSkeleton } from '../AppSkeleton/AppSkeleton';
 import cls from './AppPhoto.module.scss';
 import { classNames } from '../../lib/classNames/classNames';
@@ -25,15 +25,22 @@ export const AppPhoto = ({
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    if (!src) {
+      return;
+    }
     const img = new Image();
-    img.src = src ?? '';
+    img.src = src;
     img.onload = () => {
       setIsLoading(false);
     };
     img.onerror = () => {
       setIsLoading(false);
       setHasError(true);
+    };
+    return () => {
+      img.onload = null;
+      img.onerror = null;
     };
   }, [src]);
 

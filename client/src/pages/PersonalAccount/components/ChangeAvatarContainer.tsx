@@ -63,7 +63,13 @@ export const ChangeAvatarContainer = ({
               {fileType.toLowerCase() === 'jpg' || fileType.toLowerCase() === 'png' ? (
                 <div className={cls.FileBlock}>
                   <span>{file.name}</span>
-                  <AppButton onClick={uploadUserAvatarHandler} text="Сохранить новое фото" max />
+                  <AppButton
+                    onClick={() => {
+                      uploadUserAvatarHandler();
+                    }}
+                    text="Сохранить новое фото"
+                    max
+                  />
                 </div>
               ) : (
                 <div className={cls.FileErrorBlock}>

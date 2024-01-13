@@ -3,10 +3,8 @@ import cls from './PersonalAccount.module.scss';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useUploadUserAvatarMutation } from '../../app/core/api/usersApi';
-import { setUser } from '../../app/core/redux/Reducers/auth/authSlice';
 import { ChangeAvatarContainer } from './components/ChangeAvatarContainer';
 import { ProfileInfoContainer } from './components/ProfileInfoContainer';
-import { IUser } from '../../app/core/api/dto/UserDto';
 import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
 import { useAppSelector } from '../../app/core/redux/store';
 import { AppPhoto } from '../../shared/ui/AppPhoto/AppPhoto';
@@ -36,18 +34,16 @@ export const PersonalAccount = () => {
   }, [changePhoto]);
 
   const uploadUserAvatarHandler = () => {
-    if (!!file && !!id) {
+    if (!!file && !!user?.id) {
       const formData = new FormData();
       formData.append('img', file);
-      const res = uploadUserAvatar({ id, img: file });
-      console.log('dsad');
+      const res = uploadUserAvatar({ id: user?.id, img: file });
       if (!!res) {
-        // @ts-ignore
-        dispatch(setUser(res.data ? (res.data as IUser) : null));
         setChangePhoto(false);
       }
     }
   };
+  console.log('user', user?.avatar);
 
   if (!user) {
     return null;
@@ -58,11 +54,7 @@ export const PersonalAccount = () => {
       {isLoadingUpdate && <AppLoader />}
       <div className={cls.PersonalAccountMainBlock}>
         <div className={cls.PersonalAccountPhotoBlock}>
-          <AppPhoto
-            className={cls.PersonalAccountPhoto}
-            src={user.avatar ? `${user.avatar}/view` : undefined}
-            alt="avatar"
-          />
+          <AppPhoto className={cls.PersonalAccountPhoto} src={user.avatar} alt="avatar" />
           <div className={cls.ChangePhotoBtn}>
             <AppButton onClick={() => setChangePhoto(true)} text="Сменить фото" theme="full-bg" />
             {changePhoto && (
