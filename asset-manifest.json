@@ -1,8 +1,14 @@
 {
   "files": {
-    "main.css": "/JWT/static/css/main.6d6e39e5.css",
-    "main.js": "/JWT/static/js/main.0212c81d.js",
+    "main.css": "/JWT/static/css/main.f57d21d5.css",
+    "main.js": "/JWT/static/js/main.5f1508eb.js",
+    "static/css/994.bff2c31d.chunk.css": "/JWT/static/css/994.bff2c31d.chunk.css",
+    "static/js/994.8d8db969.chunk.js": "/JWT/static/js/994.8d8db969.chunk.js",
+    "static/js/830.033f97a5.chunk.js": "/JWT/static/js/830.033f97a5.chunk.js",
+    "static/css/973.a94e5925.chunk.css": "/JWT/static/css/973.a94e5925.chunk.css",
+    "static/js/973.553583b1.chunk.js": "/JWT/static/js/973.553583b1.chunk.js",
     "static/js/787.c4e7f8f9.chunk.js": "/JWT/static/js/787.c4e7f8f9.chunk.js",
+    "static/js/426.7bcc9769.chunk.js": "/JWT/static/js/426.7bcc9769.chunk.js",
     "static/media/photo-search.png": "/JWT/static/media/photo-search.7e646fd156f482b79a0b.png",
     "static/media/potolok.png": "/JWT/static/media/potolok.f3d3abd70d60ab6b9444.png",
     "static/media/paper.png": "/JWT/static/media/paper.c13dc81469de2771d44c.png",
@@ -10,19 +16,34 @@
     "static/media/pokemons.png": "/JWT/static/media/pokemons.db6096df03dcab3c9a80.png",
     "static/media/brige.png": "/JWT/static/media/brige.2072145e55f898d11a0f.png",
     "static/media/demo-shop.png": "/JWT/static/media/demo-shop.2c90eaf581df93efffee.png",
+    "static/media/fake-photo.jpg": "/JWT/static/media/fake-photo.ee5caf98c3c01dba4e76.jpg",
     "static/media/socialPh.png": "/JWT/static/media/socialPh.0b371cb68f735349866e.png",
     "static/media/fake_avatar.png": "/JWT/static/media/fake_avatar.c9034bb506157e8b0738.png",
     "static/media/like.png": "/JWT/static/media/like.5f22da937dbad35f573f.png",
     "static/media/weather.png": "/JWT/static/media/weather.51e211b1671671b9225c.png",
     "static/media/chat.png": "/JWT/static/media/chat.599dddeac232faaf954d.png",
     "static/media/trash.png": "/JWT/static/media/trash.ff6de8f4b8e11b0d507d.png",
+    "static/media/clip.svg": "/JWT/static/media/clip.5125b266b8f0ad4db3909bcac6489938.svg",
+    "static/media/arrow-down.svg": "/JWT/static/media/arrow-down.780d3280896dc1ec8895ac796b899b3c.svg",
+    "static/media/add.svg": "/JWT/static/media/add.7ed491e2a28d27948205866567ab320e.svg",
+    "static/media/search.svg": "/JWT/static/media/search.25892293ac9f26e021b041ca4f476cea.svg",
+    "static/media/dotes-v.svg": "/JWT/static/media/dotes-v.663ac1552ff9e7f7565e3775eb2093db.svg",
     "index.html": "/JWT/index.html",
-    "main.6d6e39e5.css.map": "/JWT/static/css/main.6d6e39e5.css.map",
-    "main.0212c81d.js.map": "/JWT/static/js/main.0212c81d.js.map",
-    "787.c4e7f8f9.chunk.js.map": "/JWT/static/js/787.c4e7f8f9.chunk.js.map"
+    "static/media/watch.svg": "/JWT/static/media/watch.e61ecb4a392f86532b2ce3a0f4b48d89.svg",
+    "static/media/success.svg": "/JWT/static/media/success.58b92628f98ed8d683fc0038831893ee.svg",
+    "static/media/close.svg": "/JWT/static/media/close.5ea851f1b1949e200af6e8318128227a.svg",
+    "main.f57d21d5.css.map": "/JWT/static/css/main.f57d21d5.css.map",
+    "main.5f1508eb.js.map": "/JWT/static/js/main.5f1508eb.js.map",
+    "994.bff2c31d.chunk.css.map": "/JWT/static/css/994.bff2c31d.chunk.css.map",
+    "994.8d8db969.chunk.js.map": "/JWT/static/js/994.8d8db969.chunk.js.map",
+    "830.033f97a5.chunk.js.map": "/JWT/static/js/830.033f97a5.chunk.js.map",
+    "973.a94e5925.chunk.css.map": "/JWT/static/css/973.a94e5925.chunk.css.map",
+    "973.553583b1.chunk.js.map": "/JWT/static/js/973.553583b1.chunk.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/JWT/static/js/787.c4e7f8f9.chunk.js.map",
+    "426.7bcc9769.chunk.js.map": "/JWT/static/js/426.7bcc9769.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6d6e39e5.css",
-    "static/js/main.0212c81d.js"
+    "static/css/main.f57d21d5.css",
+    "static/js/main.5f1508eb.js"
   ]
 }
