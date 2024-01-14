@@ -1,7 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import cls from './PersonalAccount.module.scss';
-import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { useUploadUserAvatarMutation } from '../../app/core/api/usersApi';
 import { ChangeAvatarContainer } from './components/ChangeAvatarContainer';
 import { ProfileInfoContainer } from './components/ProfileInfoContainer';
@@ -11,11 +9,9 @@ import { AppPhoto } from '../../shared/ui/AppPhoto/AppPhoto';
 import { AppButton } from '../../shared/ui/AppButton/AppButton';
 
 export const PersonalAccount = () => {
-  const { id } = useParams();
   const { user } = useAppSelector((state) => state.auth);
 
   const [uploadUserAvatar, { isLoading: isLoadingUpdate }] = useUploadUserAvatarMutation();
-  const dispatch = useDispatch();
 
   const [changePhoto, setChangePhoto] = useState(false);
   const [file, setFile] = useState<null | File>(null);

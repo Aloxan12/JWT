@@ -26,21 +26,14 @@ export const AppPhoto = ({
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
-    if (!src) {
-      return;
-    }
     const img = new Image();
-    img.src = src;
+    img.src = src ?? '';
     img.onload = () => {
       setIsLoading(false);
     };
     img.onerror = () => {
       setIsLoading(false);
       setHasError(true);
-    };
-    return () => {
-      img.onload = null;
-      img.onerror = null;
     };
   }, [src]);
 
