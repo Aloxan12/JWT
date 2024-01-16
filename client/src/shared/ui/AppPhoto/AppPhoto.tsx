@@ -24,10 +24,16 @@ export const AppPhoto = ({
 }: AppPhotoProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  const newUrl = 'https://lh3.google.com/u/0/d/NEW_ID';
+
+  const srcFromGoogle = src?.includes('drive.google.com')
+    ? newUrl.replace('NEW_ID', src?.split('&').reverse()[0].replace('id=', ''))
+    : src;
+  const newSrc = src ? srcFromGoogle : undefined;
 
   useEffect(() => {
     const img = new Image();
-    img.src = src ?? '';
+    img.src = newSrc ?? '';
     img.onload = () => {
       setIsLoading(false);
     };
@@ -35,7 +41,7 @@ export const AppPhoto = ({
       setIsLoading(false);
       setHasError(true);
     };
-  }, [src]);
+  }, [newSrc]);
 
   if (isLoading) {
     return <AppSkeleton width={width} height={height} border={`${radius}`} />;
@@ -47,7 +53,7 @@ export const AppPhoto = ({
 
   return (
     <img
-      src={src}
+      src={newSrc}
       className={classNames(cls.img, {}, [cls[`border-radius-${radius}`], cls[fit], className])}
       width={width}
       height={height}
