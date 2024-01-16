@@ -26,9 +26,10 @@ export const AppPhoto = ({
   const [hasError, setHasError] = useState(false);
   const newUrl = 'https://lh3.google.com/u/0/d/NEW_ID';
 
-  const srcFromGoogle = src?.includes('drive.google.com')
-    ? newUrl.replace('NEW_ID', src?.split('&').reverse()[0].replace('id=', ''))
-    : src;
+  const srcFromGoogle =
+    src?.includes('drive.google.com') && src?.includes('&id=')
+      ? newUrl.replace('NEW_ID', src.split('&id=')[1])
+      : src;
   const newSrc = src ? srcFromGoogle : undefined;
 
   useEffect(() => {
