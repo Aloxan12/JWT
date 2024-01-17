@@ -45,11 +45,11 @@ export const AppPhoto = ({
   }, [newSrc]);
 
   if (isLoading) {
-    return <AppSkeleton width={width} height={height} border={`${radius}`} />;
+    return <AppSkeleton width={width} height={height} border={`${radius}`} className={className} />;
   }
 
   if (hasError) {
-    return <AppSkeleton width={width} height={height} border={`${radius}`} />;
+    return <AppSkeleton width={width} height={height} border={`${radius}`} className={className} />;
   }
 
   return (

@@ -7,6 +7,7 @@ import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
 import { useAppSelector } from '../../app/core/redux/store';
 import { AppPhoto } from '../../shared/ui/AppPhoto/AppPhoto';
 import { AppButton } from '../../shared/ui/AppButton/AppButton';
+import { Flex } from '../../shared/ui/Flex/Flex';
 
 export const PersonalAccount = () => {
   const { user } = useAppSelector((state) => state.auth);
@@ -39,7 +40,6 @@ export const PersonalAccount = () => {
       }
     }
   };
-  console.log('user', user?.avatar);
 
   if (!user) {
     return null;
@@ -49,24 +49,22 @@ export const PersonalAccount = () => {
     <div className={cls.PersonalAccountWrap}>
       {isLoadingUpdate && <AppLoader />}
       <div className={cls.PersonalAccountMainBlock}>
-        <div className={cls.PersonalAccountPhotoBlock}>
-          <AppPhoto className={cls.PersonalAccountPhoto} src={user.avatar} alt="avatar" />
-          <div className={cls.ChangePhotoBtn}>
-            <AppButton onClick={() => setChangePhoto(true)} text="Сменить фото" theme="full-bg" />
-            {changePhoto && (
-              <ChangeAvatarContainer
-                file={file}
-                setFile={setFile}
-                inputFile={inputFile}
-                setInputFile={setInputFile}
-                changePhoto={changePhoto}
-                setChangePhoto={setChangePhoto}
-                handleChangeFile={handleChangeFile}
-                uploadUserAvatarHandler={uploadUserAvatarHandler}
-              />
-            )}
-          </div>
-        </div>
+        <Flex direction="column" gap="8" align="start">
+          <AppPhoto className={cls.mainPhoto} src={user.avatar} alt="avatar" />
+          <AppButton onClick={() => setChangePhoto(true)} text="Сменить фото" theme="full-bg" />
+          {changePhoto && (
+            <ChangeAvatarContainer
+              file={file}
+              setFile={setFile}
+              inputFile={inputFile}
+              setInputFile={setInputFile}
+              changePhoto={changePhoto}
+              setChangePhoto={setChangePhoto}
+              handleChangeFile={handleChangeFile}
+              uploadUserAvatarHandler={uploadUserAvatarHandler}
+            />
+          )}
+        </Flex>
         <ProfileInfoContainer user={user} />
       </div>
     </div>
