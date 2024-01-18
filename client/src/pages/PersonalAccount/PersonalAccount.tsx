@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import cls from './PersonalAccount.module.scss';
 import { useUploadUserAvatarMutation } from '../../app/core/api/usersApi';
 import { ChangeAvatarContainer } from './components/ChangeAvatarContainer';
@@ -16,19 +16,6 @@ export const PersonalAccount = () => {
 
   const [changePhoto, setChangePhoto] = useState(false);
   const [file, setFile] = useState<null | File>(null);
-  const [inputFile, setInputFile] = useState<string>('');
-
-  const handleChangeFile = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files && event.target.files[0];
-    setFile(file);
-  };
-
-  useEffect(() => {
-    if (!changePhoto) {
-      setInputFile('');
-      setFile(null);
-    }
-  }, [changePhoto]);
 
   const uploadUserAvatarHandler = () => {
     if (!!file && !!user?.id) {
@@ -56,11 +43,8 @@ export const PersonalAccount = () => {
             <ChangeAvatarContainer
               file={file}
               setFile={setFile}
-              inputFile={inputFile}
-              setInputFile={setInputFile}
               changePhoto={changePhoto}
               setChangePhoto={setChangePhoto}
-              handleChangeFile={handleChangeFile}
               uploadUserAvatarHandler={uploadUserAvatarHandler}
             />
           )}
