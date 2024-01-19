@@ -6,59 +6,70 @@ import { Flex } from '../../../shared/ui/Flex/Flex';
 import { AppButton } from '../../../shared/ui/AppButton/AppButton';
 import { AppModal } from '../../../shared/ui/AppModal/Modal';
 import { AppInputFile } from '../../../shared/ui/AppInputFile/AppInputFile';
+import { useUploadUserAvatarMutation } from '../../../app/core/api/usersApi';
 
 interface IChangeAvatarProps {
   file: File | null;
   setFile: (file: File | null) => void;
-  changePhoto: boolean;
-  setChangePhoto: (value: boolean) => void;
-  uploadUserAvatarHandler: () => void;
+  userId: string;
+  isChangePhotoModal: boolean;
+  setIsChangePhotoModal: (value: boolean) => void;
 }
 
 export const ChangeAvatarContainer = ({
   file,
   setFile,
-  changePhoto,
-  setChangePhoto,
-  uploadUserAvatarHandler,
+  isChangePhotoModal,
+  setIsChangePhotoModal,
+  userId,
 }: IChangeAvatarProps) => {
+  const [uploadUserAvatar, { isLoading: isLoadingUpdate }] = useUploadUserAvatarMutation();
+
   const fileType = getFileType(file?.name);
-  const onCloseHandler = () => setChangePhoto(false);
+  const onCloseHandler = () => setIsChangePhotoModal(false);
+
+  const uploadUserAvatarHandler = () => {
+    if (!!file && !!userId) {
+      const formData = new FormData();
+      formData.append('img', file);
+      uploadUserAvatar({ id: userId, img: file }).unwrap().then(onCloseHandler);
+    }
+  };
+
   return (
-    <div>
-      <AppModal isOpen={changePhoto} onClose={onCloseHandler}>
-        <AppDragAndDropPhoto file={file} setFile={setFile} className={cls.dragBlock}>
-          <Flex gap="8" direction="column">
-            <AppInputFile onChange={setFile} text="Выберите фото" />
-            <span>
-              <p>Или перенесите его сюда.</p>
-            </span>
-          </Flex>
-          <p className={cls.BottomText}>
-            Файл должен быть <span className={cls.FileForamt}>JPG, PNG, </span> формата!
-          </p>
-        </AppDragAndDropPhoto>
-        {!!file && (
-          <React.Fragment>
-            {fileType.toLowerCase() === 'jpg' || fileType.toLowerCase() === 'png' ? (
-              <div className={cls.FileBlock}>
-                <span>{file.name}</span>
-                <AppButton
-                  onClick={() => {
-                    uploadUserAvatarHandler();
-                  }}
-                  text="Сохранить новое фото"
-                  max
-                />
-              </div>
-            ) : (
-              <div className={cls.FileErrorBlock}>
-                <span>Вы выбрали не верный формат файла</span>
-              </div>
-            )}
-          </React.Fragment>
-        )}
-      </AppModal>
-    </div>
+    <AppModal isOpen={isChangePhotoModal} onClose={onCloseHandler}>
+      <AppDragAndDropPhoto file={file} setFile={setFile} className={cls.dragBlock}>
+        <Flex gap="8" direction="column">
+          <AppInputFile onChange={setFile} text="Выберите фото" />
+          <span>
+            <p>Или перенесите его сюда.</p>
+          </span>
+        </Flex>
+        <p className={cls.BottomText}>
+          Файл должен быть <span className={cls.FileForamt}>JPG, PNG, </span> формата!
+        </p>
+      </AppDragAndDropPhoto>
+      {!!file && (
+        <React.Fragment>
+          {fileType.toLowerCase() === 'jpg' || fileType.toLowerCase() === 'png' ? (
+            <div className={cls.FileBlock}>
+              <span>{file.name}</span>
+              <AppButton
+                onClick={() => {
+                  uploadUserAvatarHandler();
+                }}
+                isLoading={isLoadingUpdate}
+                text="Сохранить новое фото"
+                max
+              />
+            </div>
+          ) : (
+            <div className={cls.FileErrorBlock}>
+              <span>Вы выбрали не верный формат файла</span>
+            </div>
+          )}
+        </React.Fragment>
+      )}
+    </AppModal>
   );
 };

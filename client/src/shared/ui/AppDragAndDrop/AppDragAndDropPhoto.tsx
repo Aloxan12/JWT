@@ -15,7 +15,12 @@ export const AppDragAndDropPhoto = ({
   className,
 }: AppDragAndDropProps) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
-  const removeFile = () => setFile(null);
+
+  const removeFile = () => {
+    setFile(null);
+    setIsOpenMenu(false);
+  };
+
   if (file) {
     return (
       <div className={classNames(cls.dropBlock, {}, [className])}>
