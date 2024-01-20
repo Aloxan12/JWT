@@ -5,9 +5,13 @@ import {
   ToastWrapperType,
 } from '../../../Common/Components/ToastWrapper/ToastWrapper';
 
-export const useDownloadFile = (setFile: (file: File | null) => void, file?: string) => {
+export const useDownloadFile = (
+  setFile: (file: File | null) => void,
+  file?: string,
+  active: boolean = true
+) => {
   useEffect(() => {
-    if (!!file) {
+    if (!!file && active) {
       const downloadAndCreateFiles = async () => {
         const photo = await (file ? downloadFile(file) : null);
         setFile(photo);
@@ -19,5 +23,5 @@ export const useDownloadFile = (setFile: (file: File | null) => void, file?: str
         })
       );
     }
-  }, []);
+  }, [active]);
 };

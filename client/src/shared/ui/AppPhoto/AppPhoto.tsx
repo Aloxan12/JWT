@@ -2,6 +2,7 @@ import React, { ImgHTMLAttributes, useEffect, useState } from 'react';
 import { AppSkeleton } from '../AppSkeleton/AppSkeleton';
 import cls from './AppPhoto.module.scss';
 import { classNames } from '../../lib/classNames/classNames';
+import { fixGoogleDriveUrl } from '../../lib/fixGoogleDriveUrl';
 
 type PhotoRadiusType = '4' | '8' | '12' | '50%';
 type PhotoFitType = 'cover' | 'contain';
@@ -24,13 +25,8 @@ export const AppPhoto = ({
 }: AppPhotoProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-  const newUrl = 'https://lh3.google.com/u/0/d/NEW_ID';
 
-  const srcFromGoogle =
-    src?.includes('drive.google.com') && src?.includes('&id=')
-      ? newUrl.replace('NEW_ID', src.split('&id=')[1])
-      : src;
-  const newSrc = src ? srcFromGoogle : undefined;
+  const newSrc = fixGoogleDriveUrl(src);
 
   useEffect(() => {
     const img = new Image();
