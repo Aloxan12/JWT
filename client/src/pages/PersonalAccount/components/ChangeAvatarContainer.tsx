@@ -38,36 +38,30 @@ export const ChangeAvatarContainer = ({
 
   return (
     <AppModal isOpen={isChangePhotoModal} onClose={onCloseHandler}>
-      <AppDragAndDropPhoto file={file} setFile={setFile} className={cls.dragBlock}>
-        <Flex gap="8" direction="column">
-          <AppInputFile onChange={setFile} text="Выберите фото" />
-          <span>
-            <p>Или перенесите его сюда.</p>
-          </span>
+      <Flex direction="column" gap="16">
+        <AppDragAndDropPhoto file={file} setFile={setFile} className={cls.dragBlock}>
+          <Flex gap="8" direction="column">
+            <AppInputFile onChange={setFile} text="Выберите фото" />
+            <span>
+              <p>Или перенесите его сюда.</p>
+            </span>
+          </Flex>
+          <p className={cls.BottomText}>
+            Файл должен быть <span className={cls.FileFormat}>JPG, PNG, </span> формата!
+          </p>
+        </AppDragAndDropPhoto>
+        <Flex gap="16" max>
+          <AppButton onClick={onCloseHandler} isLoading={isLoadingUpdate} text="Отмена" max />
+          <AppButton
+            theme="full-bg"
+            disabled={!file}
+            onClick={uploadUserAvatarHandler}
+            isLoading={isLoadingUpdate}
+            text="Сохранить"
+            max
+          />
         </Flex>
-        <p className={cls.BottomText}>
-          Файл должен быть <span className={cls.FileFormat}>JPG, PNG, </span> формата!
-        </p>
-      </AppDragAndDropPhoto>
-      {!!file && (
-        <React.Fragment>
-          {fileType.toLowerCase() === 'jpg' || fileType.toLowerCase() === 'png' ? (
-            <div className={cls.FileBlock}>
-              <span>{file.name}</span>
-              <AppButton
-                onClick={uploadUserAvatarHandler}
-                isLoading={isLoadingUpdate}
-                text="Сохранить новое фото"
-                max
-              />
-            </div>
-          ) : (
-            <div className={cls.FileErrorBlock}>
-              <span>Вы выбрали не верный формат файла</span>
-            </div>
-          )}
-        </React.Fragment>
-      )}
+      </Flex>
     </AppModal>
   );
 };

@@ -44,7 +44,13 @@
     }
     .optionsList{
       padding: 12px 12px;
-      width: 150px;
+      width: 170px;
+      .optionItem{
+        div{
+          padding-left: 0;
+          text-align: left;
+        }
+      }
     }
   }
 }

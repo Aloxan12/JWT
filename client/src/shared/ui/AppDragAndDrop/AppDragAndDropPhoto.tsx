@@ -7,6 +7,7 @@ import { AppIco } from '../AppSvg/AppIco';
 import { ReactComponent as DotesVertical } from '../../../utils/images/icons/dotes-v.svg';
 import { Flex } from '../Flex/Flex';
 import { AppPopover } from '../AppPopover/AppPopover';
+import { AppInputFile } from '../AppInputFile/AppInputFile';
 
 export const AppDragAndDropPhoto = ({
   file,
@@ -36,8 +37,15 @@ export const AppDragAndDropPhoto = ({
           }
           content={
             <Flex direction="column" gap="8" align="start">
-              <div>Выбрать другой файл</div>
-              <div onClick={removeFile}>Удалить</div>
+              <AppInputFile
+                onChange={setFile}
+                text="Заменить фото"
+                theme="text"
+                className={cls.optionItem}
+              />
+              <div onClick={removeFile} className={cls.optionItem}>
+                Очистить
+              </div>
             </Flex>
           }
           className={cls.optionsBlock}
