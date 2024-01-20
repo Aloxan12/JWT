@@ -46,7 +46,7 @@ export const ChangeAvatarContainer = ({
           </span>
         </Flex>
         <p className={cls.BottomText}>
-          Файл должен быть <span className={cls.FileForamt}>JPG, PNG, </span> формата!
+          Файл должен быть <span className={cls.FileFormat}>JPG, PNG, </span> формата!
         </p>
       </AppDragAndDropPhoto>
       {!!file && (
@@ -55,9 +55,7 @@ export const ChangeAvatarContainer = ({
             <div className={cls.FileBlock}>
               <span>{file.name}</span>
               <AppButton
-                onClick={() => {
-                  uploadUserAvatarHandler();
-                }}
+                onClick={uploadUserAvatarHandler}
                 isLoading={isLoadingUpdate}
                 text="Сохранить новое фото"
                 max

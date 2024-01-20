@@ -6,6 +6,7 @@ import { useAppSelector } from '../../app/core/redux/store';
 import { AppPhoto } from '../../shared/ui/AppPhoto/AppPhoto';
 import { AppButton } from '../../shared/ui/AppButton/AppButton';
 import { Flex } from '../../shared/ui/Flex/Flex';
+import { useDownloadFile } from '../../shared/lib/hooks/useDownloadFile';
 
 export const PersonalAccount = () => {
   const { user } = useAppSelector((state) => state.auth);
@@ -14,6 +15,8 @@ export const PersonalAccount = () => {
   const [file, setFile] = useState<null | File>(null);
 
   const openPhotoModalHandler = () => setIsChangePhotoModal(true);
+
+  useDownloadFile(setFile, user?.avatar);
 
   if (!user) {
     return null;
