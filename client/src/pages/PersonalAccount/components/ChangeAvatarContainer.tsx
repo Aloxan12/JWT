@@ -50,7 +50,7 @@ export const ChangeAvatarContainer = ({
   };
 
   return (
-    <AppModal isOpen={isChangePhotoModal} onClose={onCloseHandler}>
+    <AppModal isOpen={isChangePhotoModal} onClose={onCloseHandler} lazy>
       <Flex direction="column" gap="16">
         <AppDragAndDropPhoto file={file} setFile={setFileHandler} className={cls.dragBlock}>
           <Flex gap="8" direction="column">

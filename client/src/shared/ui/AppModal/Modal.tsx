@@ -23,13 +23,23 @@ export const AppModal = (props: ModalProps) => {
   const { className, children, isOpen, onClose, lazy, title, icoClose } = props;
 
   const [isClosing, setIsClosing] = useState(false);
+  const [isOpening, setIsOpening] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
 
   useEffect(() => {
+    let openRef: MutableRefObject<ReturnType<typeof setTimeout>>;
     if (isOpen) {
       setIsMounted(true);
+      timerRef.current = setTimeout(() => {
+        setIsOpening(true);
+      }, 100);
     }
+    return () => {
+      if (isOpen && !!openRef) {
+        clearTimeout(openRef.current);
+      }
+    };
   }, [isOpen]);
 
   const closeHandler = useCallback(() => {
@@ -37,6 +47,7 @@ export const AppModal = (props: ModalProps) => {
       setIsClosing(true);
       timerRef.current = setTimeout(() => {
         onClose();
+        setIsOpening(false);
         setIsClosing(false);
       }, ANIMATION_DELAY);
     }
@@ -64,12 +75,12 @@ export const AppModal = (props: ModalProps) => {
   }, [isOpen, onKeyDown]);
 
   const mods: Mods = {
-    [cls.opened]: isOpen,
-    'app-modal': isOpen,
+    [cls.opened]: isOpening,
+    'app-modal': isOpening,
     [cls.isClosing]: isClosing,
   };
 
-  if (lazy && !isMounted) {
+  if ((lazy && !isMounted) || !isOpen) {
     return null;
   }
 
