@@ -55,12 +55,10 @@ export const ChangeAvatarContainer = ({
         <AppDragAndDropPhoto file={file} setFile={setFileHandler} className={cls.dragBlock}>
           <Flex gap="8" direction="column">
             <AppInputFile onChange={setFileHandler} text="Выберите фото" />
-            <span>
-              <p>Или перенесите его сюда.</p>
-            </span>
+            <span>Или перенесите его сюда</span>
           </Flex>
-          <p className={cls.BottomText}>
-            Файл должен быть <span className={cls.FileFormat}>JPG, PNG, </span> формата!
+          <p className={cls.bottomText}>
+            Файл должен быть <span>JPG, PNG, </span> формата!
           </p>
         </AppDragAndDropPhoto>
         <Flex gap="16" max>

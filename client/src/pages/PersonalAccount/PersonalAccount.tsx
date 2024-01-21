@@ -19,8 +19,8 @@ export const PersonalAccount = () => {
   }
 
   return (
-    <div className={cls.PersonalAccountWrap}>
-      <div className={cls.PersonalAccountMainBlock}>
+    <div className={cls.personalAccountWrap}>
+      <div className={cls.personalAccountMainBlock}>
         <Flex direction="column" gap="8" align="start">
           <AppPhoto className={cls.mainPhoto} src={user.avatar} alt="avatar" />
           <AppButton onClick={openPhotoModalHandler} text="Сменить фото" theme="full-bg" />
