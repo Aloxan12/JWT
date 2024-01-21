@@ -21,7 +21,6 @@ export const AppDragAndDropPhoto = ({
     setFile(null);
     setIsOpenMenu(false);
   };
-
   if (file) {
     return (
       <div className={classNames(cls.dropBlock, {}, [className])}>

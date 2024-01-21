@@ -11,7 +11,6 @@ export const PersonalAccount = () => {
   const { user } = useAppSelector((state) => state.auth);
 
   const [isChangePhotoModal, setIsChangePhotoModal] = useState(false);
-  const [file, setFile] = useState<null | File>(null);
 
   const openPhotoModalHandler = () => setIsChangePhotoModal(true);
 
@@ -26,8 +25,6 @@ export const PersonalAccount = () => {
           <AppPhoto className={cls.mainPhoto} src={user.avatar} alt="avatar" />
           <AppButton onClick={openPhotoModalHandler} text="Сменить фото" theme="full-bg" />
           <ChangeAvatarContainer
-            file={file}
-            setFile={setFile}
             isChangePhotoModal={isChangePhotoModal}
             setIsChangePhotoModal={setIsChangePhotoModal}
             userId={user.id}
