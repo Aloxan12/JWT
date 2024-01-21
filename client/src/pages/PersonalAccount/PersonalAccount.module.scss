@@ -67,19 +67,27 @@ img{
     line-height: 4;
 }
 
-@media screen and (max-width: 700px) {
-    .PersonalAccountPhoto {
-        width: 200px;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .PersonalAccountMainBlock {
-        flex-direction: column;
-        align-items: center;
-        row-gap: 20px;
-    }
-    .PersonalAccountInfoBlock{
-        margin-left: 0;
+@media screen and (max-width: 800px) {
+    .personalAccountWrap{
+        .personalAccountMainBlock {
+            flex-direction: column;
+            align-items: center;
+            row-gap: 20px;
+            .mainPhoto{
+                width: 300px;
+                height: 350px;
+                border-radius: 12px;
+            }
+            .photoWrap{
+                align-items: center;
+            }
+        }
+        .personalAccountInfoBlock{
+            margin-left: 0;
+        }
+        .PersonalAccountInfoBlock{
+            width: 100%;
+            margin-left: 0;
+        }
     }
 }
