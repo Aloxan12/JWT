@@ -7,6 +7,7 @@ import { throttle } from '../../../../../shared/lib/hooks/useDebounce';
 import { AppLoader } from '../../../../../Common/Components/AppLoader/AppLoader';
 import { useAppSelector } from '../../../../../app/core/redux/store';
 import { userIsAdmin } from '../../../../../app/core/redux/Reducers/auth/selectors';
+import { mergedArrayFn } from '../../../../../shared/lib/mergedArrayFn';
 
 interface PostListProps {
   currentPage: number;
@@ -26,7 +27,7 @@ export const PostList = ({ currentPage, setCurrentPage }: PostListProps) => {
 
   useEffect(() => {
     if (!!postsData && fetching && currentPage !== 1) {
-      setPosts((prevState) => [...prevState, ...postsData.results]);
+      setPosts((prevState) => mergedArrayFn(prevState, postsData.results));
     } else if (!!postsData) {
       setPosts(postsData.results);
     }
