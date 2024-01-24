@@ -1,5 +1,6 @@
 import { ICreatePost, IPost, IPostRequestDto, IPostsResponseDto } from './dto/PostDto';
 import { authApi } from './authApi';
+import { mergedArrayFn } from '../../../shared/lib/mergedArrayFn';
 
 export const postApi = authApi.injectEndpoints({
   endpoints: (build) => ({
@@ -8,22 +9,17 @@ export const postApi = authApi.injectEndpoints({
         url: '/posts',
         params: !!params ? params : {},
       }),
-      // serializeQueryArgs: ({ endpointName }) => {
-      //   console.log('endpointName', endpointName);
-      //   return endpointName;
-      // },
-      // merge: (currentCache, newItems) => {
-      //   console.log('currentCache', currentCache);
-      //   console.log('newItems', newItems);
-      //   currentCache.results.push(...newItems.results);
-      // },
-      // forceRefetch({ currentArg, previousArg }) {
-      //   return currentArg !== previousArg;
-      // },
-      providesTags: (data) =>
-        data
-          ? [...data.results.map((post) => ({ type: 'Posts' as const, id: post.id })), 'Users']
-          : ['Posts', 'Users'],
+      serializeQueryArgs: ({ endpointName }) => {
+        return endpointName;
+      },
+      merge: (currentCache, newItems) => {
+        console.log('currentCache', newItems);
+        currentCache.results = mergedArrayFn(currentCache.results, newItems.results);
+      },
+      forceRefetch({ currentArg, previousArg }) {
+        return currentArg !== previousArg;
+      },
+      providesTags: ['Posts', 'Users'],
     }),
     createPosts: build.mutation<IPost, ICreatePost>({
       query: (params) => ({
@@ -38,7 +34,7 @@ export const postApi = authApi.injectEndpoints({
         url: `/posts/${id}/like`,
         method: 'PATCH',
       }),
-      invalidatesTags: (result, error, post) => [{ type: 'Posts', id: post.id }],
+      invalidatesTags: ['Posts'],
     }),
     deletePost: build.mutation<{ post: IPost; message: string; status: number }, { id: string }>({
       query: ({ id }) => ({

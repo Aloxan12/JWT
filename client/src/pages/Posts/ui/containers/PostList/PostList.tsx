@@ -7,7 +7,6 @@ import { throttle } from '../../../../../shared/lib/hooks/useDebounce';
 import { AppLoader } from '../../../../../Common/Components/AppLoader/AppLoader';
 import { useAppSelector } from '../../../../../app/core/redux/store';
 import { userIsAdmin } from '../../../../../app/core/redux/Reducers/auth/selectors';
-import { mergedArrayFn } from '../../../../../shared/lib/mergedArrayFn';
 
 interface PostListProps {
   currentPage: number;
@@ -17,7 +16,6 @@ interface PostListProps {
 export const PostList = ({ currentPage, setCurrentPage }: PostListProps) => {
   const [fetching, setFetching] = useState<boolean>(false);
   const isAdmin = useAppSelector(userIsAdmin);
-  const [posts, setPosts] = useState<IPost[]>([]);
   const limit = 10;
   const {
     data: postsData,
@@ -26,17 +24,9 @@ export const PostList = ({ currentPage, setCurrentPage }: PostListProps) => {
   } = useGetAllPostsQuery({ limit, page: currentPage });
 
   useEffect(() => {
-    if (!!postsData && fetching && currentPage !== 1) {
-      setPosts((prevState) => mergedArrayFn(prevState, postsData.results));
-    } else if (!!postsData) {
-      setPosts(postsData.results);
-    }
-    setFetching(false);
-  }, [postsData]);
-
-  useEffect(() => {
     if (fetching && postsData && postsData.count > limit * currentPage) {
       setCurrentPage((prev) => prev + 1);
+      setFetching(false);
     }
   }, [fetching]);
 
@@ -58,7 +48,7 @@ export const PostList = ({ currentPage, setCurrentPage }: PostListProps) => {
     <>
       {(isFetchingList || isLoadingList) && <AppLoader />}
       <ul className={cls.postsItems}>
-        {posts.map((post: IPost) => {
+        {postsData?.results.map((post: IPost) => {
           return (
             <Post isAdmin={isAdmin} post={post} key={post.id} setCurrentPage={setCurrentPage} />
           );
