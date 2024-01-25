@@ -19,7 +19,10 @@ export const postApi = authApi.injectEndpoints({
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg;
       },
-      providesTags: ['Posts', 'Users'],
+      providesTags: (data) =>
+        data
+          ? [...data.results.map((post) => ({ type: 'Posts' as const, id: post.id })), 'Users']
+          : ['Posts', 'Users'],
     }),
     createPosts: build.mutation<IPost, ICreatePost>({
       query: (params) => ({
@@ -34,7 +37,7 @@ export const postApi = authApi.injectEndpoints({
         url: `/posts/${id}/like`,
         method: 'PATCH',
       }),
-      invalidatesTags: ['Posts'],
+      invalidatesTags: (result, error, post) => [{ type: 'Posts', id: result?.id }],
     }),
     deletePost: build.mutation<{ post: IPost; message: string; status: number }, { id: string }>({
       query: ({ id }) => ({
