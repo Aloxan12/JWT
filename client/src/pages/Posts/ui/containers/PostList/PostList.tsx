@@ -21,7 +21,7 @@ export const PostList = ({ currentPage, setCurrentPage }: PostListProps) => {
     data: postsData,
     isLoading: isLoadingList,
     isFetching: isFetchingList,
-  } = useGetAllPostsQuery({ limit, page: currentPage }, { refetchOnFocus: true });
+  } = useGetAllPostsQuery({ limit, page: currentPage });
 
   useEffect(() => {
     if (fetching && postsData && postsData.count > limit * currentPage) {
