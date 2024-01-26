@@ -13,15 +13,24 @@ export const postApi = authApi.injectEndpoints({
         return endpointName;
       },
       merge: (currentCache, newItems) => {
-        console.log('currentCache', newItems);
-        currentCache.results = mergedArrayFn(currentCache.results, newItems.results);
+        return {
+          count: newItems.count,
+          results:
+            currentCache.count !== newItems.count
+              ? newItems.results
+              : mergedArrayFn(currentCache.results, newItems.results),
+        };
       },
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg;
       },
       providesTags: (data) =>
         data
-          ? [...data.results.map((post) => ({ type: 'Posts' as const, id: post.id })), 'Users']
+          ? [
+              ...data.results.map((post) => ({ type: 'Posts' as const, id: post.id })),
+              { type: 'Posts', id: 'PARTIAL-LIST' },
+              'Users',
+            ]
           : ['Posts', 'Users'],
     }),
     createPosts: build.mutation<IPost, ICreatePost>({
@@ -37,7 +46,10 @@ export const postApi = authApi.injectEndpoints({
         url: `/posts/${id}/like`,
         method: 'PATCH',
       }),
-      invalidatesTags: (result, error, post) => [{ type: 'Posts', id: result?.id }],
+      invalidatesTags: (result, error, post) => [
+        { type: 'Posts', id: post?.id },
+        { type: 'Posts', id: 'PARTIAL-LIST' },
+      ],
     }),
     deletePost: build.mutation<{ post: IPost; message: string; status: number }, { id: string }>({
       query: ({ id }) => ({
