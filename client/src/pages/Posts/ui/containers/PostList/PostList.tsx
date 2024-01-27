@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import cls from '../../Posts.module.scss';
 import { IPost } from '../../../../../app/core/api/dto/PostDto';
 import { Post } from '../Post/Post';
 import { useGetAllPostsQuery } from '../../../../../app/core/api/postApi';
-import { throttle } from '../../../../../shared/lib/hooks/useDebounce';
 import { AppLoader } from '../../../../../Common/Components/AppLoader/AppLoader';
 import { useAppSelector } from '../../../../../app/core/redux/store';
 import { userIsAdmin } from '../../../../../app/core/redux/Reducers/auth/selectors';
@@ -14,7 +13,6 @@ interface PostListProps {
 }
 
 export const PostList = ({ currentPage, setCurrentPage }: PostListProps) => {
-  const [fetching, setFetching] = useState<boolean>(false);
   const isAdmin = useAppSelector(userIsAdmin);
   const limit = 10;
   const {
@@ -23,26 +21,28 @@ export const PostList = ({ currentPage, setCurrentPage }: PostListProps) => {
     isFetching: isFetchingList,
   } = useGetAllPostsQuery({ limit, page: currentPage });
 
-  useEffect(() => {
-    if (fetching && postsData && postsData.count > limit * currentPage) {
-      setCurrentPage((prev) => prev + 1);
-      setFetching(false);
-    }
-  }, [fetching]);
-
-  const scrollHandler = (e: any) => {
-    const { scrollTop, scrollHeight } = e.target.documentElement;
-    if (scrollHeight - (scrollTop + window.innerHeight) < 50) {
-      setFetching(true);
-    }
-  };
-
-  const throttleScrollHandler = throttle(scrollHandler, 300);
+  const observerTarget = useRef<HTMLLIElement | null>(null);
 
   useEffect(() => {
-    document.addEventListener('scroll', throttleScrollHandler);
-    return () => document.removeEventListener('scroll', throttleScrollHandler);
-  }, []);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setCurrentPage((prevState) => prevState + 1);
+        }
+      },
+      { threshold: 1 }
+    );
+
+    if (observerTarget.current && !isLoadingList) {
+      observer.observe(observerTarget.current);
+    }
+
+    return () => {
+      if (observerTarget.current && !isLoadingList) {
+        observer.unobserve(observerTarget.current);
+      }
+    };
+  }, [observerTarget, isLoadingList]);
 
   return (
     <>
@@ -53,6 +53,7 @@ export const PostList = ({ currentPage, setCurrentPage }: PostListProps) => {
             <Post isAdmin={isAdmin} post={post} key={post.id} setCurrentPage={setCurrentPage} />
           );
         })}
+        <li ref={observerTarget} />
       </ul>
     </>
   );
