@@ -1,6 +1,8 @@
 import { IUser } from './UserDto';
 
 export interface BaseQueryDto {
+  prevPage: number | null;
+  nextPage: number | null;
   count: number;
 }
 

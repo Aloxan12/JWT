@@ -19,6 +19,8 @@ export const tableHeaderMock = [
 
 const dataMock = {
   count: 1,
+  nextPage: 2,
+  prevPage: 0,
   results: [
     { id: 1, text: 'text text text text text', number: 200 },
     { id: 2, text: 'text 2', number: 300 },
