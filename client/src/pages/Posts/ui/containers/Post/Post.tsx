@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { memo, useCallback } from 'react';
 import cls from './Post.module.scss';
 import moment from 'moment';
 import { useDeletePostMutation, useLikePostMutation } from '../../../../../app/core/api/postApi';
@@ -20,9 +20,10 @@ interface IPostProps {
   isAdmin: boolean;
   post: IPost;
   setCurrentPage: (value: number) => void;
+  measureRef?: (node: HTMLElement | null) => void;
 }
 
-export const Post = ({ post, setCurrentPage, isAdmin }: IPostProps) => {
+export const Post = memo(({ post, setCurrentPage, isAdmin, measureRef }: IPostProps) => {
   const [deletePost] = useDeletePostMutation();
   const [likePost] = useLikePostMutation();
 
@@ -49,7 +50,7 @@ export const Post = ({ post, setCurrentPage, isAdmin }: IPostProps) => {
   };
 
   return (
-    <li className={cls.postsItem}>
+    <li className={cls.postsItem} ref={measureRef}>
       <Flex max justify="between">
         <Flex gap="8">
           <AppAvatar src={post.author?.avatar || ''} />
@@ -86,4 +87,4 @@ export const Post = ({ post, setCurrentPage, isAdmin }: IPostProps) => {
       <div className={cls.postsItemContent}>{contentToHtml(post.postText)}</div>
     </li>
   );
-};
+});

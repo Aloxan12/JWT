@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React from 'react';
 import cls from '../../Posts.module.scss';
 import { IPost } from '../../../../../app/core/api/dto/PostDto';
 import { Post } from '../Post/Post';
@@ -7,7 +7,7 @@ import { useAppSelector } from '../../../../../app/core/redux/store';
 import { userIsAdmin } from '../../../../../app/core/redux/Reducers/auth/selectors';
 import { Flex } from '../../../../../shared/ui/Flex/Flex';
 import { AppSkeleton } from '../../../../../shared/ui/AppSkeleton/AppSkeleton';
-import { useIntersectionObserver } from '../../../../../shared/lib/hooks/useIntersectionObserver';
+import { useInfiniteScroll } from '../../../../../shared/lib/hooks/useInfiniteScroll';
 
 const AppPostListLoader = () => {
   return (
@@ -25,30 +25,31 @@ interface PostListProps {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const PostList = ({ currentPage, setCurrentPage }: PostListProps) => {
+export const PostList = ({ currentPage: page, setCurrentPage: setPage }: PostListProps) => {
   const isAdmin = useAppSelector(userIsAdmin);
-  const limit = 10;
-  const {
-    data: postsData,
-    isLoading: isLoadingList,
-    isFetching: isFetchingList,
-  } = useGetAllPostsQuery({ limit, page: currentPage });
-
-  const observerTarget = useRef<HTMLDivElement | null>(null);
-  const onNextPage = useCallback(() => setCurrentPage((prevState) => prevState + 1), []);
-  useIntersectionObserver(observerTarget, onNextPage, !isLoadingList);
+  const { dataList, measureRef, isLoading } = useInfiniteScroll<IPost, {}>({
+    getter: useGetAllPostsQuery,
+    page,
+    setPage,
+  });
 
   return (
     <>
       <ul className={cls.postsItems}>
-        {postsData?.results.map((post: IPost) => {
+        {dataList.map((post, index, arr) => {
+          const isLastEl = index === arr.length - 1;
           return (
-            <Post isAdmin={isAdmin} post={post} key={post.id} setCurrentPage={setCurrentPage} />
+            <Post
+              isAdmin={isAdmin}
+              post={post}
+              key={post.id}
+              setCurrentPage={setPage}
+              measureRef={isLastEl ? measureRef : undefined}
+            />
           );
         })}
       </ul>
-      <div ref={observerTarget} />
-      {(isLoadingList || isFetchingList) && <AppPostListLoader />}
+      {isLoading && <AppPostListLoader />}
     </>
   );
 };
