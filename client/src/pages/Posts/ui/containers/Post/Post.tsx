@@ -1,7 +1,7 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo } from 'react';
 import cls from './Post.module.scss';
 import moment from 'moment';
-import { useDeletePostMutation, useLikePostMutation } from '../../../../../app/core/api/postApi';
+import { useDeletePostMutation } from '../../../../../app/core/api/postApi';
 import { contentToHtml } from '../../../../../utils/helpers';
 import { AppTrash } from '../../../../../shared/ui/AppTrash/AppTrash';
 import {
@@ -21,70 +21,71 @@ interface IPostProps {
   post: IPost;
   setCurrentPage: (value: number) => void;
   measureRef?: (node: HTMLElement | null) => void;
+  likePostHandler: (id: string) => () => void;
 }
 
-export const Post = memo(({ post, setCurrentPage, isAdmin, measureRef }: IPostProps) => {
-  const [deletePost] = useDeletePostMutation();
-  const [likePost] = useLikePostMutation();
+export const Post = memo(
+  ({ post, setCurrentPage, isAdmin, measureRef, likePostHandler }: IPostProps) => {
+    const [deletePost] = useDeletePostMutation();
 
-  const likePostHandler = useCallback(() => {
-    likePost({ id: post.id });
-  }, [post]);
+    const deletePostHandler = (onClose?: () => void) => {
+      deletePost({ id: post.id }).then((res) => {
+        const { data } = res as { data: { status: number; message: string; post: IPost } };
+        if (data.status === 204) {
+          setCurrentPage(1);
+          ToastWrapper({
+            msg: data.message.replace(/"/g, ''),
+            type: ToastWrapperType.info,
+          });
+          onClose?.();
+        }
+      });
+    };
 
-  const deletePostHandler = (onClose?: () => void) => {
-    deletePost({ id: post.id }).then((res) => {
-      const { data } = res as { data: { status: number; message: string; post: IPost } };
-      if (data.status === 204) {
-        setCurrentPage(1);
-        ToastWrapper({
-          msg: data.message.replace(/"/g, ''),
-          type: ToastWrapperType.info,
-        });
-        onClose?.();
-      }
-    });
-  };
+    const modsLike: Mods = {
+      [cls.likeActive]: post.isLike,
+    };
 
-  const modsLike: Mods = {
-    [cls.likeActive]: post.isLike,
-  };
-
-  return (
-    <li className={cls.postsItem} ref={measureRef}>
-      <Flex max justify="between">
-        <Flex gap="8">
-          <AppAvatar src={post.author?.avatar || ''} />
-          <AppText
-            text={post.author.email}
-            color="violet"
-            bold="600"
-            isEllipsis
-            className={cls.email}
-          />
-        </Flex>
-        <Flex gap="8">
-          <div className={classNames(cls.postLikeBlock, modsLike, [])} onClick={likePostHandler}>
-            <AppPhoto src={likePhoto} alt="like" width={20} height={20} />
-            {post.likeCount}
-          </div>
-          {isAdmin && (
-            <div className={cls.postTrashBlock}>
-              <AppTrash
-                deleteHandler={deletePostHandler}
-                size={'medium'}
-                text="Вы действительно хотите удалить данный пост?"
-              />
+    return (
+      <li className={cls.postsItem} ref={measureRef}>
+        <Flex max justify="between">
+          <Flex gap="8">
+            <AppAvatar src={post.author?.avatar || ''} />
+            <AppText
+              text={post.author.email}
+              color="violet"
+              bold="600"
+              isEllipsis
+              className={cls.email}
+            />
+          </Flex>
+          <Flex gap="8">
+            <div
+              className={classNames(cls.postLikeBlock, modsLike, [])}
+              onClick={likePostHandler(post.id)}
+            >
+              <AppPhoto src={likePhoto} alt="like" width={20} height={20} />
+              {post.likeCount}
             </div>
-          )}
+            {isAdmin && (
+              <div className={cls.postTrashBlock}>
+                <AppTrash
+                  deleteHandler={deletePostHandler}
+                  size={'medium'}
+                  text="Вы действительно хотите удалить данный пост?"
+                />
+              </div>
+            )}
+          </Flex>
         </Flex>
-      </Flex>
-      <div className={cls.postDateBlock}>
-        <span>
-          <span>Опубликовано:</span>{' '}
-          {moment(post.publicDate).format('DD-MM-YYYY') || 'Дата не зафикирована'}
-        </span>
-      </div>
-      <div className={cls.postsItemContent}>{contentToHtml(post.postText)}</div>
-    </li>
-  );
-});
+        <div className={cls.postDateBlock}>
+          <span>
+            <span>Опубликовано:</span>{' '}
+            {moment(post.publicDate).format('DD-MM-YYYY') || 'Дата не зафикирована'}
+          </span>
+        </div>
+        <div className={cls.postsItemContent}>{contentToHtml(post.postText)}</div>
+      </li>
+    );
+  }
+);

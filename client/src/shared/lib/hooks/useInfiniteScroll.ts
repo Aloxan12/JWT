@@ -21,6 +21,7 @@ interface UseInfiniteScrollResponse<T> {
   dataList: T[];
   measureRef: (node: HTMLElement | null) => void;
   isLoading: boolean;
+  setCurrentData: React.Dispatch<React.SetStateAction<T[]>>;
 }
 
 export const useInfiniteScroll = <T extends { id: string }, Params extends IWithPagination>({
@@ -55,5 +56,5 @@ export const useInfiniteScroll = <T extends { id: string }, Params extends IWith
     }
   }, [results, prevPage]);
 
-  return { dataList: currentData, measureRef, isLoading: isLoading || isFetching };
+  return { dataList: currentData, measureRef, isLoading: isLoading || isFetching, setCurrentData };
 };
