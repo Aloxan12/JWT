@@ -1,6 +1,5 @@
 import { ICreatePost, IPost, IPostRequestDto, IPostsResponseDto } from './dto/PostDto';
 import { authApi } from './authApi';
-import { mergedArrayFn } from '../../../shared/lib/mergedArrayFn';
 
 export const postApi = authApi.injectEndpoints({
   endpoints: (build) => ({
@@ -26,12 +25,12 @@ export const postApi = authApi.injectEndpoints({
       }),
       invalidatesTags: (result, error, post) => [{ type: 'Posts', id: post.id }],
     }),
-    deletePost: build.mutation<{ post: IPost; message: string; status: number }, { id: string }>({
+    deletePost: build.mutation<{ post: IPost }, { id: string }>({
       query: ({ id }) => ({
         url: `/posts/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Posts'],
+      invalidatesTags: (result, error, post) => [{ type: 'Posts', id: post.id }],
     }),
   }),
 });
