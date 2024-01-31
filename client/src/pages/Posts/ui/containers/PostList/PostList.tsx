@@ -1,13 +1,15 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import cls from '../../Posts.module.scss';
 import { IPost } from '../../../../../app/core/api/dto/PostDto';
 import { Post } from '../Post/Post';
-import { useGetAllPostsQuery, useLikePostMutation } from '../../../../../app/core/api/postApi';
+import { useGetAllPostsQuery } from '../../../../../app/core/api/postApi';
 import { useAppSelector } from '../../../../../app/core/redux/store';
 import { userIsAdmin } from '../../../../../app/core/redux/Reducers/auth/selectors';
 import { Flex } from '../../../../../shared/ui/Flex/Flex';
 import { AppSkeleton } from '../../../../../shared/ui/AppSkeleton/AppSkeleton';
 import { useInfiniteScroll } from '../../../../../shared/lib/hooks/useInfiniteScroll';
+import { useLikePost } from '../../hooks/useLikePost';
+import { useDeletePost } from '../../hooks/useDeletePost';
 
 const AppPostListLoader = () => {
   return (
@@ -32,21 +34,8 @@ export const PostList = ({ currentPage: page, setCurrentPage: setPage }: PostLis
     page,
     setPage,
   });
-
-  const [likePost] = useLikePostMutation();
-  const likePostHandler = useCallback(
-    (id: string) => () =>
-      likePost({ id }).then((res) => {
-        const newPost = (res as unknown as { data: { post: IPost } })?.data?.post;
-        console.log('newPost', newPost);
-        if (newPost) {
-          setCurrentData((prevState) =>
-            prevState.map((post) => (newPost.id === post.id ? newPost : post))
-          );
-        }
-      }),
-    []
-  );
+  const likePostHandler = useLikePost(setCurrentData);
+  const deletePostHandler = useDeletePost(setCurrentData);
 
   return (
     <>
@@ -58,9 +47,9 @@ export const PostList = ({ currentPage: page, setCurrentPage: setPage }: PostLis
               isAdmin={isAdmin}
               post={post}
               key={post.id}
-              setCurrentPage={setPage}
               measureRef={isLastEl ? measureRef : undefined}
               likePostHandler={likePostHandler}
+              deletePostHandler={deletePostHandler}
             />
           );
         })}

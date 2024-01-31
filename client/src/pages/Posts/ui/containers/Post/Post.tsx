@@ -1,13 +1,8 @@
 import React, { memo } from 'react';
 import cls from './Post.module.scss';
 import moment from 'moment';
-import { useDeletePostMutation } from '../../../../../app/core/api/postApi';
 import { contentToHtml } from '../../../../../utils/helpers';
 import { AppTrash } from '../../../../../shared/ui/AppTrash/AppTrash';
-import {
-  ToastWrapper,
-  ToastWrapperType,
-} from '../../../../../Common/Components/ToastWrapper/ToastWrapper';
 import { IPost } from '../../../../../app/core/api/dto/PostDto';
 import likePhoto from '../../../../../utils/images/like.png';
 import { AppAvatar } from '../../../../../shared/ui/AppAvatar/AppAvatar';
@@ -19,29 +14,13 @@ import { classNames, Mods } from '../../../../../shared/lib/classNames/className
 interface IPostProps {
   isAdmin: boolean;
   post: IPost;
-  setCurrentPage: (value: number) => void;
   measureRef?: (node: HTMLElement | null) => void;
   likePostHandler: (id: string) => () => void;
+  deletePostHandler: (id: string) => () => void;
 }
 
 export const Post = memo(
-  ({ post, setCurrentPage, isAdmin, measureRef, likePostHandler }: IPostProps) => {
-    const [deletePost] = useDeletePostMutation();
-
-    const deletePostHandler = (onClose?: () => void) => {
-      deletePost({ id: post.id }).then((res) => {
-        const { data } = res as { data: { status: number; message: string; post: IPost } };
-        if (data.status === 204) {
-          setCurrentPage(1);
-          ToastWrapper({
-            msg: data.message.replace(/"/g, ''),
-            type: ToastWrapperType.info,
-          });
-          onClose?.();
-        }
-      });
-    };
-
+  ({ post, isAdmin, measureRef, likePostHandler, deletePostHandler }: IPostProps) => {
     const modsLike: Mods = {
       [cls.likeActive]: post.isLike,
     };
@@ -70,7 +49,7 @@ export const Post = memo(
             {isAdmin && (
               <div className={cls.postTrashBlock}>
                 <AppTrash
-                  deleteHandler={deletePostHandler}
+                  deleteHandler={deletePostHandler(post.id)}
                   size={'medium'}
                   text="Вы действительно хотите удалить данный пост?"
                 />
