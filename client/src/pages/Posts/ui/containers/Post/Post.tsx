@@ -15,7 +15,9 @@ interface IPostProps {
   isAdmin: boolean;
   post: IPost;
   measureRef?: (node: HTMLElement | null) => void;
+  likeLoading: boolean;
   likePostHandler: (id: string) => () => void;
+  deleteLoading: boolean;
   deletePostHandler: (id: string) => () => void;
 }
 
@@ -23,6 +25,7 @@ export const Post = memo(
   ({ post, isAdmin, measureRef, likePostHandler, deletePostHandler }: IPostProps) => {
     const modsLike: Mods = {
       [cls.likeActive]: post.isLike,
+      [cls.likeLoading]: post.isLike,
     };
 
     return (

@@ -6,10 +6,14 @@ import {
 import React, { useCallback } from 'react';
 import { IPost } from '../../../../app/core/api/dto/PostDto';
 
-export const useDeletePost = (setCurrentData: React.Dispatch<React.SetStateAction<IPost[]>>) => {
-  const [deletePost] = useDeletePostMutation();
+type UseDeletePostResponse = [(id: string) => (onClose?: () => void) => void, boolean];
 
-  return useCallback(
+export const useDeletePost = (
+  setCurrentData: React.Dispatch<React.SetStateAction<IPost[]>>
+): UseDeletePostResponse => {
+  const [deletePost, { isLoading }] = useDeletePostMutation();
+
+  const deletePostHandler = useCallback(
     (id: string) => (onClose?: () => void) => {
       deletePost({ id }).then(() => {
         ToastWrapper({
@@ -22,4 +26,6 @@ export const useDeletePost = (setCurrentData: React.Dispatch<React.SetStateActio
     },
     []
   );
+
+  return [deletePostHandler, isLoading];
 };
