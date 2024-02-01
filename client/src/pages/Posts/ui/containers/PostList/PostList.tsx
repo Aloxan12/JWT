@@ -34,8 +34,8 @@ export const PostList = ({ currentPage: page, setCurrentPage: setPage }: PostLis
     page,
     setPage,
   });
-  const [likePost, isLikeLoading] = useLikePost(setCurrentData);
-  const [deletePost, isDeleteLoading] = useDeletePost(setCurrentData);
+  const [likePost, isLikeLoadingId] = useLikePost(setCurrentData);
+  const [deletePost, isDeleteLoadingId] = useDeletePost(setCurrentData);
 
   return (
     <>
@@ -48,9 +48,9 @@ export const PostList = ({ currentPage: page, setCurrentPage: setPage }: PostLis
               post={post}
               key={post.id}
               measureRef={isLastEl ? measureRef : undefined}
-              likeLoading={isLikeLoading}
+              likeLoading={post.id === isLikeLoadingId}
               likePost={likePost}
-              deleteLoading={isDeleteLoading}
+              deleteLoading={post.id === isDeleteLoadingId}
               deletePost={deletePost}
             />
           );

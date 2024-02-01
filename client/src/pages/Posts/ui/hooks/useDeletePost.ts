@@ -3,29 +3,33 @@ import {
   ToastWrapper,
   ToastWrapperType,
 } from '../../../../Common/Components/ToastWrapper/ToastWrapper';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { IPost } from '../../../../app/core/api/dto/PostDto';
 
-type UseDeletePostResponse = [(id: string) => (onClose?: () => void) => void, boolean];
+type UseDeletePostResponse = [(id: string) => (onClose?: () => void) => void, string | null];
 
 export const useDeletePost = (
   setCurrentData: React.Dispatch<React.SetStateAction<IPost[]>>
 ): UseDeletePostResponse => {
-  const [deletePost, { isLoading }] = useDeletePostMutation();
+  const [deletePost] = useDeletePostMutation();
+  const [activeId, setActiveId] = useState<string | null>(null);
 
   const deletePostHandler = useCallback(
     (id: string) => (onClose?: () => void) => {
-      deletePost({ id }).then(() => {
-        ToastWrapper({
-          msg: 'Пост успешно удален',
-          type: ToastWrapperType.info,
-        });
-        setCurrentData((prevState) => prevState.filter((post) => post.id !== id));
-        onClose?.();
-      });
+      setActiveId(activeId);
+      deletePost({ id })
+        .then(() => {
+          ToastWrapper({
+            msg: 'Пост успешно удален',
+            type: ToastWrapperType.info,
+          });
+          setCurrentData((prevState) => prevState.filter((post) => post.id !== id));
+          onClose?.();
+        })
+        .finally(() => setActiveId(null));
     },
     []
   );
 
-  return [deletePostHandler, isLoading];
+  return [deletePostHandler, activeId];
 };
