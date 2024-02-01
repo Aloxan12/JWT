@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import cls from './Post.module.scss';
 import moment from 'moment';
 import { contentToHtml } from '../../../../../utils/helpers';
@@ -16,16 +16,20 @@ interface IPostProps {
   post: IPost;
   measureRef?: (node: HTMLElement | null) => void;
   likeLoading: boolean;
-  likePostHandler: (id: string) => () => void;
+  likePost: (id: string) => () => void;
   deleteLoading: boolean;
-  deletePostHandler: (id: string) => () => void;
+  deletePost: (id: string) => (onClose?: () => void) => void;
 }
 
 export const Post = memo(
-  ({ post, isAdmin, measureRef, likePostHandler, deletePostHandler }: IPostProps) => {
+  ({ post, isAdmin, measureRef, likePost, deletePost, likeLoading }: IPostProps) => {
+    const [loadingId, setLoadingId] = useState<null | string>(null);
     const modsLike: Mods = {
       [cls.likeActive]: post.isLike,
-      [cls.likeLoading]: post.isLike,
+    };
+
+    const loadingHandler = () => {
+      setLoadingId(post.id);
     };
 
     return (
@@ -41,10 +45,14 @@ export const Post = memo(
               className={cls.email}
             />
           </Flex>
-          <Flex gap="8">
+          <Flex gap="8" onClick={loadingHandler}>
             <div
-              className={classNames(cls.postLikeBlock, modsLike, [])}
-              onClick={likePostHandler(post.id)}
+              className={classNames(
+                cls.postLikeBlock,
+                { ...modsLike, [cls.likeLoading]: likeLoading && loadingId === post.id },
+                []
+              )}
+              onClick={likePost(post.id)}
             >
               <AppPhoto src={likePhoto} alt="like" width={20} height={20} />
               {post.likeCount}
@@ -52,7 +60,7 @@ export const Post = memo(
             {isAdmin && (
               <div className={cls.postTrashBlock}>
                 <AppTrash
-                  deleteHandler={deletePostHandler(post.id)}
+                  deleteHandler={deletePost(post.id)}
                   size={'medium'}
                   text="Вы действительно хотите удалить данный пост?"
                 />

@@ -64,6 +64,11 @@
   background-color: #61c171;
 }
 
+.likeLoading{
+  opacity: .7;
+  pointer-events: none;
+}
+
 .postsItemContent {
   margin: 15px 15px 10px 0;
   text-align: left;

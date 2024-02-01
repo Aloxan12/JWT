@@ -55,6 +55,7 @@ export const Flex = (props: FlexProps) => {
     gap,
     max,
     wrap,
+    ...otherProps
   } = props;
 
   const classes = [
@@ -70,5 +71,9 @@ export const Flex = (props: FlexProps) => {
     [cls.wrap]: wrap,
   };
 
-  return <div className={classNames(cls.Flex, mods, classes)}>{children}</div>;
+  return (
+    <div className={classNames(cls.Flex, mods, classes)} {...otherProps}>
+      {children}
+    </div>
+  );
 };
