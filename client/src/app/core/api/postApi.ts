@@ -16,7 +16,6 @@ export const postApi = authApi.injectEndpoints({
         method: 'POST',
         body: params,
       }),
-      invalidatesTags: ['Posts'],
     }),
     likePost: build.mutation<IPost, { id: string }>({
       query: ({ id }) => ({

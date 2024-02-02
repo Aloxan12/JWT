@@ -2,12 +2,10 @@ import React from 'react';
 import cls from '../../Posts.module.scss';
 import { IPost } from '../../../../../app/core/api/dto/PostDto';
 import { Post } from '../Post/Post';
-import { useGetAllPostsQuery } from '../../../../../app/core/api/postApi';
 import { useAppSelector } from '../../../../../app/core/redux/store';
 import { userIsAdmin } from '../../../../../app/core/redux/Reducers/auth/selectors';
 import { Flex } from '../../../../../shared/ui/Flex/Flex';
 import { AppSkeleton } from '../../../../../shared/ui/AppSkeleton/AppSkeleton';
-import { useInfiniteScroll } from '../../../../../shared/lib/hooks/useInfiniteScroll';
 import { useLikePost } from '../../hooks/useLikePost';
 import { useDeletePost } from '../../hooks/useDeletePost';
 
@@ -23,17 +21,14 @@ const AppPostListLoader = () => {
 };
 
 interface PostListProps {
-  currentPage: number;
-  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  dataList: IPost[];
+  measureRef: (node: HTMLElement | null) => void;
+  isLoading: boolean;
+  setCurrentData: React.Dispatch<React.SetStateAction<IPost[]>>;
 }
 
-export const PostList = ({ currentPage: page, setCurrentPage: setPage }: PostListProps) => {
+export const PostList = ({ dataList, measureRef, isLoading, setCurrentData }: PostListProps) => {
   const isAdmin = useAppSelector(userIsAdmin);
-  const { dataList, measureRef, isLoading, setCurrentData } = useInfiniteScroll<IPost, {}>({
-    getter: useGetAllPostsQuery,
-    page,
-    setPage,
-  });
   const [likePost, isLikeLoadingId] = useLikePost(setCurrentData);
   const [deletePost, isDeleteLoadingId] = useDeletePost(setCurrentData);
 

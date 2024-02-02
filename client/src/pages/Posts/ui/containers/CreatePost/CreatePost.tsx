@@ -11,12 +11,13 @@ import moment from 'moment';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../app/core/redux/store';
 import { IUser } from '../../../../../app/core/api/dto/UserDto';
+import { IPost } from '../../../../../app/core/api/dto/PostDto';
 
 interface CreatePostProps {
-  setCurrentPage: (page: number) => void;
+  setCurrentData: React.Dispatch<React.SetStateAction<IPost[]>>;
 }
 
-export const CreatePost = ({ setCurrentPage }: CreatePostProps) => {
+export const CreatePost = ({ setCurrentData }: CreatePostProps) => {
   const user = useSelector<RootState, IUser | null>((state) => state.auth.user);
   const [postText, setPostText] = useState('');
 
@@ -25,9 +26,10 @@ export const CreatePost = ({ setCurrentPage }: CreatePostProps) => {
   const createPostHandler = () => {
     if (user && postText !== '') {
       createPost({ author: user.id, postText, publicDate: moment(new Date()).toISOString() }).then(
-        () => {
+        (res) => {
+          const newPost = (res as unknown as { data: { post: IPost } }).data.post;
           setPostText('');
-          setCurrentPage(1);
+          setCurrentData((prevState) => [newPost, ...prevState]);
           ToastWrapper({
             msg: 'Пост опубликован'.replace(/"/g, ''),
             type: ToastWrapperType.success,
