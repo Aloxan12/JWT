@@ -5,7 +5,7 @@ import { useRegistrationMutation } from '../../app/core/api/authApi';
 import { ToastWrapper, ToastWrapperType } from '../../Common/Components/ToastWrapper/ToastWrapper';
 import { useNavigate } from 'react-router-dom';
 import { RoleTypes } from '../../app/core/router/AppRouter';
-import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
+import { AppLoader } from '../../widgets/AppLoader/AppLoader';
 
 export const Registration = () => {
   const [registration, { isLoading: isLoadingRegistration, error }] = useRegistrationMutation();

@@ -4,7 +4,6 @@ export const getRouteCurrentUser = () => '/current-user';
 export const getRouteUsers = () => '/users';
 export const getRouteUserDetail = (id: string) => `/users/${id}`;
 export const getRouteUiKit = () => '/ui-kit';
-export const getRouteBlankSheet = () => '/blank-sheet';
 export const getRouteProjects = () => '/projects';
 export const getRouteForbidden = () => '/forbidden';
 

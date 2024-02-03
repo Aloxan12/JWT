@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './NotFound.module.scss';
 import paper from '../../utils/images/paper.png';
-import { Tooltip } from '../../Common/Components/Tooltip/Tooltip';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../app/core/redux/store';
+import { Tooltip } from '../../shared/ui/Tooltip/Tooltip';
 
 const arrNotFoundText = [
   'page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404 page not found 404',

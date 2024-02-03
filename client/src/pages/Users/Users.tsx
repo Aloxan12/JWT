@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useGetAllUsersQuery } from '../../app/core/api/usersApi';
 import { User } from './User';
 import styles from './Users.module.scss';
-import { AppInputFilter } from '../../Common/Components/AppInputFilter';
 import '../../app/App.scss';
 import { useParamsControl } from '../../shared/lib/hooks/useParamsControl';
 import { IUsersRequestDto } from '../../app/core/api/dto/UserDto';
@@ -10,8 +9,9 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../app/core/redux/store';
 import { useIsAdmin } from '../../utils/helpers';
 import { NavLink } from 'react-router-dom';
-import { AppPagination } from '../../Common/Components/AppPagination/AppPagination';
-import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
+import { AppPagination } from '../../shared/ui/AppPagination/AppPagination';
+import { AppLoader } from '../../widgets/AppLoader/AppLoader';
+import { AppInputFilter } from '../../features/AppInputFilter/AppInputFilter';
 
 export const Users = () => {
   const [limit, setLimit] = useState(10);

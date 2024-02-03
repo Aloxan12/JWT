@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { AppPagination } from '../AppPagination/AppPagination';
+import { AppPagination } from '../../../shared/ui/AppPagination/AppPagination';
 import { BaseQueryDto } from '../../../app/core/api/dto/BaseDto';
 import styles from './AppTable.module.css';
 

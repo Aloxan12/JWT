@@ -5,7 +5,6 @@ import '../../styles/container.scss';
 export const MainLayout = () => {
   return (
     <div className="container">
-      nen
       <Outlet />
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { isPaginationResetReg } from '../../../shared/lib/hooks/useParamsControl';
+import { isPaginationResetReg } from '../../lib/hooks/useParamsControl';
 import styles from './AppPagination.module.css';
 import { AppDropdown } from '../AppDropdown/AppDropdown';
 
@@ -36,10 +36,9 @@ interface IAppPagination {
   totalCount: number;
   limit: number;
   setLimit?: (limit: number) => void;
-  sticky?: boolean;
 }
 
-export const AppPagination = ({ totalCount, setLimit, limit, sticky }: IAppPagination) => {
+export const AppPagination = ({ totalCount, setLimit, limit }: IAppPagination) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const page = searchParams.get('page');
   const [currentPage, setCurrentPage] = useState<number>(!!page ? Number(page) : 1);
@@ -93,8 +92,7 @@ export const AppPagination = ({ totalCount, setLimit, limit, sticky }: IAppPagin
           <AppDropdown
             data={[10, 20, 30]}
             value={limit}
-            onChange={(value) => setLimit(value)}
-            paginationMode
+            onChange={(value) => setLimit(Number(value))}
           />
         )}
       </div>

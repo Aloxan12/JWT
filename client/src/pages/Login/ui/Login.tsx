@@ -8,7 +8,7 @@ import {
   ToastWrapper,
   ToastWrapperType,
 } from '../../../Common/Components/ToastWrapper/ToastWrapper';
-import { AppLoader } from '../../../Common/Components/AppLoader/AppLoader';
+import { AppLoader } from '../../../widgets/AppLoader/AppLoader';
 import { AppInput } from '../../../shared/ui/AppInput/AppInput';
 import { AppButton } from '../../../shared/ui/AppButton/AppButton';
 import { Flex } from '../../../shared/ui/Flex/Flex';

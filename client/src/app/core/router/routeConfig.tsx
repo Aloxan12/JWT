@@ -1,14 +1,8 @@
-import {
-  allRoutePaths,
-  getRouteBlankSheet,
-  getRouteForbidden,
-  getRouteUserDetail,
-} from './routerPaths';
+import { allRoutePaths, getRouteForbidden, getRouteUserDetail } from './routerPaths';
 import { Users } from '../../../pages/Users/Users';
 import { UserProfile } from '../../../pages/Users/UserProfile';
 import { NotFound } from '../../../pages/NotFound/NotFound';
 import { UiKit } from '../../../pages/UIKit/UIKit';
-import { BlankSheet } from '../../../pages/BlankSheet/BlankSheet';
 import { ProjectsPage } from '../../../pages/ProjectsPage/ProjectsPage';
 import { IRouteObjectExtended } from './types';
 import { PostsPage } from '../../../pages/Posts';
@@ -38,10 +32,6 @@ export const routeConfig: IRouteObjectExtended[] = [
   {
     path: allRoutePaths.uiKit.path,
     element: <UiKit />,
-  },
-  {
-    path: getRouteBlankSheet(),
-    element: <BlankSheet />,
   },
   {
     path: '*',

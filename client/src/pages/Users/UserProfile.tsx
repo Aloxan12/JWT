@@ -4,7 +4,7 @@ import { useGetUserDetailQuery } from '../../app/core/api/usersApi';
 import styles from './Users.module.scss';
 import fakeAvatar from '../../utils/images/fake_avatar.png';
 import { RoleTypes } from '../../app/core/router/AppRouter';
-import { AppLoader } from '../../Common/Components/AppLoader/AppLoader';
+import { AppLoader } from '../../widgets/AppLoader/AppLoader';
 
 export const UserProfile = () => {
   const { id } = useParams();
