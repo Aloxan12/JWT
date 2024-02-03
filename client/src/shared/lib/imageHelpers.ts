@@ -14,7 +14,8 @@ export const downloadFile = async (url: string) => {
   const blob = await response.blob();
   return new File([blob], 'file-name.jpg', { type: 'image/jpeg' });
 };
-const downloadAndCreateFiles = async (urlFile: string) => {
+
+export const downloadAndCreateFiles = async (urlFile: string) => {
   let file: File | null = null;
   if (urlFile) {
     file = await downloadFile(urlFile);
