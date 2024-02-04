@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import '../../styles/container.scss';
+import '../../app/styles/container.scss';
 
 export const MainLayout = () => {
   return (

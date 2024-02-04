@@ -6,10 +6,7 @@ import { AppButton } from '../../../shared/ui/AppButton/AppButton';
 import { AppModal } from '../../../shared/ui/AppModal/Modal';
 import { AppInputFile } from '../../../shared/ui/AppInputFile/AppInputFile';
 import { useUploadUserAvatarMutation } from '../../../app/core/api/usersApi';
-import {
-  ToastWrapper,
-  ToastWrapperType,
-} from '../../../Common/Components/ToastWrapper/ToastWrapper';
+import { ToastWrapper, ToastWrapperType } from '../../../entities/ToastWrapper/ToastWrapper';
 
 interface IChangeAvatarProps {
   userId: string;

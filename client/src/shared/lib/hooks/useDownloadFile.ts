@@ -1,9 +1,6 @@
 import { useEffect } from 'react';
 import { downloadFile } from '../downloadFile';
-import {
-  ToastWrapper,
-  ToastWrapperType,
-} from '../../../Common/Components/ToastWrapper/ToastWrapper';
+import { ToastWrapper, ToastWrapperType } from '../../../entities/ToastWrapper/ToastWrapper';
 
 export const useDownloadFile = (
   setFile: (file: File | null) => void,

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { AppPagination } from '../../../shared/ui/AppPagination/AppPagination';
-import { BaseQueryDto } from '../../../app/core/api/dto/BaseDto';
+import { AppPagination } from '../../shared/ui/AppPagination/AppPagination';
+import { BaseQueryDto } from '../../app/core/api/dto/BaseDto';
 import styles from './AppTable.module.css';
 
 interface ISortTableParams {
@@ -54,7 +54,6 @@ export const AppTable = <T, TKey extends keyof T>({
   useEffect(() => {
     setTableData(data.results);
   }, [data]);
-
   return (
     <div className={styles.AppTableWrap}>
       <table>

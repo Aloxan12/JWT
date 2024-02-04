@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import './Registration.css';
 import { useRegistrationMutation } from '../../app/core/api/authApi';
-import { ToastWrapper, ToastWrapperType } from '../../Common/Components/ToastWrapper/ToastWrapper';
+import { ToastWrapper, ToastWrapperType } from '../../entities/ToastWrapper/ToastWrapper';
 import { useNavigate } from 'react-router-dom';
 import { RoleTypes } from '../../app/core/router/AppRouter';
 import { AppLoader } from '../../widgets/AppLoader/AppLoader';

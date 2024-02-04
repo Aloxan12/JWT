@@ -4,10 +4,7 @@ import { useLoginMutation } from '../../../app/core/api/authApi';
 import { useAppDispatch } from '../../../app/core/redux/store';
 import { setAuthData } from '../../../app/core/redux/Reducers/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
-import {
-  ToastWrapper,
-  ToastWrapperType,
-} from '../../../Common/Components/ToastWrapper/ToastWrapper';
+import { ToastWrapper, ToastWrapperType } from '../../../entities/ToastWrapper/ToastWrapper';
 import { AppLoader } from '../../../widgets/AppLoader/AppLoader';
 import { AppInput } from '../../../shared/ui/AppInput/AppInput';
 import { AppButton } from '../../../shared/ui/AppButton/AppButton';

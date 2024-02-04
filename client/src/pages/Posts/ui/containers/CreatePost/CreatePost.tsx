@@ -2,10 +2,7 @@ import { AppTextarea } from '../../../../../shared/ui/AppTextarea/AppTextarea';
 import { AppButton } from '../../../../../shared/ui/AppButton/AppButton';
 import { Flex } from '../../../../../shared/ui/Flex/Flex';
 import React, { useState } from 'react';
-import {
-  ToastWrapper,
-  ToastWrapperType,
-} from '../../../../../Common/Components/ToastWrapper/ToastWrapper';
+import { ToastWrapper, ToastWrapperType } from '../../../../../entities/ToastWrapper/ToastWrapper';
 import { useCreatePostsMutation } from '../../../../../app/core/api/postApi';
 import moment from 'moment';
 import { useSelector } from 'react-redux';

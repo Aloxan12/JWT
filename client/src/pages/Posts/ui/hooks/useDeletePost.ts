@@ -1,8 +1,5 @@
 import { useDeletePostMutation } from '../../../../app/core/api/postApi';
-import {
-  ToastWrapper,
-  ToastWrapperType,
-} from '../../../../Common/Components/ToastWrapper/ToastWrapper';
+import { ToastWrapper, ToastWrapperType } from '../../../../entities/ToastWrapper/ToastWrapper';
 import React, { useCallback, useState } from 'react';
 import { IPost } from '../../../../app/core/api/dto/PostDto';
 
