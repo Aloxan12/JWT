@@ -1,7 +1,7 @@
 import React, { memo, useState } from 'react';
 import cls from './Post.module.scss';
 import moment from 'moment';
-import { contentToHtml } from '../../../../../utils/helpers';
+import { contentToHtml } from '../../../../../shared/lib/helpers';
 import { AppTrash } from '../../../../../shared/ui/AppTrash/AppTrash';
 import { IPost } from '../../../../../app/core/api/dto/PostDto';
 import likePhoto from '../../../../../utils/images/like.png';

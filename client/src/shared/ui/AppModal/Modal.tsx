@@ -5,7 +5,7 @@ import { Flex } from '../Flex/Flex';
 import { classNames, Mods } from '../../lib/classNames/classNames';
 import { onStopPropagationHandler } from '../../lib/onStopPropagationHandler';
 import { AppIco } from '../AppSvg/AppIco';
-import { ReactComponent as CloseIco } from '../../../utils/images/icons/close.svg';
+import { ReactComponent as CloseIco } from '../../assets/icons/close.svg';
 
 interface ModalProps {
   className?: string;

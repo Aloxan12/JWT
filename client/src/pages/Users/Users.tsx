@@ -7,7 +7,7 @@ import { useParamsControl } from '../../shared/lib/hooks/useParamsControl';
 import { IUsersRequestDto } from '../../app/core/api/dto/UserDto';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/core/redux/store';
-import { useIsAdmin } from '../../utils/helpers';
+import { useIsAdmin } from '../../shared/lib/helpers';
 import { NavLink } from 'react-router-dom';
 import { AppPagination } from '../../shared/ui/AppPagination/AppPagination';
 import { AppLoader } from '../../widgets/AppLoader/AppLoader';

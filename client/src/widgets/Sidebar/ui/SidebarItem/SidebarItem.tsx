@@ -2,7 +2,7 @@ import React from 'react';
 import { AppLink } from '../../../../shared/ui/AppLink/AppLink';
 import cls from './SidebarItem.module.scss';
 import { AppIco } from '../../../../shared/ui/AppSvg/AppIco';
-import { ReactComponent as SearchIco } from '../../../../utils/images/icons/search.svg';
+import { ReactComponent as SearchIco } from '../../../../shared/assets/icons/search.svg';
 import { AppText } from '../../../../shared/ui/AppText/AppText';
 import { ISidebarItem } from '../../model/types';
 

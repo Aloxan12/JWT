@@ -4,7 +4,7 @@ import { classNames } from '../../lib/classNames/classNames';
 import cls from './AppDragAndDrop.module.scss';
 import { AppPhoto } from '../AppPhoto/AppPhoto';
 import { AppIco } from '../AppSvg/AppIco';
-import { ReactComponent as DotesVertical } from '../../../utils/images/icons/dotes-v.svg';
+import { ReactComponent as DotesVertical } from '../../assets/icons/dotes-v.svg';
 import { Flex } from '../Flex/Flex';
 import { AppPopover } from '../AppPopover/AppPopover';
 import { AppInputFile } from '../AppInputFile/AppInputFile';

@@ -3,7 +3,7 @@ import { AppCard } from '../../../shared/ui/AppCard/AppCard';
 import { Flex } from '../../../shared/ui/Flex/Flex';
 import { AppPopover } from '../../../shared/ui/AppPopover/AppPopover';
 import { AppButton } from '../../../shared/ui/AppButton/AppButton';
-import Ico from '../../../utils/images/icons/success.svg';
+import Ico from '../../../shared/assets/icons/success.svg';
 import { AppTooltip } from '../../../shared/ui/AppTooltip/AppTooltip';
 
 export const NotificationsContainers = () => {

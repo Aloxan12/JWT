@@ -2,9 +2,9 @@ import React from 'react';
 import { AppCard } from '../../../shared/ui/AppCard/AppCard';
 import { AppButton } from '../../../shared/ui/AppButton/AppButton';
 import { Flex } from '../../../shared/ui/Flex/Flex';
-import { ReactComponent as SearchIco } from '../../../utils/images/icons/search.svg';
-import { ReactComponent as PlusIco } from '../../../utils/images/icons/add.svg';
-import { ReactComponent as ArrowDown } from '../../../utils/images/icons/arrow-down.svg';
+import { ReactComponent as SearchIco } from '../../../shared/assets/icons/search.svg';
+import { ReactComponent as PlusIco } from '../../../shared/assets/icons/add.svg';
+import { ReactComponent as ArrowDown } from '../../../shared/assets/icons/arrow-down.svg';
 
 export const ButtonsContainers = () => {
   return (
