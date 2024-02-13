@@ -1,7 +1,7 @@
 import React, { ChangeEvent, memo, useState } from 'react';
 import cls from './AppInputFile.module.scss';
 import { classNames, Mods } from '../../lib/classNames/classNames';
-import { ReactComponent } from '../../../utils/images/icons/search.svg';
+import { ReactComponent } from '../../assets/icons/search.svg';
 import { AppIco } from '../AppSvg/AppIco';
 
 type AppInputFileTheme = 'btn' | 'text';

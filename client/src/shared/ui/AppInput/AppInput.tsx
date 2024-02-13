@@ -2,7 +2,7 @@ import React, { ChangeEvent, InputHTMLAttributes } from 'react';
 import cls from './AppInput.module.scss';
 import { classNames, Mods } from '../../lib/classNames/classNames';
 import { AppIco } from '../AppSvg/AppIco';
-import { ReactComponent } from '../../../utils/images/icons/search.svg';
+import { ReactComponent } from '../../assets/icons/search.svg';
 
 type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,

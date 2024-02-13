@@ -2,7 +2,7 @@ import React, { useRef, useState, MouseEvent, useMemo, FormEvent } from 'react';
 import cls from './AppDropdown.module.scss';
 import { AppInput } from '../AppInput/AppInput';
 import { classNames, Mods } from '../../lib/classNames/classNames';
-import { ReactComponent as ArrowIco } from '../../../utils/images/icons/arrow-down.svg';
+import { ReactComponent as ArrowIco } from '../../assets/icons/arrow-down.svg';
 import { useOutsideClick } from '../../lib/hooks/useOutsideClick';
 
 const preventDefaultHandler = (e: FormEvent<HTMLUListElement>) => {

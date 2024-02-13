@@ -2,7 +2,7 @@ import React, { useMemo, useRef, useState } from 'react';
 import { classNames, Mods } from '../../lib/classNames/classNames';
 import cls from './AppTimePicker.module.scss';
 import { AppInput } from '../AppInput/AppInput';
-import { ReactComponent as ClockIco } from '../../../utils/images/icons/watch.svg';
+import { ReactComponent as ClockIco } from '../../assets/icons/watch.svg';
 import { useOutsideClick } from '../../lib/hooks/useOutsideClick';
 
 interface AppTimePickerProps {
