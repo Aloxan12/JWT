@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import trashIco from '../../../utils/images/trash.png';
+import trashIco from '../../assets/images/trash.png';
 import cls from './AppTrash.module.scss';
 import { AppPhoto } from '../AppPhoto/AppPhoto';
 import { AppModal } from '../AppModal/Modal';

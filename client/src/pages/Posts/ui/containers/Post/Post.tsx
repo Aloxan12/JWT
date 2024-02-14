@@ -4,7 +4,7 @@ import moment from 'moment';
 import { contentToHtml } from '../../../../../shared/lib/helpers';
 import { AppTrash } from '../../../../../shared/ui/AppTrash/AppTrash';
 import { IPost } from '../../../../../app/core/api/dto/PostDto';
-import likePhoto from '../../../../../utils/images/like.png';
+import likePhoto from '../../../../../shared/assets/images/like.png';
 import { AppAvatar } from '../../../../../shared/ui/AppAvatar/AppAvatar';
 import { Flex } from '../../../../../shared/ui/Flex/Flex';
 import { AppText } from '../../../../../shared/ui/AppText/AppText';

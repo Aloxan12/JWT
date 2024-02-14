@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Users.module.scss';
-import fakeAvatar from '../../utils/images/fake_avatar.png';
+import fakeAvatar from '../../shared/assets/images/fake_avatar.png';
 import { IUser } from '../../app/core/api/dto/UserDto';
 import { Tooltip } from '../../shared/ui/Tooltip/Tooltip';
 

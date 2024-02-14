@@ -2,7 +2,7 @@ import React from 'react';
 import { AppCard } from '../../../shared/ui/AppCard/AppCard';
 import { Flex } from '../../../shared/ui/Flex/Flex';
 import { AppPhoto } from '../../../shared/ui/AppPhoto/AppPhoto';
-import Photo from '../../../utils/images/fake-photo.jpg';
+import Photo from '../../../shared/assets/images/fake-photo.jpg';
 import { ReactComponent as SearchIco } from '../../../shared/assets/icons/search.svg';
 import { AppIco } from '../../../shared/ui/AppSvg/AppIco';
 import { AppAvatar } from '../../../shared/ui/AppAvatar/AppAvatar';

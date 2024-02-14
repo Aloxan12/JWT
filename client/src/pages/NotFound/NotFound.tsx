@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './NotFound.module.scss';
-import paper from '../../utils/images/paper.png';
+import paper from '../../shared/assets/images/paper.png';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../app/core/redux/store';
 import { Tooltip } from '../../shared/ui/Tooltip/Tooltip';
