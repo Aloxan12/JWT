@@ -1,10 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useGetUserDetailQuery } from '../../app/core/api/usersApi';
-import styles from './Users.module.scss';
-import fakeAvatar from '../../shared/assets/images/fake_avatar.png';
-import { RoleTypes } from '../../app/core/router/AppRouter';
-import { AppLoader } from '../../widgets/AppLoader/AppLoader';
+import { useGetUserDetailQuery } from '../../../../app/core/api/usersApi';
+import styles from '../Users.module.scss';
+import fakeAvatar from '../../../../shared/assets/images/fake_avatar.png';
+import { RoleTypes } from '../../../../app/core/router/AppRouter';
+import { AppLoader } from '../../../../widgets/AppLoader/AppLoader';
 
 export const UserProfile = () => {
   const { id } = useParams();

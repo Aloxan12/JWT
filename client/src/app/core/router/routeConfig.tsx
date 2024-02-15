@@ -1,12 +1,12 @@
 import { allRoutePaths, getRouteForbidden, getRouteUserDetail } from './routerPaths';
-import { Users } from '../../../pages/Users/Users';
-import { UserProfile } from '../../../pages/Users/UserProfile';
+import { UserProfile } from '../../../pages/Users/ui/components/UserProfile';
 import { NotFound } from '../../../pages/NotFound/NotFound';
 import { UiKit } from '../../../pages/UIKit/UIKit';
 import { ProjectsPage } from '../../../pages/ProjectsPage/ProjectsPage';
 import { IRouteObjectExtended } from './types';
 import { PostsPage } from '../../../pages/Posts';
 import { PersonalAccount } from '../../../pages/PersonalAccount/PersonalAccount';
+import { UsersPage } from '../../../pages/Users/index';
 
 export const routeConfig: IRouteObjectExtended[] = [
   {
@@ -15,7 +15,7 @@ export const routeConfig: IRouteObjectExtended[] = [
   },
   {
     path: allRoutePaths.users.path,
-    element: <Users />,
+    element: <UsersPage />,
   },
   {
     path: getRouteUserDetail(':id'),
