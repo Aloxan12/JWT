@@ -34,7 +34,7 @@ export const AppPhoto = ({
     img.onload = () => {
       setIsLoading(false);
     };
-    img.onerror = () => {
+    img.onerror = (error) => {
       setIsLoading(false);
       setHasError(true);
     };
