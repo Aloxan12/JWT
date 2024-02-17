@@ -26,7 +26,8 @@ export const AppPhoto = ({
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
-  const newSrc = fixGoogleDriveUrl(src);
+  // const newSrc = fixGoogleDriveUrl(src);
+  const newSrc = src;
 
   useEffect(() => {
     const img = new Image();
