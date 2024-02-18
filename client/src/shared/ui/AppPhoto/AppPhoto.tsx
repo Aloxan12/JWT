@@ -26,9 +26,9 @@ export const AppPhoto = ({
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
-  // const newSrc = fixGoogleDriveUrl(src);
-  const newSrc = src;
-
+  const newSrc = fixGoogleDriveUrl(src);
+  // const newSrc = src;
+  console.log('newSrc', newSrc);
   useEffect(() => {
     const img = new Image();
     img.src = newSrc ?? '';
@@ -44,14 +44,14 @@ export const AppPhoto = ({
   if (isLoading) {
     return <AppSkeleton width={width} height={height} border={`${radius}`} className={className} />;
   }
-
-  if (hasError) {
-    return <AppSkeleton width={width} height={height} border={`${radius}`} className={className} />;
-  }
+  //
+  // if (hasError) {
+  //   return <AppSkeleton width={width} height={height} border={`${radius}`} className={className} />;
+  // }
 
   return (
     <img
-      src={newSrc}
+      src={'https://drive.google.com/uc?id=1SZ9TSkYVP2RYKrtarDlkrgX_bXfSqBpv'}
       className={classNames(cls.img, {}, [cls[`border-radius-${radius}`], cls[fit], className])}
       width={width}
       height={height}

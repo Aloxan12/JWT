@@ -3,19 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://Aloxan12.github.io/JWT",
-  "proxy": {
-    "/lh3-google-com": {
-      "target": "https://drive.google.com/",
-      "changeOrigin": true,
-      "secure": false,
-      "headers": {
-        "referer": "https://aloxan12.github.io/JWT/"
-      },
-      "pathRewrite": {
-        "^/lh3-google-com": ""
-      }
-    }
-  },
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.2",
     "@testing-library/jest-dom": "^5.14.1",
