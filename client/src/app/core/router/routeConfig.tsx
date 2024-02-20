@@ -1,4 +1,4 @@
-import { allRoutePaths, getRouteForbidden, getRouteUserDetail } from './routerPaths';
+import { allRoutePaths } from './routerPaths';
 import { UserProfile } from '../../../pages/Users/ui/components/UserProfile';
 import { NotFound } from '../../../pages/NotFound/NotFound';
 import { UiKit } from '../../../pages/UIKit/UIKit';
@@ -16,10 +16,12 @@ export const routeConfig: IRouteObjectExtended[] = [
   {
     path: allRoutePaths.users.path,
     element: <UsersPage />,
-  },
-  {
-    path: getRouteUserDetail(':id'),
-    element: <UserProfile />,
+    children: [
+      {
+        path: allRoutePaths.userDetail.path,
+        element: <UserProfile />,
+      },
+    ],
   },
   {
     path: allRoutePaths.currentProfile.path,
@@ -38,7 +40,7 @@ export const routeConfig: IRouteObjectExtended[] = [
     element: <NotFound />,
   },
   {
-    path: getRouteForbidden(),
+    path: allRoutePaths.forbidden.path,
     element: <div>Нет доступна для данной роли</div>,
   },
 ];
