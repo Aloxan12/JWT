@@ -15,8 +15,8 @@ export const routeConfig: IRouteObjectExtended[] = [
   },
   {
     path: allRoutePaths.users.path,
-    element: <UsersPage />,
     children: [
+      { index: true, element: <UsersPage /> },
       {
         path: allRoutePaths.userDetail.path,
         element: <UserProfile />,

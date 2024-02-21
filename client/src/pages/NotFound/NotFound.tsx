@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import styles from './NotFound.module.scss';
 import paper from '../../shared/assets/images/paper.png';
 import { useNavigate } from 'react-router-dom';
@@ -27,6 +27,13 @@ const arrNotFoundText = [
 export const NotFound = () => {
   const navigate = useNavigate();
   const isAuth = useAppSelector((state) => state.auth.token);
+
+  useLayoutEffect(() => {
+    if (window.location.pathname.includes('/JWT')) {
+      navigate('/');
+    }
+  }, [navigate]);
+
   return (
     <React.Fragment>
       <div className={styles.NotFoundWrap}>
