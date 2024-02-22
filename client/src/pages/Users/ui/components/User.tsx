@@ -4,6 +4,7 @@ import { IUser } from '../../../../app/core/api/dto/UserDto';
 import { Tooltip } from '../../../../shared/ui/Tooltip/Tooltip';
 import { AppPhoto } from '../../../../shared/ui/AppPhoto/AppPhoto';
 import avatarFake from '../../../../shared/assets/images/fake_avatar.png';
+import { AppCard } from '../../../../shared/ui/AppCard/AppCard';
 
 interface IUserProps {
   user: IUser;
@@ -11,7 +12,7 @@ interface IUserProps {
 
 export const User = ({ user }: IUserProps) => {
   return (
-    <div key={user.id} className={cls.userItem}>
+    <AppCard key={user.id} withoutBorder boxShadow classNameContent={cls.userItem}>
       <div className={cls.userPhotoBlock}>
         <AppPhoto src={user.avatar || avatarFake} alt={'avatar'} />
       </div>
@@ -19,6 +20,6 @@ export const User = ({ user }: IUserProps) => {
         <div className={cls.UserEmailBlock}>{user.email}</div>
       </Tooltip>
       <div>Роль: {!!user.role ? user.role : 'Без роли'}</div>
-    </div>
+    </AppCard>
   );
 };
