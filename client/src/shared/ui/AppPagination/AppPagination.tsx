@@ -33,12 +33,12 @@ function createPages(pages: (number | string)[], pagesCount: number, currentPage
 }
 
 interface IAppPagination {
-  totalCount: number;
+  totalCount?: number;
   limit: number;
   setLimit?: (limit: number) => void;
 }
 
-export const AppPagination = ({ totalCount, setLimit, limit }: IAppPagination) => {
+export const AppPagination = ({ setLimit, limit, totalCount = 0 }: IAppPagination) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const page = searchParams.get('page');
   const [currentPage, setCurrentPage] = useState<number>(!!page ? Number(page) : 1);
