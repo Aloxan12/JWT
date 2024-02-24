@@ -2,6 +2,16 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+
+  a{
+    display: flex;
+    height: 100%;
+    border-bottom: none;
+    &:hover{
+      border-radius: 20px;
+      border-bottom: none;
+    }
+  }
 }
 
 .max{
@@ -13,6 +23,11 @@
 .boxShadow{
   .content{
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  }
+  a{
+    &:hover{
+      box-shadow: rgba(0, 0, 0, 0.3) 0 4px 12px;
+    }
   }
 }
 
