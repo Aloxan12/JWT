@@ -5,6 +5,7 @@ import styles from '../Users.module.scss';
 import fakeAvatar from '../../../../shared/assets/images/fake_avatar.png';
 import { RoleTypes } from '../../../../app/core/router/AppRouter';
 import { AppLoader } from '../../../../widgets/AppLoader/AppLoader';
+import { AppPhoto } from '../../../../shared/ui/AppPhoto/AppPhoto';
 
 export const UserProfile = () => {
   const { userId } = useParams();
@@ -19,7 +20,13 @@ export const UserProfile = () => {
       {(isLoadingCurrent || isFetchingCurrent) && <AppLoader />}
       <div className={styles.UserProfileInfoWrap}>
         <div className={styles.UserProfilePhoto}>
-          <img src={user && user.avatar ? user.avatar : fakeAvatar} alt={'avatar'} />
+          <AppPhoto
+            src={user?.avatar || fakeAvatar}
+            alt="avatar"
+            width={340}
+            height={300}
+            radius="12"
+          />
         </div>
         {!!user && (
           <div className={styles.UserProfileInfo}>
