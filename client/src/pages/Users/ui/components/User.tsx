@@ -20,7 +20,13 @@ export const User = memo(({ user }: IUserProps) => {
       toContent={`${user.id}`}
     >
       <div className={cls.userPhotoBlock}>
-        <AppPhoto src={user.avatar || avatarFake} alt="avatar" />
+        <AppPhoto
+          src={user.avatar || avatarFake}
+          alt="avatar"
+          width={150}
+          height={150}
+          radius={'8'}
+        />
       </div>
       <Tooltip content={user.email}>
         <div className={cls.UserEmailBlock}>{user.email}</div>

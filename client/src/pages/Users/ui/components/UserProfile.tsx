@@ -7,12 +7,12 @@ import { RoleTypes } from '../../../../app/core/router/AppRouter';
 import { AppLoader } from '../../../../widgets/AppLoader/AppLoader';
 
 export const UserProfile = () => {
-  const { id } = useParams();
+  const { userId } = useParams();
   const {
     data: user,
     isLoading: isLoadingCurrent,
     isFetching: isFetchingCurrent,
-  } = useGetUserDetailQuery({ id: id! }, { skip: !id });
+  } = useGetUserDetailQuery({ id: userId! }, { skip: !userId });
 
   return (
     <div className={styles.UserProfileWrap}>

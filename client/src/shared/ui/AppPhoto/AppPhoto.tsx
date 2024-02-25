@@ -44,7 +44,14 @@ export const AppPhoto = ({
   }
 
   if (hasError) {
-    return <AppSkeleton width={width} height={height} border={`${radius}`} className={className} />;
+    return (
+      <AppSkeleton
+        width={width}
+        height={height}
+        border={`${radius === '50%' ? radius : `${radius}px`}`}
+        className={className}
+      />
+    );
   }
 
   return (
