@@ -7,6 +7,7 @@ import { IRouteObjectExtended } from './types';
 import { PostsPage } from '../../../pages/Posts';
 import { PersonalAccount } from '../../../pages/PersonalAccount/PersonalAccount';
 import { UsersPage } from '../../../pages/Users/index';
+import { ChatPage } from '../../../pages/ChatPage';
 
 export const routeConfig: IRouteObjectExtended[] = [
   {
@@ -26,6 +27,10 @@ export const routeConfig: IRouteObjectExtended[] = [
   {
     path: allRoutePaths.currentProfile.path,
     element: <PersonalAccount />,
+  },
+  {
+    path: allRoutePaths.chat.path,
+    element: <ChatPage />,
   },
   {
     path: allRoutePaths.projects.path,

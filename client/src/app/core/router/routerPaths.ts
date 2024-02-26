@@ -17,6 +17,9 @@ export const allRoutePaths = {
   main: {
     path: '/',
   },
+  chat: {
+    path: 'chat',
+  },
   currentProfile: {
     path: 'current-profile',
   },
