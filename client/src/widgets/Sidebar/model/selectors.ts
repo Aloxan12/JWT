@@ -9,6 +9,7 @@ const sidebarItemList: ISidebarItem[] = [
   { name: 'Пользователи', path: allRoutePaths.users.path, ico: SearchIco },
   { name: 'UI kit', path: allRoutePaths.uiKit.path, ico: SearchIco },
   { name: 'Мои проекты', path: allRoutePaths.projects.path, ico: SearchIco },
+  { name: 'Общий чат', path: allRoutePaths.chat.path, ico: SearchIco },
 ];
 
 export const getSidebarItemList = createSelector(getUserData, (user) => sidebarItemList);

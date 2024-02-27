@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './Posts.module.scss';
+import cls from './Posts.module.scss';
 import { AppTitle } from '../../../shared/ui/AppTitle/AppTitle';
 import { AppCard } from '../../../shared/ui/AppCard/AppCard';
 import { CreatePost } from './containers/CreatePost/CreatePost';
@@ -17,7 +17,7 @@ const Posts = () => {
   });
 
   return (
-    <AppCard classNameContent={styles.postBlock} max boxShadow withoutBorder>
+    <AppCard classNameContent={cls.postBlock} max boxShadow withoutBorder>
       <AppTitle title="Посты" titleTag="h1" align="center" />
       <CreatePost setCurrentData={setCurrentData} />
       <PostList
