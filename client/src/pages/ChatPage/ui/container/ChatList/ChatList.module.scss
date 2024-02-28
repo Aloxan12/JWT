@@ -1,0 +1,22 @@
+.chatList{
+  max-width: 250px;
+  width: 100%;
+}
+
+.chatItem{
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: .2s;
+
+  &.active{
+    pointer-events: none;
+    background-color: var(--color-green-main);
+  }
+  &:hover{
+    transition: .2s;
+    background-color: var(--color-green-main);
+  }
+}
