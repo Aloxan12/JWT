@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RoleTypes } from '../router/AppRouter';
 import { LoginResponse } from './dto/BaseDto';
 import { RootState } from '../redux/store';
+import io from 'socket.io-client';
 
 interface ISendRegistration {
   email: string;
@@ -13,8 +14,11 @@ interface ISendLogin {
   password: string;
 }
 const local = 'http://localhost:5000/';
+const localWs = 'ws://localhost:5000/';
 const vercel = 'https://node-js-lyart.vercel.app/';
+
 export const host = location.href.includes('localhost') ? vercel : vercel;
+export const socket = io(local, { withCredentials: true });
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
