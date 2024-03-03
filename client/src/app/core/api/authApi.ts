@@ -18,7 +18,7 @@ const localWs = 'ws://localhost:5000/';
 const vercel = 'https://node-js-lyart.vercel.app/';
 
 export const host = location.href.includes('localhost') ? vercel : vercel;
-export const socket = io(local, { withCredentials: true });
+export const socket = io(vercel, { withCredentials: true });
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
