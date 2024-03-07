@@ -4,10 +4,11 @@ import { classNames } from '../../../shared/lib/classNames/classNames';
 import { ChatList } from './container/ChatList/ChatList';
 import { Chat } from './container/Chat';
 import { Flex } from '../../../shared/ui/Flex/Flex';
-import { localWs, webSocket } from '../../../app/core/api/authApi';
+import { webSocket } from '../../../app/core/api/authApi';
 import { AppButton } from '../../../shared/ui/AppButton/AppButton';
+import { connect } from '../helpers/connectionWs';
 
-interface IMessage {
+export interface IMessage {
   text: string;
   username: string;
   event: string;
@@ -26,26 +27,6 @@ const ChatPage = () => {
   const [connected, setConnected] = useState(false);
   const socket = useRef<WebSocket | null>(null);
 
-  function connect() {
-    socket.current = new WebSocket(localWs);
-    socket.current.onopen = () => {
-      console.log('meme');
-      setConnected(true);
-      socket.current?.send(JSON.stringify(message));
-      console.log('WebSocket connection opened');
-    };
-    socket.current.onmessage = (event) => {
-      const data = event.data;
-      console.log('data,', data);
-      const message: IMessage = JSON.parse(event.data);
-      setMessages((prevState) => [...prevState, message]);
-      console.log('Received message:', message);
-    };
-    socket.current.onclose = (event) => {
-      console.log('WebSocket connection closed', event);
-    };
-  }
-
   const getMessageHandler = () => {
     if (socket.current) {
       socket.current.onmessage = (event) => {
@@ -55,9 +36,12 @@ const ChatPage = () => {
       };
     }
   };
+
   const sendMessage = () => {
     webSocket.send(JSON.stringify(message));
   };
+
+  const onConnectHandler = () => connect(socket, setConnected, setMessages);
 
   return (
     <Flex gap="32" align="start" className={classNames(cls.chatPageWrapper)}>
@@ -67,7 +51,7 @@ const ChatPage = () => {
           <AppButton text="отправить сообщения" onClick={sendMessage} />
         </Flex>
       ) : (
-        <AppButton text="Войти" onClick={connect} />
+        <AppButton text="Войти" onClick={onConnectHandler} />
       )}
       {messages.map((item, index) => (
         <div key={index}>{item.text}</div>
