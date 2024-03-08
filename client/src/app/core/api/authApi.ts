@@ -12,11 +12,11 @@ interface ISendLogin {
   email: string;
   password: string;
 }
-// const local = 'http://localhost:5000/';
+const local = 'http://localhost:5000/';
 export const localWs = 'ws://localhost:5000';
 const vercel = 'https://node-js-lyart.vercel.app/';
 
-export const host = location.href.includes('localhost') ? vercel : vercel;
+export const host = location.href.includes('localhost') ? local : vercel;
 export const webSocket = new WebSocket(localWs);
 export const authApi = createApi({
   reducerPath: 'authApi',
