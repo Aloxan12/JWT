@@ -7,12 +7,13 @@ import { Flex } from '../../../shared/ui/Flex/Flex';
 import { webSocket } from '../../../app/core/api/authApi';
 import { AppButton } from '../../../shared/ui/AppButton/AppButton';
 import { connect } from '../helpers/connectionWs';
+import { useAppSelector } from '../../../app/core/redux/store';
 
 export interface IMessage {
   text: string;
   username: string;
   event: string;
-  id: 1234;
+  id?: 1234;
 }
 
 const message = {
@@ -23,9 +24,11 @@ const message = {
 };
 
 const ChatPage = () => {
+  const { user } = useAppSelector((state) => state.auth);
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [connected, setConnected] = useState(false);
   const socket = useRef<WebSocket | null>(null);
+  const [text, setText] = useState('');
 
   const getMessageHandler = () => {
     if (socket.current) {
@@ -38,7 +41,12 @@ const ChatPage = () => {
   };
 
   const sendMessage = () => {
-    webSocket.send(JSON.stringify(message));
+    const newMessage: IMessage = {
+      username: user?.email || 'email скрыт',
+      text,
+      event: 'message',
+    };
+    webSocket.send(JSON.stringify(newMessage));
   };
 
   const onConnectHandler = () => connect(socket, setConnected, setMessages);
@@ -53,9 +61,11 @@ const ChatPage = () => {
       ) : (
         <AppButton text="Войти" onClick={onConnectHandler} />
       )}
-      {messages.map((item, index) => (
-        <div key={index}>{item.text}</div>
-      ))}
+      <Flex direction="column" gap="8">
+        {messages.map((item, index) => (
+          <div key={index}>{item.text}</div>
+        ))}
+      </Flex>
       <ChatList />
       <Chat />
     </Flex>
