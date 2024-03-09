@@ -67,7 +67,7 @@ const ChatPage = () => {
         ))}
       </Flex>
       <ChatList />
-      <Chat />
+      <Chat messages={messages} />
     </Flex>
   );
 };
