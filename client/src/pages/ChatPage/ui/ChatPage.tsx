@@ -28,7 +28,7 @@ const ChatPage = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [connected, setConnected] = useState(false);
   const socket = useRef<WebSocket | null>(null);
-  const [text, setText] = useState('');
+  const [text, setText] = useState('new message');
 
   const getMessageHandler = () => {
     if (socket.current) {
@@ -40,15 +40,6 @@ const ChatPage = () => {
     }
   };
 
-  const sendMessage = () => {
-    const newMessage: IMessage = {
-      username: user?.email || 'email скрыт',
-      text,
-      event: 'message',
-    };
-    webSocket.send(JSON.stringify(newMessage));
-  };
-
   const onConnectHandler = () => connect(socket, setConnected, setMessages);
 
   return (
@@ -56,18 +47,12 @@ const ChatPage = () => {
       {connected ? (
         <Flex>
           <AppButton text="получить сообщения" onClick={getMessageHandler} />
-          <AppButton text="отправить сообщения" onClick={sendMessage} />
         </Flex>
       ) : (
         <AppButton text="Войти" onClick={onConnectHandler} />
       )}
-      <Flex direction="column" gap="8">
-        {messages.map((item, index) => (
-          <div key={index}>{item.text}</div>
-        ))}
-      </Flex>
       <ChatList />
-      <Chat messages={messages} />
+      <Chat messages={messages} socket={socket} username={user?.email || 'Не указан'} />
     </Flex>
   );
 };
