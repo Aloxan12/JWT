@@ -21,12 +21,14 @@ export const Chat = ({ messages, socket, username }: ChatProps) => {
       text,
       event: 'message',
     };
-    webSocket.send(JSON.stringify(newMessage));
+    // socket?.current?.send(JSON.stringify(newMessage));
+    webSocket?.send(JSON.stringify(newMessage));
+    setText('');
   };
-
+  console.log('messages', messages);
   return (
     <Flex align="start" direction="column" gap="32" className={cls.chatListWrapper}>
-      <Flex direction="column" align="start" gap="16" className={cls.chatList}>
+      <Flex direction="column" align="start" gap="16" className={cls.chatList} max>
         {messages.map((message, index) => (
           <div key={index}>{message.text}</div>
         ))}
