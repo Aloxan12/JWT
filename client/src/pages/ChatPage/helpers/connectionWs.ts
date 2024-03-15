@@ -6,7 +6,7 @@ const message = {
   id: 1,
   event: 'connection',
   username: 'alex',
-  text: '1 est',
+  text: 'Подключился кто-то',
 };
 
 export function useWsConnect(
@@ -28,8 +28,14 @@ export function useWsConnect(
       setMessages((prevState) => [...prevState, message]);
       console.log('Received message:', message);
     };
-    socket.current.onclose = (event) => {
-      console.log('WebSocket connection closed', event);
+    // socket.current.onclose = (event) => {
+    //   console.log('WebSocket connection closed', event);
+    // };
+    return () => {
+      if (socket.current) {
+        socket.current.close(); // Закрытие соединения
+        console.log('WebSocket connection closed');
+      }
     };
   }, []);
 }
