@@ -1,8 +1,8 @@
 .chatPageWrapper{
   flex: 1;
   height: 100%;
-  border: 1px solid;
   padding: 12px;
+  position: relative;
 
   .chatListWrapper{
     width: 100%;
@@ -14,5 +14,11 @@
       padding: 8px;
       height: 80%;
     }
+  }
+  .errorText{
+    position: absolute;
+    top: 6px;
+    right: 16px;
+    transform: translateY(-100%);
   }
 }
