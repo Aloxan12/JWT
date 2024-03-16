@@ -11,7 +11,7 @@ import { AppText } from '../../../shared/ui/AppText/AppText';
 export interface IMessage {
   text: string;
   username: string;
-  event: string;
+  event: 'connection' | 'message';
   id?: 1234;
 }
 
@@ -25,7 +25,7 @@ const ChatPage = () => {
 
   return (
     <Flex gap="32" align="start" className={classNames(cls.chatPageWrapper)}>
-      {connected && <AppText text="Ошибка соединения" color="red" className={cls.errorText} />}
+      {!connected && <AppText text="Ошибка соединения" color="red" className={cls.errorText} />}
       <ChatList />
       <Chat messages={messages} socket={socket} username={user?.email || 'Не указан'} />
     </Flex>

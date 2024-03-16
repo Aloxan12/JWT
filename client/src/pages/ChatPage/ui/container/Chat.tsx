@@ -25,7 +25,7 @@ export const Chat = ({ messages, socket, username }: ChatProps) => {
     webSocket?.send(JSON.stringify(newMessage));
     setText('');
   };
-  console.log('messages', messages);
+
   return (
     <Flex align="start" direction="column" gap="32" className={cls.chatListWrapper}>
       <Flex direction="column" align="start" gap="16" className={cls.chatList} max>
