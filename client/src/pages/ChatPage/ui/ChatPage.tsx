@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import cls from './ChatPage.module.scss';
 import { classNames } from '../../../shared/lib/classNames/classNames';
 import { ChatList } from './container/ChatList/ChatList';
-import { Chat } from './container/Chat';
+import { Chat } from './container/Chat/Chat';
 import { Flex } from '../../../shared/ui/Flex/Flex';
 import { useWsConnect } from '../helpers/connectionWs';
 import { useAppSelector } from '../../../app/core/redux/store';

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import cls from '../ChatPage.module.scss';
-import { Flex } from '../../../../shared/ui/Flex/Flex';
-import { IMessage } from '../ChatPage';
-import { AppTextarea } from '../../../../shared/ui/AppTextarea/AppTextarea';
-import { AppButton } from '../../../../shared/ui/AppButton/AppButton';
-import { webSocket } from '../../../../app/core/api/authApi';
+import cls from './Chat.module.scss';
+import { Flex } from '../../../../../shared/ui/Flex/Flex';
+import { IMessage } from '../../ChatPage';
+import { AppTextarea } from '../../../../../shared/ui/AppTextarea/AppTextarea';
+import { AppButton } from '../../../../../shared/ui/AppButton/AppButton';
+import { Message } from './components/Message';
 
 interface ChatProps {
   username: string;
@@ -21,8 +21,8 @@ export const Chat = ({ messages, socket, username }: ChatProps) => {
       text,
       event: 'message',
     };
-    // socket?.current?.send(JSON.stringify(newMessage));
-    webSocket?.send(JSON.stringify(newMessage));
+    socket?.current?.send(JSON.stringify(newMessage));
+    // webSocket?.send(JSON.stringify(newMessage));
     setText('');
   };
 
@@ -30,7 +30,7 @@ export const Chat = ({ messages, socket, username }: ChatProps) => {
     <Flex align="start" direction="column" gap="32" className={cls.chatListWrapper}>
       <Flex direction="column" align="start" gap="16" className={cls.chatList} max>
         {messages.map((message, index) => (
-          <div key={index}>{message.text}</div>
+          <Message key={`${index}-${message.id}`} message={message} />
         ))}
       </Flex>
       <Flex className={cls.chatForm} max direction="column" gap="16">
