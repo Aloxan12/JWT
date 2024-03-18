@@ -7,17 +7,25 @@ import { Flex } from '../../../shared/ui/Flex/Flex';
 import { useWsConnect } from '../helpers/connectionWs';
 import { useAppSelector } from '../../../app/core/redux/store';
 import { AppText } from '../../../shared/ui/AppText/AppText';
+import { IUser } from '../../../app/core/api/dto/UserDto';
 
 export interface IMessage {
   text: string;
-  username: string;
+  user: string;
+  event: 'connection' | 'message';
+  id?: 1234;
+}
+
+export interface IMessageResponse {
+  text: string;
+  user: IUser;
   event: 'connection' | 'message';
   id?: 1234;
 }
 
 const ChatPage = () => {
   const { user } = useAppSelector((state) => state.auth);
-  const [messages, setMessages] = useState<IMessage[]>([]);
+  const [messages, setMessages] = useState<IMessageResponse[]>([]);
   const [connected, setConnected] = useState(false);
   const socket = useRef<WebSocket | null>(null);
 
@@ -27,7 +35,7 @@ const ChatPage = () => {
     <Flex gap="32" align="start" className={classNames(cls.chatPageWrapper)}>
       {!connected && <AppText text="Ошибка соединения" color="red" className={cls.errorText} />}
       <ChatList />
-      <Chat messages={messages} socket={socket} username={user?.email || 'Не указан'} />
+      <Chat messages={messages} socket={socket} userId={user?.id || ''} />
     </Flex>
   );
 };

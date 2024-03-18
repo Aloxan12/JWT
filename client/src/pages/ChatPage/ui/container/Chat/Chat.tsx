@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import cls from './Chat.module.scss';
 import { Flex } from '../../../../../shared/ui/Flex/Flex';
-import { IMessage } from '../../ChatPage';
+import { IMessage, IMessageResponse } from '../../ChatPage';
 import { AppTextarea } from '../../../../../shared/ui/AppTextarea/AppTextarea';
 import { AppButton } from '../../../../../shared/ui/AppButton/AppButton';
 import { Message } from './components/Message';
 
 interface ChatProps {
-  username: string;
-  messages: IMessage[];
+  userId: string;
+  messages: IMessageResponse[];
   socket: React.MutableRefObject<WebSocket | null>;
 }
 
-export const Chat = ({ messages, socket, username }: ChatProps) => {
+export const Chat = ({ messages, socket, userId }: ChatProps) => {
   const [text, setText] = useState('');
 
   const sendMessage = () => {
     const newMessage: IMessage = {
-      username,
+      user: userId,
       text,
       event: 'message',
     };

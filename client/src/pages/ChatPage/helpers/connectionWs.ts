@@ -1,6 +1,6 @@
 import { localWs } from '../../../app/core/api/authApi';
 import React, { MutableRefObject, useEffect } from 'react';
-import { IMessage } from '../ui/ChatPage';
+import { IMessage, IMessageResponse } from '../ui/ChatPage';
 
 const message = {
   id: 1,
@@ -12,7 +12,7 @@ const message = {
 export function useWsConnect(
   socket: MutableRefObject<WebSocket | null>,
   setConnected: (value: boolean) => void,
-  setMessages: React.Dispatch<React.SetStateAction<IMessage[]>>
+  setMessages: React.Dispatch<React.SetStateAction<IMessageResponse[]>>
 ) {
   useEffect(() => {
     socket.current = new WebSocket(localWs);
@@ -24,7 +24,7 @@ export function useWsConnect(
     socket.current.onmessage = (event) => {
       const data = event.data;
       console.log('data ==>', data);
-      const message: IMessage = JSON.parse(event.data);
+      const message: IMessageResponse = JSON.parse(event.data);
       setMessages((prevState) => [...prevState, message]);
       console.log('Received message:', message);
     };
