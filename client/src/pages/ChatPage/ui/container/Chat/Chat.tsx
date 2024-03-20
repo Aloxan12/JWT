@@ -5,19 +5,20 @@ import { IMessage, IMessageResponse } from '../../ChatPage';
 import { AppTextarea } from '../../../../../shared/ui/AppTextarea/AppTextarea';
 import { AppButton } from '../../../../../shared/ui/AppButton/AppButton';
 import { Message } from './components/Message';
+import { IUser } from '../../../../../app/core/api/dto/UserDto';
 
 interface ChatProps {
-  userId: string;
+  user: IUser | null;
   messages: IMessageResponse[];
   socket: React.MutableRefObject<WebSocket | null>;
 }
 
-export const Chat = ({ messages, socket, userId }: ChatProps) => {
+export const Chat = ({ messages, socket, user }: ChatProps) => {
   const [text, setText] = useState('');
 
   const sendMessage = () => {
     const newMessage: IMessage = {
-      user: userId,
+      user,
       text,
       event: 'message',
     };

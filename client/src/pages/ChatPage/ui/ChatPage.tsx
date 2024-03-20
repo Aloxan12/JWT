@@ -11,7 +11,7 @@ import { IUser } from '../../../app/core/api/dto/UserDto';
 
 export interface IMessage {
   text: string;
-  user: string;
+  user: IUser | null;
   event: 'connection' | 'message';
   id?: 1234;
 }
@@ -29,13 +29,13 @@ const ChatPage = () => {
   const [connected, setConnected] = useState(false);
   const socket = useRef<WebSocket | null>(null);
 
-  useWsConnect(socket, setConnected, setMessages);
+  useWsConnect(socket, setConnected, setMessages, user);
 
   return (
     <Flex gap="32" align="start" className={classNames(cls.chatPageWrapper)}>
       {!connected && <AppText text="Ошибка соединения" color="red" className={cls.errorText} />}
       <ChatList />
-      <Chat messages={messages} socket={socket} userId={user?.id || ''} />
+      <Chat messages={messages} socket={socket} user={user} />
     </Flex>
   );
 };

@@ -1,19 +1,20 @@
 import { localWs } from '../../../app/core/api/authApi';
 import React, { MutableRefObject, useEffect } from 'react';
-import { IMessage, IMessageResponse } from '../ui/ChatPage';
-
-const message = {
-  id: 1,
-  event: 'connection',
-  username: 'alex',
-  text: 'Подключился кто-то',
-};
+import { IMessageResponse } from '../ui/ChatPage';
+import { IUser } from '../../../app/core/api/dto/UserDto';
 
 export function useWsConnect(
   socket: MutableRefObject<WebSocket | null>,
   setConnected: (value: boolean) => void,
-  setMessages: React.Dispatch<React.SetStateAction<IMessageResponse[]>>
+  setMessages: React.Dispatch<React.SetStateAction<IMessageResponse[]>>,
+  user?: IUser | null
 ) {
+  const message = {
+    id: 1,
+    event: 'connection',
+    user,
+    text: 'Подключился кто-то',
+  };
   useEffect(() => {
     socket.current = new WebSocket(localWs);
     socket.current.onopen = () => {
