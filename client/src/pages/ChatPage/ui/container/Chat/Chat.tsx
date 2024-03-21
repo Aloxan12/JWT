@@ -31,7 +31,11 @@ export const Chat = ({ messages, socket, user }: ChatProps) => {
     <Flex align="start" direction="column" gap="32" className={cls.chatListWrapper}>
       <Flex direction="column" align="start" gap="16" className={cls.chatList} max>
         {messages.map((message, index) => (
-          <Message key={`${index}-${message.id}`} message={message} />
+          <Message
+            key={`${index}-${message.id}`}
+            message={message}
+            isOwner={user?.id === message?.user?.id}
+          />
         ))}
       </Flex>
       <Flex className={cls.chatForm} max direction="column" gap="16">

@@ -19,7 +19,7 @@ export interface IMessage {
 export interface IMessageResponse {
   text: string;
   user: IUser;
-  event: 'connection' | 'message';
+  event: 'connection' | 'message' | 'greeting';
   id?: 1234;
 }
 
