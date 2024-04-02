@@ -31,7 +31,7 @@ export const authApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['Users', 'Posts'],
+  tagTypes: ['Users', 'Posts', 'Chat'],
   endpoints: (build) => ({
     login: build.mutation<LoginResponse, ISendLogin>({
       query: (params) => ({
