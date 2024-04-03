@@ -12,7 +12,7 @@ export const chatApi = authApi.injectEndpoints({
     }),
     createChat: build.mutation<IChatDto, ICreateChat>({
       query: (params) => ({
-        url: '/posts',
+        url: '/chats',
         method: 'POST',
         body: params,
       }),
