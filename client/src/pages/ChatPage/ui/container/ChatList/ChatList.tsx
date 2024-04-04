@@ -2,6 +2,7 @@ import React from 'react';
 import { Flex } from '../../../../../shared/ui/Flex/Flex';
 import { ChatItem } from './ChatItem';
 import cls from './ChatList.module.scss';
+import { useGetAllChatsQuery } from '../../../../../app/core/api/chatApi';
 
 const chatsList = [
   { id: 1, name: 'Общий' },
@@ -12,6 +13,7 @@ const chatsList = [
 ];
 
 export const ChatList = () => {
+  const { data: chatListData } = useGetAllChatsQuery();
   return (
     <Flex direction="column" gap="16" align="start" className={cls.chatList}>
       {chatsList.map(({ id, name }) => (
