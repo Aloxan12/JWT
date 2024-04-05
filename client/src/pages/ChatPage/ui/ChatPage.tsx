@@ -8,6 +8,8 @@ import { useWsConnect } from '../helpers/connectionWs';
 import { useAppSelector } from '../../../app/core/redux/store';
 import { AppText } from '../../../shared/ui/AppText/AppText';
 import { IUser } from '../../../app/core/api/dto/UserDto';
+import { AppButton } from '../../../shared/ui/AppButton/AppButton';
+import { useCreateChatMutation } from '../../../app/core/api/chatApi';
 
 export interface IMessage {
   text: string;
@@ -28,13 +30,17 @@ const ChatPage = () => {
   const [messages, setMessages] = useState<IMessageResponse[]>([]);
   const [connected, setConnected] = useState(false);
   const socket = useRef<WebSocket | null>(null);
+  const [createChat] = useCreateChatMutation();
 
   useWsConnect(socket, setConnected, setMessages, user);
-
+  const onCreateChatHandler = () => {
+    createChat({ users: ['63b35d86700fdd1bfce446fc', '661032c1cdbf542e415d2fc9'] });
+  };
   return (
     <Flex gap="32" align="start" className={classNames(cls.chatPageWrapper)}>
+      <AppButton text="Создать чат" onClick={onCreateChatHandler} />
       {!connected && <AppText text="Ошибка соединения" color="red" className={cls.errorText} />}
-      <ChatList />
+      <ChatList currentUser={user} />
       <Chat messages={messages} socket={socket} user={user} />
     </Flex>
   );

@@ -3,21 +3,18 @@ import { Flex } from '../../../../../shared/ui/Flex/Flex';
 import { ChatItem } from './ChatItem';
 import cls from './ChatList.module.scss';
 import { useGetAllChatsQuery } from '../../../../../app/core/api/chatApi';
+import { IUser } from '../../../../../app/core/api/dto/UserDto';
 
-const chatsList = [
-  { id: 1, name: 'Общий' },
-  { id: 2, name: 'Петя' },
-  { id: 3, name: 'Дима' },
-  { id: 4, name: 'Вова' },
-  { id: 5, name: 'Кирил с длинным именем' },
-];
+interface ChatListProps {
+  currentUser: IUser | null;
+}
 
-export const ChatList = () => {
+export const ChatList = ({ currentUser }: ChatListProps) => {
   const { data: chatListData } = useGetAllChatsQuery();
   return (
     <Flex direction="column" gap="16" align="start" className={cls.chatList}>
-      {chatsList.map(({ id, name }) => (
-        <ChatItem key={id} name={name} />
+      {chatListData?.results.map(({ id, users }) => (
+        <ChatItem key={id} users={users} isActive={false} currentUser={currentUser} />
       ))}
     </Flex>
   );
