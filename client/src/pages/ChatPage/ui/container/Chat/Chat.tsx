@@ -6,14 +6,18 @@ import { AppTextarea } from '../../../../../shared/ui/AppTextarea/AppTextarea';
 import { AppButton } from '../../../../../shared/ui/AppButton/AppButton';
 import { Message } from './components/Message';
 import { IUser } from '../../../../../app/core/api/dto/UserDto';
+import { useGetMessagesListQuery } from '../../../../../app/core/api/chatApi';
 
 interface ChatProps {
   user: IUser | null;
   messages: IMessageResponse[];
   socket: React.MutableRefObject<WebSocket | null>;
+  setMessages: React.Dispatch<React.SetStateAction<IMessageResponse[]>>;
 }
 
 export const Chat = ({ messages, socket, user }: ChatProps) => {
+  const { data: messagesList } = useGetMessagesListQuery();
+
   const [text, setText] = useState('');
 
   const sendMessage = () => {
@@ -23,10 +27,8 @@ export const Chat = ({ messages, socket, user }: ChatProps) => {
       event: 'message',
     };
     socket?.current?.send(JSON.stringify(newMessage));
-    // webSocket?.send(JSON.stringify(newMessage));
     setText('');
   };
-
   return (
     <Flex align="start" direction="column" gap="32" className={cls.chatListWrapper}>
       <Flex direction="column" align="start" gap="16" className={cls.chatList} max>

@@ -8,9 +8,11 @@ import { RoleTypes } from '../../../../../app/core/router/AppRouter';
 
 interface ChatListProps {
   currentUser: IUser | null;
+  chooseChatId: string | null;
+  onChooseChatHandler: (chatId: string | null) => () => void;
 }
 
-export const ChatList = ({ currentUser }: ChatListProps) => {
+export const ChatList = ({ currentUser, chooseChatId, onChooseChatHandler }: ChatListProps) => {
   const { data: chatListData } = useGetAllChatsQuery();
   return (
     <Flex direction="column" gap="16" align="start" className={cls.chatList}>
@@ -21,15 +23,22 @@ export const ChatList = ({ currentUser }: ChatListProps) => {
             id: '1',
             avatar: '',
             role: RoleTypes.ADMIN,
-            isActivated: false,
+            isActivated: true,
             status: '',
           },
         ]}
-        isActive={false}
+        isActive={!chooseChatId}
         currentUser={currentUser}
+        onClick={onChooseChatHandler(null)}
       />
       {chatListData?.results.map(({ id, users }) => (
-        <ChatItem key={id} users={users} isActive={false} currentUser={currentUser} />
+        <ChatItem
+          key={id}
+          users={users}
+          isActive={chooseChatId === id}
+          currentUser={currentUser}
+          onClick={onChooseChatHandler(id)}
+        />
       ))}
     </Flex>
   );

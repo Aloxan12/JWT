@@ -9,14 +9,15 @@ interface ChatItemProps {
   users: IUser[];
   currentUser: IUser | null;
   isActive: boolean;
+  onClick: () => void;
 }
 
-export const ChatItem = ({ users, isActive, currentUser }: ChatItemProps) => {
+export const ChatItem = ({ users, isActive, currentUser, onClick }: ChatItemProps) => {
   const mods: Mods = {
     [cls.active]: isActive,
   };
   return (
-    <div className={classNames(cls.chatItem, mods, [])}>
+    <div className={classNames(cls.chatItem, mods, [])} onClick={onClick}>
       {users
         .filter((user) => user.id !== currentUser?.id)
         .map(({ email, avatar, id }) => (

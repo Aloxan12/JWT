@@ -29,19 +29,30 @@ const ChatPage = () => {
   const { user } = useAppSelector((state) => state.auth);
   const [messages, setMessages] = useState<IMessageResponse[]>([]);
   const [connected, setConnected] = useState(false);
+  const [chooseChatId, setChooseChatId] = useState<null | string>(null);
   const socket = useRef<WebSocket | null>(null);
   const [createChat] = useCreateChatMutation();
 
   useWsConnect(socket, setConnected, setMessages, user);
+
+  const onChooseChatHandler = (chatId: string | null) => () => {
+    setChooseChatId(chatId);
+  };
   const onCreateChatHandler = () => {
-    createChat({ users: ['63b35d86700fdd1bfce446fc', '661032c1cdbf542e415d2fc9'] });
+    if (user?.id) {
+      createChat({ users: [user?.id, '63a80567ff4493ffbde87247'] });
+    }
   };
   return (
     <Flex gap="32" align="start" className={classNames(cls.chatPageWrapper)}>
       <AppButton text="Создать чат" onClick={onCreateChatHandler} />
       {!connected && <AppText text="Ошибка соединения" color="red" className={cls.errorText} />}
-      <ChatList currentUser={user} />
-      <Chat messages={messages} socket={socket} user={user} />
+      <ChatList
+        currentUser={user}
+        chooseChatId={chooseChatId}
+        onChooseChatHandler={onChooseChatHandler}
+      />
+      <Chat messages={messages} setMessages={setMessages} socket={socket} user={user} />
     </Flex>
   );
 };
