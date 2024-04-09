@@ -1,5 +1,14 @@
 import { authApi } from './authApi';
-import { IChatDto, IChatRequestDto, IChatsResponseDto, ICreateChat } from './dto/ChatDto';
+import {
+  IChatDto,
+  IChatRequestDto,
+  IChatsResponseDto,
+  ICreateChat,
+  IMessageCreate,
+  IMessageDto,
+  IMessageRequest,
+  IMessageResponse,
+} from './dto/ChatDto';
 
 export const chatApi = authApi.injectEndpoints({
   endpoints: (build) => ({
@@ -10,7 +19,7 @@ export const chatApi = authApi.injectEndpoints({
       }),
       providesTags: ['Chat', 'Users'],
     }),
-    getMessagesList: build.query<IChatsResponseDto, IChatRequestDto | void | null>({
+    getMessagesList: build.query<IMessageResponse, IMessageRequest | void | null>({
       query: (params) => ({
         url: '/messages/',
         params: !!params ? params : {},
@@ -24,7 +33,7 @@ export const chatApi = authApi.injectEndpoints({
         body: params,
       }),
     }),
-    createMessage: build.mutation<IChatDto, ICreateChat>({
+    createMessage: build.mutation<IMessageDto, IMessageCreate>({
       query: (params) => ({
         url: '/messages/',
         method: 'POST',
