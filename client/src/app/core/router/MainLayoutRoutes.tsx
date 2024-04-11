@@ -4,6 +4,7 @@ import { IRouteObjectExtended, RoleTypes } from './types';
 import { RoutesByRole } from './Roles';
 import { useAppSelector } from '../redux/store';
 import { getUserData } from '../redux/Reducers/auth/selectors';
+import { AppLoader } from '../../../widgets/AppLoader/AppLoader';
 
 interface IUserRoutes {
   routesByUserRole: IRouteObjectExtended[];
@@ -11,7 +12,7 @@ interface IUserRoutes {
 
 const UserRoutes = ({ routesByUserRole }: IUserRoutes) => {
   const element = useRoutes(routesByUserRole);
-  return <Suspense fallback="Загрузка">{element}</Suspense>;
+  return <Suspense fallback={<AppLoader />}>{element}</Suspense>;
 };
 
 export const MainLayoutRoutes = () => {
