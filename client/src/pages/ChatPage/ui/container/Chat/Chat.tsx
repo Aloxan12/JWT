@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import cls from './Chat.module.scss';
 import { Flex } from '../../../../../shared/ui/Flex/Flex';
 import { IMessage, IMessageResponse } from '../../ChatPage';
@@ -10,21 +10,38 @@ import { useGetMessagesListQuery } from '../../../../../app/core/api/chatApi';
 
 interface ChatProps {
   user: IUser | null;
+  chatId?: string;
   messages: IMessageResponse[];
   socket: React.MutableRefObject<WebSocket | null>;
   setMessages: React.Dispatch<React.SetStateAction<IMessageResponse[]>>;
 }
 
-export const Chat = ({ messages, socket, user }: ChatProps) => {
-  const { data: messagesList } = useGetMessagesListQuery();
+export const Chat = ({ messages, socket, user, setMessages, chatId }: ChatProps) => {
+  const { data: messagesList } = useGetMessagesListQuery({ chatId });
 
   const [text, setText] = useState('');
+
+  useEffect(() => {
+    if (messagesList) {
+      const newArr: IMessageResponse[] = messagesList.results.map(
+        ({ text, id, author, publicDate }) => ({
+          text,
+          event: 'message',
+          id,
+          user: author,
+          date: publicDate,
+        })
+      );
+      setMessages((prevState) => [...prevState, ...newArr]);
+    }
+  }, [messagesList]);
 
   const sendMessage = () => {
     const newMessage: IMessage = {
       user,
       text,
       event: 'message',
+      chatId,
     };
     socket?.current?.send(JSON.stringify(newMessage));
     setText('');

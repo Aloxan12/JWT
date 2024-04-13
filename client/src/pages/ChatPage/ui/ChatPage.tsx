@@ -15,14 +15,16 @@ export interface IMessage {
   text: string;
   user: IUser | null;
   event: 'connection' | 'message';
-  id?: 1234;
+  id?: number;
+  chatId?: string;
 }
 
 export interface IMessageResponse {
   text: string;
   user: IUser;
   event: 'connection' | 'message' | 'greeting';
-  id?: 1234;
+  id?: string;
+  date?: string;
 }
 
 const ChatPage = () => {
@@ -36,6 +38,7 @@ const ChatPage = () => {
   useWsConnect(socket, setConnected, setMessages, user);
 
   const onChooseChatHandler = (chatId: string | null) => () => {
+    setMessages([]);
     setChooseChatId(chatId);
   };
   const onCreateChatHandler = () => {
@@ -52,7 +55,13 @@ const ChatPage = () => {
         chooseChatId={chooseChatId}
         onChooseChatHandler={onChooseChatHandler}
       />
-      <Chat messages={messages} setMessages={setMessages} socket={socket} user={user} />
+      <Chat
+        messages={messages}
+        setMessages={setMessages}
+        socket={socket}
+        user={user}
+        chatId={chooseChatId || undefined}
+      />
     </Flex>
   );
 };
