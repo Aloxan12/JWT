@@ -12,7 +12,7 @@ export function useWsConnect(
   const message = {
     id: 1,
     event: 'connection',
-    user,
+    author: user,
     text: 'Подключился кто-то',
   };
   useEffect(() => {

@@ -13,7 +13,7 @@ import { useCreateChatMutation } from '../../../app/core/api/chatApi';
 
 export interface IMessage {
   text: string;
-  user: IUser | null;
+  author: IUser | null;
   event: 'connection' | 'message';
   id?: number;
   chatId?: string;
@@ -21,7 +21,7 @@ export interface IMessage {
 
 export interface IMessageResponse {
   text: string;
-  user: IUser;
+  author: IUser;
   event: 'connection' | 'message' | 'greeting';
   id?: string;
   date?: string;

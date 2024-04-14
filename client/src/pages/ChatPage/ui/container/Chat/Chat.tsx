@@ -17,7 +17,7 @@ interface ChatProps {
 }
 
 export const Chat = ({ messages, socket, user, setMessages, chatId }: ChatProps) => {
-  const { data: messagesList } = useGetMessagesListQuery({ chatId });
+  const { data: messagesList } = useGetMessagesListQuery({ chatId, limit: 20 });
 
   const [text, setText] = useState('');
 
@@ -28,7 +28,7 @@ export const Chat = ({ messages, socket, user, setMessages, chatId }: ChatProps)
           text,
           event: 'message',
           id,
-          user: author,
+          author,
           date: publicDate,
         })
       );
@@ -38,7 +38,7 @@ export const Chat = ({ messages, socket, user, setMessages, chatId }: ChatProps)
 
   const sendMessage = () => {
     const newMessage: IMessage = {
-      user,
+      author: user,
       text,
       event: 'message',
       chatId,
@@ -53,7 +53,7 @@ export const Chat = ({ messages, socket, user, setMessages, chatId }: ChatProps)
           <Message
             key={`${index}-${message.id}`}
             message={message}
-            isOwner={user?.id === message?.user?.id}
+            isOwner={user?.id === message?.author?.id}
           />
         ))}
       </Flex>

@@ -11,24 +11,25 @@ interface MessageProps {
 }
 
 export const Message = ({ message, isOwner }: MessageProps) => {
-  const { text, user, event } = message;
+  const { text, author, event } = message;
 
   const mods: Mods = {
     [cls.owner]: isOwner,
   };
 
   if (event === 'greeting') {
-    return (
-      <Flex max justify="center">
-        {text}
-      </Flex>
-    );
+    return null;
+    // return (
+    //   <Flex max justify="center">
+    //     {text}
+    //   </Flex>
+    // );
   }
 
   if (event === 'connection') {
     return (
       <Flex max justify="center" className={cls.connection}>
-        {user.email} подключился к чату
+        {author.email} подключился к чату
       </Flex>
     );
   }
@@ -36,8 +37,8 @@ export const Message = ({ message, isOwner }: MessageProps) => {
   return (
     <Flex max align="start" gap="32" className={classNames('', mods, [])}>
       <Flex direction="column" align="center">
-        <AppAvatar src={user?.avatar} />
-        <AppText text={user?.email} size="14" className={cls.email} />
+        <AppAvatar src={author?.avatar} />
+        <AppText text={author?.email} size="14" className={cls.email} />
       </Flex>
       <Flex align="start" gap="8" className={cls.messageWrap}>
         <div>{text}</div>
