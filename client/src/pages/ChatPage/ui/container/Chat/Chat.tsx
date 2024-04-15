@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import cls from './Chat.module.scss';
 import { Flex } from '../../../../../shared/ui/Flex/Flex';
 import { IMessage, IMessageResponse } from '../../ChatPage';
@@ -17,22 +17,32 @@ interface ChatProps {
 }
 
 export const Chat = ({ messages, socket, user, setMessages, chatId }: ChatProps) => {
+  const lastElRef = useRef<HTMLDivElement | null>(null);
+  const [firstLoad, setFirstLoad] = useState(true);
+  const [loadMore, setLoadMore] = useState(true);
   const { data: messagesList } = useGetMessagesListQuery({ chatId, limit: 20 });
 
   const [text, setText] = useState('');
 
   useEffect(() => {
-    if (messagesList) {
-      const newArr: IMessageResponse[] = messagesList.results.map(
-        ({ text, id, author, publicDate }) => ({
+    if (lastElRef.current && firstLoad && messagesList) {
+      lastElRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
+      setFirstLoad(false);
+    }
+  }, [messagesList]);
+  useEffect(() => {
+    if (messagesList && loadMore) {
+      const newArr: IMessageResponse[] = [...messagesList.results]
+        .reverse()
+        .map(({ text, id, author, publicDate }) => ({
           text,
           event: 'message',
           id,
           author,
           date: publicDate,
-        })
-      );
+        }));
       setMessages((prevState) => [...prevState, ...newArr]);
+      setLoadMore(false);
     }
   }, [messagesList]);
 
@@ -48,7 +58,7 @@ export const Chat = ({ messages, socket, user, setMessages, chatId }: ChatProps)
   };
   return (
     <Flex align="start" direction="column" gap="32" className={cls.chatListWrapper}>
-      <Flex direction="column" align="start" gap="16" className={cls.chatList} max>
+      <Flex direction="column" align="start" gap="16" className={cls.chatList} ref={lastElRef} max>
         {messages.map((message, index) => (
           <Message
             key={`${index}-${message.id}`}
@@ -64,6 +74,13 @@ export const Chat = ({ messages, socket, user, setMessages, chatId }: ChatProps)
           onChange={setText}
           rows="3"
           fullWidth
+        />
+        <AppButton
+          onClick={() => console.log('lastElRef', lastElRef.current?.scrollTop)}
+          text="lastElRef"
+          max
+          theme="full-bg"
+          size="big"
         />
         <AppButton onClick={sendMessage} text="Отправить" max theme="full-bg" size="big" />
       </Flex>
