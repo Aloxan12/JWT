@@ -26,10 +26,15 @@ export const Chat = ({ messages, socket, user, setMessages, chatId }: ChatProps)
 
   useEffect(() => {
     if (lastElRef.current && firstLoad && messagesList) {
-      lastElRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
+      const container = lastElRef.current;
+      lastElRef.current?.scrollTo({
+        top: container.scrollHeight - container.clientHeight,
+        behavior: 'smooth',
+      });
       setFirstLoad(false);
     }
   }, [messagesList]);
+
   useEffect(() => {
     if (messagesList && loadMore) {
       const newArr: IMessageResponse[] = [...messagesList.results]
@@ -56,9 +61,10 @@ export const Chat = ({ messages, socket, user, setMessages, chatId }: ChatProps)
     socket?.current?.send(JSON.stringify(newMessage));
     setText('');
   };
+  console.log('lastElRef', lastElRef);
   return (
     <Flex align="start" direction="column" gap="32" className={cls.chatListWrapper}>
-      <Flex direction="column" align="start" gap="16" className={cls.chatList} ref={lastElRef} max>
+      <div className={cls.chatList} ref={lastElRef}>
         {messages.map((message, index) => (
           <Message
             key={`${index}-${message.id}`}
@@ -66,7 +72,7 @@ export const Chat = ({ messages, socket, user, setMessages, chatId }: ChatProps)
             isOwner={user?.id === message?.author?.id}
           />
         ))}
-      </Flex>
+      </div>
       <Flex className={cls.chatForm} max direction="column" gap="16">
         <AppTextarea
           placeholder="Введите текст"
