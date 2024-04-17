@@ -17,15 +17,6 @@ export const Message = ({ message, isOwner }: MessageProps) => {
     [cls.owner]: isOwner,
   };
 
-  if (event === 'greeting') {
-    return null;
-    // return (
-    //   <Flex max justify="center">
-    //     {text}
-    //   </Flex>
-    // );
-  }
-
   if (event === 'connection') {
     return (
       <Flex max justify="center" className={cls.connection}>

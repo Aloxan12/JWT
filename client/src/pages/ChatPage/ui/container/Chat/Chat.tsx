@@ -27,6 +27,12 @@ export const Chat = ({ messages, socket, user, setMessages, chatId }: ChatProps)
   useEffect(() => {
     if (lastElRef.current && firstLoad && messagesList) {
       const container = lastElRef.current;
+      console.log(
+        'container.scrollHeight - container.clientHeight',
+        container.scrollHeight,
+        container.clientHeight,
+        container?.offsetHeight
+      );
       lastElRef.current?.scrollTo({
         top: container.scrollHeight - container.clientHeight,
         behavior: 'smooth',
@@ -61,7 +67,6 @@ export const Chat = ({ messages, socket, user, setMessages, chatId }: ChatProps)
     socket?.current?.send(JSON.stringify(newMessage));
     setText('');
   };
-  console.log('lastElRef', lastElRef);
   return (
     <Flex align="start" direction="column" gap="32" className={cls.chatListWrapper}>
       <div className={cls.chatList} ref={lastElRef}>
