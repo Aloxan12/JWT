@@ -23,8 +23,6 @@ export function useWsConnect(
       console.log('WebSocket connection opened');
     };
     socket.current.onmessage = (event) => {
-      const data = event.data;
-      console.log('data ==>', data);
       const message: IMessageResponse = JSON.parse(event.data);
       setMessages((prevState) => [...prevState, message]);
       console.log('Received message:', message);

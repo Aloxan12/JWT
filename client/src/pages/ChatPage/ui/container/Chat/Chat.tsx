@@ -1,12 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import cls from './Chat.module.scss';
 import { Flex } from '../../../../../shared/ui/Flex/Flex';
 import { IMessage, IMessageResponse } from '../../ChatPage';
-import { AppTextarea } from '../../../../../shared/ui/AppTextarea/AppTextarea';
-import { AppButton } from '../../../../../shared/ui/AppButton/AppButton';
 import { Message } from './components/Message';
 import { IUser } from '../../../../../app/core/api/dto/UserDto';
 import { useGetMessagesListQuery } from '../../../../../app/core/api/chatApi';
+import { SendMessage } from './components/SendMessage';
 
 interface ChatProps {
   user: IUser | null;
@@ -26,15 +25,7 @@ export const Chat = ({ messages, socket, user, setMessages, chatId }: ChatProps)
 
   useEffect(() => {
     if (lastElRef.current && firstLoad && messagesList) {
-      const container = lastElRef.current;
-      console.log(
-        'container.scrollHeight - container.clientHeight',
-        container.scrollHeight,
-        container.clientHeight,
-        container?.offsetHeight
-      );
-      lastElRef.current?.scrollTo({
-        top: container.scrollHeight - container.clientHeight,
+      lastElRef.current?.scrollIntoView({
         behavior: 'smooth',
       });
       setFirstLoad(false);
@@ -57,7 +48,7 @@ export const Chat = ({ messages, socket, user, setMessages, chatId }: ChatProps)
     }
   }, [messagesList]);
 
-  const sendMessage = () => {
+  const sendMessage = useCallback(() => {
     const newMessage: IMessage = {
       author: user,
       text,
@@ -66,10 +57,11 @@ export const Chat = ({ messages, socket, user, setMessages, chatId }: ChatProps)
     };
     socket?.current?.send(JSON.stringify(newMessage));
     setText('');
-  };
+  }, [text, user, chatId]);
+
   return (
     <Flex align="start" direction="column" gap="32" className={cls.chatListWrapper}>
-      <div className={cls.chatList} ref={lastElRef}>
+      <div className={cls.chatList}>
         {messages.map((message, index) => (
           <Message
             key={`${index}-${message.id}`}
@@ -77,24 +69,9 @@ export const Chat = ({ messages, socket, user, setMessages, chatId }: ChatProps)
             isOwner={user?.id === message?.author?.id}
           />
         ))}
+        <div ref={lastElRef} />
       </div>
-      <Flex className={cls.chatForm} max direction="column" gap="16">
-        <AppTextarea
-          placeholder="Введите текст"
-          value={text}
-          onChange={setText}
-          rows="3"
-          fullWidth
-        />
-        <AppButton
-          onClick={() => console.log('lastElRef', lastElRef.current?.scrollTop)}
-          text="lastElRef"
-          max
-          theme="full-bg"
-          size="big"
-        />
-        <AppButton onClick={sendMessage} text="Отправить" max theme="full-bg" size="big" />
-      </Flex>
+      <SendMessage text={text} setText={setText} sendMessage={sendMessage} />
     </Flex>
   );
 };
