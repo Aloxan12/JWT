@@ -38,7 +38,6 @@ const ChatPage = () => {
     setMessages([]);
     setChooseChatId(chatId);
   };
-
   return (
     <Flex gap="32" align="start" className={classNames(cls.chatPageWrapper)}>
       {!connected && <AppText text="Ошибка соединения" color="red" className={cls.errorText} />}

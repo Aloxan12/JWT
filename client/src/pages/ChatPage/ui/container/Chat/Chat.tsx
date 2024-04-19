@@ -17,23 +17,21 @@ interface ChatProps {
 
 export const Chat = ({ messages, socket, user, setMessages, chatId }: ChatProps) => {
   const lastElRef = useRef<HTMLDivElement | null>(null);
-  const [firstLoad, setFirstLoad] = useState(true);
   const [loadMore, setLoadMore] = useState(true);
   const { data: messagesList } = useGetMessagesListQuery({ chatId, limit: 20 });
 
   const [text, setText] = useState('');
 
   useEffect(() => {
-    if (lastElRef.current && firstLoad && messagesList) {
+    if (lastElRef.current) {
       lastElRef.current?.scrollIntoView({
         behavior: 'smooth',
       });
-      setFirstLoad(false);
     }
-  }, [messagesList]);
+  }, [messages]);
 
   useEffect(() => {
-    if (messagesList && loadMore) {
+    if (messagesList) {
       const newArr: IMessageResponse[] = [...messagesList.results]
         .reverse()
         .map(({ text, id, author, publicDate }) => ({
