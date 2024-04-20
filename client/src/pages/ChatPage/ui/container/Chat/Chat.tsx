@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import cls from './Chat.module.scss';
 import { Flex } from '../../../../../shared/ui/Flex/Flex';
 import { IMessage, IMessageResponse } from '../../ChatPage';
@@ -17,21 +17,23 @@ interface ChatProps {
 
 export const Chat = ({ messages, socket, user, setMessages, chatId }: ChatProps) => {
   const lastElRef = useRef<HTMLDivElement | null>(null);
+  const [firstLoad, setFirstLoad] = useState(true);
   const [loadMore, setLoadMore] = useState(true);
   const { data: messagesList } = useGetMessagesListQuery({ chatId, limit: 20 });
 
   const [text, setText] = useState('');
 
-  useEffect(() => {
-    if (lastElRef.current) {
+  useLayoutEffect(() => {
+    if (lastElRef.current && firstLoad) {
       lastElRef.current?.scrollIntoView({
-        behavior: 'smooth',
+        behavior: 'auto',
       });
+      setFirstLoad(false);
     }
   }, [messages]);
 
   useEffect(() => {
-    if (messagesList) {
+    if (!!messagesList && !messagesList?.prevPage) {
       const newArr: IMessageResponse[] = [...messagesList.results]
         .reverse()
         .map(({ text, id, author, publicDate }) => ({
@@ -43,6 +45,7 @@ export const Chat = ({ messages, socket, user, setMessages, chatId }: ChatProps)
         }));
       setMessages((prevState) => [...prevState, ...newArr]);
       setLoadMore(false);
+      setFirstLoad(true);
     }
   }, [messagesList]);
 
