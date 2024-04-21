@@ -40,7 +40,18 @@ export const chatApi = authApi.injectEndpoints({
         body: params,
       }),
     }),
+    deleteChat: build.mutation<IChatDto, { id: string }>({
+      query: ({ id }) => ({
+        url: `/chats/${id}/`,
+        method: 'DELETE',
+      }),
+    }),
   }),
 });
 
-export const { useGetAllChatsQuery, useGetMessagesListQuery, useCreateChatMutation } = chatApi;
+export const {
+  useGetAllChatsQuery,
+  useGetMessagesListQuery,
+  useCreateChatMutation,
+  useDeleteChatMutation,
+} = chatApi;
