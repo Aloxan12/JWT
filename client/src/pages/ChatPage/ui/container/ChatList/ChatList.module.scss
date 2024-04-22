@@ -12,11 +12,15 @@
   transition: .2s;
 
   &.active{
-    pointer-events: none;
+    cursor: auto;
     background-color: var(--color-green-main);
   }
   &:hover{
     transition: .2s;
     background-color: var(--color-green-main);
   }
+}
+
+.ico{
+  cursor: pointer;
 }

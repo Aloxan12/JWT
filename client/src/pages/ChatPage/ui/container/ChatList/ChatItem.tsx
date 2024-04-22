@@ -26,7 +26,7 @@ export const ChatItem = ({
     [cls.active]: isActive,
   };
   return (
-    <div className={classNames(cls.chatItem, mods, [])} onClick={onClick}>
+    <div className={classNames(cls.chatItem, mods, [])} onClick={isActive ? undefined : onClick}>
       {users
         .filter((user) => user.id !== currentUser?.id)
         .map(({ email, avatar, id }) => (

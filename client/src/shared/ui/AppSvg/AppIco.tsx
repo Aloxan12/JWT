@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import cls from './AppIco.module.scss';
 import { classNames } from '../../lib/classNames/classNames';
 import { ReactComponent } from '*.svg';
@@ -13,10 +13,15 @@ interface AppSvgProps {
 }
 
 export const AppIco = ({ svg: Svg, className, size, onClick }: AppSvgProps) => {
+  const onClickHandler = (e: MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    onClick?.();
+  };
   return (
     <Svg
       className={classNames(cls.ico, { [cls[size || '']]: !!size }, [className])}
-      onClick={onClick}
+      onClick={onClickHandler}
     />
   );
 };

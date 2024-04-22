@@ -15,6 +15,7 @@ export const useDeletePost = (
     (id: string) => (onClose?: () => void) => {
       setActiveId(activeId);
       deletePost({ id })
+        .unwrap()
         .then(() => {
           ToastWrapper({
             msg: 'Пост успешно удален',
