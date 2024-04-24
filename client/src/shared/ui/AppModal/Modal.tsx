@@ -15,12 +15,14 @@ interface ModalProps {
   isOpen?: boolean;
   onClose?: () => void;
   lazy?: boolean;
+  withStopPropagation?: boolean;
 }
 
 const ANIMATION_DELAY = 300;
 
 export const AppModal = (props: ModalProps) => {
-  const { className, children, isOpen, onClose, lazy, title, icoClose } = props;
+  const { className, children, isOpen, onClose, lazy, title, icoClose, withStopPropagation } =
+    props;
 
   const [isClosing, setIsClosing] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
@@ -86,7 +88,10 @@ export const AppModal = (props: ModalProps) => {
 
   return (
     <Portal>
-      <div className={classNames(cls.Modal, mods, [className])}>
+      <div
+        className={classNames(cls.Modal, mods, [className])}
+        onClick={withStopPropagation ? onStopPropagationHandler : undefined}
+      >
         <div className={cls.overlay} onClick={closeHandler}>
           <div className={cls.content} onClick={onStopPropagationHandler}>
             {title && (

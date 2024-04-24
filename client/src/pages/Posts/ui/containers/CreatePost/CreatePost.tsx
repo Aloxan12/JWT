@@ -26,7 +26,6 @@ export const CreatePost = ({ setCurrentData }: CreatePostProps) => {
         (res) => {
           const newPost = (res as unknown as { data: { post: IPost } }).data.post;
           setPostText('');
-          console.log('newPost', newPost);
           setCurrentData((prevState) => [newPost, ...prevState]);
           ToastWrapper({
             msg: 'Пост опубликован'.replace(/"/g, ''),
