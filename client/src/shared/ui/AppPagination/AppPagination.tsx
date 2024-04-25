@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { isPaginationResetReg } from '../../lib/hooks/useParamsControl';
-import styles from './AppPagination.module.css';
+import cls from './AppPagination.module.css';
 import { AppDropdown } from '../AppDropdown/AppDropdown';
 
 function createPages(pages: (number | string)[], pagesCount: number, currentPage: number) {
@@ -73,29 +73,25 @@ export const AppPagination = ({ setLimit, limit, totalCount = 0 }: IAppPaginatio
   }, [page]);
 
   return (
-    <div>
-      <div className={`${styles.AppPaginationWrap}`}>
-        {pages.map((page, index) => {
-          return (
-            <div
-              key={`pagination-page-${index}`}
-              className={`${styles.PaginationPage} ${
-                currentPage === page ? styles.CurrentPage : ''
-              }`}
-              onClick={typeof page === 'number' ? () => setCurrentPage(page) : undefined}
-            >
-              {page}
-            </div>
-          );
-        })}
-        {setLimit && (
-          <AppDropdown
-            data={[10, 20, 30]}
-            value={limit}
-            onChange={(value) => setLimit(Number(value))}
-          />
-        )}
-      </div>
+    <div className={cls.AppPaginationWrap}>
+      {pages.map((page, index) => {
+        return (
+          <div
+            key={`pagination-page-${index}`}
+            className={`${cls.PaginationPage} ${currentPage === page ? cls.CurrentPage : ''}`}
+            onClick={typeof page === 'number' ? () => setCurrentPage(page) : undefined}
+          >
+            {page}
+          </div>
+        );
+      })}
+      {setLimit && (
+        <AppDropdown
+          data={[10, 20, 30]}
+          value={limit}
+          onChange={(value) => setLimit(Number(value))}
+        />
+      )}
     </div>
   );
 };

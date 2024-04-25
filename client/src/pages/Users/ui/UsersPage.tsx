@@ -23,14 +23,14 @@ const UsersPage = () => {
   } = useGetAllUsersQuery(params);
 
   return (
-    <div>
+    <>
       {(isFetchingList || isLoadingList) && <AppLoader />}
       <UsersFilter />
       <UserList users={users?.results} />
       {Boolean(users?.results.length) && (
         <AppPagination limit={limit} totalCount={users?.count} setLimit={setLimit} />
       )}
-    </div>
+    </>
   );
 };
 
