@@ -5,8 +5,8 @@ import cls from './ChatList.module.scss';
 import { useDeleteChatMutation, useGetAllChatsQuery } from '../../../../../app/core/api/chatApi';
 import { IUser } from '../../../../../app/core/api/dto/UserDto';
 import { RoleTypes } from '../../../../../app/core/router/AppRouter';
-import { ToastWrapper, ToastWrapperType } from '../../../../../entities/ToastWrapper/ToastWrapper';
 import { DeleteChatModal } from './DeleteChatModal/DeleteChatModal';
+import { onSuccessNotification } from '../../../../../shared/lib/onSuccessNotification';
 
 interface ChatListProps {
   currentUser: IUser | null;
@@ -26,16 +26,10 @@ export const ChatList = ({ currentUser, chooseChatId, onChooseChatHandler }: Cha
     if (deleteChatId) {
       deleteChat({ id: deleteChatId })
         .unwrap()
-        .then(() => {
-          ToastWrapper({
-            msg: 'Чат успешно удален'.replace(/"/g, ''),
-            type: ToastWrapperType.success,
-          });
-          setDeleteChatId(null);
-        });
+        .then(onSuccessNotification('Чат успешно удален', () => setDeleteChatId(null)));
     }
   };
-  console.log('deleteChatId', deleteChatId);
+
   return (
     <>
       <DeleteChatModal
