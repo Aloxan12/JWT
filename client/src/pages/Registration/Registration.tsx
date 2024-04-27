@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import './Registration.css';
 import { useRegistrationMutation } from '../../app/core/api/authApi';
-import { ToastWrapper, ToastWrapperType } from '../../entities/ToastWrapper/ToastWrapper';
 import { useNavigate } from 'react-router-dom';
 import { RoleTypes } from '../../app/core/router/AppRouter';
 import { AppLoader } from '../../widgets/AppLoader/AppLoader';
+import { onSuccessNotification } from '../../shared/lib/onSuccessNotification';
 
 export const Registration = () => {
-  const [registration, { isLoading: isLoadingRegistration, error }] = useRegistrationMutation();
+  const [registration, { isLoading: isLoadingRegistration }] = useRegistrationMutation();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -29,19 +29,7 @@ export const Registration = () => {
     } else if (role === null) {
       setErrorText('Не выбрана роль');
     } else {
-      try {
-        const data = await registration({ email, password, role });
-        if (!!data && !error) {
-          ToastWrapper({
-            msg: 'Писльмо для подтверждаения регистрации отправлено на почту'.replace(/"/g, ''),
-            type: ToastWrapperType.success,
-          });
-          navigate('/login');
-          // return () => <AppRedirect path="/" />
-        }
-      } catch (e) {
-        console.log('error', e);
-      }
+        registration({ email, password, role }).unwrap().then(onSuccessNotification('Писльмо для подтверждаения регистрации отправлено на почту', navigate('/login')), ()=> );
     }
   };
 
