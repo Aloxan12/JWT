@@ -18,7 +18,7 @@ export const Registration = () => {
   const [errorText, setErrorText] = useState('');
   const [success, setSuccess] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (email.trim() === '') {
       setErrorText('Поле "email" не заполнено!!');
@@ -29,7 +29,13 @@ export const Registration = () => {
     } else if (role === null) {
       setErrorText('Не выбрана роль');
     } else {
-        registration({ email, password, role }).unwrap().then(onSuccessNotification('Писльмо для подтверждаения регистрации отправлено на почту', navigate('/login')), ()=> );
+      registration({ email, password, role })
+        .unwrap()
+        .then(
+          onSuccessNotification('Писльмо для подтверждаения регистрации отправлено на почту', () =>
+            navigate('/login')
+          )
+        );
     }
   };
 
