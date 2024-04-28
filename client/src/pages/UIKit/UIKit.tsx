@@ -8,10 +8,12 @@ import { NotificationsContainers } from './containers/NotificationsContainers';
 import { PhotosContainers } from './containers/PhotosContainers';
 import { InputsContainers } from './containers/InputsContainers';
 import { OtherBlocksContainer } from './containers/OtherBlocksContainer';
+import { WidgetsContainers } from './containers/WidgetsContainers';
 
 export const UiKit = () => {
   return (
     <Flex direction="column" gap="16" justify="start" align="start" className={cls.uiKitWrapper}>
+      <WidgetsContainers />
       <OtherBlocksContainer />
       <InputsContainers />
       <NotificationsContainers />
