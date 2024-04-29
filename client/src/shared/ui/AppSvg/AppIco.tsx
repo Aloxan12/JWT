@@ -14,9 +14,11 @@ interface AppSvgProps {
 
 export const AppIco = ({ svg: Svg, className, size, onClick }: AppSvgProps) => {
   const onClickHandler = (e: MouseEvent) => {
-    e.stopPropagation();
-    e.preventDefault();
-    onClick?.();
+    if (onClick) {
+      e.stopPropagation();
+      e.preventDefault();
+      onClick();
+    }
   };
   return (
     <Svg

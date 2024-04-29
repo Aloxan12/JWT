@@ -5,9 +5,9 @@ import { AppWidget } from '../../../shared/ui/AppWidget/AppWidget';
 
 export const WidgetsContainers = () => {
   return (
-    <AppCard max title="Текст" withoutBorder>
+    <AppCard max title="Виджеты" withoutBorder>
       <Flex wrap max gap="16">
-        <AppWidget>content text</AppWidget>
+        <AppWidget title="Заголовок">content text</AppWidget>
       </Flex>
     </AppCard>
   );
