@@ -29,6 +29,9 @@ export const allRoutePaths = {
   projects: {
     path: 'projects',
   },
+  testPage: {
+    path: 'test',
+  },
   forbidden: {
     path: '/forbidden',
   },

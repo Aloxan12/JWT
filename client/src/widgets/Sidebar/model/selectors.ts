@@ -8,6 +8,11 @@ const sidebarItemList: ISidebarItem[] = [
   { name: 'Главная', path: allRoutePaths.main.path, ico: SearchIco },
   { name: 'Пользователи', path: allRoutePaths.users.path, ico: SearchIco },
   { name: 'UI kit', path: allRoutePaths.uiKit.path, ico: SearchIco },
+  {
+    name: 'Страница для разработки в текущее время',
+    path: allRoutePaths.testPage.path,
+    ico: SearchIco,
+  },
   { name: 'Мои проекты', path: allRoutePaths.projects.path, ico: SearchIco },
   { name: 'Общий чат', path: allRoutePaths.chat.path, ico: SearchIco },
 ];

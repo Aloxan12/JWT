@@ -8,6 +8,7 @@ import { PostsPage } from '../../../pages/Posts';
 import { PersonalAccount } from '../../../pages/PersonalAccount/PersonalAccount';
 import { UsersPage } from '../../../pages/Users/index';
 import { ChatPage } from '../../../pages/ChatPage';
+import { TestPage } from '../../../pages/TestPage';
 
 export const routeConfig: IRouteObjectExtended[] = [
   {
@@ -39,6 +40,10 @@ export const routeConfig: IRouteObjectExtended[] = [
   {
     path: allRoutePaths.uiKit.path,
     element: <UiKit />,
+  },
+  {
+    path: allRoutePaths.testPage.path,
+    element: <TestPage />,
   },
   {
     path: '*',
