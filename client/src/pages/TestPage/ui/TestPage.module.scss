@@ -1,0 +1,43 @@
+.testPageWrap {
+  height: 100%;
+  border: 1px solid var(--color-gray);
+  padding: 20px;
+  border-radius: 20px;
+
+  .animationBlock {
+    border: 1px solid var(--color-gray);
+    padding: 20px;
+    border-radius: 20px;
+    background-color: var(--color-gray-light);
+
+    .whiteCircle {
+      width: 50px;
+      height: 50px;
+      background-color: white;
+      border-radius: 50%;
+      position: relative;
+      left: 0;
+      animation-name: white-circle;
+      animation-duration: 2s;
+      animation-timing-function: linear; // Направление движения
+      animation-iteration-count: 1; // Сколько раз повторять, по умолчанию 1
+      animation-direction: alternate;
+      animation-delay: 2s; // время задержки анимании
+      animation-fill-mode: forwards;
+
+      animation: white-circle 2s linear 1 alternate 2s forwards; // Краткая запись
+    }
+  }
+}
+
+@keyframes white-circle {
+  0% {
+    left: 0;
+  }
+  50%{
+    border-radius: 0;
+  }
+  100% {
+    left: 500px;
+  }
+}
