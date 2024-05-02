@@ -3,12 +3,16 @@
   border: 1px solid var(--color-gray);
   padding: 20px;
   border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 
   .animationBlock {
     border: 1px solid var(--color-gray);
     padding: 20px;
     border-radius: 20px;
     background-color: var(--color-gray-light);
+    min-height: 92px;
 
     .whiteCircle {
       width: 50px;
@@ -22,10 +26,10 @@
       animation-timing-function: linear; // Направление движения
       animation-iteration-count: 1; // Сколько раз повторять, по умолчанию 1
       animation-direction: alternate;
-      animation-delay: 2s; // время задержки анимании
+      animation-delay: 0s; // время задержки анимании
       animation-fill-mode: forwards;
 
-      animation: white-circle 2s linear 1 alternate 2s forwards; // Краткая запись
+      // animation: white-circle 2s linear 1 alternate 2s forwards; // Краткая запись
     }
   }
 }
