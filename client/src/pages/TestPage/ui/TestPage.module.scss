@@ -1,3 +1,5 @@
+@import "./src/app/styles/mixins";
+
 .testPageWrap {
   height: 100%;
   border: 1px solid var(--color-gray);
@@ -46,3 +48,22 @@
   }
 }
 
+
+// Scroll
+
+.scrollWrap{
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid;
+  max-height: 200px;
+  overflow: auto;
+
+  scroll-timeline: --block-scroll block;
+
+  @include scroll;
+
+
+  .scrollContent{
+    height: 400px;
+  }
+}

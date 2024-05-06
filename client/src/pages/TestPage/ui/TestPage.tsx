@@ -11,6 +11,10 @@ const TestPage = () => {
     <div className={cls.testPageWrap}>
       <div className={cls.animationBlock}>{active && <div className={cls.whiteCircle} />}</div>
       <AppButton text={active ? 'Закрыть' : 'Открыть'} onClick={setActiveHandler} />
+
+      <div className={cls.scrollWrap}>
+        <div className={cls.scrollContent}> scrollContent</div>
+      </div>
     </div>
   );
 };
