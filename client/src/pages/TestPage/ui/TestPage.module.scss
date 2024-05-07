@@ -52,8 +52,9 @@
 // Scroll
 
 .scrollWrap{
+  position: relative;
   padding: 12px;
-  border-radius: 12px;
+  border-radius: 12px 0 0 12px;
   border: 1px solid;
   max-height: 200px;
   overflow: auto;
@@ -65,5 +66,48 @@
 
   .scrollContent{
     height: 400px;
+    animation-timeline: --block-scroll;
+  }
+  .progressingBar{
+    position: fixed;
+    top: 70px;
+    left: 0;
+    height: 5px;
+    background-color: red;
+    width: 5px;
+    animation-name: fill-progress;
+    animation-timing-function: linear;
+    animation-timeline: --block-scroll;
+  }
+}
+
+
+@keyframes fill-progress {
+  to{
+    width: 100%;
+  }
+}
+
+// transition-behavior
+
+.transitionBehaviorWrap{
+
+  .block{
+    transition: 1s;
+    transition-behavior: allow-discrete;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    background-color: var(--color-gray);
+    opacity: 1;
+    transform: scale(1);
+
+    @starting-style{
+      opacity: 0;
+      transform: scale(0);
+    }
   }
 }
