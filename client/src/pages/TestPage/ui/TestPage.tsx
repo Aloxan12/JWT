@@ -24,6 +24,17 @@ const TestPage = () => {
         <AppButton title="transition-behavior" onClick={setActiveTransitionBehaviorHandler} />
         {activeTransitionBehavior && <div className={cls.block}>transition-behavior block</div>}
       </Flex>
+
+      <Flex direction="column">
+        <div>Есть скрол или нету</div>
+
+        <div className={cls.isScrollWrap}>
+          <div className={cls.isScrollContent}>
+            <span className={cls.is}>Скрол есть</span>
+            <span className={cls.not}>Скрола нету</span>
+          </div>
+        </div>
+      </Flex>
     </div>
   );
 };

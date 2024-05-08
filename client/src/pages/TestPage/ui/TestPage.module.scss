@@ -111,3 +111,39 @@
     }
   }
 }
+
+// Есть ли скрол
+
+@keyframes detect-scroll {
+  from, to { --can-scroll: ; }
+}
+
+.isScrollWrap{
+  max-height: 50px;
+  @include scroll;
+
+  animation: detect-scroll linear;
+  animation-timeline: scroll(self);
+
+  --bg-if-can-scroll: var(--can-scroll) lime;
+  --bg-if-cant-scroll: red;
+  background-color: var(--bg-if-can-scroll, var(--bg-if-cant-scroll));
+
+
+  --block-if-can-scroll: var(--can-scroll) block;
+  --block-if-cant-scroll: var(--can-scroll) none;
+
+  .isScrollContent{
+    height: 60px;
+    .is {
+      display: var(--block-if-can-scroll, var(--block-if-cant-scroll)); /* По умолчанию скрываем блок с классом .is */
+    }
+    .not {
+      display: var(var(--block-if-cant-scroll)); /* По умолчанию показываем блок с классом .not */
+    }
+
+    @media (max-width: 1000px) {
+      height: 50px;
+    }
+  }
+}
