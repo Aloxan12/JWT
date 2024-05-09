@@ -17,7 +17,7 @@ const TestPage = () => {
 
       <div className={cls.scrollWrap}>
         <div className={cls.progressingBar} />
-        <div className={cls.scrollContent}> scrollContent</div>
+        <div className={cls.scrollContent}>scrollContent</div>
       </div>
 
       <Flex direction="column" gap="16" className={cls.transitionBehaviorWrap}>
@@ -30,8 +30,7 @@ const TestPage = () => {
 
         <div className={cls.isScrollWrap}>
           <div className={cls.isScrollContent}>
-            <span className={cls.is}>Скрол есть</span>
-            <span className={cls.not}>Скрола нету</span>
+            меняем цвет если есть скрол (скрол есть, если экран больше 1000px)
           </div>
         </div>
       </Flex>
