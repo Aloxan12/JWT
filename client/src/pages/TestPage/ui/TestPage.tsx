@@ -27,13 +27,15 @@ const TestPage = () => {
 
       <Flex direction="column">
         <div>Есть скрол или нету</div>
-
         <div className={cls.isScrollWrap}>
           <div className={cls.isScrollContent}>
             меняем цвет если есть скрол (скрол есть, если экран больше 1000px)
           </div>
         </div>
       </Flex>
+      <div>
+        <div className={cls.animateTitle}>Плавно появляющие буквы</div>
+      </div>
     </div>
   );
 };

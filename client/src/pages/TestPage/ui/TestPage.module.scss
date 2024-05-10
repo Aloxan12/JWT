@@ -141,3 +141,18 @@
     }
   }
 }
+
+
+.animateTitle{
+  opacity: 1;
+  width: 100%;
+  border: 1px solid var(--color-gray);
+  transition: 1s;
+  transition-behavior: allow-discrete;
+
+  @starting-style{
+    opacity: 0;
+    width: 100%;
+    border-width: 0;
+  }
+}
