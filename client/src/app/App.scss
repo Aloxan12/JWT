@@ -13,11 +13,15 @@ body, #root {
     position: relative;
     min-height: 100vh;
     margin: 0;
+    scrollbar-gutter: stable;
     &::-webkit-scrollbar{
         width: 3px;
     }
     &::-webkit-scrollbar-thumb{
         background-color: var(--color-green-main);
+    }
+    &:has(.app-modal){
+      overflow: hidden;
     }
 }
 
