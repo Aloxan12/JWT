@@ -157,3 +157,38 @@
     letter-spacing: 8px;
   }
 }
+
+// Открыть фото
+
+.lightbox{
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0, 0.8);
+  transition: .5s ease-out;
+  opacity: 0;
+  transition-behavior: allow-discrete;
+
+  @starting-style{
+    display: flex;
+    opacity: 1;
+  }
+}
+
+.lightbox:target {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: 1s ease-in;
+  transition-behavior: allow-discrete;
+
+
+  @starting-style{
+    opacity: 0;
+  }
+}

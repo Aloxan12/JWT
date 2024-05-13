@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import cls from './TestPage.module.scss';
 import { AppButton } from '../../../shared/ui/AppButton/AppButton';
 import { Flex } from '../../../shared/ui/Flex/Flex';
+import { AppPhoto } from '../../../shared/ui/AppPhoto/AppPhoto';
+import FakePhoto from '../../../shared/assets/images/fake-photo.jpg';
+import { AppTitle } from '../../../shared/ui/AppTitle/AppTitle';
 
 const TestPage = () => {
   const [active, setActive] = useState(false);
@@ -35,6 +38,16 @@ const TestPage = () => {
       </Flex>
       <div>
         <div className={cls.animateTitle}>Плавно появляющие буквы</div>
+      </div>
+
+      <div>
+        <AppTitle title="Плавно открывающееся фото" titleTag="h3" />
+        <a href="#img1">
+          <AppPhoto src={FakePhoto} width={40} height={40} />
+        </a>
+        <a href="#" className={cls.lightbox} id="img1">
+          <AppPhoto src={FakePhoto} />
+        </a>
       </div>
     </div>
   );
