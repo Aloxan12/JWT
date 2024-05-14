@@ -192,3 +192,44 @@
     opacity: 0;
   }
 }
+
+// карточка
+
+.card{
+  cursor: pointer;
+  width: 150px;
+  height: 120px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  position: relative;
+  padding: 12px;
+
+  .front, .back{
+    position: absolute;
+    width: calc(100% - 24px);
+    height: calc(100% - 24px);
+    overflow: hidden;
+    padding: 12px;
+    border-radius: 12px;
+    transition: transform .6s linear;
+    backface-visibility: hidden;
+  }
+
+  .front{
+    background-color: var(--color-gray-light);
+    transform: perspective(200px) rotateY(0deg);
+  }
+  .back{
+    transform: perspective(200px) rotateY(180deg);
+    background-color: var(--color-gray);
+  }
+
+  &:hover{
+    & > .front{
+      transform: perspective(200px) rotateY(-180deg);
+    }
+    & > .back{
+      transform: perspective(200px) rotateY(0deg);
+    }
+  }
+}

@@ -49,6 +49,11 @@ const TestPage = () => {
           <AppPhoto src={FakePhoto} />
         </a>
       </div>
+
+      <div className={cls.card}>
+        <div className={cls.front}>front</div>
+        <div className={cls.back}>back</div>
+      </div>
     </div>
   );
 };
