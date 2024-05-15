@@ -16,7 +16,7 @@ export const AppAvatar = ({ src, className, ...otherProps }: AppAvatarProps) => 
       src={src || avatarFake}
       width="40px"
       height="40px"
-      radius="50%"
+      radius="round"
       {...otherProps}
     />
   );

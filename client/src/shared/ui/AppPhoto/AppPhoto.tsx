@@ -4,7 +4,7 @@ import cls from './AppPhoto.module.scss';
 import { classNames } from '../../lib/classNames/classNames';
 import { fixGoogleDriveUrl } from '../../lib/fixGoogleDriveUrl';
 
-type PhotoRadiusType = '4' | '8' | '12' | '50%';
+type PhotoRadiusType = '4' | '8' | '12' | 'round';
 type PhotoFitType = 'cover' | 'contain';
 
 interface AppPhotoProps extends ImgHTMLAttributes<HTMLImageElement> {
@@ -48,7 +48,7 @@ export const AppPhoto = ({
       <AppSkeleton
         width={width}
         height={height}
-        border={`${radius === '50%' ? radius : `${radius}px`}`}
+        border={`${radius === 'round' ? '50%' : `${radius}px`}`}
         className={className}
       />
     );

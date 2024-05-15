@@ -50,10 +50,16 @@ const TestPage = () => {
         </a>
       </div>
 
-      <div className={cls.card}>
-        <div className={cls.front}>front</div>
-        <div className={cls.back}>back</div>
-      </div>
+      <Flex gap="8">
+        <div className={cls.card}>
+          <div className={cls.front}>front</div>
+          <div className={cls.back}>back</div>
+        </div>
+
+        <div className={cls.logo}>
+          <AppPhoto src={FakePhoto} radius="round" width={60} height={60} />
+        </div>
+      </Flex>
     </div>
   );
 };
