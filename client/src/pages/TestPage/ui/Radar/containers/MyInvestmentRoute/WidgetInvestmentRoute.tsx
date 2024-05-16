@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { classNames, Mods } from '../../../../../../shared/lib/classNames/classNames';
 import cls from './MyInvestmentRoute.module.scss';
+import { QuarterInvestmentRoute } from './QuarterInvestmentRoute';
 
 export const WidgetInvestmentRoute = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -27,7 +28,24 @@ export const WidgetInvestmentRoute = () => {
       <div className={cls.content}>
         <h4>Рекомендации для вашего инвестиционного маршрута</h4>
         <p>Отмечайте полученные меры поддержки и следите за вашим прогрессом</p>
-        QuarterInvestmentRoute
+        <div className={cls.quarterList}>
+          <QuarterInvestmentRoute
+            quarterNumber={1}
+            quarterPeriod="с 1 января по 31 марта 2024 года"
+          />
+          <QuarterInvestmentRoute
+            quarterNumber={2}
+            quarterPeriod="с 1 апреля по 30 июня 2024 года"
+          />
+          <QuarterInvestmentRoute
+            quarterNumber={3}
+            quarterPeriod="с 1 июля по 30 сентября 2024 года"
+          />
+          <QuarterInvestmentRoute
+            quarterNumber={4}
+            quarterPeriod="с 1 октябрь по 31 декабря 2024 года"
+          />
+        </div>
       </div>
       <div className={cls.isOpenBtn} onClick={onOpenHandler}>
         {isOpen ? 'Свернуть' : 'Развернуть'}

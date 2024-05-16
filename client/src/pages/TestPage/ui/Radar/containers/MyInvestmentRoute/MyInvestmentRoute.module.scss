@@ -81,3 +81,70 @@
     }
   }
 }
+
+.quarterList{
+  width: 100%;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+}
+.quarterInvestmentRouteWrap{
+  display: flex;
+  gap: 24px;
+  min-height: 300px;
+
+  .titleBlock{
+    width: 220px;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+
+    .title{
+      font-size: 18px;
+      line-height: 28px;
+      font-weight: 500;
+    }
+    .period{
+      font-size: 14px;
+      line-height: 22px;
+    }
+  }
+
+  .checkList{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .checkItem{
+      display: flex;
+      gap: 16px;
+      align-items: start;
+      justify-content: start;
+
+      input{
+        margin-top: 2px;
+      }
+
+      .checkInfo{
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .checkDescription{
+          display: flex;
+          gap: 20px;
+          label{
+            display: block;
+            width: 130px;
+          }
+          span{
+            display: block;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
