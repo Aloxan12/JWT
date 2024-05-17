@@ -1,5 +1,5 @@
 import React from 'react';
-import { classNames, Mods } from '../../../../../../shared/lib/classNames/classNames';
+import { classNames } from '../../../../../../shared/lib/classNames/classNames';
 import cls from './MyApplicationsInvestmentRoute.module.scss';
 
 export const MyApplicationsInvestmentRoute = () => {
