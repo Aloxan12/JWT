@@ -41,8 +41,8 @@ const ApplicationItem = () => {
           <ProgressStep stepNumber={3} state="notReady" />
         </div>
         <div className={cls.descriptionsBar}>
-          <div>Подача заявки</div>
-          <div>Рассмотрение заявки</div>
+          <div className={cls.active}>Подача заявки</div>
+          <div className={cls.active}>Рассмотрение заявки</div>
           <div>Готово</div>
         </div>
       </div>

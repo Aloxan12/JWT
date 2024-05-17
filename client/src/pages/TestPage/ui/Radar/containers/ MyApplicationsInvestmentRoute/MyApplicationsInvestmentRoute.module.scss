@@ -99,6 +99,13 @@
         margin-top: 24px;
         display: flex;
         justify-content: space-between;
+
+        font-size: 13px;
+        font-weight: 700;
+        color: rgba(231, 232, 237, 1);
+        .active{
+          color: rgba(33, 133, 251, 1);
+        }
       }
     }
   }
