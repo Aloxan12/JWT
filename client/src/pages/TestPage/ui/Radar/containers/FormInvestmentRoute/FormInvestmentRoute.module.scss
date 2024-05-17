@@ -1,0 +1,65 @@
+.formInvestmentRouteWrap{
+  display: flex;
+  align-items: start;
+  gap: 32px;
+
+  .formWrap{
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+  }
+  .navWrap{
+    position: relative;
+    min-width: 304px;
+    width: 304px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 24px;
+
+    .parent, .child{
+      height: 40px;
+      border: 1px solid rgba(189, 207, 228, 1);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(33, 133, 251, 1);
+      font-weight: 700;
+      padding-left: 18px;
+      font-size: 13px;
+      background-color: white;
+
+      &:not(&:first-child){
+        margin-top: 10px;
+      }
+    }
+    .parent{
+      z-index: 2;
+    }
+    .child{
+      position: relative;
+      margin-left: 30px;
+      z-index: 1;
+
+      &:before{
+        content: '';
+        position: absolute;
+        top: 19px;
+        left: 0;
+        border-left: 1px solid rgba(189, 207, 228, 1);
+        border-bottom: 1px solid rgba(189, 207, 228, 1);
+        width: 18px;
+        height: 50px;
+        transform: translate(-100%, -100%);
+      }
+
+      &.firs:before{
+        height: 30px;
+      }
+      &.active:before{
+        border-color: rgba(33, 133, 251, 1);
+      }
+    }
+  }
+}
