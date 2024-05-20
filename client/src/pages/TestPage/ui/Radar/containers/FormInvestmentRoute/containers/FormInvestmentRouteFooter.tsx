@@ -1,15 +1,23 @@
 import React from 'react';
 import cls from '../FormInvestmentRoute.module.scss';
 
-interface FormInvestmentRouteFooterProps {}
+interface FormInvestmentRouteFooterProps {
+  onNextPageHandler?: () => void;
+  onPreviousPageHandler?: () => void;
+  onSaveFormHandler?: () => void;
+}
 
-export const FormInvestmentRouteFooter = ({}: FormInvestmentRouteFooterProps) => {
+export const FormInvestmentRouteFooter = ({
+  onNextPageHandler,
+  onPreviousPageHandler,
+  onSaveFormHandler,
+}: FormInvestmentRouteFooterProps) => {
   return (
     <div className={cls.formInvestmentRouteFooter}>
       <div className={cls.actions}>
-        <div>Назад btn</div>
-        <div>Далее btn</div>
-        <div>Отправить заявку btn</div>
+        {onPreviousPageHandler && <div onClick={onPreviousPageHandler}>Назад btn</div>}
+        {onNextPageHandler && <div onClick={onNextPageHandler}>Далее btn</div>}
+        {onSaveFormHandler && <div>Отправить заявку btn</div>}
       </div>
       <div className={cls.contactLink}>
         <div className={cls.text}>

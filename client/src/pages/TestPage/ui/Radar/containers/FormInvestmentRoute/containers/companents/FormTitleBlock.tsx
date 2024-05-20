@@ -1,13 +1,16 @@
 import React from 'react';
 import cls from '../../FormInvestmentRoute.module.scss';
 
-export const FormTitleBlock = () => {
+interface FormTitleBlockProps {
+  title: string;
+  description: string;
+}
+
+export const FormTitleBlock = ({ title, description }: FormTitleBlockProps) => {
   return (
     <div className={cls.formTitleBlock}>
-      <div className={cls.title}>Информация о компании</div>
-      <span className={cls.description}>
-        Выберите компанию, для которой будет создан индивидуальный инвестмаршрут
-      </span>
+      <div className={cls.title}>{title}</div>
+      <span className={cls.description}>{description}</span>
     </div>
   );
 };

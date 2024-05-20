@@ -8,12 +8,19 @@ interface FormAboutCompanyBlockProps {
 }
 
 export const FormAboutCompanyBlock = ({ nextPage }: FormAboutCompanyBlockProps) => {
+  const onNextPageHandler = () => {
+    nextPage();
+  };
+
   return (
     <div className={cls.formBlock}>
       <div className={cls.form}>
-        <FormTitleBlock />
+        <FormTitleBlock
+          title="Информация о компании"
+          description="Выберите компанию, для которой будет создан индивидуальный инвестмаршрут"
+        />
       </div>
-      <FormInvestmentRouteFooter />
+      <FormInvestmentRouteFooter onNextPageHandler={onNextPageHandler} />
     </div>
   );
 };
