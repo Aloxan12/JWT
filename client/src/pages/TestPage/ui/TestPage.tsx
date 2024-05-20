@@ -6,7 +6,6 @@ import { AppPhoto } from '../../../shared/ui/AppPhoto/AppPhoto';
 import FakePhoto from '../../../shared/assets/images/fake-photo.jpg';
 import { AppTitle } from '../../../shared/ui/AppTitle/AppTitle';
 import { RadarMain } from './Radar/RadarMain';
-import { FormInvestmentRoute } from './Radar/containers/FormInvestmentRoute/FormInvestmentRoute';
 
 const TestPage = () => {
   const [active, setActive] = useState(false);

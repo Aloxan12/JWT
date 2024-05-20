@@ -29,9 +29,24 @@
       padding-left: 18px;
       font-size: 13px;
       background-color: white;
+      box-shadow: 0 9px 32px 0 rgba(33, 133, 251, 0.2);
 
       &:not(&:first-child){
         margin-top: 10px;
+      }
+      &.active{
+        color: white;
+        background-color: rgba(33, 133, 251, 1);
+        &:before{
+          border-color: rgba(33, 133, 251, 1);
+        }
+      }
+      &.current{
+        color: white;
+        background-color: rgba(0, 87, 255, 1);
+        &:before{
+          border-color:  rgba(0, 87, 255, 1);
+        }
       }
     }
     .parent{
