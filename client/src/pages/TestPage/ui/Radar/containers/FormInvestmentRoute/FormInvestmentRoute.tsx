@@ -5,6 +5,9 @@ import { FormAboutCompanyBlock } from './containers/FormAboutCompanyBlock';
 import { FormFinancesCompanyBlock } from './containers/FormFinancesCompanyBlock';
 import { FormSupportMeasuresBlock } from './containers/FormSupportMeasuresBlock';
 import { FormAboutProjectBlock } from './containers/FormAboutProjectBlock';
+import { FormFinancesProjectBlock } from './containers/FormFinancesProjectBlock';
+import { FormExpensesProjectBlock } from './containers/FormExpensesProjectBlock';
+import { FormResultsProjectBlock } from './containers/FormResultsProjectBlock';
 
 export const FormInvestmentRoute = () => {
   const [page, setPage] = useState(1);
@@ -17,9 +20,9 @@ export const FormInvestmentRoute = () => {
       2: <FormFinancesCompanyBlock prevPage={setPageHandler(1)} nextPage={setPageHandler(3)} />,
       3: <FormSupportMeasuresBlock prevPage={setPageHandler(2)} nextPage={setPageHandler(4)} />,
       4: <FormAboutProjectBlock prevPage={setPageHandler(3)} nextPage={setPageHandler(5)} />,
-      5: <div>page 5</div>,
-      6: <div>page 6</div>,
-      7: <div>page 7</div>,
+      5: <FormFinancesProjectBlock prevPage={setPageHandler(4)} nextPage={setPageHandler(6)} />,
+      6: <FormExpensesProjectBlock prevPage={setPageHandler(5)} nextPage={setPageHandler(7)} />,
+      7: <FormResultsProjectBlock prevPage={setPageHandler(6)} />,
     }),
     [setPageHandler]
   );
