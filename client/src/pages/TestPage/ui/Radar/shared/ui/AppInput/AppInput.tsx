@@ -28,7 +28,7 @@ interface AppInputProps extends AppInputCommonProps {
   onChange?: (value: string) => void | undefined;
   inDropdown?: boolean;
   icoLeft?: typeof ReactComponent;
-  icoRight?: typeof ReactComponent;
+  icoRight?: typeof ReactComponent | string;
   icoRightOnClick?: () => void;
   mask?: InputMaskType;
   autoFocus?: boolean;

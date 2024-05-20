@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cls from '../FormInvestmentRoute.module.scss';
 import { FormInvestmentRouteFooter } from './FormInvestmentRouteFooter';
 import { FormTitleBlock } from './companents/FormTitleBlock';
 import { Flex } from '../../../../../../../shared/ui/Flex/Flex';
 import { AppInput } from '../../../shared/ui/AppInput/AppInput';
+import { AppDropdown } from '../../../shared/ui/AppDropdown/AppDropdown';
+import { AppTextarea } from '../../../shared/ui/AppTextarea/AppTextarea';
 
 interface FormAboutCompanyBlockProps {
   nextPage: () => void;
 }
 
 export const FormAboutCompanyBlock = ({ nextPage }: FormAboutCompanyBlockProps) => {
+  const [search, setSearch] = useState('');
   const onNextPageHandler = () => {
     nextPage();
   };
@@ -21,9 +24,23 @@ export const FormAboutCompanyBlock = ({ nextPage }: FormAboutCompanyBlockProps) 
           title="Информация о компании"
           description="Выберите компанию, для которой будет создан индивидуальный инвестмаршрут"
         />
-        <Flex gap="16">
-          <AppInput placeholder="ИНН" fullWidth message="message" />
-          <AppInput placeholder="Сайт компании" fullWidth error="error" />
+        <Flex direction="column" gap="32" className={cls.mt24}>
+          <Flex gap="16" max>
+            <AppDropdown
+              propName="name"
+              propValue="id"
+              data={[{ id: 1, name: 'name 1' }]}
+              value={null}
+              onChange={() => {}}
+              placeholder="ИНН"
+              fullWidth
+              inputSearch={search}
+              inputSearchFn={setSearch}
+            />
+            <AppInput placeholder="Сайт компании" fullWidth />
+          </Flex>
+          <AppInput placeholder="Название" fullWidth />
+          <AppTextarea placeholder="Резюме компании" rows="2" fullWidth />
         </Flex>
       </div>
       <FormInvestmentRouteFooter onNextPageHandler={onNextPageHandler} />
