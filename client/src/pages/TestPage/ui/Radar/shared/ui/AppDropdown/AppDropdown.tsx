@@ -39,6 +39,7 @@ export interface AppDropdownCommonProps {
   id?: string;
   message?: string;
   required?: boolean;
+  showCaption?: boolean;
 }
 
 interface AppDropdownBase<T, TKey extends keyof T> extends AppDropdownCommonProps {
@@ -97,6 +98,7 @@ export const AppDropdown = <T, TKey extends keyof T>({
   setResetData,
   representFn,
   message,
+  showCaption,
 }: AppDropdownType<T, TKey>) => {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const dropdownValueRef = useRef<HTMLDivElement | null>(null);
@@ -195,6 +197,7 @@ export const AppDropdown = <T, TKey extends keyof T>({
         required={required}
         message={message}
         id={id}
+        showCaption={showCaption}
       />
       {active && (
         <div

@@ -17,6 +17,7 @@ interface AppTextareaProps {
   error?: string;
   message?: string;
   maxLength?: number;
+  showCaption?: boolean;
 }
 
 export const AppTextarea = ({
@@ -31,6 +32,7 @@ export const AppTextarea = ({
   disabled,
   maxLength,
   message,
+  showCaption,
 }: AppTextareaProps) => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const [textareaHeight, setTextareaHeight] = useState('100%');
@@ -48,6 +50,7 @@ export const AppTextarea = ({
     [cls.fullWidth]: fullWidth,
     [cls.disabled]: disabled,
     [cls.error]: error,
+    [cls.showCaption]: showCaption,
   };
   return (
     <div className={classNames(cls.textareaWrap, mods, [className])}>
@@ -60,11 +63,16 @@ export const AppTextarea = ({
           style={{ height: textareaHeight }}
           value={value}
           onChange={onChangeHandler}
-          placeholder={placeholder}
+          placeholder={!showCaption ? placeholder : undefined}
           ref={textareaRef}
           disabled={disabled}
           maxLength={maxLength}
         />
+        {showCaption && placeholder && (
+          <div className={classNames(cls.showCaptionBlock, { [cls.isFocus]: !!value })}>
+            {placeholder}
+          </div>
+        )}
         {error && <div className={cls.errorBlock}>{error}</div>}
         {message && <div className={cls.messageBlock}>{message}</div>}
       </div>

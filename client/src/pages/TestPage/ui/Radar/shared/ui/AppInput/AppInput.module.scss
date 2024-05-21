@@ -50,9 +50,13 @@
       top: 19px;
       color: rgba(144, 144, 161, 1);
       transition: 0.2s all;
+      user-select: none;
+      cursor: text;
+      font-size: 16px;
     }
-    .isFocus{
+    .withValue{
       top: 10px;
+      color:  rgba(33, 133, 251, 1);
     }
 
     .inputBase:focus ~ .showCaptionBlock{
@@ -96,7 +100,9 @@
   &.fullWidth{
     width: 100%;
   }
-
+  &.disabled{
+   opacity: 0.8;
+  }
   &.disabled, &.inDropdown{
     pointer-events: none;
     .inputBase{

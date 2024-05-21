@@ -36,6 +36,7 @@ export const FormAboutCompanyBlock = ({ nextPage }: FormAboutCompanyBlockProps) 
               fullWidth
               inputSearch={search}
               inputSearchFn={setSearch}
+              showCaption
             />
             <AppInput placeholder="Сайт компании" fullWidth />
           </Flex>
@@ -46,7 +47,28 @@ export const FormAboutCompanyBlock = ({ nextPage }: FormAboutCompanyBlockProps) 
             fullWidth
             showCaption
           />
-          <AppTextarea placeholder="Резюме компании" rows="2" fullWidth />
+          <AppTextarea
+            value={search}
+            onChange={setSearch}
+            placeholder="Резюме компании"
+            message="Опишите, чем занимается компания, ее продукцию, рынок и бизнес-модель"
+            rows="2"
+            fullWidth
+            showCaption
+          />
+
+          <AppInput
+            showCaption
+            placeholder="Среднесписочная численность за все кварталы прошлого года, чел."
+            message="Среднее число работников, которые работали у вас в течение прошлого года"
+            fullWidth
+          />
+          <AppInput
+            showCaption
+            placeholder="Среднесписочная численность за все кварталы текущего года, чел."
+            message="Среднее число работников, которые работали у вас в течение текущего года"
+            fullWidth
+          />
         </Flex>
       </div>
       <FormInvestmentRouteFooter onNextPageHandler={onNextPageHandler} />

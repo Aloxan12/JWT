@@ -1,4 +1,4 @@
-import React, { ChangeEvent, InputHTMLAttributes } from 'react';
+import React, { ChangeEvent, InputHTMLAttributes, useRef } from 'react';
 import cls from './AppInput.module.scss';
 import { ReactComponent } from '*.svg';
 import { inputMaskFn } from './helpers/inputMaskFn';
@@ -28,6 +28,7 @@ interface AppInputProps extends AppInputCommonProps {
   value?: string | undefined;
   onChange?: (value: string) => void | undefined;
   inDropdown?: boolean;
+  isActiveDropdown?: boolean;
   icoLeft?: typeof ReactComponent;
   icoRight?: typeof ReactComponent | string;
   icoRightOnClick?: () => void;
@@ -58,8 +59,10 @@ export const AppInput = ({
   maxLength,
   placeholder,
   showCaption,
+  isActiveDropdown,
   ...otherProps
 }: AppInputProps) => {
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (type === 'date') {
       if (e.target.value.length > 10) {
@@ -117,9 +120,18 @@ export const AppInput = ({
           autoFocus={autoFocus}
           maxLength={maxLength ? maxLength : mask === 'float' ? 15 : 300}
           placeholder={!showCaption ? placeholder : undefined}
+          ref={inputRef}
+          disabled={disabled}
         />
         {showCaption && placeholder && (
-          <div className={classNames(cls.showCaptionBlock, { [cls.isFocus]: !!value }, [])}>
+          <div
+            onClick={() => (!disabled ? inputRef?.current?.focus() : undefined)}
+            className={classNames(
+              cls.showCaptionBlock,
+              { [cls.withValue]: !!value || !!isActiveDropdown },
+              []
+            )}
+          >
             {placeholder}
           </div>
         )}
