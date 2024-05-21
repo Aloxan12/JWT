@@ -54,7 +54,7 @@ export const AppTextarea = ({
   };
   return (
     <div className={classNames(cls.textareaWrap, mods, [className])}>
-      {label && <label>{label}</label>}
+      {label && <label className={cls.label}>{label}</label>}
       <div
         className={classNames(cls.textareaBlock, {}, [cls[`row-${rows}`]])}
         onClick={onTextareaBlock}
