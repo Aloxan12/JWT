@@ -20,6 +20,7 @@ export interface AppInputCommonProps extends HTMLInputProps {
   minValue?: string;
   maxValue?: string;
   fullWidth?: boolean;
+  showCaption?: boolean;
 }
 
 interface AppInputProps extends AppInputCommonProps {
@@ -55,6 +56,8 @@ export const AppInput = ({
   autoFocus,
   required,
   maxLength,
+  placeholder,
+  showCaption,
   ...otherProps
 }: AppInputProps) => {
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -82,6 +85,7 @@ export const AppInput = ({
   };
 
   const modsInput: Mods = {
+    [cls.showCaption]: showCaption,
     [cls.icoPaddingLeft]: !!icoLeft,
     [cls.icoPaddingRight]: !!icoRight,
   };
@@ -94,7 +98,7 @@ export const AppInput = ({
         </label>
       )}
       <div className={cls.inputBlock}>
-        {(icoRight || true) && (
+        {icoRight && (
           <span className={`${cls.icoRight}${icoRightOnClick ? ' ' + cls.point : ''}`}>^</span>
           // <AppIco
           //   ico={icoRight}
@@ -112,7 +116,13 @@ export const AppInput = ({
           type={type}
           autoFocus={autoFocus}
           maxLength={maxLength ? maxLength : mask === 'float' ? 15 : 300}
+          placeholder={!showCaption ? placeholder : undefined}
         />
+        {showCaption && placeholder && (
+          <div className={classNames(cls.showCaptionBlock, { [cls.isFocus]: !!value }, [])}>
+            {placeholder}
+          </div>
+        )}
         {error && <div className={cls.errorText}>{error}</div>}
         {message && !error && <div className={cls.messageText}>{message}</div>}
       </div>

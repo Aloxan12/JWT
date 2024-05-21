@@ -12,7 +12,7 @@ interface FormAboutCompanyBlockProps {
 }
 
 export const FormAboutCompanyBlock = ({ nextPage }: FormAboutCompanyBlockProps) => {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState('232312');
   const onNextPageHandler = () => {
     nextPage();
   };
@@ -39,7 +39,13 @@ export const FormAboutCompanyBlock = ({ nextPage }: FormAboutCompanyBlockProps) 
             />
             <AppInput placeholder="Сайт компании" fullWidth />
           </Flex>
-          <AppInput placeholder="Название" fullWidth />
+          <AppInput
+            value={search}
+            onChange={setSearch}
+            placeholder="Название"
+            fullWidth
+            showCaption
+          />
           <AppTextarea placeholder="Резюме компании" rows="2" fullWidth />
         </Flex>
       </div>

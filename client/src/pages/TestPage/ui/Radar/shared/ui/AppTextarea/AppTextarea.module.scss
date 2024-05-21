@@ -33,6 +33,10 @@
       border: none;
       padding: 0;
       background-color: rgba(240, 245, 250, 1);
+      &::placeholder{
+        font-size: 16px;
+        color: rgba(144, 144, 161, 1);
+      }
     }
 
     &.row-1{

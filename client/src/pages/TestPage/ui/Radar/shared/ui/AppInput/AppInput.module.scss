@@ -21,7 +21,7 @@
       outline: none;
       font-size: 16px;
       line-height: 24px;
-      padding: 12px;
+      padding: 16px;
       border: none;
       border-radius: 4px;
       color: black;
@@ -38,6 +38,27 @@
       &.icoPaddingRight{
         padding-right: 42px;
       }
+
+      &.showCaption{
+        padding: 28px 16px 4px 16px;
+      }
+    }
+
+    .showCaptionBlock{
+      position: absolute;
+      padding-left: 15px;
+      top: 19px;
+      color: rgba(144, 144, 161, 1);
+      transition: 0.2s all;
+    }
+    .isFocus{
+      top: 10px;
+    }
+
+    .inputBase:focus ~ .showCaptionBlock{
+      top: 10px;
+      transition: 0.2s all;
+      color:  rgba(33, 133, 251, 1);
     }
 
     .icoLeft, .icoRight{
