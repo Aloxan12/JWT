@@ -12,7 +12,9 @@ export const FormTitleBlock = ({ title, subtitle, description }: FormTitleBlockP
     <div className={cls.formTitleBlock}>
       {title && <div className={cls.title}>{title}</div>}
       {subtitle && <div className={cls.subtitle}>{subtitle}</div>}
-      {description && <span className={cls.description}>{description}</span>}
+      {description && (
+        <span className={cls.description} dangerouslySetInnerHTML={{ __html: description }} />
+      )}
     </div>
   );
 };
