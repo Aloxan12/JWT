@@ -1,5 +1,6 @@
 import React from 'react';
 import cls from './MyInvestmentRoute.module.scss';
+import { classNames, Mods } from '../../../../../../shared/lib/classNames/classNames';
 
 interface QuarterInvestmentRouteProps {
   quarterNumber: number;
@@ -16,10 +17,31 @@ export const QuarterInvestmentRoute = ({
         <span className={cls.title}>{quarterNumber} квартал</span>
         <span className={cls.period}>{quarterPeriod}</span>
       </div>
-      <div>progress</div>
+      <div>
+        <ProgressItem isActive fullActive={quarterNumber !== 4} />
+      </div>
       <div className={cls.checkList}>
         <CheckItem />
       </div>
+    </div>
+  );
+};
+
+interface ProgressItemProps {
+  isActive: boolean;
+  fullActive: boolean;
+  percent?: number;
+}
+
+const ProgressItem = ({ isActive, fullActive }: ProgressItemProps) => {
+  const mods: Mods = {
+    [cls.active]: isActive,
+    [cls.fullActive]: fullActive,
+  };
+  return (
+    <div className={classNames(cls.progressItem, mods, [])}>
+      <div className={cls.circle} />
+      <div className={cls.line} />
     </div>
   );
 };

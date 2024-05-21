@@ -91,7 +91,7 @@
 .quarterInvestmentRouteWrap{
   display: flex;
   gap: 24px;
-  min-height: 300px;
+  min-height: 200px;
 
   .titleBlock{
     width: 220px;
@@ -145,6 +145,52 @@
           }
         }
       }
+    }
+  }
+}
+
+.progressItem{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 4px;
+  .circle{
+    min-width: 30px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgba(231, 232, 237, 1);
+    border-radius: 50%;
+  }
+
+  .line{
+    width: 4px;
+    min-height: 160px;
+    height: 100%;
+    background-color: rgba(231, 232, 237, 1);
+    border-radius: 4px;
+    position: relative;
+  }
+
+  &.active{
+    .circle{
+      background-color: rgba(33, 133, 251, 1);
+      border-color: rgba(33, 133, 251, 1);
+    }
+    .line:before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background-color: rgba(33, 133, 251, 1);
+      border-radius: 4px;
+    }
+  }
+  &.fullActive{
+    .line:before{
+      height: 100%;
     }
   }
 }

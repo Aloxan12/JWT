@@ -8,11 +8,11 @@ import { FormInvestmentRoute } from './containers/FormInvestmentRoute/FormInvest
 export const RadarMain = () => {
   return (
     <div className={cls.radarWrap}>
-      <FormInvestmentRoute />
       <h2 className={cls.title}>Индивидуальный инвестиционный маршрут</h2>
+      <MyInvestmentRoute />
       <InvestmentRouteInfoBlock />
       <MyApplicationsInvestmentRoute />
-      <MyInvestmentRoute />
+      <FormInvestmentRoute />
     </div>
   );
 };
