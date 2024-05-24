@@ -44,7 +44,7 @@ const TestPage = () => {
 
         <div>
           <AppTitle title="Плавно открывающееся фото" titleTag="h3" />
-          <a href="#img1">
+          <a href={'#img1'}>
             <AppPhoto src={FakePhoto} width={40} height={40} />
           </a>
           <a href="#" className={cls.lightbox} id="img1">
