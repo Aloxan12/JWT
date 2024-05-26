@@ -173,9 +173,11 @@
   opacity: 0;
   transition-behavior: allow-discrete;
 
-  @starting-style{
-    display: flex;
-    opacity: 1;
+  &:before{
+    @starting-style{
+      display: flex;
+      opacity: 1;
+    }
   }
 }
 
