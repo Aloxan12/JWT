@@ -13,6 +13,7 @@ import { AppCard } from '../../../shared/ui/AppCard/AppCard';
 import { AppTitle } from '../../../shared/ui/AppTitle/AppTitle';
 import cls from './Login.module.scss';
 import { AppText } from '../../../shared/ui/AppText/AppText';
+import { allRoutePaths } from '../../../app/core/router/routerPaths';
 
 const Login = () => {
   const [login, { isLoading: isLoadingLogin, isError }] = useLoginMutation();
@@ -68,7 +69,13 @@ const Login = () => {
             label="Введите пароль:"
             placeholder="Введите пароль"
           />
-          <AppButton title="Войти" onClick={loginHandler} theme="full-bg" />
+          <AppButton title="Войти" onClick={loginHandler} theme="full-bg" max />
+          <AppButton
+            title="Зарегистрироваться"
+            to={`/${allRoutePaths.registration.path}/`}
+            theme="outline"
+            max
+          />
           {/*<AppButton onClick={() => loginHandler(email, password)} text="Войти" />*/}
           {error && <AppText color="red" text={error} className={cls.errorBlock} />}
         </Flex>

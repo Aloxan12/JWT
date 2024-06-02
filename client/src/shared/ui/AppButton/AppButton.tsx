@@ -4,6 +4,7 @@ import { classNames, Mods } from '../../lib/classNames/classNames';
 import { Tooltip } from '../Tooltip/Tooltip';
 import { AppIco } from '../AppSvg/AppIco';
 import { ReactComponent } from '*.svg';
+import { Link } from 'react-router-dom';
 
 type AppButtonSize = 'small' | 'base' | 'big';
 type AppButtonTheme = 'clear' | 'outline' | 'full-bg';
@@ -21,6 +22,7 @@ interface AppButtonProps {
   icoLeft?: typeof ReactComponent;
   icoRight?: typeof ReactComponent;
   onClick?: () => void;
+  to?: string;
 }
 
 export const AppButton = memo(
@@ -37,6 +39,7 @@ export const AppButton = memo(
     icoRight,
     icoLeft,
     onClick,
+    to,
   }: AppButtonProps) => {
     const mods: Mods = {
       [cls.size]: size,
@@ -58,6 +61,14 @@ export const AppButton = memo(
         {icoRight && <AppIco svg={icoRight} />}
       </button>
     );
+
+    if (to) {
+      return (
+        <Link className={max ? cls.max : undefined} to={to}>
+          {content}
+        </Link>
+      );
+    }
 
     if (tooltipText) {
       return <Tooltip content={tooltipText}>{content}</Tooltip>;
