@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import './Registration.css';
-import { useRegistrationMutation } from '../../app/core/api/authApi';
+import { useRegistrationMutation } from '../../../app/core/api/authApi';
 import { useNavigate } from 'react-router-dom';
-import { RoleTypes } from '../../app/core/router/AppRouter';
-import { AppLoader } from '../../widgets/AppLoader/AppLoader';
-import { onSuccessNotification } from '../../shared/lib/onSuccessNotification';
+import { RoleTypes } from '../../../app/core/router/AppRouter';
+import { AppLoader } from '../../../widgets/AppLoader/AppLoader';
+import { onSuccessNotification } from '../../../shared/lib/onSuccessNotification';
 
-export const Registration = () => {
+const Registration = () => {
   const [registration, { isLoading: isLoadingRegistration }] = useRegistrationMutation();
   const navigate = useNavigate();
 
@@ -121,3 +121,5 @@ export const Registration = () => {
     </div>
   );
 };
+
+export default Registration
