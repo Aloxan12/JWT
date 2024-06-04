@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { RoleTypes } from '../../../app/core/router/AppRouter';
 import { AppLoader } from '../../../widgets/AppLoader/AppLoader';
 import { onSuccessNotification } from '../../../shared/lib/onSuccessNotification';
+import { AppButton } from '../../../shared/ui/AppButton/AppButton';
 
 const Registration = () => {
   const [registration, { isLoading: isLoadingRegistration }] = useRegistrationMutation();
@@ -16,7 +17,6 @@ const Registration = () => {
   const [password2, setPassword2] = useState('');
   const [role, setRole] = useState<RoleTypes | null>(null);
   const [errorText, setErrorText] = useState('');
-  const [success, setSuccess] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,7 +56,6 @@ const Registration = () => {
               placeholder="Введите свой email"
               onChange={(e) => {
                 setErrorText('');
-                setSuccess('');
                 setEmail(e.currentTarget.value);
               }}
               name="email"
@@ -70,7 +69,6 @@ const Registration = () => {
               placeholder="Введите пароль"
               onChange={(e) => {
                 setErrorText('');
-                setSuccess('');
                 setPassword(e.currentTarget.value);
               }}
               name="password"
@@ -85,7 +83,6 @@ const Registration = () => {
               placeholder="Введите ещё раз пароль"
               onChange={(e) => {
                 setErrorText('');
-                setSuccess('');
                 setPassword2(e.currentTarget.value);
               }}
             />
@@ -112,9 +109,10 @@ const Registration = () => {
             </span>
           </div>
           <div className="form-item btn-block">
+            <AppButton text="Зарегистрироваться" max />
+            <AppButton text="Войти" to="/" max />
             <input type="submit" className="btn" value="Зарегистрироваться" />
             {errorText && <div className="error-text">{errorText}</div>}
-            {success && <div className="success-text">{success}</div>}
           </div>
         </form>
       </div>
@@ -122,4 +120,4 @@ const Registration = () => {
   );
 };
 
-export default Registration
+export default Registration;
