@@ -15,7 +15,6 @@ const Registration = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
-  const [role, setRole] = useState<RoleTypes | null>(null);
   const [errorText, setErrorText] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -26,10 +25,8 @@ const Registration = () => {
       setErrorText('Поле пароль должно быть заполнено и быть длинее 4 символов!!');
     } else if (password !== password2) {
       setErrorText('Разные пароли!!');
-    } else if (role === null) {
-      setErrorText('Не выбрана роль');
     } else {
-      registration({ email, password, role })
+      registration({ email, password, role: RoleTypes.ADMIN })
         .unwrap()
         .then(
           onSuccessNotification('Писльмо для подтверждаения регистрации отправлено на почту', () =>
@@ -86,27 +83,6 @@ const Registration = () => {
                 setPassword2(e.currentTarget.value);
               }}
             />
-          </div>
-          <div className="form-item">
-            <label htmlFor="password2">Выберете роль:</label>
-            <span>
-              <input
-                type="radio"
-                name="role"
-                value="USER"
-                onChange={(e) => setRole(e.target.value as RoleTypes)}
-              />
-              USER
-            </span>
-            <span>
-              <input
-                type="radio"
-                name="role"
-                value="ADMIN"
-                onChange={(e) => setRole(e.target.value as RoleTypes)}
-              />
-              ADMIN
-            </span>
           </div>
           <div className="form-item btn-block">
             <AppButton text="Зарегистрироваться" max />
