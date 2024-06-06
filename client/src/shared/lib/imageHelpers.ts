@@ -22,3 +22,5 @@ export const downloadAndCreateFiles = async (urlFile: string) => {
   }
   return file;
 };
+
+// Скачать картинку, функция
