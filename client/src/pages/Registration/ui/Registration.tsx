@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
-import './Registration.css';
+import cls from './Registration.module.scss';
 import { useRegistrationMutation } from '../../../app/core/api/authApi';
 import { useNavigate } from 'react-router-dom';
 import { RoleTypes } from '../../../app/core/router/AppRouter';
 import { AppLoader } from '../../../widgets/AppLoader/AppLoader';
 import { onSuccessNotification } from '../../../shared/lib/onSuccessNotification';
 import { AppButton } from '../../../shared/ui/AppButton/AppButton';
+import { Flex } from '../../../shared/ui/Flex/Flex';
+import { AppTitle } from '../../../shared/ui/AppTitle/AppTitle';
+import { AppCard } from '../../../shared/ui/AppCard/AppCard';
+import { AppInput } from '../../../shared/ui/AppInput/AppInput';
 
 const Registration = () => {
   const [registration, { isLoading: isLoadingRegistration }] = useRegistrationMutation();
@@ -17,8 +21,7 @@ const Registration = () => {
   const [password2, setPassword2] = useState('');
   const [errorText, setErrorText] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const onRegistrationHandler = () => {
     if (email.trim() === '') {
       setErrorText('Поле "email" не заполнено!!');
     } else if (password.trim().length < 4 && password2.trim().length < 4) {
@@ -37,27 +40,21 @@ const Registration = () => {
   };
 
   return (
-    <div className="auth_wrap">
+    <Flex gap="8" direction="column" className={cls.authWrap} align="center" justify="center">
       {isLoadingRegistration && <AppLoader />}
-      <div className="registration-block">
-        <div className="header-block">
-          <span>Регистрация</span>
-        </div>
-        <form onSubmit={handleSubmit} className="form-block">
-          <div className="form-item">
-            <label htmlFor="email">Введите email:</label>
-
-            <input
-              type="text"
-              value={email}
-              placeholder="Введите свой email"
-              onChange={(e) => {
-                setErrorText('');
-                setEmail(e.currentTarget.value);
-              }}
-              name="email"
-            />
-          </div>
+      <AppTitle titleTag="h2" title="Регистрация" />
+      <AppCard className={cls.registrationBlock}>
+        <Flex gap="16" direction="column">
+          <AppInput
+            label="Введите email:"
+            value={email}
+            onChange={(value) => {
+              setErrorText('');
+              setEmail(value);
+            }}
+            placeholder="Введите свой email"
+            fullWidth
+          />
           <div className="form-item">
             <label htmlFor="password">Введите пароль:</label>
             <input
@@ -85,14 +82,13 @@ const Registration = () => {
             />
           </div>
           <div className="form-item btn-block">
-            <AppButton text="Зарегистрироваться" max />
+            <AppButton text="Зарегистрироваться" max onClick={onRegistrationHandler} />
             <AppButton text="Войти" to="/" max />
-            <input type="submit" className="btn" value="Зарегистрироваться" />
             {errorText && <div className="error-text">{errorText}</div>}
           </div>
-        </form>
-      </div>
-    </div>
+        </Flex>
+      </AppCard>
+    </Flex>
   );
 };
 
