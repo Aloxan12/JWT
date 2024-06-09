@@ -43,7 +43,7 @@ const Registration = () => {
     <Flex gap="8" direction="column" className={cls.authWrap} align="center" justify="center">
       {isLoadingRegistration && <AppLoader />}
       <AppTitle titleTag="h2" title="Регистрация" />
-      <AppCard className={cls.registrationBlock}>
+      <AppCard className={cls.registrationBlock} classNameContent={cls.content}>
         <Flex gap="16" direction="column">
           <AppInput
             label="Введите email:"
@@ -55,37 +55,38 @@ const Registration = () => {
             placeholder="Введите свой email"
             fullWidth
           />
-          <div className="form-item">
-            <label htmlFor="password">Введите пароль:</label>
-            <input
-              type="password"
-              value={password}
-              placeholder="Введите пароль"
-              onChange={(e) => {
-                setErrorText('');
-                setPassword(e.currentTarget.value);
-              }}
-              name="password"
-            />
-          </div>
-          <div className="form-item">
-            <label htmlFor="password2">Введите еще раз пароль:</label>
-            <input
-              type="password"
-              name="password2"
-              value={password2}
-              placeholder="Введите ещё раз пароль"
-              onChange={(e) => {
-                setErrorText('');
-                setPassword2(e.currentTarget.value);
-              }}
-            />
-          </div>
-          <div className="form-item btn-block">
-            <AppButton text="Зарегистрироваться" max onClick={onRegistrationHandler} />
-            <AppButton text="Войти" to="/" max />
-            {errorText && <div className="error-text">{errorText}</div>}
-          </div>
+          <AppInput
+            label="Введите пароль:"
+            value={email}
+            onChange={(value) => {
+              setErrorText('');
+              setPassword(value);
+            }}
+            placeholder="Введите пароль"
+            fullWidth
+            type="password"
+            name="password"
+          />
+          <AppInput
+            label="Введите еще раз пароль:"
+            value={email}
+            onChange={(value) => {
+              setErrorText('');
+              setPassword2(value);
+            }}
+            placeholder="Введите пароль"
+            fullWidth
+            type="password"
+            name="password2"
+          />
+          <AppButton
+            text="Зарегистрироваться"
+            max
+            theme="full-bg"
+            onClick={onRegistrationHandler}
+          />
+          <AppButton text="Войти" to="/" max theme="clear" />
+          {errorText && <div className="error-text">{errorText}</div>}
         </Flex>
       </AppCard>
     </Flex>

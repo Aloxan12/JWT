@@ -2,6 +2,14 @@
     height: 100vh;
 }
 
+.registrationBlock{
+    // width: 100%;
+    // max-width: 450px;
+    .content{
+        padding: 30px;
+    }
+}
+
 .formBlock{
     display: flex;
     flex-direction: column;
