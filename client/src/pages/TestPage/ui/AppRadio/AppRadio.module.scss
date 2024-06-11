@@ -1,6 +1,6 @@
 .radioWrap{
   display: inline-flex;
-  gap: 8px;
+  gap: 12px;
   align-items: center;
 
   .radio{
@@ -27,5 +27,9 @@
     &.disabled{
       pointer-events: none;
     }
+  }
+  span{
+    line-height: 22px;
+    font-size: 14px;
   }
 }

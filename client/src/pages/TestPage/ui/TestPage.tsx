@@ -16,8 +16,10 @@ const TestPage = () => {
   return (
     <>
       <div className={cls.testPageWrap}>
-        <AppRadio isActive={true} onClick={() => {}} />
-        <AppRadio isActive={false} onClick={() => {}} />
+        <Flex gap="24">
+          <AppRadio isActive={true} onClick={() => {}} text="tekeuhfv" />
+          <AppRadio isActive={false} onClick={() => {}} text="tekeuhfv" />
+        </Flex>
         <div className={cls.animationBlock}>{active && <div className={cls.whiteCircle} />}</div>
         <AppButton text={active ? 'Закрыть' : 'Открыть'} onClick={setActiveHandler} />
 
