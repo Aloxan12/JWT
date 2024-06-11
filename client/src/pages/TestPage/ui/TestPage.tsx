@@ -5,6 +5,7 @@ import { Flex } from '../../../shared/ui/Flex/Flex';
 import { AppPhoto } from '../../../shared/ui/AppPhoto/AppPhoto';
 import FakePhoto from '../../../shared/assets/images/fake-photo.jpg';
 import { AppTitle } from '../../../shared/ui/AppTitle/AppTitle';
+import { AppRadio } from './AppRadio/AppRadio';
 
 const TestPage = () => {
   const [active, setActive] = useState(false);
@@ -12,10 +13,11 @@ const TestPage = () => {
 
   const setActiveHandler = () => setActive((prev) => !prev);
   const setActiveTransitionBehaviorHandler = () => setActiveTransitionBehavior((prev) => !prev);
-
   return (
     <>
       <div className={cls.testPageWrap}>
+        <AppRadio isActive={true} onClick={() => {}} />
+        <AppRadio isActive={false} onClick={() => {}} />
         <div className={cls.animationBlock}>{active && <div className={cls.whiteCircle} />}</div>
         <AppButton text={active ? 'Закрыть' : 'Открыть'} onClick={setActiveHandler} />
 
