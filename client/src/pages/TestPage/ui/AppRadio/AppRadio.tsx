@@ -12,6 +12,7 @@ interface AppRadioProps {
 export const AppRadio = ({ isActive, onClick, disabled, text }: AppRadioProps) => {
   const mods: Mods = {
     [cls.active]: isActive,
+    [cls.disabled]: disabled,
   };
 
   return (
