@@ -1,6 +1,6 @@
 import React from 'react';
 import cls from './AppRadio.module.scss';
-import { classNames, Mods } from '../../../../shared/lib/classNames/classNames';
+import { classNames, Mods } from '../../lib/classNames/classNames';
 
 interface AppRadioProps {
   isActive: boolean;
@@ -17,7 +17,7 @@ export const AppRadio = ({ isActive, onClick, disabled, text }: AppRadioProps) =
 
   return (
     <div className={cls.radioWrap}>
-      <div className={classNames(cls.radio, mods, [])}>
+      <div className={classNames(cls.radio, mods, [])} onClick={onClick}>
         {isActive && <div className={cls.white} />}
       </div>
       {text && <span>{text}</span>}

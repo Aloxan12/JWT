@@ -5,7 +5,7 @@ import { Flex } from '../../../shared/ui/Flex/Flex';
 import { AppPhoto } from '../../../shared/ui/AppPhoto/AppPhoto';
 import FakePhoto from '../../../shared/assets/images/fake-photo.jpg';
 import { AppTitle } from '../../../shared/ui/AppTitle/AppTitle';
-import { AppRadio } from './AppRadio/AppRadio';
+import { AppRadio } from '../../../shared/ui/AppRadio/AppRadio';
 
 const TestPage = () => {
   const [active, setActive] = useState(false);
