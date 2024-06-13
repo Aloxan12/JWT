@@ -51,3 +51,11 @@ export const AppTooltip = ({
     </div>
   );
 };
+
+// foiv
+// roiv
+// investor
+// corparation
+// university
+// company
+// iir
