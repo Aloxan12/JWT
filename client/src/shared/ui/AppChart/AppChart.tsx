@@ -44,7 +44,12 @@ export const AppChart = () => {
     y: number;
     value: DataPoint | null;
     label: string | null;
-  }>({ x: 0, y: 0, value: null, label: null });
+  }>({
+    x: 0,
+    y: 0,
+    value: null,
+    label: null,
+  });
 
   const handleMouseMove = (event: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
     const canvas = canvasRef.current;
@@ -57,8 +62,8 @@ export const AppChart = () => {
     let found = false;
     data.forEach((dataset) => {
       dataset.points.forEach((point) => {
-        const x = point.x * xInterval;
-        const y = canvas.height - point.y * yInterval;
+        const x = point.x * xInterval + 50; // + 50 for padding
+        const y = canvas.height - (point.y * yInterval + 50); // + 50 for padding
         if (Math.abs(mouseX - x) < 5 && Math.abs(mouseY - y) < 5) {
           setTooltip({ x: x + rect.left, y: y + rect.top, value: point, label: dataset.label });
           found = true;
@@ -140,7 +145,7 @@ export const AppChart = () => {
         const x = xStart + point.x * xInterval;
         const y = yStart - point.y * yInterval;
         ctx.beginPath();
-        ctx.arc(x, y, 3, 0, 2 * Math.PI);
+        ctx.arc(x, y, 5, 0, 2 * Math.PI); // увеличим радиус для лучшего попадания мышью
         ctx.fillStyle = dataset.color;
         ctx.fill();
       });
@@ -148,10 +153,10 @@ export const AppChart = () => {
   }, [data, xInterval, yInterval]);
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: 'relative', overflowX: 'auto', width: '100%' }}>
       <canvas
         ref={canvasRef}
-        width={800}
+        width={data[0].points.length * xInterval + 100} // ширина canvas с учетом количества точек
         height={600}
         style={{ border: '1px solid black' }}
         onMouseMove={handleMouseMove}
@@ -160,11 +165,13 @@ export const AppChart = () => {
         <div
           style={{
             position: 'absolute',
-            left: tooltip.x,
-            top: tooltip.y - 40,
+            left: tooltip.x + 10,
+            top: tooltip.y - 20,
             background: 'white',
             border: '1px solid black',
             padding: '5px',
+            pointerEvents: 'none',
+            transform: `translate(calc(-50% + ${tooltip.x}px), calc(-100% + ${tooltip.y}px))`, // центрирование тултипа
           }}
         >
           {`${tooltip.label}: x: ${tooltip.value.x}, y: ${tooltip.value.y}`}
