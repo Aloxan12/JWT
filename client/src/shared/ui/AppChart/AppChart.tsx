@@ -1,11 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import cls from './AppChart.module.scss';
 
-interface DataPoint {
-  x: number;
-  y: number;
-}
-
 const data = [
   {
     label: 'Dataset 1',
@@ -51,21 +46,6 @@ export const AppChart = () => {
 
     // Clear the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = 'green';
-    ctx.fillRect(10, 10, 150, 100);
-
-    ctx.strokeStyle = 'blue';
-    ctx.strokeRect(10, 150, 150, 100);
-
-    ctx.beginPath();
-    ctx.arc(0, 0, 5, 0, 2 * Math.PI);
-    ctx.fillRect(0, 0, 5, 5);
-    ctx.moveTo(0, 0); // Начальная точка
-    ctx.lineTo(200, 200); // Конечная точка
-    ctx.strokeStyle = 'red';
-    ctx.lineWidth = 2;
-    ctx.stroke();
   }, [canvasRef]);
 
   return (
