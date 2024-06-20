@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import 'react-toastify/dist/ReactToastify.css';
 import cls from './Registration.module.scss';
 import { useRegistrationMutation } from '../../../app/core/api/authApi';
 import { useNavigate } from 'react-router-dom';
@@ -12,30 +11,64 @@ import { AppTitle } from '../../../shared/ui/AppTitle/AppTitle';
 import { AppCard } from '../../../shared/ui/AppCard/AppCard';
 import { AppInput } from '../../../shared/ui/AppInput/AppInput';
 
+const validateRegistration = (email: string, password: string, password2: string) => {
+  if (email.trim() === '') {
+    return 'Поле "email" не заполнено!!';
+  }
+
+  if (password.trim().length < 4 || password2.trim().length < 4) {
+    return 'Пароль должен быть заполнен и содержать не менее 4 символов!!';
+  }
+
+  if (password !== password2) {
+    return 'Пароли не совпадают!!';
+  }
+
+  return null;
+};
+
+interface IFormData {
+  email: string;
+  password: string;
+  password2: string;
+}
+
 const Registration = () => {
   const [registration, { isLoading: isLoadingRegistration }] = useRegistrationMutation();
   const navigate = useNavigate();
+  const [formData, setFormData] = useState<IFormData>({
+    email: '',
+    password: '',
+    password2: '',
+  });
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [password2, setPassword2] = useState('');
   const [errorText, setErrorText] = useState('');
 
   const onRegistrationHandler = () => {
-    if (email.trim() === '') {
-      setErrorText('Поле "email" не заполнено!!');
-    } else if (password.trim().length < 4 && password2.trim().length < 4) {
-      setErrorText('Поле пароль должно быть заполнено и быть длинее 4 символов!!');
-    } else if (password !== password2) {
-      setErrorText('Разные пароли!!');
-    } else {
-      registration({ email, password, role: RoleTypes.ADMIN })
-        .unwrap()
-        .then(
-          onSuccessNotification('Писльмо для подтверждаения регистрации отправлено на почту', () =>
-            navigate('/login')
-          )
+    const { email, password, password2 } = formData;
+    const validationError = validateRegistration(email, password, password2);
+
+    if (validationError) {
+      setErrorText(validationError);
+      return;
+    }
+
+    registration({ email, password, role: RoleTypes.ADMIN })
+      .unwrap()
+      .then(() => {
+        onSuccessNotification('Письмо для подтверждения регистрации отправлено на почту', () =>
+          navigate('/login')
         );
+      })
+      .catch((error) => {
+        setErrorText('Ошибка при регистрации: ' + error.message);
+      });
+  };
+
+  const onChangeHandler = (propName: keyof IFormData) => (value: string) => {
+    setFormData((prev) => ({ ...prev, [propName]: value }));
+    if (errorText) {
+      setErrorText('');
     }
   };
 
@@ -47,37 +80,27 @@ const Registration = () => {
         <Flex gap="16" direction="column">
           <AppInput
             label="Введите email:"
-            value={email}
-            onChange={(value) => {
-              setErrorText('');
-              setEmail(value);
-            }}
+            value={formData.email}
+            onChange={onChangeHandler('email')}
             placeholder="Введите свой email"
             fullWidth
+            type="email"
           />
           <AppInput
             label="Введите пароль:"
-            value={email}
-            onChange={(value) => {
-              setErrorText('');
-              setPassword(value);
-            }}
+            value={formData.password}
+            onChange={onChangeHandler('password')}
             placeholder="Введите пароль"
             fullWidth
             type="password"
-            name="password"
           />
           <AppInput
             label="Введите еще раз пароль:"
-            value={email}
-            onChange={(value) => {
-              setErrorText('');
-              setPassword2(value);
-            }}
+            value={formData.password2}
+            onChange={onChangeHandler('password2')}
             placeholder="Введите пароль"
             fullWidth
             type="password"
-            name="password2"
           />
           <AppButton
             text="Зарегистрироваться"
