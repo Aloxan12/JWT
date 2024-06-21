@@ -10,6 +10,7 @@ import { Flex } from '../../../shared/ui/Flex/Flex';
 import { AppTitle } from '../../../shared/ui/AppTitle/AppTitle';
 import { AppCard } from '../../../shared/ui/AppCard/AppCard';
 import { AppInput } from '../../../shared/ui/AppInput/AppInput';
+import { AppToggle } from '../../../shared/ui/AppToggle/AppToggle';
 
 const validateRegistration = (email: string, password: string, password2: string) => {
   if (email.trim() === '') {
@@ -102,6 +103,10 @@ const Registration = () => {
             fullWidth
             type="password"
           />
+          <Flex gap="16">
+            <AppToggle value={false} />
+            <span>Админ?</span>
+          </Flex>
           <AppButton
             text="Зарегистрироваться"
             max
