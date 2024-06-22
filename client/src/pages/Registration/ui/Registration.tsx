@@ -32,6 +32,7 @@ interface IFormData {
   email: string;
   password: string;
   password2: string;
+  isAdmin: boolean;
 }
 
 const Registration = () => {
@@ -41,12 +42,13 @@ const Registration = () => {
     email: '',
     password: '',
     password2: '',
+    isAdmin: false,
   });
 
   const [errorText, setErrorText] = useState('');
 
   const onRegistrationHandler = () => {
-    const { email, password, password2 } = formData;
+    const { email, password, password2, isAdmin } = formData;
     const validationError = validateRegistration(email, password, password2);
 
     if (validationError) {
@@ -54,7 +56,7 @@ const Registration = () => {
       return;
     }
 
-    registration({ email, password, role: RoleTypes.ADMIN })
+    registration({ email, password, role: isAdmin ? RoleTypes.ADMIN : RoleTypes.USER })
       .unwrap()
       .then(() => {
         onSuccessNotification('Письмо для подтверждения регистрации отправлено на почту', () =>
@@ -71,6 +73,10 @@ const Registration = () => {
     if (errorText) {
       setErrorText('');
     }
+  };
+
+  const onRoleChange = (value: boolean) => {
+    setFormData((prev) => ({ ...prev, isAdmin: value }));
   };
 
   return (
@@ -104,8 +110,8 @@ const Registration = () => {
             type="password"
           />
           <Flex gap="16">
-            <AppToggle value={false} />
-            <span>Админ?</span>
+            <AppToggle value={formData.isAdmin} onChange={onRoleChange} />
+            <span>Админ</span>
           </Flex>
           <AppButton
             text="Зарегистрироваться"
