@@ -62,9 +62,6 @@ const Registration = () => {
         onSuccessNotification('Письмо для подтверждения регистрации отправлено на почту', () =>
           navigate('/login')
         );
-      })
-      .catch((error) => {
-        setErrorText('Ошибка при регистрации: ' + error.message);
       });
   };
 
