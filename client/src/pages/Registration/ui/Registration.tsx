@@ -58,11 +58,11 @@ const Registration = () => {
 
     registration({ email, password, role: isAdmin ? RoleTypes.ADMIN : RoleTypes.USER })
       .unwrap()
-      .then(() => {
+      .then(
         onSuccessNotification('Письмо для подтверждения регистрации отправлено на почту', () =>
           navigate('/login')
-        );
-      });
+        )
+      );
   };
 
   const onChangeHandler = (propName: keyof IFormData) => (value: string) => {
@@ -106,7 +106,7 @@ const Registration = () => {
             fullWidth
             type="password"
           />
-          <Flex gap="16">
+          <Flex gap="16" align="start" max>
             <AppToggle value={formData.isAdmin} onChange={onRoleChange} />
             <span>Админ</span>
           </Flex>
