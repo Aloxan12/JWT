@@ -1,7 +1,7 @@
 import { useDeletePostMutation } from '../../../../app/core/api/postApi';
-import { ToastWrapper, ToastWrapperType } from '../../../../entities/ToastWrapper/ToastWrapper';
 import React, { useCallback, useState } from 'react';
 import { IPost } from '../../../../app/core/api/dto/PostDto';
+import { onSuccessNotification } from '../../../../shared/lib/onSuccessNotification';
 
 type UseDeletePostResponse = [(id: string) => (onClose?: () => void) => void, string | null];
 
@@ -16,14 +16,12 @@ export const useDeletePost = (
       setActiveId(activeId);
       deletePost({ id })
         .unwrap()
-        .then(() => {
-          ToastWrapper({
-            msg: 'Пост успешно удален',
-            type: ToastWrapperType.info,
-          });
-          setCurrentData((prevState) => prevState.filter((post) => post.id !== id));
-          onClose?.();
-        })
+        .then(
+          onSuccessNotification('Пост успешно удален', () => {
+            setCurrentData((prevState) => prevState.filter((post) => post.id !== id));
+            onClose?.();
+          })
+        )
         .finally(() => setActiveId(null));
     },
     []
