@@ -26,6 +26,5 @@ export const useDeletePost = (
     },
     []
   );
-
   return [deletePostHandler, activeId];
 };
