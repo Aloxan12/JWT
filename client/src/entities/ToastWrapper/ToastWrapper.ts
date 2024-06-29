@@ -23,3 +23,14 @@ export const ToastWrapper = ({ msg, type = ToastWrapperType.error }: IToastWrapp
     draggable: true,
   });
 };
+
+export const AppNotification = ({ msg, type = ToastWrapperType.error }: IToastWrapper) => {
+  toast[type](msg, {
+    position: 'top-right',
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+  });
+};
