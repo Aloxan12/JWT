@@ -2,7 +2,10 @@ import { AppTextarea } from '../../../../../shared/ui/AppTextarea/AppTextarea';
 import { AppButton } from '../../../../../shared/ui/AppButton/AppButton';
 import { Flex } from '../../../../../shared/ui/Flex/Flex';
 import React, { useState } from 'react';
-import { ToastWrapper, ToastWrapperType } from '../../../../../entities/ToastWrapper/ToastWrapper';
+import {
+  AppNotification,
+  ToastWrapperType,
+} from '../../../../../entities/ToastWrapper/ToastWrapper';
 import { useCreatePostsMutation } from '../../../../../app/core/api/postApi';
 import moment from 'moment';
 import { useSelector } from 'react-redux';
@@ -22,17 +25,16 @@ export const CreatePost = ({ setCurrentData }: CreatePostProps) => {
 
   const createPostHandler = () => {
     if (user && postText !== '') {
-      createPost({ author: user.id, postText, publicDate: moment(new Date()).toISOString() }).then(
-        (res) => {
-          const newPost = (res as unknown as { data: { post: IPost } }).data.post;
+      createPost({ author: user.id, postText, publicDate: moment(new Date()).toISOString() })
+        .unwrap()
+        .then((post) => {
           setPostText('');
-          setCurrentData((prevState) => [newPost, ...prevState]);
-          ToastWrapper({
+          setCurrentData((prevState) => [post, ...prevState]);
+          AppNotification({
             msg: 'Пост опубликован'.replace(/"/g, ''),
             type: ToastWrapperType.success,
           });
-        }
-      );
+        });
     }
   };
 

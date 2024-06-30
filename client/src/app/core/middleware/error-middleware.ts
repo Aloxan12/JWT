@@ -1,5 +1,5 @@
 import { isRejectedWithValue, Middleware, MiddlewareAPI } from '@reduxjs/toolkit';
-import { ToastWrapper, ToastWrapperType } from '../../../entities/ToastWrapper/ToastWrapper';
+import { AppNotification, ToastWrapperType } from '../../../entities/ToastWrapper/ToastWrapper';
 import { logout } from '../redux/Reducers/auth/authSlice';
 
 export const rtkErrorMiddleware: Middleware = (api: MiddlewareAPI) => (next) => (action) => {
@@ -8,7 +8,7 @@ export const rtkErrorMiddleware: Middleware = (api: MiddlewareAPI) => (next) => 
     if (action.payload.status === 401) {
       api.dispatch(logout());
     }
-    ToastWrapper({
+    AppNotification({
       msg: JSON.stringify(
         !!action.payload.data ? action.payload.data.message : action.payload
       )?.replace(/"/g, ''),
