@@ -45,7 +45,7 @@ export const CreatePost = ({ setCurrentData }: CreatePostProps) => {
         title="Опубликовать"
         onClick={createPostHandler}
         theme="full-bg"
-        disabled={!postText}
+        disabled={!postText.trim()}
         isLoading={isLoadingCreate}
       />
     </Flex>
