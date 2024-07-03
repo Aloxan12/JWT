@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { downloadFile } from '../downloadFile';
-import { ToastWrapper, ToastWrapperType } from '../../../entities/ToastWrapper/ToastWrapper';
+import { AppNotification, ToastWrapperType } from '../../../entities/ToastWrapper/ToastWrapper';
 
 export const useDownloadFile = (
   setFile: (file: File | null) => void,
@@ -14,7 +14,7 @@ export const useDownloadFile = (
         setFile(photo);
       };
       downloadAndCreateFiles().catch(() =>
-        ToastWrapper({
+        AppNotification({
           msg: 'При загрузке фото произошла ошибка',
           type: ToastWrapperType.error,
         })

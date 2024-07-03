@@ -1,10 +1,10 @@
-import { ToastWrapper, ToastWrapperType } from '../../entities/ToastWrapper/ToastWrapper';
+import { AppNotification, ToastWrapperType } from '../../entities/ToastWrapper/ToastWrapper';
 
 export const onSuccessNotification = (text: string, callback?: () => void) => () => {
-  ToastWrapper({ msg: text.replace(/"/g, ''), type: ToastWrapperType.success });
+  AppNotification({ msg: text.replace(/"/g, ''), type: ToastWrapperType.success });
   callback?.();
 };
 
 export const onErrorNotification = (text: string) => () => {
-  ToastWrapper({ msg: text.replace(/"/g, ''), type: ToastWrapperType.error });
+  AppNotification({ msg: text.replace(/"/g, ''), type: ToastWrapperType.error });
 };

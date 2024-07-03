@@ -6,7 +6,7 @@ import { AppButton } from '../../../shared/ui/AppButton/AppButton';
 import { AppModal } from '../../../shared/ui/AppModal/Modal';
 import { AppInputFile } from '../../../shared/ui/AppInputFile/AppInputFile';
 import { useUploadUserAvatarMutation } from '../../../app/core/api/usersApi';
-import { ToastWrapper, ToastWrapperType } from '../../../entities/ToastWrapper/ToastWrapper';
+import { AppNotification, ToastWrapperType } from '../../../entities/ToastWrapper/ToastWrapper';
 
 interface IChangeAvatarProps {
   userId: string;
@@ -36,7 +36,7 @@ export const ChangeAvatarContainer = ({
       if (file.type.includes('image')) {
         setFile(file);
       } else {
-        ToastWrapper({
+        AppNotification({
           msg: 'Файл не правильного формата',
           type: ToastWrapperType.error,
         });
