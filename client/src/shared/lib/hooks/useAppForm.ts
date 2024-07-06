@@ -1,7 +1,21 @@
-interface IFormData {}
+import { useState } from 'react';
 
-interface UseAppForm {
-  formData: IFormData;
+interface IFormData {
+  name: string;
+  required?: string;
+  pattern?: string;
+  minLength?: number;
+  maxLength?: number;
 }
 
-export const useAppForm = ({ formData }: UseAppForm) => {};
+interface UseAppForm {
+  formData: IFormData[];
+}
+
+interface UseAppFormState {
+  formData: IFormData[];
+}
+
+export const useAppForm = ({ formData }: UseAppForm) => {
+  const [state, setState] = useState();
+};
