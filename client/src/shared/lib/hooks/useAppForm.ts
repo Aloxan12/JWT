@@ -18,4 +18,6 @@ interface UseAppFormState {
 
 export const useAppForm = ({ formData }: UseAppForm) => {
   const [state, setState] = useState();
+
+  return state;
 };
