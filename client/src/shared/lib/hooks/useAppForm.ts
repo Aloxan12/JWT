@@ -12,12 +12,23 @@ interface UseAppForm {
   formData: IFormData[];
 }
 
-interface UseAppFormState {
-  formData: IFormData[];
+interface IFormState {
+  [key: string]: string;
+}
+interface IFormError {
+  [key: string]: boolean;
 }
 
-export const useAppForm = ({ formData }: UseAppForm) => {
-  const [state, setState] = useState({});
+interface UseAppFormState {
+  formState: IFormState;
+  formError: IFormError;
+}
+
+export const useAppForm = ({ formData }: UseAppForm): UseAppFormState => {
+  const [state, setState] = useState<UseAppFormState>({
+    formState: {},
+    formError: {},
+  });
 
   return { ...state };
 };
