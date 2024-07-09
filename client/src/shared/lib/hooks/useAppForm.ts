@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 interface IFormData {
   name: string;
@@ -24,11 +24,26 @@ interface UseAppFormState {
   formError: IFormError;
 }
 
-export const useAppForm = ({ formData }: UseAppForm): UseAppFormState => {
-  const [state, setState] = useState<UseAppFormState>({
-    formState: {},
-    formError: {},
-  });
+interface UseAppFormResponse extends UseAppFormState {}
 
-  return { ...state };
+const initialFormState = (formData: IFormData[]): UseAppFormState => {
+  const formState = formData.reduce((acc, el) => {
+    acc[el.name] = '';
+    return acc;
+  }, {} as IFormState);
+  return {
+    formState,
+    formError: {},
+  };
+};
+
+export const useAppForm = ({ formData }: UseAppForm): UseAppFormResponse => {
+  const [state, setState] = useState<UseAppFormState>(initialFormState(formData));
+
+  return useMemo(
+    () => ({
+      ...state,
+    }),
+    [state]
+  );
 };
