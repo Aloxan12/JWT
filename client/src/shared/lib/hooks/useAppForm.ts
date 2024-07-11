@@ -32,7 +32,10 @@ interface UseAppFormState {
   formValidation?: IFormValidation;
 }
 
-interface UseAppFormResponse extends UseAppFormState {}
+interface UseAppFormResponse extends UseAppFormState {
+  changeHandler: (propName: string) => (value: string) => void;
+  setFormStateHandler: (formState: IFormState) => void;
+}
 
 const initialFormState = (formData: IFormData[]): UseAppFormState => {
   const formState = formData.reduce((acc, el) => {
@@ -59,8 +62,18 @@ const initialFormState = (formData: IFormData[]): UseAppFormState => {
 export const useAppForm = ({ formData }: UseAppForm): UseAppFormResponse => {
   const [state, setState] = useState<UseAppFormState>(initialFormState(formData));
 
+  const changeHandler = (propName: string) => (value: string) => {
+    setState((prev) => {
+      const formState = { ...prev.formState, [propName]: value };
+      return { ...prev, formState };
+    });
+  };
+  const setFormStateHandler = (formState: IFormState) => {
+    setState((prev) => ({ ...prev, formState }));
+  };
+
   return useMemo(() => {
     const { formState, formError } = state;
-    return { formState, formError };
+    return { formState, formError, changeHandler, setFormStateHandler };
   }, [state]);
 };
