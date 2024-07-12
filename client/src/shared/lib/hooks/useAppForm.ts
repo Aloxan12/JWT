@@ -19,7 +19,7 @@ interface IFormState {
   [key: string]: string;
 }
 interface IFormError {
-  [key: string]: boolean;
+  [key: string]: string;
 }
 
 interface IFormValidation {
@@ -28,7 +28,7 @@ interface IFormValidation {
 
 interface UseAppFormState {
   formState: IFormState;
-  formError: IFormError;
+  formError?: IFormError;
   formValidation?: IFormValidation;
 }
 
@@ -54,7 +54,7 @@ const initialFormState = (formData: IFormData[]): UseAppFormState => {
   }, {} as IFormValidation);
   return {
     formState,
-    formError: {},
+    formError: undefined,
     formValidation,
   };
 };
@@ -64,8 +64,13 @@ export const useAppForm = ({ formData }: UseAppForm): UseAppFormResponse => {
 
   const changeHandler = (propName: string) => (value: string) => {
     setState((prev) => {
+      let formError: IFormError | undefined = prev.formError;
       const formState = { ...prev.formState, [propName]: value };
-      return { ...prev, formState };
+
+      if (!!prev?.formValidation && prev?.formValidation[propName]) {
+      }
+
+      return { ...prev, formState, formError };
     });
   };
   const setFormStateHandler = (formState: IFormState) => {
