@@ -68,6 +68,27 @@ export const useAppForm = ({ formData }: UseAppForm): UseAppFormResponse => {
       const formState = { ...prev.formState, [propName]: value };
 
       if (!!prev?.formValidation && prev?.formValidation[propName]) {
+        const maxLength = prev?.formValidation[propName].maxLength;
+        const minLength = prev?.formValidation[propName].minLength;
+        const isRequired = prev?.formValidation[propName].required;
+
+        if (maxLength && value?.length > maxLength) {
+          const errorText = {
+            [propName]: `Превышено максимально допустимое количество символов ${value?.length}/${maxLength}`,
+          };
+          formError = formError ? { ...formError, ...errorText } : errorText;
+        } else if (maxLength && value?.length <= maxLength && formError && formError[propName]) {
+          formError[propName] = '';
+        }
+
+        if (isRequired && !value?.length) {
+          const errorText = {
+            [propName]: `Обязательное поле`,
+          };
+          formError = formError ? { ...formError, ...errorText } : errorText;
+        } else if (isRequired && !value?.length && formError && formError[propName]) {
+          formError[propName] = '';
+        }
       }
 
       return { ...prev, formState, formError };
