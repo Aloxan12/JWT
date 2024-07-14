@@ -37,6 +37,39 @@ interface UseAppFormResponse extends UseAppFormState {
   setFormStateHandler: (formState: IFormState) => void;
 }
 
+const validationFormFn = (
+  propName: string,
+  value: string,
+  formValidation?: IFormValidation,
+  prevFormError?: IFormError
+) => {
+  let formError: IFormError | undefined = { ...prevFormError };
+  if (!!formValidation && formValidation[propName]) {
+    const maxLength = formValidation[propName].maxLength;
+    const minLength = formValidation[propName].minLength;
+    const isRequired = formValidation[propName].required;
+
+    if (maxLength && value?.length > maxLength) {
+      const errorText = {
+        [propName]: `Превышено максимально допустимое количество символов ${value?.length}/${maxLength}`,
+      };
+      formError = formError ? { ...formError, ...errorText } : errorText;
+    } else if (maxLength && value?.length <= maxLength && formError && formError[propName]) {
+      formError[propName] = '';
+    }
+
+    if (isRequired && !value?.length) {
+      const errorText = {
+        [propName]: `Обязательное поле`,
+      };
+      formError = formError ? { ...formError, ...errorText } : errorText;
+    } else if (isRequired && !value?.length && formError && formError[propName]) {
+      formError[propName] = '';
+    }
+  }
+  return formError;
+};
+
 const initialFormState = (formData: IFormData[]): UseAppFormState => {
   const formState = formData.reduce((acc, el) => {
     acc[el.name] = '';
@@ -64,32 +97,13 @@ export const useAppForm = ({ formData }: UseAppForm): UseAppFormResponse => {
 
   const changeHandler = (propName: string) => (value: string) => {
     setState((prev) => {
-      let formError: IFormError | undefined = prev.formError;
       const formState = { ...prev.formState, [propName]: value };
-
-      if (!!prev?.formValidation && prev?.formValidation[propName]) {
-        const maxLength = prev?.formValidation[propName].maxLength;
-        const minLength = prev?.formValidation[propName].minLength;
-        const isRequired = prev?.formValidation[propName].required;
-
-        if (maxLength && value?.length > maxLength) {
-          const errorText = {
-            [propName]: `Превышено максимально допустимое количество символов ${value?.length}/${maxLength}`,
-          };
-          formError = formError ? { ...formError, ...errorText } : errorText;
-        } else if (maxLength && value?.length <= maxLength && formError && formError[propName]) {
-          formError[propName] = '';
-        }
-
-        if (isRequired && !value?.length) {
-          const errorText = {
-            [propName]: `Обязательное поле`,
-          };
-          formError = formError ? { ...formError, ...errorText } : errorText;
-        } else if (isRequired && !value?.length && formError && formError[propName]) {
-          formError[propName] = '';
-        }
-      }
+      const formError: IFormError | undefined = validationFormFn(
+        propName,
+        value,
+        prev.formValidation,
+        prev.formError
+      );
 
       return { ...prev, formState, formError };
     });
