@@ -57,6 +57,14 @@ const validationFormFn = (
     } else if (maxLength && value?.length <= maxLength && formError && formError[propName]) {
       formError[propName] = '';
     }
+    if (minLength && value?.length < minLength) {
+      const errorText = {
+        [propName]: `Недостаточное количество символов ${value?.length}/${minLength}`,
+      };
+      formError = formError ? { ...formError, ...errorText } : errorText;
+    } else if (minLength && value?.length >= minLength && formError && formError[propName]) {
+      formError[propName] = '';
+    }
 
     if (isRequired && !value?.length) {
       const errorText = {
