@@ -7,7 +7,7 @@ interface FormValidation {
   maxLength?: number;
 }
 
-interface IFormData extends FormValidation {
+export interface IFormData extends FormValidation {
   name: string;
 }
 
