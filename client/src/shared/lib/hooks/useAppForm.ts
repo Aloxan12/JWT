@@ -48,6 +48,7 @@ const validationFormFn = (
     const maxLength = formValidation[propName].maxLength;
     const minLength = formValidation[propName].minLength;
     const isRequired = formValidation[propName].required;
+    const pattern = formValidation[propName].pattern;
 
     if (maxLength && value?.length > maxLength) {
       const errorText = {
@@ -64,6 +65,12 @@ const validationFormFn = (
       formError = formError ? { ...formError, ...errorText } : errorText;
     } else if (minLength && value?.length >= minLength && formError && formError[propName]) {
       formError[propName] = '';
+    }
+    if (pattern && value) {
+      const errorText = {
+        [propName]: `Не соответствует шаблону`,
+      };
+      formError = formError ? { ...formError, ...errorText } : errorText;
     }
 
     if (isRequired && !value?.length) {
