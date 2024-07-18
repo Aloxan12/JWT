@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 
 interface FormValidation {
   required?: string;
-  pattern?: string;
+  pattern?: RegExp;
   minLength?: number;
   maxLength?: number;
 }
@@ -66,7 +66,7 @@ const validationFormFn = (
     } else if (minLength && value?.length >= minLength && formError && formError[propName]) {
       formError[propName] = '';
     }
-    if (pattern && value) {
+    if (pattern && pattern.test(value)) {
       const errorText = {
         [propName]: `Не соответствует шаблону`,
       };
