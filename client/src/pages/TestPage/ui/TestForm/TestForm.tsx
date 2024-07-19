@@ -6,7 +6,8 @@ import { IFormData, useAppForm } from '../../../../shared/lib/hooks/useAppForm';
 const formData: IFormData[] = [
   { name: 'name', maxLength: 20, required: 'Обязательное поле' },
   { name: 'address', maxLength: 40, required: 'Обязательное поле' },
-  { name: 'description', maxLength: 100, required: 'Обязательное поле' },
+  { name: 'description', maxLength: 100 },
+  { name: 'site', pattern: /^https:\/[a-zA-Z0-9_@]$/ },
 ];
 
 export const TestForm = () => {
@@ -28,11 +29,18 @@ export const TestForm = () => {
         onChange={changeHandler('address')}
       />
       <AppInput
-        label="description"
+        label="Описание"
         placeholder="description"
         value={formState.description}
         error={formError?.description}
         onChange={changeHandler('description')}
+      />
+      <AppInput
+        label="Сайт"
+        placeholder="site"
+        value={formState.description}
+        error={formError?.description}
+        onChange={changeHandler('site')}
       />
     </Flex>
   );
