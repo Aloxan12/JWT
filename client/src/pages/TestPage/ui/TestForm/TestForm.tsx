@@ -7,7 +7,7 @@ const formData: IFormData[] = [
   { name: 'name', maxLength: 20, required: 'Обязательное поле' },
   { name: 'address', maxLength: 40, required: 'Обязательное поле' },
   { name: 'description', maxLength: 100 },
-  { name: 'site', pattern: /^https:\/[a-zA-Z0-9_@]$/ },
+  { name: 'site', pattern: /^https:\/\/[a-zA-Z0-9_@]$/ },
 ];
 
 export const TestForm = () => {
