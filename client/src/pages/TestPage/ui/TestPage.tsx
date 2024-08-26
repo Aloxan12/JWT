@@ -6,8 +6,11 @@ import { AppPhoto } from '../../../shared/ui/AppPhoto/AppPhoto';
 import FakePhoto from '../../../shared/assets/images/fake-photo.jpg';
 import { AppTitle } from '../../../shared/ui/AppTitle/AppTitle';
 import { AppRadio } from '../../../shared/ui/AppRadio/AppRadio';
-import { AppChart } from '../../../shared/ui/AppChart/AppChart';
 import { TestForm } from './TestForm/TestForm';
+
+const Triangle = () => {
+  return <div className={cls.triangleHeader}>Какой то текст</div>;
+};
 
 const TestPage = () => {
   const [active, setActive] = useState(false);
@@ -17,7 +20,7 @@ const TestPage = () => {
   const setActiveTransitionBehaviorHandler = () => setActiveTransitionBehavior((prev) => !prev);
   return (
     <>
-      <AppChart />
+      <Triangle />
       <div className={cls.testPageWrap}>
         <TestForm />
         <Flex gap="24">
