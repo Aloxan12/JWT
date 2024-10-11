@@ -17,9 +17,6 @@ const TestPage = () => {
   return (
     <>
       <div className={cls.testPageWrap}>
-        <Suspense fallback="загрузка">
-          <RemoteUserModule />
-        </Suspense>
         <TestForm />
         <Flex gap="24">
           <AppRadio isActive={true} onClick={() => {}} text="tekeuhfv" />
