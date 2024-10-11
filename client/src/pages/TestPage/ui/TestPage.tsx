@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import cls from './TestPage.module.scss';
 import { AppButton } from '../../../shared/ui/AppButton/AppButton';
 import { Flex } from '../../../shared/ui/Flex/Flex';
@@ -8,20 +8,6 @@ import { AppTitle } from '../../../shared/ui/AppTitle/AppTitle';
 import { AppRadio } from '../../../shared/ui/AppRadio/AppRadio';
 import { TestForm } from './TestForm/TestForm';
 
-const Triangle = () => {
-  return (
-    <div className={cls.triangleHeader}>
-      <svg viewBox="0 0 148 92" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M139.318 92H8.90785C2.07071 92 -1.61575 83.9784 2.83698 78.7899L49 25L67.9407 3.02876C71.1321 -0.673213 76.8679 -0.673208 80.0593 3.02877L99 25L145.376 78.7753C149.847 83.9598 146.164 92 139.318 92Z"
-          fill="#E3FBDC"
-        />
-      </svg>
-      <span>Какой то текст</span>
-    </div>
-  );
-};
-
 const TestPage = () => {
   const [active, setActive] = useState(false);
   const [activeTransitionBehavior, setActiveTransitionBehavior] = useState(false);
@@ -30,8 +16,10 @@ const TestPage = () => {
   const setActiveTransitionBehaviorHandler = () => setActiveTransitionBehavior((prev) => !prev);
   return (
     <>
-      <Triangle />
       <div className={cls.testPageWrap}>
+        <Suspense fallback="загрузка">
+          <RemoteUserModule />
+        </Suspense>
         <TestForm />
         <Flex gap="24">
           <AppRadio isActive={true} onClick={() => {}} text="tekeuhfv" />
