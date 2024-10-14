@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react';
+import React, { useState } from 'react';
 import cls from './TestPage.module.scss';
 import { AppButton } from '../../../shared/ui/AppButton/AppButton';
 import { Flex } from '../../../shared/ui/Flex/Flex';
