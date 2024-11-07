@@ -7,6 +7,7 @@ import FakePhoto from '../../../shared/assets/images/fake-photo.jpg';
 import { AppTitle } from '../../../shared/ui/AppTitle/AppTitle';
 import { AppRadio } from '../../../shared/ui/AppRadio/AppRadio';
 import { TestForm } from './TestForm/TestForm';
+import { AppVirtualizationPresentation } from '../../../shared/ui/AppVirtualization/AppVirtualization';
 
 const TestPage = () => {
   const [active, setActive] = useState(false);
@@ -17,6 +18,7 @@ const TestPage = () => {
   return (
     <>
       <div className={cls.testPageWrap}>
+        <AppVirtualizationPresentation />
         <TestForm />
         <Flex gap="24">
           <AppRadio isActive={true} onClick={() => {}} text="tekeuhfv" />
