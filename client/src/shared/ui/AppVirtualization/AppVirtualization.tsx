@@ -1,22 +1,20 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { AppButton } from '../AppButton/AppButton';
-import { useFixedSizeList } from './hooks/useFixedSizeList';
+import { useSizeList } from './hooks/useSizeList';
 
 const items = Array.from({ length: 200 }, (_, index) => ({
   id: Math.random().toString(36).slice(2),
   text: String(index),
 }));
 
-const itemHeight = 40;
 const containerHeight = 600;
 
 export const AppVirtualizationPresentation = () => {
   const [listItems, setListItems] = useState(items);
   const scrollElementRef = useRef<HTMLDivElement | null>(null);
 
-  const { isScrolling, virtualItems, totalHeight } = useFixedSizeList({
-    itemHeight,
-    listHeight: containerHeight,
+  const { isScrolling, virtualItems, totalHeight } = useSizeList({
+    itemHeight: useCallback(() => 40, []),
     itemsCount: listItems.length,
     getScrollElement: useCallback(() => scrollElementRef.current, []),
   });
@@ -46,7 +44,7 @@ export const AppVirtualizationPresentation = () => {
             return (
               <div
                 style={{
-                  height: itemHeight,
+                  height: virtualItem.height,
                   padding: '6px 12px',
                   position: 'absolute',
                   top: 0,
