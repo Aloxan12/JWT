@@ -13,8 +13,9 @@ export const AppVirtualizationPresentation = () => {
   const [listItems, setListItems] = useState(items);
   const scrollElementRef = useRef<HTMLDivElement | null>(null);
 
-  const { isScrolling, virtualItems, totalHeight } = useSizeList({
-    itemHeight: useCallback(() => 40, []),
+  const { isScrolling, virtualItems, totalHeight, measureElement } = useSizeList({
+    estimateItemHeight: useCallback(() => 40, []),
+    getItemKey: useCallback((index: number) => listItems[index].id, [listItems]),
     itemsCount: listItems.length,
     getScrollElement: useCallback(() => scrollElementRef.current, []),
   });
@@ -43,8 +44,9 @@ export const AppVirtualizationPresentation = () => {
             const item = listItems[virtualItem.index];
             return (
               <div
+                ref={measureElement}
+                data-index={virtualItem.index}
                 style={{
-                  height: virtualItem.height,
                   padding: '6px 12px',
                   position: 'absolute',
                   top: 0,

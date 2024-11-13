@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { TimeoutId } from '@reduxjs/toolkit/dist/query/core/buildMiddleware/types';
 
 type Key = string | number;
@@ -34,7 +34,6 @@ export const useSizeList = ({
   const [measurementCache, setMeasurementCache] = useState<Record<Key, number>>({});
   const [scrollTop, setScrollTop] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
-
   const [listHeight, setListHeight] = useState(0);
 
   useLayoutEffect(() => {
@@ -46,7 +45,7 @@ export const useSizeList = ({
       if (!entry) return;
 
       const height =
-        entry.borderBoxSize[0]?.blockSize ?? entry.target.getBoundingClientRect().height;
+        entry.contentBoxSize[0]?.blockSize ?? entry.target.getBoundingClientRect().height;
       setListHeight(height);
     });
     resizeObserver.observe(scrollElement);
@@ -93,7 +92,11 @@ export const useSizeList = ({
       if (itemHeight) {
         return itemHeight(index);
       }
-      estimateItemHeight?.(index);
+      const key = getItemKey(index);
+      if (typeof measurementCache[key] === 'number') {
+        return measurementCache[key];
+      }
+      return estimateItemHeight!(index);
     };
     const rangeStart = scrollTop;
     const rangeEnd = scrollTop + listHeight;
@@ -104,7 +107,9 @@ export const useSizeList = ({
     const allRows = Array(itemsCount);
 
     for (let index = 0; index < itemsCount; index++) {
+      const key = getItemKey(index);
       const row = {
+        key,
         index,
         height: getItemHeight(index) || 0,
         offsetTop: totalHeight,
@@ -115,15 +120,29 @@ export const useSizeList = ({
       if (startIndex === -1 && row.offsetTop + row.height > rangeStart) {
         startIndex = Math.max(0, index - overscan);
       }
+
       if (endIndex === -1 && row.offsetTop + row.height >= rangeEnd) {
-        endIndex = Math.max(itemsCount - 1, index + overscan);
+        endIndex = Math.min(itemsCount - 1, index + overscan);
       }
     }
-
+    console.log('startIndex', startIndex);
+    console.log('endIndex', endIndex);
     const virtualItems = allRows.slice(startIndex, endIndex);
 
     return { virtualItems, startIndex, endIndex, allRows, totalHeight };
-  }, [scrollTop, itemsCount, itemHeight, overscan]);
+  }, [scrollTop, itemsCount, itemHeight, overscan, estimateItemHeight, measurementCache]);
 
-  return { virtualItems, startIndex, endIndex, isScrolling, totalHeight };
+  const measureElement = useCallback((element: Element | null) => {
+    if (!element) return;
+    const indexAttribute = element.getAttribute('data-index') || '';
+    const index = parseInt(indexAttribute, 10);
+    if (Number.isNaN(index)) {
+      console.error('dynamic element mast have a valid "data-index" attribute');
+    }
+    const size = element.getBoundingClientRect();
+    const key = getItemKey(index);
+    setMeasurementCache((prev) => ({ ...prev, [key]: size.height }));
+  }, []);
+
+  return { virtualItems, startIndex, endIndex, isScrolling, totalHeight, measureElement };
 };
